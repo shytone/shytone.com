@@ -1,0 +1,22 @@
+# 999_SHYTONE.COM/_config.yml
+title: "Shytone's Blog"  # 博客标题
+description: "个人技术博客"  # 博客描述
+baseurl: ""  # 若部署在子路径（如 username.github.io/blog），需填写 "/blog"
+url: "https://shytone.com"  # 博客域名（GitHub Pages 地址）
+
+# 启用远程主题插件
+plugins:
+  - jekyll-remote-theme
+  - jekyll-paginate  # 主题依赖的插件需在此声明
+
+# 配置远程主题（替换为你选择的主题仓库）
+# 格式：remote_theme: 用户名/仓库名@分支（默认主分支可省略）
+remote_theme: mmistakes/minimal-mistakes
+
+# 主题特定配置（根据主题文档调整，以下为 minimal-mistakes 示例）
+minimal_mistakes_skin: "dark"  # 主题皮肤
+paginate: 5  # 每页显示文章数
+author:
+  name: "Shytone"
+  avatar: "/assets/avatar.jpg"  # 头像路径（需在 assets 目录下放置图片）
+  bio: "热爱技术的开发者"
