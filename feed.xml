@@ -1,5 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2025-11-17T14:22:16+00:00</updated><id>/feed.xml</id><title type="html">SHYTONE.COM</title><subtitle>Your Site Description
-</subtitle><author><name>shytone</name></author><entry><title type="html">Welcome</title><link href="/2018/07/01/welcome.html" rel="alternate" type="text/html" title="Welcome" /><published>2018-07-01T00:00:00+00:00</published><updated>2018-07-01T00:00:00+00:00</updated><id>/2018/07/01/welcome</id><content type="html" xml:base="/2018/07/01/welcome.html"><![CDATA[<p>If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="/feed.xml" rel="self" type="application/atom+xml" /><link href="/" rel="alternate" type="text/html" /><updated>2025-11-17T14:27:55+00:00</updated><id>/feed.xml</id><title type="html">SHYTONE.COM</title><subtitle>Your Site Description
+</subtitle><author><name>shytone</name></author><entry><title type="html">记录一次排查__lll_unlock_elsion()函数coredump问题过程</title><link href="/2019/11/05/crash_on__lll_unlock_elision.html" rel="alternate" type="text/html" title="记录一次排查__lll_unlock_elsion()函数coredump问题过程" /><published>2019-11-05T00:00:00+00:00</published><updated>2019-11-05T00:00:00+00:00</updated><id>/2019/11/05/crash_on__lll_unlock_elision</id><content type="html" xml:base="/2019/11/05/crash_on__lll_unlock_elision.html"><![CDATA[<p>调用某个so中的函数时必现coredump，但是在相同操作系统版本的其他环境上不会出现。</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">(</span>gdb<span class="o">)</span> bt
+<span class="c">#0 0x555b1d90 in __lll_unlock_elision() from /lib/libpthread.so.0</span>
+...
+</code></pre></div></div>
+
+<!--more-->
+
+<hr />
+
+<h2 id="排查过程">排查过程</h2>
+
+<p>出现此问题时，首先排查两台环境区别，发现操作系统版本均一致（Suse12sp3），且应用与调用的so等完全一致。
+最终发现两台机器CPU不一致。
+其中出现问题的环境CPU为 Intel Core Processor (Haswell)
+正常环境的CPU为 Intel Xeon E312xx (Sandy Bridge)
+上网搜索确认该问题属于一个CPU的bug。</p>
+
+<blockquote>
+  <p>Unfortunately it is intel that developed bugged chips (Haswell, Broadwell and Skylake), they have it in their errata (BDD50,51) <a href="https://www-ssl.intel.com/content/dam/www/public/us/en/documents/specification-updates/desktop-mobile-5th-gen-core-family-spec-update.pdf">desktop-mobile-5th-gen-core-family-spec-update.pdf</a></p>
+</blockquote>
+
+<h2 id="解决办法">解决办法</h2>
+
+<ol>
+  <li>更新so</li>
+  <li>根据SUSE官网提供的方法，将应用链接的/lib64/libpthread.so改为/lib64/noelision/libpthread.so也可解决该问题。</li>
+</ol>
+
+<hr />
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://bbs.archlinux.org/viewtopic.php?id=202545">bbs.archlinux</a>
+<a href="https://forums.opensuse.org/showthread.php/535482-Crash-on-__lll_unlock_elision">forums.opensuse</a>
+<a href="https://www.suse.com/support/kb/doc/?id=000019071">SUSE官网</a></p>]]></content><author><name>shytone</name></author><category term="linux" /><category term="SUSE" /><summary type="html"><![CDATA[调用某个so中的函数时必现coredump，但是在相同操作系统版本的其他环境上不会出现。 (gdb) bt #0 0x555b1d90 in __lll_unlock_elision() from /lib/libpthread.so.0 ...]]></summary></entry><entry><title type="html">Welcome</title><link href="/2018/07/01/welcome.html" rel="alternate" type="text/html" title="Welcome" /><published>2018-07-01T00:00:00+00:00</published><updated>2018-07-01T00:00:00+00:00</updated><id>/2018/07/01/welcome</id><content type="html" xml:base="/2018/07/01/welcome.html"><![CDATA[<p>If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:</p>
 
 <p>You may want to <a href="https://kitian616.github.io/jekyll-TeXt-theme/docs/en/configuration">config the site</a> or <a href="https://kitian616.github.io/jekyll-TeXt-theme/docs/en/writing-posts">writing a post</a> next. Please feel free to <a href="https://github.com/kitian616/jekyll-TeXt-theme/issues">create an issue</a> or <a href="mailto:kitian616@outlook.com">send me an email</a> if you have any questions.</p>
 
@@ -9,4 +45,74 @@
 
 <p>If you like TeXt, don’t forget to give me a star. :star2:</p>
 
-<p><a href="https://github.com/kitian616/jekyll-TeXt-theme/"><img src="https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;style=social" alt="Star This Project" /></a></p>]]></content><author><name>shytone</name></author><category term="TeXt" /><summary type="html"><![CDATA[If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost: You may want to config the site or writing a post next. Please feel free to create an issue or send me an email if you have any questions.]]></summary></entry></feed>
+<p><a href="https://github.com/kitian616/jekyll-TeXt-theme/"><img src="https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;style=social" alt="Star This Project" /></a></p>]]></content><author><name>shytone</name></author><category term="TeXt" /><summary type="html"><![CDATA[If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost: You may want to config the site or writing a post next. Please feel free to create an issue or send me an email if you have any questions.]]></summary></entry><entry><title type="html">GitHub更改历史commit作者信息</title><link href="/2017/10/18/github-change-commit-info.html" rel="alternate" type="text/html" title="GitHub更改历史commit作者信息" /><published>2017-10-18T00:00:00+00:00</published><updated>2017-10-18T00:00:00+00:00</updated><id>/2017/10/18/github-change-commit-info</id><content type="html" xml:base="/2017/10/18/github-change-commit-info.html"><![CDATA[<p>多个git仓库工作，可能需要用不同的作者信息提交，有时候忘记了修改，需要修改log中的作者信息。github给出了以下方法。</p>
+
+<!--more-->
+
+<hr />
+
+<h2 id="步骤">步骤</h2>
+
+<ul>
+  <li>打开git bash</li>
+  <li>创建项目的全新裸仓库</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git clone <span class="nt">--bare</span> https://github.com/user/repo.git
+<span class="nb">cd </span>repo.git
+</code></pre></div></div>
+
+<ul>
+  <li>复制以下脚本，替换其中信息</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c">#!/bin/sh</span>
+
+git filter-branch <span class="nt">--env-filter</span> <span class="s1">' 
+OLD_EMAIL="your-old-email@example.com" # 替换
+CORRECT_NAME="Your Correct Name" # 替换
+CORRECT_EMAIL="your-correct-email@example.com" # 替换
+if [ "$GIT_COMMITTER_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_COMMITTER_NAME="$CORRECT_NAME"
+    export GIT_COMMITTER_EMAIL="$CORRECT_EMAIL"
+fi
+if [ "$GIT_AUTHOR_EMAIL" = "$OLD_EMAIL" ]
+then
+    export GIT_AUTHOR_NAME="$CORRECT_NAME"
+    export GIT_AUTHOR_EMAIL="$CORRECT_EMAIL"
+fi
+'</span> <span class="nt">--tag-name-filter</span> <span class="nb">cat</span> <span class="nt">--</span> <span class="nt">--branches</span> <span class="nt">--tags</span>
+</code></pre></div></div>
+
+<ul>
+  <li>执行</li>
+  <li>查看新git历史有没有错误</li>
+  <li>将正确的历史提交到GitHub</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>git push <span class="nt">--force</span> <span class="nt">--tags</span> origin <span class="s1">'refs/heads/*'</span>
+</code></pre></div></div>
+
+<ul>
+  <li>删除临时clone</li>
+</ul>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">cd</span> ..
+<span class="nb">rm</span> <span class="nt">-rf</span> repo.git
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="注意">注意</h2>
+
+<blockquote>
+  <p>警告：这种行为对你的 repo 的历史具有破坏性。如果你的 repo 是与他人协同工作的，重写已发布的历史是一种不好的习惯。仅限紧急情况执行该操作。
+执行完后重新clone新的repo，因为旧的不会修改。</p>
+</blockquote>
+
+<hr />
+
+<h2 id="参考">参考</h2>
+
+<p><a href="https://help.github.com/articles/changing-author-info/">GitHub官方链接</a></p>]]></content><author><name>shytone</name></author><category term="git" /><summary type="html"><![CDATA[多个git仓库工作，可能需要用不同的作者信息提交，有时候忘记了修改，需要修改log中的作者信息。github给出了以下方法。]]></summary></entry></feed>
