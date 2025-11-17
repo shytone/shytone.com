@@ -1,7 +1,25 @@
 ---
-# 这是 Front Matter 区域，可留空或添加配置（如标题、布局）
-title: about
-layout: default  # 关联主题中的布局文件（如 default.html）
+layout: article
+titles:
+  en      : &EN       About
+  en-GB   : *EN
+  en-US   : *EN
+  en-CA   : *EN
+  en-AU   : *EN
+  zh-Hans : &ZH_HANS  关于
+  zh      : *ZH_HANS
+  zh-CN   : *ZH_HANS
+  zh-SG   : *ZH_HANS
+  zh-Hant : &ZH_HANT  關於
+  zh-TW   : *ZH_HANT
+  zh-HK   : *ZH_HANT
+  ko      : &KO       소개
+  ko-KR   : *KO
+key: page-about
 ---
 
-这里是你的内容...
+Just say something about yourself. :+1:
+
+{% highlight javascript %}
+(() => console.log('hello, world!'))();
+{% endhighlight %}
