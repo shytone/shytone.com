@@ -1,0 +1,23 @@
+name: Build with Jekyll 4.x
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.2'
+          bundler-cache: true
+
+      - name: Install dependencies
+        run: |
+          gem install jekyll -v 4.3.2  # 明确使用 Jekyll 4.x
+          gem install jekyll-remote-theme
+
+      - name: Build site
+        run: |
+          bundle exec jekyll build --config _config.yml  # 关键：添加 bundle exec 前缀
