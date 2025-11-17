@@ -1,1 +1,1 @@
-Sitemap: https://shytone.com/sitemap.xml
+Sitemap: /sitemap.xml
