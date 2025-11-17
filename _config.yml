@@ -11,10 +11,11 @@ plugins:
 
 # 配置远程主题（替换为你选择的主题仓库）
 # 格式：remote_theme: 用户名/仓库名@分支（默认主分支可省略）
-theme: minima  # 无需远程主题插件，内置支持
+theme: jekyll-text-theme
 
 # 主题特定配置（根据主题文档调整，以下为 minimal-mistakes 示例）
-minimal_mistakes_skin: "dark"  # 主题皮肤
+#minimal_mistakes_skin: "dark"  # 主题皮肤
+text_theme: default 
 paginate: 5  # 每页显示文章数
 author:
   name: "Shytone"
