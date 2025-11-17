@@ -19,4 +19,5 @@ jobs:
           gem install jekyll-remote-theme
 
       - name: Build site
-        run: jekyll build --config _config.yml  # 此时支持 include_cached
+        run: |
+          bundle exec jekyll build --config _config.yml  # 关键：添加 bundle exec 前缀
