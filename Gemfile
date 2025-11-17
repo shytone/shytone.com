@@ -5,7 +5,8 @@ source "https://rubygems.org"
 gem "jekyll", "~> 4.3.2"
 
 # 添加 minima 主题依赖（关键）
-gem 'minima', '~> 2.5'  # 2.5 版本兼容 Jekyll 4.x
+# gem 'minima', '~> 2.5'  # 2.5 版本兼容 Jekyll 4.x
+gem "jekyll-text-theme"
 
 # Jekyll 插件（远程主题必需）
 gem 'jekyll-remote-theme'
