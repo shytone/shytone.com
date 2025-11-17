@@ -11,7 +11,7 @@ plugins:
 
 # 配置远程主题（替换为你选择的主题仓库）
 # 格式：remote_theme: 用户名/仓库名@分支（默认主分支可省略）
-remote_theme: mmistakes/minimal-mistakes
+remote_theme: mmistakes/minimal-mistakes@4.19.3
 
 # 主题特定配置（根据主题文档调整，以下为 minimal-mistakes 示例）
 minimal_mistakes_skin: "dark"  # 主题皮肤
