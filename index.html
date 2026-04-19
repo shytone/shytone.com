@@ -337,20 +337,22 @@
 ---
 
 <div class="visitor-counter">
-  <span class="counter-item">👁️ 浏览 <span id="visit-count">-</span></span>
+  <span class="counter-item">
+    <span id="busuanzi_container_site_pv">
+      👁️ 浏览 <span id="busuanzi_value_site_pv">-</span>
+    </span>
+  </span>
   <span class="counter-sep">·</span>
-  <span class="counter-item">🕐 最后更新 2026-04-19</span>
+  <span class="counter-item">
+    <span id="busuanzi_container_site_uv">
+      👤 访客 <span id="busuanzi_value_site_uv">-</span>
+    </span>
+  </span>
+  <span class="counter-sep">·</span>
+  <span class="counter-item">🕐 更新 2026-04-19</span>
 </div>
 
-<script>
-(function() {
-  var key = 'shytone_blog_views';
-  var count = parseInt(localStorage.getItem(key) || '0');
-  count++;
-  localStorage.setItem(key, count);
-  document.getElementById('visit-count').textContent = count;
-})();
-</script>
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <style>
 .hero {

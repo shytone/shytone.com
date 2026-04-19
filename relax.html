@@ -341,22 +341,15 @@
 
 <div class="relax-footer">
   <div class="visitor-counter">
-    <span class="counter-item">👁️ 本页浏览 <span id="relax-visit-count">-</span></span>
+    <span id="busuanzi_container_page_pv">
+      👁️ 本页浏览 <span id="busuanzi_value_page_pv">-</span>
+    </span>
     <span class="counter-sep">·</span>
     <span class="counter-item">🎮 摸鱼愉快~</span>
   </div>
 </div>
 
-<script>
-(function() {
-  var key = 'shytone_relax_views';
-  var count = parseInt(localStorage.getItem(key) || '0');
-  count++;
-  localStorage.setItem(key, count);
-  var el = document.getElementById('relax-visit-count');
-  if (el) el.textContent = count;
-})();
-</script>
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 <style>
 .relax-footer {
