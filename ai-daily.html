@@ -1,0 +1,112 @@
+---
+layout: page
+titles:
+  en      : &EN       AI Daily
+  zh-Hans : AI 日刊
+  zh      : AI 日刊
+  zh-CN   : AI 日刊
+key: page-ai-daily
+---
+
+<section class="ai-daily-intro">
+  <h2>🤖 AI Daily</h2>
+  <p>每日一篇 AI 相关文章 · One AI article every day</p>
+  <p class="subtitle">分享 AI 工具技巧、行业发展、个人思考</p>
+</section>
+
+---
+
+## 📅 最新文章
+
+<div class="ai-articles">
+{% for post in site.ai-daily limit:10 %}
+  <article class="ai-article-item">
+    <h3>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+    </h3>
+    <div class="article-meta">
+      <span class="date">{{ post.date | date: "%Y-%m-%d" }}</span>
+      {% if post.tags %}
+        <span class="tags">
+          {% for tag in post.tags %}
+            <span class="tag">{{ tag }}</span>
+          {% endfor %}
+        </span>
+      {% endif %}
+    </div>
+    {% if post.description %}
+      <p class="description">{{ post.description }}</p>
+    {% endif %}
+  </article>
+{% else %}
+  <p class="empty">暂无文章，敬请期待~</p>
+{% endfor %}
+</div>
+
+---
+
+## 📜 历史文章
+
+<p><a href="/ai-daily/archive.html">查看全部文章 →</a></p>
+
+---
+
+<style>
+.ai-daily-intro {
+  text-align: center;
+  padding: 2rem 0;
+}
+.ai-daily-intro h2 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+}
+.ai-daily-intro .subtitle {
+  color: #666;
+  font-size: 0.95rem;
+}
+.ai-articles {
+  margin: 2rem 0;
+}
+.ai-article-item {
+  padding: 1rem 0;
+  border-bottom: 1px solid #eee;
+}
+.ai-article-item:last-child {
+  border-bottom: none;
+}
+.ai-article-item h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.2rem;
+}
+.ai-article-item h3 a {
+  color: #333;
+  text-decoration: none;
+}
+.ai-article-item h3 a:hover {
+  color: #007bff;
+}
+.article-meta {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 0.5rem;
+}
+.article-meta .tag {
+  background: #f0f0f0;
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-left: 8px;
+}
+.article-meta .tags {
+  margin-left: 8px;
+}
+.description {
+  color: #555;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+.empty {
+  text-align: center;
+  color: #999;
+  padding: 3rem 0;
+}
+</style>

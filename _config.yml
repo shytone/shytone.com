@@ -126,6 +126,13 @@ defaults:
       pageview: false
       mathjax: true
 
+## => Collections
+##############################
+collections:
+  ai-daily:
+    output: true
+    permalink: /ai-daily/:path/
+
 ## => Plugins
 ##############################
 plugins:

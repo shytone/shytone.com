@@ -1,5 +1,12 @@
 header:
   - titles:
+      en      : &EN       AI Daily
+      zh-Hans : AI 日刊
+      zh      : AI 日刊
+      zh-CN   : AI 日刊
+    url: /ai-daily.html
+
+  - titles:
       # @start locale config
       en      : &EN       Archive
       en-GB   : *EN
