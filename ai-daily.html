@@ -279,7 +279,109 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>AI 日刊</h1></header></div><meta itemprop="headline" content="AI 日刊"><meta itemprop="author" content="shytone"/><div class="js-article-content"><section class="ai-daily-intro">
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>AI 日刊</h1></header></div><meta itemprop="headline" content="AI 日刊"><meta itemprop="author" content="shytone"/><div class="js-article-content"><style>
+.ai-daily-intro {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 20px;
+  margin-bottom: 3rem;
+}
+.ai-daily-intro h2 {
+  font-size: 2.5rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+.ai-daily-intro .subtitle {
+  color: rgba(255,255,255,0.7);
+  font-size: 1rem;
+}
+
+.page-nav {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.page-nav a {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: transform 0.2s;
+}
+.page-nav a:hover { transform: translateY(-2px); }
+
+.ai-articles {
+  display: grid;
+  gap: 1.5rem;
+}
+.ai-article-item {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(102,126,234,0.15);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.ai-article-item:hover {
+  transform: translateX(8px);
+  box-shadow: 0 8px 30px rgba(102,126,234,0.15);
+}
+.ai-article-item h3 {
+  margin: 0 0 0.8rem;
+  font-size: 1.2rem;
+}
+.ai-article-item h3 a {
+  color: #fff;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.ai-article-item h3 a:hover { color: #667eea; }
+.article-meta {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 0.8rem;
+}
+.article-meta .tag {
+  background: rgba(102,126,234,0.15);
+  padding: 3px 10px;
+  border-radius: 12px;
+  margin-left: 8px;
+  color: #667eea;
+}
+.description {
+  color: #888;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0;
+}
+.empty {
+  text-align: center;
+  color: #555;
+  padding: 3rem 0;
+  font-size: 1.1rem;
+}
+
+.ai-footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(102,126,234,0.1);
+  color: #555;
+  font-size: 0.9rem;
+}
+</style>
+
+<div class="page-nav">
+  <a href="/">📝 首页</a>
+  <a href="/relax.html">🎮 摸鱼专区</a>
+  <a href="/about.html">👤 关于</a>
+</div>
+
+<section class="ai-daily-intro">
   <h2>🤖 AI Daily</h2>
   <p>每日一篇 AI 相关文章 · One AI article every day</p>
   <p class="subtitle">分享 AI 工具技巧、行业发展、个人思考</p>
@@ -321,6 +423,16 @@
 ## 📜 历史文章
 
 <p><a href="/ai-daily/archive.html">查看全部文章 →</a></p>
+
+<div class="ai-footer">
+  <span id="busuanzi_container_page_pv">
+    👁️ 本页浏览 <span id="busuanzi_value_page_pv">-</span>
+  </span>
+  <span class="counter-sep">·</span>
+  <span>🤖 AI 辅助内容</span>
+</div>
+
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
 ---
 

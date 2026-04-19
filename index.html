@@ -279,182 +279,232 @@
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>首页</h1></header></div><meta itemprop="headline" content="首页"><meta itemprop="author" content="shytone"/><div class="js-article-content"><section class="hero">
-  <div class="hero-badge">👋 你好，欢迎来到我的世界</div>
-  <h1>我是 <span class="highlight">shytone</span></h1>
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>首页</h1></header></div><meta itemprop="headline" content="首页"><meta itemprop="author" content="shytone"/><div class="js-article-content"><style>
+.hero {
+  text-align: center;
+  padding: 5rem 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 24px;
+  margin-bottom: 3rem;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at 20% 80%, rgba(102,126,234,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 20%, rgba(118,75,162,0.15) 0%, transparent 50%);
+}
+.hero > * { position: relative; }
+.hero-badge {
+  display: inline-block;
+  background: rgba(102,126,234,0.2);
+  border: 1px solid rgba(102,126,234,0.3);
+  padding: 8px 20px;
+  border-radius: 30px;
+  font-size: 0.9rem;
+  color: #a0a0ff;
+  margin-bottom: 1.5rem;
+}
+.hero h1 {
+  font-size: 3.5rem;
+  margin: 0 0 1rem;
+  background: linear-gradient(135deg, #fff 0%, #667eea 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.hero .tagline {
+  font-size: 1.4rem;
+  color: rgba(255,255,255,0.85);
+  margin-bottom: 1.5rem;
+}
+.hero p {
+  color: rgba(255,255,255,0.6);
+  max-width: 500px;
+  margin: 0 auto 2rem;
+  line-height: 1.7;
+}
+
+.section-title {
+  font-size: 1.8rem;
+  color: #fff;
+  margin: 3rem 0 1.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid rgba(102,126,234,0.3);
+}
+.section-title span { color: #667eea; }
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.feature-card {
+  background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(102,126,234,0.15);
+  border-radius: 16px;
+  padding: 2rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.feature-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(102,126,234,0.2);
+}
+.feature-card h3 {
+  font-size: 1.3rem;
+  margin: 0 0 0.8rem;
+  color: #fff;
+}
+.feature-card h3 span { margin-right: 8px; }
+.feature-card p {
+  color: #888;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin: 0 0 1rem;
+}
+.feature-card .link {
+  display: inline-block;
+  color: #667eea;
+  text-decoration: none;
+  font-size: 0.9rem;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.feature-card .link:hover { color: #764ba2; }
+
+.post-list {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+}
+.post-list li {
+  padding: 0.8rem 0;
+  border-bottom: 1px solid rgba(102,126,234,0.08);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.post-list li:last-child { border-bottom: none; }
+.post-list a {
+  color: #ccc;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+.post-list a:hover { color: #667eea; }
+.post-list .date { color: #666; font-size: 0.85rem; }
+
+.contact-links {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.contact-links a {
+  color: #667eea;
+  text-decoration: none;
+  font-size: 1rem;
+  padding: 10px 24px;
+  border: 1px solid rgba(102,126,234,0.3);
+  border-radius: 30px;
+  transition: all 0.2s;
+}
+.contact-links a:hover {
+  background: rgba(102,126,234,0.1);
+  border-color: #667eea;
+}
+
+.visitor-counter {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 3rem;
+  border-top: 1px solid rgba(102,126,234,0.1);
+  color: #555;
+  font-size: 0.9rem;
+}
+.counter-item { margin: 0 6px; }
+.counter-sep { color: #333; }
+</style>
+
+<section class="hero">
+  <div class="hero-badge">👋 你好，欢迎来访</div>
+  <h1>我是 shytone</h1>
   <p class="tagline">Developer · Learner · Builder</p>
-  <p>记录技术分享、学习心得和折腾日常</p>
+  <p>记录技术分享、学习心得和折腾日常。热爱技术，喜欢用代码解决问题。</p>
+  <div class="contact-links">
+    <a href="https://github.com/shytone" target="_blank">📦 GitHub</a>
+    <a href="/about.html">👤 关于我</a>
+  </div>
 </section>
 
-<!--more-->
-
----
-
-## 🚀 最新动态
+<h2 class="section-title">📚 <span>精选内容</span></h2>
 
 <div class="features">
-  <div class="feature-card">
-    <h3>📝 博客文章</h3>
-    <p>技术分享与学习记录</p>
-    
-      <a href="/2019/11/05/crash_on__lll_unlock_elision.html" class="post-link">→ 记录一次排查__lll_unlock_elsion()函数coredump问题过程</a>
-    
-      <a href="/2018/07/01/welcome.html" class="post-link">→ Welcome</a>
-    
-      <a href="/2017/10/18/github-change-commit-info.html" class="post-link">→ GitHub更改历史commit作者信息</a>
-    
-    <a href="/archive.html" class="more-link">查看全部 →</a>
-  </div>
   
   <div class="feature-card">
     <h3>🤖 AI 日刊</h3>
-    <p>每日一篇 AI 相关文章</p>
-    <p>工具技巧、行业观察、学习方法</p>
-    <a href="/ai-daily.html" class="ai-link">前往阅读 →</a>
+    <p>每日一篇 AI 相关文章，涵盖工具技巧、行业观察、学习心得。</p>
+    <p>由 AI 辅助生成，每日自动更新 ~</p>
+    <a href="/ai-daily.html" class="link">前往阅读 →</a>
   </div>
   
   <div class="feature-card">
     <h3>🎮 摸鱼专区</h3>
-    <p>经典小游戏合集</p>
-    <p>俄罗斯方块 · 2048 · Flappy Bird</p>
-    <a href="/relax.html" class="game-link">开始摸鱼 →</a>
+    <p>经典小游戏合集，俄罗斯方块、2048、飞机大战，手机电脑都能玩~</p>
+    <p>工作学习累了就来放松一下吧 🎮</p>
+    <a href="/relax.html" class="link">开始摸鱼 →</a>
   </div>
+  
+  <div class="feature-card">
+    <h3>📝 技术博客</h3>
+    <p>记录开发过程中的技术积累、踩坑记录和解决方案。</p>
+    <p>持续更新中...</p>
+    <a href="/archive.html" class="link">查看全部 →</a>
+  </div>
+
 </div>
 
----
 
-## 🌐 关于我
+<h2 class="section-title">🕐 <span>最新文章</span></h2>
+<ul class="post-list">
+  
+  <li>
+    <a href="/2019/11/05/crash_on__lll_unlock_elision.html">记录一次排查__lll_unlock_elsion()函数coredump问题过程</a>
+    <span class="date">2019-11-05</span>
+  </li>
+  
+  <li>
+    <a href="/2018/07/01/welcome.html">Welcome</a>
+    <span class="date">2018-07-01</span>
+  </li>
+  
+  <li>
+    <a href="/2017/10/18/github-change-commit-info.html">GitHub更改历史commit作者信息</a>
+    <span class="date">2017-10-18</span>
+  </li>
+  
+</ul>
 
-<p>热爱技术、喜欢折腾的开发者。目前在备考 <strong>软考高级：信息系统项目管理师</strong>。</p>
-<p>如果你也对这些感兴趣，欢迎交流~</p>
-
-<p class="contact">
-  <a href="https://github.com/shytone" target="_blank">GitHub</a>
-  ·
-  <a href="/about.html">关于我</a>
-</p>
-
----
 
 <div class="visitor-counter">
-  <span class="counter-item">
-    <span id="busuanzi_container_site_pv">
-      👁️ 浏览 <span id="busuanzi_value_site_pv">-</span>
-    </span>
+  <span id="busuanzi_container_site_pv">
+    👁️ 总浏览 <span id="busuanzi_value_site_pv">-</span>
   </span>
   <span class="counter-sep">·</span>
-  <span class="counter-item">
-    <span id="busuanzi_container_site_uv">
-      👤 访客 <span id="busuanzi_value_site_uv">-</span>
-    </span>
+  <span id="busuanzi_container_site_uv">
+    👤 访客 <span id="busuanzi_value_site_uv">-</span>
   </span>
   <span class="counter-sep">·</span>
   <span class="counter-item">🕐 更新 2026-04-19</span>
 </div>
 
 <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
-<style>
-.hero {
-  text-align: center;
-  padding: 3rem 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  border-radius: 20px;
-  margin-bottom: 3rem;
-  color: #fff;
-}
-.hero h1 {
-  font-size: 2.5rem;
-  margin: 1rem 0 0.5rem;
-  color: #fff;
-}
-.hero h1 .highlight {
-  color: #ffd700;
-}
-.tagline {
-  font-size: 1.2rem;
-  opacity: 0.9;
-  margin-bottom: 1rem;
-}
-.hero-badge {
-  display: inline-block;
-  background: rgba(255,255,255,0.2);
-  padding: 6px 16px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.features {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 1.5rem;
-  margin: 2rem 0;
-}
-.feature-card {
-  background: var(--card-bg, #1a1a2e);
-  border: 1px solid var(--border-color, #333);
-  border-radius: 16px;
-  padding: 1.5rem;
-  text-align: center;
-}
-.feature-card h3 {
-  margin: 0 0 0.75rem;
-  font-size: 1.2rem;
-}
-.feature-card p {
-  color: #888;
-  margin: 0.5rem 0;
-  font-size: 0.95rem;
-}
-.feature-card .post-link,
-.feature-card .ai-link,
-.feature-card .game-link {
-  display: block;
-  color: #667eea;
-  text-decoration: none;
-  padding: 8px 0;
-  font-size: 0.9rem;
-  transition: color 0.2s;
-}
-.feature-card .post-link:hover,
-.feature-card .ai-link:hover,
-.feature-card .game-link:hover {
-  color: #764ba2;
-}
-.more-link {
-  display: inline-block;
-  margin-top: 0.5rem;
-  color: #888;
-  font-size: 0.85rem;
-}
-.empty-hint {
-  color: #666;
-  font-style: italic;
-}
-.contact {
-  text-align: center;
-  margin-top: 2rem;
-}
-.contact a {
-  color: #667eea;
-  text-decoration: none;
-  padding: 0 8px;
-}
-.contact a:hover {
-  text-decoration: underline;
-}
-
-.visitor-counter {
-  text-align: center;
-  padding: 1.5rem 0;
-  color: #666;
-  font-size: 0.85rem;
-}
-.counter-item { margin: 0 4px; }
-.counter-sep { color: #999; }
-
-</style>
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
 <!-- end custom main bottom snippet -->
