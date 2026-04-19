@@ -17,6 +17,8 @@ baseurl :
 title   : SHYTONE.COM
 description: >
   Personal blog · 技术分享 · 学习记录
+footer:
+  visitor_count: true
 
 ## => Language and Timezone
 ##############################

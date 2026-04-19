@@ -12,7 +12,6 @@ key: page-relax
   <h2>🎮 摸鱼专区</h2>
   <p>工作学习累了？来玩个小游戏放松一下吧~</p>
   <p class="subtitle">休息是为了走更远的路 · Rest makes the journey worthwhile</p>
-  <p class="mobile-hint">📱 手机用户：点击屏幕左侧/右侧区域控制飞机方向</p>
 </section>
 
 ---
@@ -21,7 +20,6 @@ key: page-relax
 
 <div class="game-grid">
   
-  <!-- 雷电飞机大战 -->
   <div class="game-card">
     <div class="game-header">
       <h3>✈️ 雷电飞机大战</h3>
@@ -31,13 +29,12 @@ key: page-relax
       <canvas id="plane-canvas" width="240" height="320"></canvas>
     </div>
     <div class="game-controls">
-      <button class="game-btn" onclick="startPlane()">▶️ 开始</button>
-      <button class="game-btn" onclick="stopPlane()">⏹️ 停止</button>
+      <button class="game-btn" id="plane-start-btn">▶️ 开始</button>
+      <button class="game-btn" id="plane-stop-btn">⏹️ 停止</button>
     </div>
-    <p class="game-desc">💻键盘：←→移动 空格发射 | 📱触屏：点击左/右侧区域移动，点击中间发射</p>
+    <p class="game-desc">💻键盘：←→移动 空格发射 | 📱触屏：点击区域移动</p>
   </div>
 
-  <!-- 俄罗斯方块 -->
   <div class="game-card">
     <div class="game-header">
       <h3>📦 俄罗斯方块</h3>
@@ -47,32 +44,63 @@ key: page-relax
       <canvas id="tetris-canvas" width="200" height="320"></canvas>
     </div>
     <div class="game-controls">
-      <button class="game-btn" onclick="startTetris()">▶️ 开始</button>
-      <button class="game-btn" onclick="pauseTetris()">⏸️ 暂停</button>
-      <button class="game-btn" onclick="resetTetris()">🔄 重来</button>
+      <button class="game-btn" id="tetris-start-btn">▶️ 开始</button>
+      <button class="game-btn" id="tetris-pause-btn">⏸️ 暂停</button>
+      <button class="game-btn" id="tetris-reset-btn">🔄 重来</button>
     </div>
-    <p class="game-desc">💻键盘：←→移动 ↑旋转 ↓加速 空格落底 | 📱触屏：左右滑动</p>
+    <p class="game-desc">💻键盘：←→移动 ↑旋转 ↓加速 空格落底 | 📱触屏：左右滑动，点击直接落底</p>
   </div>
 
-  <!-- 2048 -->
   <div class="game-card">
     <div class="game-header">
       <h3>🧩 2048</h3>
       <span class="game-tag">Puzzle</span>
     </div>
-    <div class="game-frame">
+    <div class="game-frame" id="game-2048-frame">
       <div id="grid2048"></div>
     </div>
     <div class="game-controls">
-      <button class="game-btn" onclick="newGame2048()">▶️ 开始</button>
-      <button class="game-btn" onclick="reset2048()">🔄 重来</button>
+      <button class="game-btn" id="2048-start-btn">▶️ 开始</button>
+      <button class="game-btn" id="2048-reset-btn">🔄 重来</button>
     </div>
     <p class="game-desc">💻键盘：方向键合并 | 📱触屏：滑动合并</p>
   </div>
 
 </div>
 
----
+<div class="relax-footer">
+  <div class="visitor-counter">
+    <span class="counter-item">👁️ 本页浏览 <span id="relax-visit-count">-</span></span>
+    <span class="counter-sep">·</span>
+    <span class="counter-item">🎮 摸鱼愉快~</span>
+  </div>
+</div>
+
+<script>
+(function() {
+  var key = 'shytone_relax_views';
+  var count = parseInt(localStorage.getItem(key) || '0');
+  count++;
+  localStorage.setItem(key, count);
+  var el = document.getElementById('relax-visit-count');
+  if (el) el.textContent = count;
+})();
+</script>
+
+<style>
+.relax-footer {
+  text-align: center;
+  padding: 2rem 0;
+  margin-top: 2rem;
+  border-top: 1px solid #333;
+}
+.visitor-counter {
+  color: #666;
+  font-size: 0.9rem;
+}
+.counter-item { margin: 0 4px; }
+.counter-sep { color: #999; }
+</style>
 
 <style>
 .relax-hero {
@@ -85,7 +113,6 @@ key: page-relax
 }
 .relax-hero h2 { font-size: 2.5rem; margin-bottom: 0.5rem; color: #fff; }
 .relax-hero .subtitle { opacity: 0.9; font-size: 1rem; }
-.mobile-hint { font-size: 0.9rem; opacity: 0.8; margin-top: 0.5rem; }
 
 .game-grid {
   display: grid;
@@ -99,6 +126,7 @@ key: page-relax
   border: 1px solid #333;
   border-radius: 16px;
   padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
 }
 .game-card:hover {
   transform: translateY(-4px);
@@ -131,8 +159,10 @@ key: page-relax
   min-height: 200px;
   margin-bottom: 1rem;
   touch-action: none;
+  -webkit-touch-callout: none;
+  user-select: none;
 }
-.game-frame canvas, .game-frame div { border-radius: 4px; }
+.game-frame canvas { border-radius: 4px; display: block; }
 
 .game-controls {
   display: flex;
@@ -149,10 +179,10 @@ key: page-relax
   border-radius: 8px;
   cursor: pointer;
   font-size: 0.9rem;
-  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.1s, opacity 0.2s;
 }
-.game-btn:hover { opacity: 0.85; }
 .game-btn:active { transform: scale(0.95); }
+.game-btn:hover { opacity: 0.85; }
 .game-desc {
   text-align: center;
   font-size: 0.8rem;
@@ -163,550 +193,656 @@ key: page-relax
 
 #grid2048 {
   display: grid;
-  grid-template-columns: repeat(4, 60px);
+  grid-template-columns: repeat(4, 55px);
   gap: 6px;
-  padding: 10px;
+  padding: 8px;
   background: #111;
   border-radius: 8px;
-  touch-action: none;
 }
 .grid-cell {
-  width: 60px;
-  height: 60px;
+  width: 55px;
+  height: 55px;
   border-radius: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
+  font-size: 18px;
   font-weight: 700;
   color: #fff;
 }
-
-/* Mobile touch zones for plane game */
-#plane-frame { position: relative; }
 </style>
 
 <script>
-// ==================== 雷电飞机大战 ====================
-var planeCanvas, planeCtx, planeInterval;
-var plane, bullets, enemies, enemyBullets, score, gameRunning, particles;
-var planeTouchX = null;
+(function() {
+  'use strict';
 
-function initPlane() {
-  planeCanvas = document.getElementById('plane-canvas');
-  planeCtx = planeCanvas.getContext('2d');
-  plane = { x: 110, y: 260, w: 20, h: 24, speed: 6 };
-  bullets = [];
-  enemies = [];
-  enemyBullets = [];
-  particles = [];
-  score = 0;
-  gameRunning = false;
-  planeTouchX = null;
-}
+  // ==================== 飞机大战 ====================
+  var planeCanvas, planeCtx, planeInterval;
+  var plane, bullets, enemies, enemyBullets, score, gameRunning, particles;
+  var planeMoveLeft = false, planeMoveRight = false;
 
-function drawPlane() {
-  planeCtx.fillStyle = '#87CEEB';
-  planeCtx.fillRect(0, 0, 240, 320);
-  // Stars background
-  planeCtx.fillStyle = '#FFF';
-  for (var i = 0; i < 30; i++) {
-    planeCtx.fillRect((i * 37 + Date.now() / 50) % 240, (i * 23) % 300, 1, 1);
-  }
-  // Draw mountains
-  planeCtx.fillStyle = '#228B22';
-  planeCtx.fillRect(0, 300, 240, 20);
-  // Draw plane
-  planeCtx.fillStyle = '#FFD700';
-  planeCtx.fillRect(plane.x, plane.y, plane.w, plane.h);
-  planeCtx.fillStyle = '#FF6600';
-  planeCtx.fillRect(plane.x + 2, plane.y + plane.h, 6, 8);
-  planeCtx.fillRect(plane.x + 12, plane.y + plane.h, 6, 8);
-  // Draw bullets
-  planeCtx.fillStyle = '#00FFFF';
-  bullets.forEach(function(b) { planeCtx.fillRect(b.x, b.y, 4, 10); });
-  // Draw enemies
-  enemies.forEach(function(e) {
-    planeCtx.fillStyle = e.color;
-    planeCtx.fillRect(e.x, e.y, e.w, e.h);
-  });
-  // Draw enemy bullets
-  planeCtx.fillStyle = '#FF0000';
-  enemyBullets.forEach(function(b) { planeCtx.fillRect(b.x, b.y, 4, 8); });
-  // Draw particles
-  particles.forEach(function(p) {
-    planeCtx.fillStyle = p.color;
-    planeCtx.globalAlpha = p.life;
-    planeCtx.fillRect(p.x, p.y, p.size, p.size);
-    planeCtx.globalAlpha = 1;
-  });
-  // Draw score
-  planeCtx.fillStyle = '#FFF';
-  planeCtx.font = '16px Arial';
-  planeCtx.fillText('Score: ' + score, 5, 20);
-}
-
-function startPlane() {
-  if (planeInterval) clearInterval(planeInterval);
-  initPlane();
-  gameRunning = true;
-  document.addEventListener('keydown', planeKeyHandler);
-  document.addEventListener('keyup', planeKeyUp);
-  setupPlaneTouch();
-  planeInterval = setInterval(updatePlane, 30);
-}
-
-function stopPlane() {
-  gameRunning = false;
-  clearInterval(planeInterval);
-  document.removeEventListener('keydown', planeKeyHandler);
-  document.removeEventListener('keyup', planeKeyUp);
-}
-
-function planeKeyUp(e) {
-  if (e.key === 'ArrowLeft' || e.key === 'a') planeMoveLeft = false;
-  if (e.key === 'ArrowRight' || e.key === 'd') planeMoveRight = false;
-  if (e.key === 'ArrowUp' || e.key === 'w') planeMoveUp = false;
-  if (e.key === 'ArrowDown' || e.key === 's') planeMoveDown = false;
-}
-
-var planeMoveLeft = false, planeMoveRight = false, planeMoveUp = false, planeMoveDown = false;
-
-function planeKeyHandler(e) {
-  if (!gameRunning) return;
-  if (e.key === 'ArrowLeft' || e.key === 'a') planeMoveLeft = true;
-  if (e.key === 'ArrowRight' || e.key === 'd') planeMoveRight = true;
-  if (e.key === 'ArrowUp' || e.key === 'w') planeMoveUp = true;
-  if (e.key === 'ArrowDown' || e.key === 's') planeMoveDown = true;
-  if (e.key === ' ') { e.preventDefault(); planeShoot(); }
-}
-
-function setupPlaneTouch() {
-  var frame = document.getElementById('plane-frame');
-  var lastTapX = null;
-  var shootInterval = null;
-  
-  frame.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    if (!gameRunning) return;
-    var touch = e.touches[0];
-    var rect = planeCanvas.getBoundingClientRect();
-    var x = touch.clientX - rect.left;
-    var canvasWidth = rect.width;
-    
-    lastTapX = x;
-    
-    // Tap to shoot
-    planeShoot();
-    shootInterval = setInterval(function() { if (gameRunning) planeShoot(); }, 200);
-    
-    // Continuous movement based on position
-    if (x < canvasWidth * 0.33) {
-      planeMoveLeft = true; planeMoveRight = false;
-    } else if (x > canvasWidth * 0.66) {
-      planeMoveRight = true; planeMoveLeft = false;
-    } else {
-      planeMoveLeft = false; planeMoveRight = false;
-    }
-  }, { passive: false });
-  
-  frame.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-    if (!gameRunning) return;
-    var touch = e.touches[0];
-    var rect = planeCanvas.getBoundingClientRect();
-    var x = touch.clientX - rect.left;
-    var canvasWidth = rect.width;
-    
-    planeMoveLeft = false; planeMoveRight = false;
-    if (x < canvasWidth * 0.33) {
-      planeMoveLeft = true;
-    } else if (x > canvasWidth * 0.66) {
-      planeMoveRight = true;
-    } else {
-      // Center - can shoot but no movement
-    }
-  }, { passive: false });
-  
-  frame.addEventListener('touchend', function(e) {
-    e.preventDefault();
+  function initPlane() {
+    planeCanvas = document.getElementById('plane-canvas');
+    planeCtx = planeCanvas.getContext('2d');
+    plane = { x: 105, y: 270, w: 30, h: 30, speed: 8 };
+    bullets = [];
+    enemies = [];
+    enemyBullets = [];
+    particles = [];
+    score = 0;
+    gameRunning = false;
     planeMoveLeft = false;
     planeMoveRight = false;
-    planeMoveUp = false;
-    planeMoveDown = false;
-    if (shootInterval) clearInterval(shootInterval);
-  }, { passive: false });
-}
-
-function planeShoot() {
-  if (!gameRunning) return;
-  bullets.push({ x: plane.x + plane.w / 2 - 2, y: plane.y - 10 });
-}
-
-function updatePlane() {
-  if (!gameRunning) return;
-  
-  // Move based on keys
-  if (planeMoveLeft) plane.x = Math.max(0, plane.x - plane.speed);
-  if (planeMoveRight) plane.x = Math.min(240 - plane.w, plane.x + plane.speed);
-  if (planeMoveUp) plane.y = Math.max(0, plane.y - plane.speed);
-  if (planeMoveDown) plane.y = Math.min(300 - plane.h, plane.y + plane.speed);
-  
-  // Move bullets
-  bullets = bullets.filter(function(b) { b.y -= 8; return b.y > 0; });
-  
-  // Spawn enemies
-  if (Math.random() < 0.03) {
-    var colors = ['#FF4444', '#44FF44', '#4444FF', '#FF44FF', '#44FFFF'];
-    enemies.push({
-      x: Math.random() * 200,
-      y: -20,
-      w: 24,
-      h: 20,
-      speed: 2 + Math.random() * 2,
-      color: colors[Math.floor(Math.random() * colors.length)]
-    });
   }
-  
-  enemies.forEach(function(e) { e.y += e.speed; });
-  enemies = enemies.filter(function(e) {
-    if (e.y > 320) return false;
-    if (Math.random() < 0.01) {
-      enemyBullets.push({ x: e.x + e.w / 2, y: e.y + e.h });
+
+  function drawPlaneGame() {
+    if (!planeCtx) return;
+    var ctx = planeCtx;
+    var w = 240, h = 320;
+    
+    // Sky
+    ctx.fillStyle = '#1a1a2e';
+    ctx.fillRect(0, 0, w, h);
+    
+    // Stars
+    ctx.fillStyle = '#FFF';
+    var t = Date.now() / 1000;
+    for (var i = 0; i < 40; i++) {
+      var sx = (i * 37 + Math.floor(t * 20)) % w;
+      var sy = (i * 23 + Math.floor(t * 10)) % (h - 40);
+      ctx.fillRect(sx, sy, 2, 2);
     }
-    return true;
-  });
-  
-  enemyBullets = enemyBullets.filter(function(b) { b.y += 5; return b.y < 320; });
-  
-  // Bullet-enemy collision
-  bullets.forEach(function(b, bi) {
-    enemies.forEach(function(e, ei) {
-      if (b.x > e.x && b.x < e.x + e.w && b.y > e.y && b.y < e.y + e.h) {
-        bullets.splice(bi, 1);
-        enemies.splice(ei, 1);
-        score += 10;
-        for (var i = 0; i < 5; i++) {
-          particles.push({ x: e.x + e.w / 2, y: e.y, vx: (Math.random() - 0.5) * 6, vy: (Math.random() - 0.5) * 6, life: 1, size: 4, color: e.color });
+    
+    // Ground
+    ctx.fillStyle = '#228B22';
+    ctx.fillRect(0, h - 20, w, 20);
+    
+    // Plane
+    ctx.fillStyle = '#FFD700';
+    ctx.fillRect(plane.x, plane.y, plane.w, plane.h);
+    // Wings
+    ctx.fillStyle = '#FFA500';
+    ctx.fillRect(plane.x - 5, plane.y + 10, 10, 15);
+    ctx.fillRect(plane.x + plane.w - 5, plane.y + 10, 10, 15);
+    // Cannon
+    ctx.fillStyle = '#FF4500';
+    ctx.fillRect(plane.x + plane.w/2 - 3, plane.y - 8, 6, 10);
+    
+    // Bullets
+    ctx.fillStyle = '#00FFFF';
+    bullets.forEach(function(b) {
+      ctx.fillRect(b.x, b.y, 4, 12);
+      ctx.fillStyle = '#88FFFF';
+      ctx.fillRect(b.x, b.y, 2, 6);
+      ctx.fillStyle = '#00FFFF';
+    });
+    
+    // Enemies
+    enemies.forEach(function(e) {
+      ctx.fillStyle = e.color;
+      ctx.fillRect(e.x, e.y, e.w, e.h);
+      ctx.fillStyle = '#FFF';
+      ctx.fillRect(e.x + 8, e.y + 5, 4, 4);
+      ctx.fillRect(e.x + 14, e.y + 5, 4, 4);
+    });
+    
+    // Enemy bullets
+    ctx.fillStyle = '#FF0000';
+    enemyBullets.forEach(function(b) {
+      ctx.beginPath();
+      ctx.arc(b.x, b.y, 4, 0, Math.PI * 2);
+      ctx.fill();
+    });
+    
+    // Particles
+    particles.forEach(function(p) {
+      ctx.fillStyle = p.color;
+      ctx.globalAlpha = p.life;
+      ctx.fillRect(p.x, p.y, p.size, p.size);
+      ctx.globalAlpha = 1;
+    });
+    
+    // Score
+    ctx.fillStyle = '#FFD700';
+    ctx.font = 'bold 18px Arial';
+    ctx.fillText('Score: ' + score, 8, 24);
+  }
+
+  function updatePlaneGame() {
+    if (!gameRunning) return;
+    
+    if (planeMoveLeft) plane.x = Math.max(0, plane.x - plane.speed);
+    if (planeMoveRight) plane.x = Math.min(240 - plane.w, plane.x + plane.speed);
+    
+    // Bullets move up
+    bullets = bullets.filter(function(b) { b.y -= 10; return b.y > -10; });
+    
+    // Spawn enemies
+    if (Math.random() < 0.035) {
+      var colors = ['#FF4444', '#44FF44', '#4444FF', '#FF44FF', '#44FFFF', '#FFFF44'];
+      enemies.push({
+        x: Math.random() * 200,
+        y: -25,
+        w: 30,
+        h: 25,
+        speed: 2.5 + Math.random() * 2,
+        color: colors[Math.floor(Math.random() * colors.length)]
+      });
+    }
+    
+    // Move enemies
+    enemies.forEach(function(e) { e.y += e.speed; });
+    
+    // Enemy shoot
+    enemies.forEach(function(e) {
+      if (Math.random() < 0.015) {
+        enemyBullets.push({ x: e.x + e.w / 2, y: e.y + e.h });
+      }
+    });
+    
+    enemies = enemies.filter(function(e) {
+      if (e.y > 330) return false;
+      return true;
+    });
+    
+    // Enemy bullets move
+    enemyBullets = enemyBullets.filter(function(b) {
+      b.y += 6;
+      return b.y < 330;
+    });
+    
+    // Collision: bullets vs enemies
+    bullets.forEach(function(b, bi) {
+      enemies.forEach(function(e, ei) {
+        if (b.x > e.x && b.x < e.x + e.w && b.y > e.y && b.y < e.y + e.h) {
+          bullets.splice(bi, 1);
+          enemies.splice(ei, 1);
+          score += 10;
+          // Explosion
+          for (var i = 0; i < 8; i++) {
+            particles.push({
+              x: e.x + e.w / 2,
+              y: e.y + e.h / 2,
+              vx: (Math.random() - 0.5) * 8,
+              vy: (Math.random() - 0.5) * 8,
+              life: 1,
+              size: 6,
+              color: e.color
+            });
+          }
+        }
+      });
+    });
+    
+    // Collision: plane vs enemies or enemy bullets
+    enemies.forEach(function(e) {
+      if (plane.x < e.x + e.w && plane.x + plane.w > e.x &&
+          plane.y < e.y + e.h && plane.y + plane.h > e.y) {
+        gameOver('plane');
+      }
+    });
+    
+    enemyBullets.forEach(function(b) {
+      var px = plane.x + plane.w / 2;
+      var py = plane.y + plane.h / 2;
+      if (Math.sqrt((b.x - px) * (b.x - px) + (b.y - py) * (b.y - py)) < 12) {
+        gameOver('plane');
+      }
+    });
+    
+    // Update particles
+    particles = particles.filter(function(p) {
+      p.x += p.vx;
+      p.y += p.vy;
+      p.life -= 0.04;
+      return p.life > 0;
+    });
+    
+    drawPlaneGame();
+  }
+
+  function startPlane() {
+    if (gameRunning) return;
+    initPlane();
+    gameRunning = true;
+    
+    document.addEventListener('keydown', planeKeyHandler);
+    document.addEventListener('keyup', planeKeyUp);
+    
+    setupPlaneTouch();
+    planeInterval = setInterval(updatePlaneGame, 33);
+    drawPlaneGame();
+  }
+
+  function stopPlane() {
+    gameRunning = false;
+    clearInterval(planeInterval);
+    document.removeEventListener('keydown', planeKeyHandler);
+    document.removeEventListener('keyup', planeKeyUp);
+  }
+
+  function gameOver(type) {
+    stopPlane();
+    if (type === 'plane') {
+      alert('💥 游戏结束！得分: ' + score);
+    }
+  }
+
+  function planeKeyHandler(e) {
+    if (!gameRunning) return;
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') planeMoveLeft = true;
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') planeMoveRight = true;
+    if (e.key === ' ') { e.preventDefault(); bullets.push({ x: plane.x + plane.w / 2 - 2, y: plane.y - 10 }); }
+  }
+
+  function planeKeyUp(e) {
+    if (e.key === 'ArrowLeft' || e.key === 'a' || e.key === 'A') planeMoveLeft = false;
+    if (e.key === 'ArrowRight' || e.key === 'd' || e.key === 'D') planeMoveRight = false;
+  }
+
+  function setupPlaneTouch() {
+    var frame = document.getElementById('plane-frame');
+    var lastX = null;
+    
+    frame.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      if (!gameRunning) return;
+      var touch = e.touches[0];
+      var rect = planeCanvas.getBoundingClientRect();
+      lastX = touch.clientX - rect.left;
+      var canvasWidth = rect.width;
+      
+      // Shoot on tap
+      bullets.push({ x: plane.x + plane.w / 2 - 2, y: plane.y - 10 });
+      
+      if (lastX < canvasWidth / 3) {
+        planeMoveLeft = true;
+        planeMoveRight = false;
+      } else if (lastX > canvasWidth * 2 / 3) {
+        planeMoveRight = true;
+        planeMoveLeft = false;
+      } else {
+        planeMoveLeft = false;
+        planeMoveRight = false;
+      }
+    }, { passive: false });
+    
+    frame.addEventListener('touchmove', function(e) {
+      e.preventDefault();
+      if (!gameRunning) return;
+      var touch = e.touches[0];
+      var rect = planeCanvas.getBoundingClientRect();
+      var x = touch.clientX - rect.left;
+      var canvasWidth = rect.width;
+      
+      planeMoveLeft = false;
+      planeMoveRight = false;
+      
+      if (x < canvasWidth / 3) {
+        planeMoveLeft = true;
+      } else if (x > canvasWidth * 2 / 3) {
+        planeMoveRight = true;
+      }
+    }, { passive: false });
+    
+    frame.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      planeMoveLeft = false;
+      planeMoveRight = false;
+    }, { passive: false });
+  }
+
+  document.getElementById('plane-start-btn').addEventListener('click', startPlane);
+  document.getElementById('plane-stop-btn').addEventListener('click', stopPlane);
+
+  // ==================== 俄罗斯方块 ====================
+  var tCanvas, tCtx, tTimer, tScore, tPaused, tGameOver;
+  var tBoard = [], tCurrent, tX, tY;
+  var tColors = ['#00FFFF', '#FFFF00', '#FF00FF', '#00FF00', '#FF0000', '#0000FF', '#FFFFFF'];
+  var tPieces = [
+    [[1,1,1,1]],
+    [[1,1],[1,1]],
+    [[1,1,0],[0,1,1]],
+    [[0,1,1],[1,1,0]],
+    [[1,0,0],[1,1,1]],
+    [[0,0,1],[1,1,1]],
+    [[1,1,1],[0,1,0]]
+  ];
+
+  function initTetris() {
+    tCanvas = document.getElementById('tetris-canvas');
+    tCtx = tCanvas.getContext('2d');
+    tBoard = [];
+    for (var r = 0; r < 16; r++) {
+      tBoard[r] = [];
+      for (var c = 0; c < 10; c++) tBoard[r][c] = 0;
+    }
+    tScore = 0;
+    tPaused = false;
+    tGameOver = false;
+    spawnTetrisPiece();
+  }
+
+  function spawnTetrisPiece() {
+    var idx = Math.floor(Math.random() * tPieces.length);
+    tCurrent = { shape: tPieces[idx], color: idx };
+    tX = 3;
+    tY = 0;
+    if (!validTetrisPos(tCurrent.shape, tX, tY)) {
+      tGameOver = true;
+    }
+  }
+
+  function validTetrisPos(shape, x, y) {
+    for (var r = 0; r < shape.length; r++) {
+      for (var c = 0; c < shape[r].length; c++) {
+        if (shape[r][c]) {
+          var nx = x + c;
+          var ny = y + r;
+          if (nx < 0 || nx >= 10 || ny >= 16) return false;
+          if (ny >= 0 && tBoard[ny][nx]) return false;
         }
       }
+    }
+    return true;
+  }
+
+  function rotateTetris(shape) {
+    var n = shape.length;
+    return shape.map(function(r, i) {
+      return shape.map(function(c, j) {
+        return shape[n - 1 - j][i];
+      });
     });
-  });
-  
-  // Plane-enemy collision
-  enemies.forEach(function(e) {
-    if (plane.x < e.x + e.w && plane.x + plane.w > e.x && plane.y < e.y + e.h && plane.y + plane.h > e.y) {
-      stopPlane();
-      alert('💥 游戏结束！得分: ' + score);
-    }
-  });
-  
-  enemyBullets.forEach(function(b, bi) {
-    if (b.x > plane.x && b.x < plane.x + plane.w && b.y > plane.y && b.y < plane.y + plane.h) {
-      stopPlane();
-      alert('💥 游戏结束！得分: ' + score);
-    }
-  });
-  
-  // Update particles
-  particles = particles.filter(function(p) {
-    p.x += p.vx;
-    p.y += p.vy;
-    p.life -= 0.05;
-    return p.life > 0;
-  });
-  
-  drawPlane();
-}
-
-// ==================== 俄罗斯方块 ====================
-var tCanvas, tCtx, tBoard, tPieces, tCurrent, tX, tY, tTimer, tScore, tPaused, tGameOver;
-var tColors = ['#00FFFF', '#FFFF00', '#FF00FF', '#00FF00', '#FF0000', '#0000FF', '#FFFFFF'];
-var tTouchStartX = 0;
-
-function initTetris() {
-  tCanvas = document.getElementById('tetris-canvas');
-  tCtx = tCanvas.getContext('2d');
-  tBoard = [];
-  for (var r = 0; r < 16; r++) { tBoard[r] = []; for (var c = 0; c < 10; c++) tBoard[r][c] = 0; }
-  tPieces = [
-    [[1, 1, 1, 1]],
-    [[1, 1], [1, 1]],
-    [[1, 1, 0], [0, 1, 1]],
-    [[0, 1, 1], [1, 1, 0]],
-    [[1, 0, 0], [1, 1, 1]],
-    [[0, 0, 1], [1, 1, 1]],
-    [[1, 1, 1], [0, 1, 0]]
-  ];
-  tScore = 0;
-  tPaused = false;
-  tGameOver = false;
-  spawnPiece();
-  setupTetrisTouch();
-}
-
-function spawnPiece() {
-  var idx = Math.floor(Math.random() * tPieces.length);
-  tCurrent = { shape: tPieces[idx], color: idx };
-  tX = 4; tY = 0;
-  if (!validPos(tCurrent.shape, tX, tY)) tGameOver = true;
-}
-
-function validPos(shape, x, y) {
-  for (var r = 0; r < shape.length; r++) {
-    for (var c = 0; c < shape[r].length; c++) {
-      if (shape[r][c]) {
-        var nx = x + c, ny = y + r;
-        if (nx < 0 || nx >= 10 || ny >= 16 || (ny >= 0 && tBoard[ny][nx])) return false;
-      }
-    }
   }
-  return true;
-}
 
-function rotatePiece(shape) {
-  var n = shape.length;
-  return shape.map(function(r, i) { return shape.map(function(c, j) { return shape[n - 1 - j][i]; }); });
-}
-
-function lockPiece() {
-  for (var r = 0; r < tCurrent.shape.length; r++) {
-    for (var c = 0; c < tCurrent.shape[r].length; c++) {
-      if (tCurrent.shape[r][c]) {
-        var ny = tY + r;
-        if (ny >= 0) tBoard[ny][tX + c] = tCurrent.color + 1;
-      }
-    }
-  }
-  for (var r = 15; r >= 0; r--) {
-    if (tBoard[r].every(function(v) { return v > 0; })) {
-      tBoard.splice(r, 1);
-      tBoard.unshift(Array(10).fill(0));
-      tScore += 10;
-      r++;
-    }
-  }
-}
-
-function drawTetris() {
-  tCtx.fillStyle = '#111';
-  tCtx.fillRect(0, 0, 200, 320);
-  for (var r = 0; r < 16; r++) {
-    for (var c = 0; c < 10; c++) {
-      if (tBoard[r][c]) {
-        tCtx.fillStyle = tColors[tBoard[r][c] - 1];
-        tCtx.fillRect(c * 20, r * 20, 18, 18);
-      }
-    }
-  }
-  if (tCurrent && !tGameOver) {
-    tCtx.fillStyle = tColors[tCurrent.color];
+  function lockTetrisPiece() {
     for (var r = 0; r < tCurrent.shape.length; r++) {
       for (var c = 0; c < tCurrent.shape[r].length; c++) {
         if (tCurrent.shape[r][c]) {
           var ny = tY + r;
-          if (ny >= 0) tCtx.fillRect((tX + c) * 20, ny * 20, 18, 18);
+          if (ny >= 0) tBoard[ny][tX + c] = tCurrent.color + 1;
         }
       }
     }
-  }
-  tCtx.fillStyle = '#FFF';
-  tCtx.font = '12px Arial';
-  tCtx.fillText('Score: ' + tScore, 5, 15);
-  if (tGameOver) {
-    tCtx.fillStyle = 'rgba(0,0,0,0.7)';
-    tCtx.fillRect(0, 0, 200, 320);
-    tCtx.fillStyle = '#FFF';
-    tCtx.font = '16px Arial';
-    tCtx.fillText('Game Over!', 60, 150);
-    tCtx.font = '14px Arial';
-    tCtx.fillText('Score: ' + tScore, 70, 175);
-  }
-}
-
-function setupTetrisTouch() {
-  var frame = document.getElementById('tetris-frame');
-  
-  frame.addEventListener('touchstart', function(e) {
-    e.preventDefault();
-    tTouchStartX = e.touches[0].clientX;
-  }, { passive: false });
-  
-  frame.addEventListener('touchmove', function(e) {
-    e.preventDefault();
-  }, { passive: false });
-  
-  frame.addEventListener('touchend', function(e) {
-    e.preventDefault();
-    if (tGameOver || tPaused) return;
-    var touch = e.changedTouches[0];
-    var deltaX = touch.clientX - tTouchStartX;
-    
-    if (Math.abs(deltaX) > 30) {
-      // Swipe left/right
-      if (deltaX < 0 && validPos(tCurrent.shape, tX - 1, tY)) tX--;
-      else if (deltaX > 0 && validPos(tCurrent.shape, tX + 1, tY)) tX++;
-    } else if (Math.abs(deltaX) < 10) {
-      // Tap - drop
-      while (validPos(tCurrent.shape, tX, tY + 1)) tY++;
-      lockPiece();
-      spawnPiece();
-    }
-    drawTetris();
-  }, { passive: false });
-}
-
-function startTetris() {
-  if (tTimer) clearInterval(tTimer);
-  initTetris();
-  document.addEventListener('keydown', tetrisKey);
-  tTimer = setInterval(tetrisTick, 400);
-  tetrisTick();
-}
-
-function pauseTetris() { tPaused = !tPaused; }
-
-function resetTetris() {
-  clearInterval(tTimer);
-  document.removeEventListener('keydown', tetrisKey);
-  initTetris();
-  drawTetris();
-}
-
-function tetrisTick() {
-  if (tGameOver || tPaused) return;
-  if (validPos(tCurrent.shape, tX, tY + 1)) tY++;
-  else { lockPiece(); spawnPiece(); }
-  drawTetris();
-}
-
-function tetrisKey(e) {
-  if (tGameOver) return;
-  if (e.key === 'ArrowLeft') { if (validPos(tCurrent.shape, tX - 1, tY)) tX--; }
-  else if (e.key === 'ArrowRight') { if (validPos(tCurrent.shape, tX + 1, tY)) tX++; }
-  else if (e.key === 'ArrowDown') { if (validPos(tCurrent.shape, tX, tY + 1)) tY++; }
-  else if (e.key === ' ') { e.preventDefault(); while (validPos(tCurrent.shape, tX, tY + 1)) tY++; lockPiece(); spawnPiece(); }
-  else if (e.key === 'ArrowUp') { var rotated = rotatePiece(tCurrent.shape); if (validPos(rotated, tX, tY)) tCurrent.shape = rotated; }
-  drawTetris();
-}
-
-// ==================== 2048 ====================
-var grid2048, score2048, touchStart2048;
-
-function newGame2048() {
-  grid2048 = Array(4).fill(null).map(function() { return Array(4).fill(0); });
-  score2048 = 0;
-  addTile2048();
-  addTile2048();
-  render2048();
-}
-
-function addTile2048() {
-  var empty = [];
-  grid2048.forEach(function(r, i) { r.forEach(function(v, j) { if (!v) empty.push([i, j]); }); });
-  if (empty.length) {
-    var pos = empty[Math.floor(Math.random() * empty.length)];
-    grid2048[pos[0]][pos[1]] = Math.random() < 0.9 ? 2 : 4;
-  }
-}
-
-function render2048() {
-  var container = document.getElementById('grid2048');
-  if (!container) return;
-  var html = '';
-  grid2048.forEach(function(row) {
-    row.forEach(function(v) {
-      var bg = v ? ['#eee4da', '#ede0c8', '#f2b179', '#f59563', '#f67c5f', '#f65e3b', '#edcf72', '#edcc61', '#edc850', '#edc53f', '#edc22e', '#3c3a32'][Math.log2(v) - 1] || '#3c3a32' : '#3a3a32';
-      var color = v > 4 ? '#f9f6f2' : '#776e65';
-      var size = v > 999 ? '16px' : '20px';
-      html += '<div class="grid-cell" style="background:' + bg + ';color:' + color + ';font-size:' + size + '">' + (v || '') + '</div>';
-    });
-  });
-  container.innerHTML = html;
-}
-
-function slide(row) {
-  var arr = row.filter(function(v) { return v > 0; });
-  for (var i = 0; i < arr.length - 1; i++) {
-    if (arr[i] === arr[i + 1]) { arr[i] *= 2; score2048 += arr[i]; arr[i + 1] = 0; }
-  }
-  return arr.filter(function(v) { return v > 0; });
-}
-
-function move2048(dir) {
-  var old = JSON.stringify(grid2048);
-  if (dir === 'left') {
-    grid2048 = grid2048.map(function(row) {
-      var arr = slide(row);
-      while (arr.length < 4) arr.push(0);
-      return arr;
-    });
-  } else if (dir === 'right') {
-    grid2048 = grid2048.map(function(row) {
-      var arr = slide(row.reverse()).reverse();
-      while (arr.length < 4) arr.unshift(0);
-      return arr;
-    });
-  } else if (dir === 'up') {
-    for (var c = 0; c < 4; c++) {
-      var col = [grid2048[0][c], grid2048[1][c], grid2048[2][c], grid2048[3][c]];
-      var arr = slide(col);
-      while (arr.length < 4) arr.push(0);
-      for (var r = 0; r < 4; r++) grid2048[r][c] = arr[r];
-    }
-  } else if (dir === 'down') {
-    for (var c = 0; c < 4; c++) {
-      var col = [grid2048[3][c], grid2048[2][c], grid2048[1][c], grid2048[0][c]];
-      var arr = slide(col);
-      while (arr.length < 4) arr.unshift(0);
-      for (var r = 0; r < 4; r++) grid2048[r][c] = arr[3 - r];
-    }
-  }
-  if (JSON.stringify(grid2048) !== old) addTile2048();
-  render2048();
-}
-
-function reset2048() { newGame2048(); }
-
-// Keyboard
-document.addEventListener('keydown', function(e) {
-  if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) >= 0) {
-    e.preventDefault();
-    if (document.getElementById('grid2048')) move2048(e.key.replace('Arrow', '').toLowerCase());
-  }
-});
-
-// Touch for 2048
-(function() {
-  var container = document.getElementById('grid2048');
-  if (!container) return;
-  var startX, startY;
-  
-  container.addEventListener('touchstart', function(e) {
-    startX = e.touches[0].clientX;
-    startY = e.touches[0].clientY;
-  }, { passive: true });
-  
-  container.addEventListener('touchend', function(e) {
-    var endX = e.changedTouches[0].clientX;
-    var endY = e.changedTouches[0].clientY;
-    var dx = endX - startX;
-    var dy = endY - startY;
-    var absDx = Math.abs(dx);
-    var absDy = Math.abs(dy);
-    
-    if (Math.max(absDx, absDy) > 30) {
-      if (absDx > absDy) {
-        move2048(dx > 0 ? 'right' : 'left');
-      } else {
-        move2048(dy > 0 ? 'down' : 'up');
+    // Clear lines
+    for (var r = 15; r >= 0; r--) {
+      if (tBoard[r].every(function(v) { return v > 0; })) {
+        tBoard.splice(r, 1);
+        tBoard.unshift(Array(10).fill(0));
+        tScore += 10;
+        r++;
       }
     }
-  }, { passive: true });
-})();
+  }
 
-// Init
-initPlane();
-initTetris();
-newGame2048();
+  function drawTetrisGame() {
+    if (!tCtx) return;
+    var ctx = tCtx;
+    ctx.fillStyle = '#111';
+    ctx.fillRect(0, 0, 200, 320);
+    
+    // Grid
+    ctx.strokeStyle = '#222';
+    for (var r = 0; r <= 16; r++) ctx.strokeRect(0, r * 20, 200, 20);
+    for (var c = 0; c <= 10; c++) ctx.strokeRect(c * 20, 0, 20, 320);
+    
+    // Board
+    for (var r = 0; r < 16; r++) {
+      for (var c = 0; c < 10; c++) {
+        if (tBoard[r][c]) {
+          ctx.fillStyle = tColors[tBoard[r][c] - 1];
+          ctx.fillRect(c * 20 + 1, r * 20 + 1, 18, 18);
+        }
+      }
+    }
+    
+    // Current piece
+    if (tCurrent && !tGameOver && !tPaused) {
+      ctx.fillStyle = tColors[tCurrent.color];
+      for (var r = 0; r < tCurrent.shape.length; r++) {
+        for (var c = 0; c < tCurrent.shape[r].length; c++) {
+          if (tCurrent.shape[r][c]) {
+            var ny = tY + r;
+            if (ny >= 0) ctx.fillRect((tX + c) * 20 + 1, ny * 20 + 1, 18, 18);
+          }
+        }
+      }
+    }
+    
+    // Score
+    ctx.fillStyle = '#FFF';
+    ctx.font = 'bold 14px Arial';
+    ctx.fillText('Score: ' + tScore, 5, 16);
+    
+    if (tGameOver) {
+      ctx.fillStyle = 'rgba(0,0,0,0.75)';
+      ctx.fillRect(0, 0, 200, 320);
+      ctx.fillStyle = '#FFF';
+      ctx.font = 'bold 20px Arial';
+      ctx.fillText('Game Over!', 50, 145);
+      ctx.font = '16px Arial';
+      ctx.fillText('Score: ' + tScore, 65, 175);
+    }
+  }
+
+  function tickTetris() {
+    if (tGameOver || tPaused) return;
+    if (validTetrisPos(tCurrent.shape, tX, tY + 1)) {
+      tY++;
+    } else {
+      lockTetrisPiece();
+      spawnTetrisPiece();
+    }
+    drawTetrisGame();
+  }
+
+  function startTetris() {
+    if (tTimer) clearInterval(tTimer);
+    initTetris();
+    document.addEventListener('keydown', tetrisKeyHandler);
+    setupTetrisTouch();
+    tTimer = setInterval(tickTetris, 400);
+    drawTetrisGame();
+  }
+
+  function pauseTetris() {
+    tPaused = !tPaused;
+  }
+
+  function resetTetris() {
+    clearInterval(tTimer);
+    document.removeEventListener('keydown', tetrisKeyHandler);
+    initTetris();
+    drawTetrisGame();
+  }
+
+  function tetrisKeyHandler(e) {
+    if (tGameOver) return;
+    if (e.key === 'ArrowLeft') {
+      if (validTetrisPos(tCurrent.shape, tX - 1, tY)) tX--;
+    } else if (e.key === 'ArrowRight') {
+      if (validTetrisPos(tCurrent.shape, tX + 1, tY)) tX++;
+    } else if (e.key === 'ArrowDown') {
+      if (validTetrisPos(tCurrent.shape, tX, tY + 1)) tY++;
+    } else if (e.key === 'ArrowUp') {
+      var rotated = rotateTetris(tCurrent.shape);
+      if (validTetrisPos(rotated, tX, tY)) tCurrent.shape = rotated;
+    } else if (e.key === ' ') {
+      e.preventDefault();
+      while (validTetrisPos(tCurrent.shape, tX, tY + 1)) tY++;
+      lockTetrisPiece();
+      spawnTetrisPiece();
+    }
+    drawTetrisGame();
+  }
+
+  function setupTetrisTouch() {
+    var frame = document.getElementById('tetris-frame');
+    var startX = 0;
+    var startY = 0;
+    
+    frame.addEventListener('touchstart', function(e) {
+      e.preventDefault();
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: false });
+    
+    frame.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      if (tGameOver) return;
+      var endX = e.changedTouches[0].clientX;
+      var endY = e.changedTouches[0].clientY;
+      var dx = endX - startX;
+      var dy = endY - startY;
+      
+      if (Math.abs(dx) < 15 && Math.abs(dy) < 15) {
+        // Tap - drop
+        while (validTetrisPos(tCurrent.shape, tX, tY + 1)) tY++;
+        lockTetrisPiece();
+        spawnTetrisPiece();
+      } else if (Math.abs(dx) > Math.abs(dy)) {
+        // Horizontal swipe
+        if (dx < 0 && validTetrisPos(tCurrent.shape, tX - 1, tY)) tX--;
+        else if (dx > 0 && validTetrisPos(tCurrent.shape, tX + 1, tY)) tX++;
+      } else if (dy < -20 && validTetrisPos(rotateTetris(tCurrent.shape), tX, tY)) {
+        tCurrent.shape = rotateTetris(tCurrent.shape);
+      }
+      drawTetrisGame();
+    }, { passive: false });
+  }
+
+  document.getElementById('tetris-start-btn').addEventListener('click', startTetris);
+  document.getElementById('tetris-pause-btn').addEventListener('click', pauseTetris);
+  document.getElementById('tetris-reset-btn').addEventListener('click', resetTetris);
+
+  // ==================== 2048 ====================
+  var grid2048, score2048;
+
+  function newGame2048() {
+    grid2048 = Array(4).fill(null).map(function() { return Array(4).fill(0); });
+    score2048 = 0;
+    addTile2048();
+    addTile2048();
+    render2048();
+  }
+
+  function addTile2048() {
+    var empty = [];
+    grid2048.forEach(function(r, i) { r.forEach(function(v, j) { if (!v) empty.push([i, j]); }); });
+    if (empty.length) {
+      var pos = empty[Math.floor(Math.random() * empty.length)];
+      grid2048[pos[0]][pos[1]] = Math.random() < 0.9 ? 2 : 4;
+    }
+  }
+
+  function render2048() {
+    var container = document.getElementById('grid2048');
+    if (!container) return;
+    var html = '';
+    grid2048.forEach(function(row) {
+      row.forEach(function(v) {
+        var bgColors = ['#3a3a32', '#eee4da', '#ede0c8', '#f2b179', '#f59563', '#f67c5f', '#f65e3b', '#edcf72', '#edcc61', '#edc850', '#edc53f', '#edc22e'];
+        var bg = v ? bgColors[Math.log2(v)] || '#3c3a32' : '#3a3a32';
+        var color = v > 4 ? '#f9f6f2' : '#776e65';
+        var size = v > 999 ? '14px' : '18px';
+        html += '<div class="grid-cell" style="background:' + bg + ';color:' + color + ';font-size:' + size + '">' + (v || '') + '</div>';
+      });
+    });
+    container.innerHTML = html;
+  }
+
+  function slide2048(row) {
+    var arr = row.filter(function(v) { return v > 0; });
+    for (var i = 0; i < arr.length - 1; i++) {
+      if (arr[i] === arr[i + 1]) {
+        arr[i] *= 2;
+        score2048 += arr[i];
+        arr[i + 1] = 0;
+      }
+    }
+    return arr.filter(function(v) { return v > 0; });
+  }
+
+  function move2048(dir) {
+    var old = JSON.stringify(grid2048);
+    if (dir === 'left') {
+      grid2048 = grid2048.map(function(row) {
+        var arr = slide2048(row);
+        while (arr.length < 4) arr.push(0);
+        return arr;
+      });
+    } else if (dir === 'right') {
+      grid2048 = grid2048.map(function(row) {
+        var arr = slide2048(row.slice().reverse()).reverse();
+        while (arr.length < 4) arr.unshift(0);
+        return arr;
+      });
+    } else if (dir === 'up') {
+      for (var c = 0; c < 4; c++) {
+        var col = [grid2048[0][c], grid2048[1][c], grid2048[2][c], grid2048[3][c]];
+        var arr = slide2048(col);
+        while (arr.length < 4) arr.push(0);
+        for (var r = 0; r < 4; r++) grid2048[r][c] = arr[r];
+      }
+    } else if (dir === 'down') {
+      for (var c = 0; c < 4; c++) {
+        var col = [grid2048[3][c], grid2048[2][c], grid2048[1][c], grid2048[0][c]];
+        var arr = slide2048(col);
+        while (arr.length < 4) arr.unshift(0);
+        for (var r = 0; r < 4; r++) grid2048[r][c] = arr[3 - r];
+      }
+    }
+    if (JSON.stringify(grid2048) !== old) addTile2048();
+    render2048();
+  }
+
+  document.getElementById('2048-start-btn').addEventListener('click', newGame2048);
+  document.getElementById('2048-reset-btn').addEventListener('click', newGame2048);
+
+  // 2048 keyboard
+  document.addEventListener('keydown', function(e) {
+    if (['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].indexOf(e.key) >= 0) {
+      e.preventDefault();
+      if (document.getElementById('grid2048').children.length > 0) {
+        move2048(e.key.replace('Arrow', '').toLowerCase());
+      }
+    }
+  });
+
+  // 2048 touch
+  (function() {
+    var container = document.getElementById('grid2048');
+    if (!container) return;
+    var startX = 0, startY = 0;
+    
+    container.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    
+    container.addEventListener('touchend', function(e) {
+      var endX = e.changedTouches[0].clientX;
+      var endY = e.changedTouches[0].clientY;
+      var dx = endX - startX;
+      var dy = endY - startY;
+      var absDx = Math.abs(dx);
+      var absDy = Math.abs(dy);
+      
+      if (Math.max(absDx, absDy) > 30) {
+        if (absDx > absDy) {
+          move2048(dx > 0 ? 'right' : 'left');
+        } else {
+          move2048(dy > 0 ? 'down' : 'up');
+        }
+      }
+    }, { passive: true });
+  })();
+
+  // Init all
+  initPlane();
+  initTetris();
+  newGame2048();
+
+})();
 </script>
