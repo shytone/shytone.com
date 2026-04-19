@@ -7,6 +7,13 @@ header:
     url: /ai-daily.html
 
   - titles:
+      en      : &EN       Relax
+      zh-Hans : 摸鱼专区
+      zh      : 摸鱼专区
+      zh-CN   : 摸鱼专区
+    url: /relax.html
+
+  - titles:
       # @start locale config
       en      : &EN       Archive
       en-GB   : *EN

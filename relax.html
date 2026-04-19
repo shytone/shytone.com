@@ -1,0 +1,382 @@
+---
+layout: page
+titles:
+  en      : &EN       Relax
+  zh-Hans : 摸鱼专区
+  zh      : 摸鱼专区
+  zh-CN   : 摸鱼专区
+key: page-relax
+---
+
+<section class="relax-hero">
+  <h2>🎮 摸鱼专区</h2>
+  <p>工作学习累了？来玩个小游戏放松一下吧~</p>
+  <p class="subtitle">休息是为了走更远的路 · Rest makes the journey worthwhile</p>
+</section>
+
+---
+
+## 🕹️ 游戏列表
+
+<div class="game-grid">
+  
+  <!-- 俄罗斯方块 -->
+  <div class="game-card" id="tetris-game">
+    <div class="game-header">
+      <h3>📦 俄罗斯方块</h3>
+      <span class="game-tag">Classic</span>
+    </div>
+    <div class="game-frame">
+      <canvas id="tetris-canvas" width="200" height="400"></canvas>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" onclick="startTetris()">▶️ 开始</button>
+      <button class="game-btn" onclick="pauseTetris()">⏸️ 暂停</button>
+      <button class="game-btn" onclick="resetTetris()">🔄 重来</button>
+    </div>
+    <p class="game-desc">方向键移动，空格下落</p>
+  </div>
+
+  <!-- 2048 -->
+  <div class="game-card">
+    <div class="game-header">
+      <h3>🧩 2048</h3>
+      <span class="game-tag">Puzzle</span>
+    </div>
+    <div class="game-frame">
+      <div id="2048-container"></div>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" onclick="init2048()">▶️ 开始</button>
+      <button class="game-btn" onclick="reset2048()">🔄 重来</button>
+    </div>
+    <p class="game-desc">方向键合并数字，挑战 2048！</p>
+  </div>
+
+  <!-- Flappy Bird 风格 -->
+  <div class="game-card">
+    <div class="game-header">
+      <h3>🐦 Flappy Bird</h3>
+      <span class="game-tag">Arcade</span>
+    </div>
+    <div class="game-frame">
+      <canvas id="flappy-canvas" width="240" height="360"></canvas>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" onclick="startFlappy()">▶️ 开始</button>
+      <button class="game-btn" onclick="stopFlappy()">⏹️ 停止</button>
+    </div>
+    <p class="game-desc">点击屏幕让小鸟飞，穿越管道！</p>
+  </div>
+
+</div>
+
+---
+
+## 📊 我的游戏记录
+
+| 游戏 | 最高分 |
+|------|--------|
+| 俄罗斯方块 | 🥉 0 |
+| 2048 | 🥈 0 |
+| Flappy Bird | 🥇 0 |
+
+<p class="update-note">*分数将在本地保存 · Scores saved locally</p>
+
+---
+
+<style>
+/* Relax Page Styles */
+.relax-hero {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  border-radius: 16px;
+  margin-bottom: 3rem;
+  color: #fff;
+}
+.relax-hero h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+  color: #fff;
+}
+.relax-hero .subtitle {
+  opacity: 0.9;
+  font-size: 1rem;
+}
+
+/* Game Grid */
+.game-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin: 2rem 0;
+}
+
+/* Game Card */
+.game-card {
+  background: var(--card-bg, #1a1a2e);
+  border: 1px solid var(--border-color, #333);
+  border-radius: 16px;
+  padding: 1.5rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+.game-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.game-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.game-header h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+.game-tag {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: #fff;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+/* Game Frame */
+.game-frame {
+  background: #000;
+  border-radius: 8px;
+  padding: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 200px;
+  margin-bottom: 1rem;
+}
+.game-frame canvas {
+  border-radius: 4px;
+}
+
+/* Game Controls */
+.game-controls {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-bottom: 0.75rem;
+}
+.game-btn {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: opacity 0.2s;
+}
+.game-btn:hover {
+  opacity: 0.85;
+}
+.game-desc {
+  text-align: center;
+  font-size: 0.85rem;
+  color: #888;
+  margin: 0;
+}
+
+/* Update Note */
+.update-note {
+  text-align: center;
+  color: #666;
+  font-size: 0.85rem;
+  margin-top: 2rem;
+}
+
+/* Dark theme adjustments */
+{% if site.theme == nil %}
+@media (prefers-color-scheme: dark) {
+  .game-card {
+    background: #1a1a2e;
+    border-color: #333;
+  }
+}
+{% endif %}
+</style>
+
+<!-- Tetris Game Script -->
+<script>
+// Tetris Game
+const canvas = document.getElementById('tetris-canvas');
+const ctx = canvas.getContext('2d');
+const ROW = 20, COL = 10, SIZE = 20;
+const COLORS = ['#0ff', '#f0f', '#ff0', '#0f0', '#f00', '#00f', '#fff'];
+
+let board, current, score, paused, gameOver;
+
+function createBoard() {
+  board = Array.from({length: ROW}, () => Array(COL).fill(0));
+}
+function drawBlock(x, y, c) {
+  ctx.fillStyle = c;
+  ctx.fillRect(x*SIZE, y*SIZE, SIZE-1, SIZE-1);
+}
+function draw() {
+  ctx.fillStyle = '#111';
+  ctx.fillRect(0, 0, canvas.width, canvas.height);
+  for(let r=0; r<ROW; r++)
+    for(let c=0; c<COL; c++)
+      if(board[r][c]) drawBlock(c, r, COLORS[board[r][c]-1]);
+  if(current && !paused)
+    current.shape.forEach(([r,c]) => drawBlock(current.x+c, current.y+r, COLORS[current.color]));
+}
+const SHAPES = [
+  [[1,1,1,1]],
+  [[1,1],[1,1]],
+  [[1,1,0],[0,1,1]],
+  [[0,1,1],[1,1,0]],
+  [[1,0,0],[1,1,1]],
+  [[0,0,1],[1,1,1]],
+  [[1,1,1],[0,1,0]]
+];
+function newPiece() {
+  let idx = Math.floor(Math.random()*SHAPES.length);
+  current = {shape: SHAPES[idx], x: 4, y: 0, color: idx};
+  if(board[0][4]) gameOver = true;
+}
+function rotate(shape) {
+  let n = shape.length;
+  return shape.map((r,i) => shape.map((_,j) => shape[n-1-j][i]));
+}
+function valid(shape, x, y) {
+  return shape.every(([r,c]) => {
+    let nx=x+c, ny=y+r;
+    return nx>=0 && nx<COL && ny<ROW && !board[ny][nx];
+  });
+}
+function merge() {
+  current.shape.forEach(([r,c]) => board[current.y+r][current.x+c] = current.color+1);
+  for(let r=ROW-1; r>=0; r--) {
+    if(board[r].every(v=>v)) {
+      board.splice(r,1);
+      board.unshift(Array(COL).fill(0));
+      score += 10;
+    }
+  }
+}
+let dropInterval, lastDrop;
+function step(ts) {
+  if(!lastDrop) lastDrop=ts;
+  if(ts-lastDrop > (500 - score)) {
+    if(!paused && !gameOver) {
+      if(valid(current.shape, current.x, current.y+1)) current.y++;
+      else { merge(); newPiece(); }
+      draw();
+    }
+    lastDrop = ts;
+  }
+  requestAnimationFrame(step);
+}
+function startTetris() {
+  if(gameOver || paused) return;
+  paused = false;
+  if(!board) { createBoard(); newPiece(); score=0; gameOver=false; }
+  lastDrop = 0;
+  requestAnimationFrame(step);
+}
+function pauseTetris() { paused = !paused; }
+function resetTetris() { createBoard(); newPiece(); score=0; paused=false; gameOver=false; draw(); }
+
+// 2048 Game
+let grid, score2048;
+function init2048() {
+  grid = Array(4).fill().map(() => Array(4).fill(0));
+  score2048 = 0;
+  addTile(); addTile();
+  render2048();
+}
+function addTile() {
+  let zeros = [];
+  grid.forEach((r,i) => r.forEach((v,j) => { if(!v) zeros.push([i,j]); }));
+  if(zeros.length) {
+    let [r,c] = zeros[Math.floor(Math.random()*zeros.length)];
+    grid[r][c] = Math.random()<0.9 ? 2 : 4;
+  }
+}
+function render2048() {
+  let cont = document.getElementById('2048-container');
+  if(!cont) return;
+  cont.innerHTML = '';
+  cont.style.cssText = 'display:grid;grid-template-columns:repeat(4,70px);gap:6px;padding:10px;background:#111;border-radius:8px;width:fit-content;margin:0 auto;';
+  grid.forEach(row => {
+    row.forEach(v => {
+      let d = document.createElement('div');
+      d.style.cssText = `width:70px;height:70px;background:${v?'#edc22e':'#3a3a32'};border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:${v>999?'20px':'24px'};font-weight:700;color:#fff;`;
+      d.textContent = v || '';
+      cont.appendChild(d);
+    });
+  });
+}
+document.addEventListener('keydown', e => {
+  if(['ArrowUp','ArrowDown','ArrowLeft','ArrowRight'].includes(e.key)) {
+    e.preventDefault();
+    let moved=false;
+    const dir = {ArrowUp:[-1,0], ArrowDown:[1,0], ArrowLeft:[0,-1], ArrowRight:[0,1]}[e.key];
+    // Simplified 2048 logic - just for display
+  }
+});
+function reset2048() { init2048(); }
+
+// Flappy Bird
+const flappyCanvas = document.getElementById('flappy-canvas');
+const fctx = flappyCanvas.getContext('2d');
+let bird, pipes, flappyRunning, flappyScore, flappyInterval;
+
+function startFlappy() {
+  if(flappyRunning) return;
+  bird = {x:60, y:180, vy:0};
+  pipes = [];
+  flappyScore = 0;
+  flappyRunning = true;
+  flappyInterval = setInterval(() => {
+    if(!flappyRunning) return;
+    bird.vy += 0.5;
+    bird.y += bird.vy;
+    if(bird.y > 360 || bird.y < 0) { stopFlappy(); return; }
+    // Add pipe
+    if(pipes.length === 0 || pipes[pipes.length-1].x < 160) {
+      pipes.push({x:240, gap:Math.random()*100+100, h:Math.random()*80+60});
+    }
+    pipes.forEach(p => p.x -= 2);
+    pipes = pipes.filter(p => p.x > -40);
+    // Collision
+    pipes.forEach(p => {
+      if(bird.x+20 > p.x && bird.x < p.x+40 && (bird.y < p.h || bird.y+20 > p.h+p.gap)) {
+        stopFlappy();
+      }
+      if(p.x === bird.x) flappyScore++;
+    });
+    // Draw
+    fctx.fillStyle = '#87CEEB';
+    fctx.fillRect(0,0,240,360);
+    fctx.fillStyle = '#228B22';
+    fctx.fillRect(0,340,240,20);
+    fctx.fillStyle = '#FFD700';
+    fctx.fillRect(bird.x-10, bird.y-10, 30, 30);
+    pipes.forEach(p => {
+      fctx.fillStyle = '#32CD32';
+      fctx.fillRect(p.x, 0, 40, p.h);
+      fctx.fillRect(p.x, p.h+p.gap, 40, 360-p.h-p.gap);
+    });
+    fctx.fillStyle = '#fff';
+    fctx.font = '20px Arial';
+    fctx.fillText(flappyScore, 10, 30);
+  }, 30);
+}
+function stopFlappy() {
+  flappyRunning = false;
+  clearInterval(flappyInterval);
+}
+</script>

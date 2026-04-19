@@ -10,8 +10,8 @@ theme: jekyll-text-theme
 
 ## => Site Settings
 ##############################
-text_skin: default
-highlight_theme: default
+text_skin: dark
+highlight_theme: tomorrow-night
 url     : https://shytone.com
 baseurl : 
 title   : SHYTONE.COM
