@@ -41,7 +41,7 @@ key: page-about
 ### 🌐 联系方式
 
 - **GitHub**: [shytone](https://github.com/shytone)
-- **邮箱**: shytone@qq.com
+
 - **微信**: 欢迎交流技术问题
 
 ---
