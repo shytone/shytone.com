@@ -1,62 +1,62 @@
 figure.highlight::before {
-  color: #8e908c !important;
-  background-color: #f7f7f7 !important;
+  color: #969896 !important;
+  background-color: #1d1f21 !important;
 }
 
 pre.lineno {
-  color: #8e908c !important;
+  color: #969896 !important;
 }
 
 .highlight > pre {
-  color: #4d4d4c;
-  background-color: #f7f7f7 !important;
+  color: #c5c8c6;
+  background-color: #1d1f21 !important;
 }
 .highlight > pre .c {
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Comment */ }
 .highlight > pre .err {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Error */ }
 .highlight > pre .k {
-  color: #8959a8;
+  color: #b294bb;
 }
 .highlight > pre { /* Keyword */ }
 .highlight > pre .l {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal */ }
 .highlight > pre .n {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Name */ }
 .highlight > pre .o {
-  color: #3e999f;
+  color: #8abeb7;
 }
 .highlight > pre { /* Operator */ }
 .highlight > pre .p {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Punctuation */ }
 .highlight > pre .cm {
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Comment.Multiline */ }
 .highlight > pre .cp {
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Comment.Preproc */ }
 .highlight > pre .c1 {
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Comment.Single */ }
 .highlight > pre .cs {
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Comment.Special */ }
 .highlight > pre .gd {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Generic.Deleted */ }
 .highlight > pre .ge {
@@ -65,16 +65,16 @@ pre.lineno {
 .highlight > pre { /* Generic.Emph */ }
 .highlight > pre .gh {
   font-weight: bold;
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Generic.Heading */ }
 .highlight > pre .gi {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Generic.Inserted */ }
 .highlight > pre .gp {
   font-weight: bold;
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Generic.Prompt */ }
 .highlight > pre .gs {
@@ -83,187 +83,456 @@ pre.lineno {
 .highlight > pre { /* Generic.Strong */ }
 .highlight > pre .gu {
   font-weight: bold;
-  color: #3e999f;
+  color: #8abeb7;
 }
 .highlight > pre { /* Generic.Subheading */ }
 .highlight > pre .kc {
-  color: #8959a8;
+  color: #b294bb;
 }
 .highlight > pre { /* Keyword.Constant */ }
 .highlight > pre .kd {
-  color: #8959a8;
+  color: #b294bb;
 }
 .highlight > pre { /* Keyword.Declaration */ }
 .highlight > pre .kn {
-  color: #3e999f;
+  color: #8abeb7;
 }
 .highlight > pre { /* Keyword.Namespace */ }
 .highlight > pre .kp {
-  color: #8959a8;
+  color: #b294bb;
 }
 .highlight > pre { /* Keyword.Pseudo */ }
 .highlight > pre .kr {
-  color: #8959a8;
+  color: #b294bb;
 }
 .highlight > pre { /* Keyword.Reserved */ }
 .highlight > pre .kt {
-  color: #eab700;
+  color: #f0c674;
 }
 .highlight > pre { /* Keyword.Type */ }
 .highlight > pre .ld {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.Date */ }
 .highlight > pre .m {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.Number */ }
 .highlight > pre .s {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String */ }
 .highlight > pre .na {
-  color: #4271ae;
+  color: #81a2be;
 }
 .highlight > pre { /* Name.Attribute */ }
 .highlight > pre .nb {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Name.Builtin */ }
 .highlight > pre .nc {
-  color: #eab700;
+  color: #f0c674;
 }
 .highlight > pre { /* Name.Class */ }
 .highlight > pre .no {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Name.Constant */ }
 .highlight > pre .nd {
-  color: #3e999f;
+  color: #8abeb7;
 }
 .highlight > pre { /* Name.Decorator */ }
 .highlight > pre .ni {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Name.Entity */ }
 .highlight > pre .ne {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Name.Exception */ }
 .highlight > pre .nf {
-  color: #4271ae;
+  color: #81a2be;
 }
 .highlight > pre { /* Name.Function */ }
 .highlight > pre .nl {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Name.Label */ }
 .highlight > pre .nn {
-  color: #eab700;
+  color: #f0c674;
 }
 .highlight > pre { /* Name.Namespace */ }
 .highlight > pre .nx {
-  color: #4271ae;
+  color: #81a2be;
 }
 .highlight > pre { /* Name.Other */ }
 .highlight > pre .py {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Name.Property */ }
 .highlight > pre .nt {
-  color: #3e999f;
+  color: #8abeb7;
 }
 .highlight > pre { /* Name.Tag */ }
 .highlight > pre .nv {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Name.Variable */ }
 .highlight > pre .ow {
-  color: #3e999f;
+  color: #8abeb7;
 }
 .highlight > pre { /* Operator.Word */ }
 .highlight > pre .w {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Text.Whitespace */ }
 .highlight > pre .mf {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.Number.Float */ }
 .highlight > pre .mh {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.Number.Hex */ }
 .highlight > pre .mi {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.Number.Integer */ }
 .highlight > pre .mo {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.Number.Oct */ }
 .highlight > pre .sb {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Backtick */ }
 .highlight > pre .sc {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Literal.String.Char */ }
 .highlight > pre .sd {
-  color: #8e908c;
+  color: #969896;
 }
 .highlight > pre { /* Literal.String.Doc */ }
 .highlight > pre .s2 {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Double */ }
 .highlight > pre .se {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.String.Escape */ }
 .highlight > pre .sh {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Heredoc */ }
 .highlight > pre .si {
-  color: #f5871f;
+  color: #de935f;
 }
 .highlight > pre { /* Literal.String.Interpol */ }
 .highlight > pre .sx {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Other */ }
 .highlight > pre .sr {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Regex */ }
 .highlight > pre .s1 {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Single */ }
 .highlight > pre .ss {
-  color: #718c00;
+  color: #b5bd68;
 }
 .highlight > pre { /* Literal.String.Symbol */ }
 .highlight > pre .bp {
-  color: #4d4d4c;
+  color: #c5c8c6;
 }
 .highlight > pre { /* Name.Builtin.Pseudo */ }
 .highlight > pre .vc {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Name.Variable.Class */ }
 .highlight > pre .vg {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Name.Variable.Global */ }
 .highlight > pre .vi {
-  color: #c82829;
+  color: #c66;
 }
 .highlight > pre { /* Name.Variable.Instance */ }
 .highlight > pre .il {
-  color: #f5871f;
+  color: #de935f;
+}
+.highlight > pre { /* Literal.Number.Integer.Long */ }
+
+figure.highlight::before {
+  color: #969896 !important;
+  background-color: #1d1f21 !important;
+}
+
+pre.lineno {
+  color: #969896 !important;
+}
+
+.highlight > pre {
+  color: #c5c8c6;
+  background-color: #1d1f21 !important;
+}
+.highlight > pre .c {
+  color: #969896;
+}
+.highlight > pre { /* Comment */ }
+.highlight > pre .err {
+  color: #c66;
+}
+.highlight > pre { /* Error */ }
+.highlight > pre .k {
+  color: #b294bb;
+}
+.highlight > pre { /* Keyword */ }
+.highlight > pre .l {
+  color: #de935f;
+}
+.highlight > pre { /* Literal */ }
+.highlight > pre .n {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Name */ }
+.highlight > pre .o {
+  color: #8abeb7;
+}
+.highlight > pre { /* Operator */ }
+.highlight > pre .p {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Punctuation */ }
+.highlight > pre .cm {
+  color: #969896;
+}
+.highlight > pre { /* Comment.Multiline */ }
+.highlight > pre .cp {
+  color: #969896;
+}
+.highlight > pre { /* Comment.Preproc */ }
+.highlight > pre .c1 {
+  color: #969896;
+}
+.highlight > pre { /* Comment.Single */ }
+.highlight > pre .cs {
+  color: #969896;
+}
+.highlight > pre { /* Comment.Special */ }
+.highlight > pre .gd {
+  color: #c66;
+}
+.highlight > pre { /* Generic.Deleted */ }
+.highlight > pre .ge {
+  font-style: italic;
+}
+.highlight > pre { /* Generic.Emph */ }
+.highlight > pre .gh {
+  font-weight: bold;
+  color: #c5c8c6;
+}
+.highlight > pre { /* Generic.Heading */ }
+.highlight > pre .gi {
+  color: #b5bd68;
+}
+.highlight > pre { /* Generic.Inserted */ }
+.highlight > pre .gp {
+  font-weight: bold;
+  color: #969896;
+}
+.highlight > pre { /* Generic.Prompt */ }
+.highlight > pre .gs {
+  font-weight: bold;
+}
+.highlight > pre { /* Generic.Strong */ }
+.highlight > pre .gu {
+  font-weight: bold;
+  color: #8abeb7;
+}
+.highlight > pre { /* Generic.Subheading */ }
+.highlight > pre .kc {
+  color: #b294bb;
+}
+.highlight > pre { /* Keyword.Constant */ }
+.highlight > pre .kd {
+  color: #b294bb;
+}
+.highlight > pre { /* Keyword.Declaration */ }
+.highlight > pre .kn {
+  color: #8abeb7;
+}
+.highlight > pre { /* Keyword.Namespace */ }
+.highlight > pre .kp {
+  color: #b294bb;
+}
+.highlight > pre { /* Keyword.Pseudo */ }
+.highlight > pre .kr {
+  color: #b294bb;
+}
+.highlight > pre { /* Keyword.Reserved */ }
+.highlight > pre .kt {
+  color: #f0c674;
+}
+.highlight > pre { /* Keyword.Type */ }
+.highlight > pre .ld {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.Date */ }
+.highlight > pre .m {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.Number */ }
+.highlight > pre .s {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String */ }
+.highlight > pre .na {
+  color: #81a2be;
+}
+.highlight > pre { /* Name.Attribute */ }
+.highlight > pre .nb {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Name.Builtin */ }
+.highlight > pre .nc {
+  color: #f0c674;
+}
+.highlight > pre { /* Name.Class */ }
+.highlight > pre .no {
+  color: #c66;
+}
+.highlight > pre { /* Name.Constant */ }
+.highlight > pre .nd {
+  color: #8abeb7;
+}
+.highlight > pre { /* Name.Decorator */ }
+.highlight > pre .ni {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Name.Entity */ }
+.highlight > pre .ne {
+  color: #c66;
+}
+.highlight > pre { /* Name.Exception */ }
+.highlight > pre .nf {
+  color: #81a2be;
+}
+.highlight > pre { /* Name.Function */ }
+.highlight > pre .nl {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Name.Label */ }
+.highlight > pre .nn {
+  color: #f0c674;
+}
+.highlight > pre { /* Name.Namespace */ }
+.highlight > pre .nx {
+  color: #81a2be;
+}
+.highlight > pre { /* Name.Other */ }
+.highlight > pre .py {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Name.Property */ }
+.highlight > pre .nt {
+  color: #8abeb7;
+}
+.highlight > pre { /* Name.Tag */ }
+.highlight > pre .nv {
+  color: #c66;
+}
+.highlight > pre { /* Name.Variable */ }
+.highlight > pre .ow {
+  color: #8abeb7;
+}
+.highlight > pre { /* Operator.Word */ }
+.highlight > pre .w {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Text.Whitespace */ }
+.highlight > pre .mf {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.Number.Float */ }
+.highlight > pre .mh {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.Number.Hex */ }
+.highlight > pre .mi {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.Number.Integer */ }
+.highlight > pre .mo {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.Number.Oct */ }
+.highlight > pre .sb {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Backtick */ }
+.highlight > pre .sc {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Literal.String.Char */ }
+.highlight > pre .sd {
+  color: #969896;
+}
+.highlight > pre { /* Literal.String.Doc */ }
+.highlight > pre .s2 {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Double */ }
+.highlight > pre .se {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.String.Escape */ }
+.highlight > pre .sh {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Heredoc */ }
+.highlight > pre .si {
+  color: #de935f;
+}
+.highlight > pre { /* Literal.String.Interpol */ }
+.highlight > pre .sx {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Other */ }
+.highlight > pre .sr {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Regex */ }
+.highlight > pre .s1 {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Single */ }
+.highlight > pre .ss {
+  color: #b5bd68;
+}
+.highlight > pre { /* Literal.String.Symbol */ }
+.highlight > pre .bp {
+  color: #c5c8c6;
+}
+.highlight > pre { /* Name.Builtin.Pseudo */ }
+.highlight > pre .vc {
+  color: #c66;
+}
+.highlight > pre { /* Name.Variable.Class */ }
+.highlight > pre .vg {
+  color: #c66;
+}
+.highlight > pre { /* Name.Variable.Global */ }
+.highlight > pre .vi {
+  color: #c66;
+}
+.highlight > pre { /* Name.Variable.Instance */ }
+.highlight > pre .il {
+  color: #de935f;
 }
 .highlight > pre { /* Literal.Number.Integer.Long */ }
 
@@ -306,7 +575,7 @@ pre.lineno {
 .horizontal-rules::before {
   display: block;
   font-size: 1.9rem;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   text-align: center;
   letter-spacing: 1.5rem;
   content: "...";
@@ -341,26 +610,26 @@ pre.lineno {
   color: #222;
 }
 .root[data-is-touch=false] .text--light a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .header--light a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .hero--light a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .card__image > .overlay--light a:not(.button):not(.swiper__button):hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .text--light a:not(.button):not(.swiper__button).active, .root[data-is-touch] .header--light a:not(.button):not(.swiper__button).active, .root[data-is-touch] .hero--light a:not(.button):not(.swiper__button).active, .root[data-is-touch] .card__image > .overlay--light a:not(.button):not(.swiper__button).active, .root[data-is-touch] .text--light a:not(.button):not(.swiper__button):active, .root[data-is-touch] .header--light a:not(.button):not(.swiper__button):active, .root[data-is-touch] .hero--light a:not(.button):not(.swiper__button):active, .root[data-is-touch] .card__image > .overlay--light a:not(.button):not(.swiper__button):active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .text--light a:not(.button):not(.swiper__button).disabled, .header--light a:not(.button):not(.swiper__button).disabled, .hero--light a:not(.button):not(.swiper__button).disabled, .card__image > .overlay--light a:not(.button):not(.swiper__button).disabled, .text--light a:not(.button):not(.swiper__button):disabled, .header--light a:not(.button):not(.swiper__button):disabled, .hero--light a:not(.button):not(.swiper__button):disabled, .card__image > .overlay--light a:not(.button):not(.swiper__button):disabled {
   color: rgba(34, 34, 34, 0.2) !important;
 }
 
 .text--dark, .header--dark, .hero--dark, .card__image > .overlay, .card__image > .overlay--dark {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
 }
 .text--dark h1, .header--dark h1, .hero--dark h1, .card__image > .overlay h1, .card__image > .overlay--dark h1, .text--dark h2, .header--dark h2, .hero--dark h2, .card__image > .overlay h2, .card__image > .overlay--dark h2, .text--dark h3, .header--dark h3, .hero--dark h3, .card__image > .overlay h3, .card__image > .overlay--dark h3 {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
 }
 .text--dark h4, .header--dark h4, .hero--dark h4, .card__image > .overlay h4, .card__image > .overlay--dark h4, .text--dark h5, .header--dark h5, .hero--dark h5, .card__image > .overlay h5, .card__image > .overlay--dark h5 {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
 }
 .text--dark h6, .header--dark h6, .hero--dark h6, .card__image > .overlay h6, .card__image > .overlay--dark h6 {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.5);
 }
 .text--dark a:not(.button):not(.swiper__button), .header--dark a:not(.button):not(.swiper__button), .hero--dark a:not(.button):not(.swiper__button), .card__image > .overlay a:not(.button):not(.swiper__button), .card__image > .overlay--dark a:not(.button):not(.swiper__button), .text--dark a:not(.button):not(.swiper__button):link, .text--dark a:not(.button):not(.swiper__button):visited {
   text-decoration: none;
@@ -376,13 +645,13 @@ pre.lineno {
   transition: all 0.2s ease-in-out;
 }
 .text--dark a:not(.button):not(.swiper__button), .header--dark a:not(.button):not(.swiper__button), .hero--dark a:not(.button):not(.swiper__button), .card__image > .overlay a:not(.button):not(.swiper__button), .card__image > .overlay--dark a:not(.button):not(.swiper__button), .text--dark a:not(.button):not(.swiper__button):link, .text--dark a:not(.button):not(.swiper__button):visited {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .text--dark a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .header--dark a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .hero--dark a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .card__image > .overlay a:not(.button):not(.swiper__button):hover, .root[data-is-touch=false] .card__image > .overlay--dark a:not(.button):not(.swiper__button):hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .text--dark a:not(.button):not(.swiper__button).active, .root[data-is-touch] .header--dark a:not(.button):not(.swiper__button).active, .root[data-is-touch] .hero--dark a:not(.button):not(.swiper__button).active, .root[data-is-touch] .card__image > .overlay a:not(.button):not(.swiper__button).active, .root[data-is-touch] .card__image > .overlay--dark a:not(.button):not(.swiper__button).active, .root[data-is-touch] .text--dark a:not(.button):not(.swiper__button):active, .root[data-is-touch] .header--dark a:not(.button):not(.swiper__button):active, .root[data-is-touch] .hero--dark a:not(.button):not(.swiper__button):active, .root[data-is-touch] .card__image > .overlay a:not(.button):not(.swiper__button):active, .root[data-is-touch] .card__image > .overlay--dark a:not(.button):not(.swiper__button):active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .text--dark a:not(.button):not(.swiper__button).disabled, .header--dark a:not(.button):not(.swiper__button).disabled, .hero--dark a:not(.button):not(.swiper__button).disabled, .card__image > .overlay a:not(.button):not(.swiper__button).disabled, .card__image > .overlay--dark a:not(.button):not(.swiper__button).disabled, .text--dark a:not(.button):not(.swiper__button):disabled, .header--dark a:not(.button):not(.swiper__button):disabled, .hero--dark a:not(.button):not(.swiper__button):disabled, .card__image > .overlay a:not(.button):not(.swiper__button):disabled, .card__image > .overlay--dark a:not(.button):not(.swiper__button):disabled {
   color: rgba(255, 255, 255, 0.2) !important;
@@ -1488,13 +1757,13 @@ body {
   font: 400 1rem/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
 }
 body ::-moz-selection {
-  background: rgba(252, 77, 80, 0.5);
+  background: rgba(255, 149, 0, 0.5);
 }
 body ::-webkit-selection {
-  background: rgba(252, 77, 80, 0.5);
+  background: rgba(255, 149, 0, 0.5);
 }
 body ::selection {
-  background: rgba(252, 77, 80, 0.5);
+  background: rgba(255, 149, 0, 0.5);
 }
 
 h1,
@@ -1520,7 +1789,7 @@ table,
 
 input, textarea, select, button {
   font: 400 1rem/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 
 h1,
@@ -1535,7 +1804,7 @@ strong {
 
 h1 {
   font-size: 2.5rem;
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 499px) {
   h1 {
@@ -1545,7 +1814,7 @@ h1 {
 
 h2 {
   font-size: 1.9rem;
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 499px) {
   h2 {
@@ -1555,7 +1824,7 @@ h2 {
 
 h3 {
   font-size: 1.5rem;
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 499px) {
   h3 {
@@ -1565,7 +1834,7 @@ h3 {
 
 h4 {
   font-size: 1.2rem;
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 @media (max-width: 499px) {
   h4 {
@@ -1575,7 +1844,7 @@ h4 {
 
 h5 {
   font-size: 1rem;
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 @media (max-width: 499px) {
   h5 {
@@ -1585,7 +1854,7 @@ h5 {
 
 h6 {
   font-size: 1rem;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 @media (max-width: 499px) {
   h6 {
@@ -1610,16 +1879,16 @@ a {
   transition: all 0.2s ease-in-out;
 }
 a, a:link, a:visited {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch=false] a:hover {
-  color: rgb(250.8165745856, 6.7834254144, 10.9668508287);
+  color: rgb(183.6, 107.28, 0);
 }
 .root[data-is-touch] a.active, .root[data-is-touch] a:active {
-  color: rgb(178.0983425414, 3.0016574586, 6.0033149171);
+  color: rgb(107.1, 62.58, 0);
 }
 a.disabled, a:disabled {
-  color: rgba(252, 77, 80, 0.2) !important;
+  color: rgba(255, 149, 0, 0.2) !important;
 }
 
 pre, code {
@@ -1706,37 +1975,37 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--primary, .button--primary:link, .button--primary:visited {
-  color: #fff;
-  background-color: #fc4d50;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff9500;
 }
 .button--primary svg path, .button--primary:link svg path, .button--primary:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--primary:hover {
-  color: #fff;
-  background-color: rgb(250.8165745856, 6.7834254144, 10.9668508287);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(183.6, 107.28, 0);
 }
 .root[data-is-touch=false] .button--primary:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--primary.active, .root[data-is-touch] .button--primary:active {
-  color: #fff;
-  background-color: rgb(178.0983425414, 3.0016574586, 6.0033149171);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(107.1, 62.58, 0);
 }
 .root[data-is-touch] .button--primary.active svg path, .root[data-is-touch] .button--primary:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--primary.focus {
   color: default;
-  background-color: rgb(250.8165745856, 6.7834254144, 10.9668508287);
-  box-shadow: 0 0 0 2px rgba(250.8165745856, 6.7834254144, 10.9668508287, 0.4);
+  background-color: rgb(183.6, 107.28, 0);
+  box-shadow: 0 0 0 2px rgba(183.6, 107.28, 0, 0.4);
 }
 .root[data-is-touch] .button--primary.focus svg path {
   fill: default;
 }
 .button--primary.disabled, .button--primary:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: #fc4d50 !important;
+  background-color: #ff9500 !important;
 }
 .button--primary.disabled svg path, .button--primary:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -1751,40 +2020,40 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--secondary, .button--secondary:link, .button--secondary:visited {
-  color: #333;
-  background-color: #f2f2f2;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #202020;
 }
 .button--secondary svg path, .button--secondary:link svg path, .button--secondary:visited svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--secondary:hover {
-  color: #333;
-  background-color: rgb(206.3, 206.3, 206.3);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(77.9, 77.9, 77.9);
 }
 .root[data-is-touch=false] .button--secondary:hover svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--secondary.active, .root[data-is-touch] .button--secondary:active {
-  color: #333;
-  background-color: rgb(168.05, 168.05, 168.05);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(118.7, 118.7, 118.7);
 }
 .root[data-is-touch] .button--secondary.active svg path, .root[data-is-touch] .button--secondary:active svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--secondary.focus {
   color: default;
-  background-color: rgb(206.3, 206.3, 206.3);
-  box-shadow: 0 0 0 2px rgba(206.3, 206.3, 206.3, 0.4);
+  background-color: rgb(77.9, 77.9, 77.9);
+  box-shadow: 0 0 0 2px rgba(77.9, 77.9, 77.9, 0.4);
 }
 .root[data-is-touch] .button--secondary.focus svg path {
   fill: default;
 }
 .button--secondary.disabled, .button--secondary:disabled {
-  color: rgba(51, 51, 51, 0.2) !important;
-  background-color: #f2f2f2 !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  background-color: #202020 !important;
 }
 .button--secondary.disabled svg path, .button--secondary:disabled svg path {
-  fill: rgba(51, 51, 51, 0.2) !important;
+  fill: rgba(255, 255, 255, 0.4) !important;
 }
 
 .button--success {
@@ -1796,37 +2065,37 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--success, .button--success:link, .button--success:visited {
-  color: #fff;
-  background-color: #52c41a;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #5baa34;
 }
 .button--success svg path, .button--success:link svg path, .button--success:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--success:hover {
-  color: #fff;
-  background-color: rgb(55.627027027, 132.9621621622, 17.6378378378);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(61.7324324324, 115.3243243243, 35.2756756757);
 }
 .root[data-is-touch=false] .button--success:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--success.active, .root[data-is-touch] .button--success:active {
-  color: #fff;
-  background-color: rgb(27.3702702703, 65.4216216216, 8.6783783784);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(30.3743243243, 56.7432432432, 17.3567567568);
 }
 .root[data-is-touch] .button--success.active svg path, .root[data-is-touch] .button--success:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--success.focus {
   color: default;
-  background-color: rgb(55.627027027, 132.9621621622, 17.6378378378);
-  box-shadow: 0 0 0 2px rgba(55.627027027, 132.9621621622, 17.6378378378, 0.4);
+  background-color: rgb(61.7324324324, 115.3243243243, 35.2756756757);
+  box-shadow: 0 0 0 2px rgba(61.7324324324, 115.3243243243, 35.2756756757, 0.4);
 }
 .root[data-is-touch] .button--success.focus svg path {
   fill: default;
 }
 .button--success.disabled, .button--success:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: #52c41a !important;
+  background-color: #5baa34 !important;
 }
 .button--success.disabled svg path, .button--success:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -1841,37 +2110,37 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--info, .button--info:link, .button--info:visited {
-  color: #fff;
-  background-color: #1890ff;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #1c7cd4;
 }
 .button--info svg path, .button--info:link svg path, .button--info:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--info:hover {
-  color: #fff;
-  background-color: rgb(0, 107.8441558442, 207.6);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(19.67, 87.11, 148.93);
 }
 .root[data-is-touch=false] .button--info:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--info.active, .root[data-is-touch] .button--info:active {
-  color: #fff;
-  background-color: rgb(0, 68.1038961039, 131.1);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(10.745, 47.585, 81.355);
 }
 .root[data-is-touch] .button--info.active svg path, .root[data-is-touch] .button--info:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--info.focus {
   color: default;
-  background-color: rgb(0, 107.8441558442, 207.6);
-  box-shadow: 0 0 0 2px rgba(0, 107.8441558442, 207.6, 0.4);
+  background-color: rgb(19.67, 87.11, 148.93);
+  box-shadow: 0 0 0 2px rgba(19.67, 87.11, 148.93, 0.4);
 }
 .root[data-is-touch] .button--info.focus svg path {
   fill: default;
 }
 .button--info.disabled, .button--info:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: #1890ff !important;
+  background-color: #1c7cd4 !important;
 }
 .button--info.disabled svg path, .button--info:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -1886,37 +2155,37 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--warning, .button--warning:link, .button--warning:visited {
-  color: #fff;
-  background-color: #fa8c16;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #c9771f;
 }
 .button--warning svg path, .button--warning:link svg path, .button--warning:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--warning:hover {
-  color: #fff;
-  background-color: rgb(196.3857142857, 103.6714285714, 4.2142857143);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(139.1405172414, 82.3767241379, 21.4594827586);
 }
 .root[data-is-touch=false] .button--warning:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--warning.active, .root[data-is-touch] .button--warning:active {
-  color: #fff;
-  background-color: rgb(121.4928571429, 64.1357142857, 2.6071428571);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(72.8625, 43.1375, 11.2375);
 }
 .root[data-is-touch] .button--warning.active svg path, .root[data-is-touch] .button--warning:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--warning.focus {
   color: default;
-  background-color: rgb(196.3857142857, 103.6714285714, 4.2142857143);
-  box-shadow: 0 0 0 2px rgba(196.3857142857, 103.6714285714, 4.2142857143, 0.4);
+  background-color: rgb(139.1405172414, 82.3767241379, 21.4594827586);
+  box-shadow: 0 0 0 2px rgba(139.1405172414, 82.3767241379, 21.4594827586, 0.4);
 }
 .root[data-is-touch] .button--warning.focus svg path {
   fill: default;
 }
 .button--warning.disabled, .button--warning:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: #fa8c16 !important;
+  background-color: #c9771f !important;
 }
 .button--warning.disabled svg path, .button--warning:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -1931,37 +2200,37 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--error, .button--error:link, .button--error:visited {
-  color: #fff;
-  background-color: #f5222d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #da3d45;
 }
 .button--error svg path, .button--error:link svg path, .button--error:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--error:hover {
-  color: #fff;
-  background-color: rgb(198.612987013, 8.987012987, 18.8727272727);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(174.3480519481, 33.2519480519, 40.4415584416);
 }
 .root[data-is-touch=false] .button--error:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--error.active, .root[data-is-touch] .button--error:active {
-  color: #fff;
-  background-color: rgb(125.4246753247, 5.6753246753, 11.9181818182);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(110.1012987013, 20.9987012987, 25.538961039);
 }
 .root[data-is-touch] .button--error.active svg path, .root[data-is-touch] .button--error:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--error.focus {
   color: default;
-  background-color: rgb(198.612987013, 8.987012987, 18.8727272727);
-  box-shadow: 0 0 0 2px rgba(198.612987013, 8.987012987, 18.8727272727, 0.4);
+  background-color: rgb(174.3480519481, 33.2519480519, 40.4415584416);
+  box-shadow: 0 0 0 2px rgba(174.3480519481, 33.2519480519, 40.4415584416, 0.4);
 }
 .root[data-is-touch] .button--error.focus svg path {
   fill: default;
 }
 .button--error.disabled, .button--error:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: #f5222d !important;
+  background-color: #da3d45 !important;
 }
 .button--error.disabled svg path, .button--error:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -1976,29 +2245,29 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--theme-light, .button--theme-light:link, .button--theme-light:visited {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .button--theme-light svg path, .button--theme-light:link svg path, .button--theme-light:visited svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .button--theme-light:hover {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(45.9, 45.9, 45.9, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(45.9, 45.9, 45.9, 0.8);
 }
 .root[data-is-touch=false] .button--theme-light:hover svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .button--theme-light.active, .root[data-is-touch] .button--theme-light:active {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(86.7, 86.7, 86.7, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(86.7, 86.7, 86.7, 0.8);
 }
 .root[data-is-touch] .button--theme-light.active svg path, .root[data-is-touch] .button--theme-light:active svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .button--theme-light.focus {
   color: default;
-  background-color: rgba(45.9, 45.9, 45.9, 0.9);
+  background-color: rgba(45.9, 45.9, 45.9, 0.8);
   box-shadow: 0 0 0 2px rgba(45.9, 45.9, 45.9, 0.4);
 }
 .root[data-is-touch] .button--theme-light.focus svg path {
@@ -2006,7 +2275,7 @@ input:focus {
 }
 .button--theme-light.disabled, .button--theme-light:disabled {
   color: rgba(255, 255, 255, 0.4) !important;
-  background-color: rgba(0, 0, 0, 0.9) !important;
+  background-color: rgba(0, 0, 0, 0.8) !important;
 }
 .button--theme-light.disabled svg path, .button--theme-light:disabled svg path {
   fill: rgba(255, 255, 255, 0.4) !important;
@@ -2022,28 +2291,28 @@ input:focus {
 }
 .button--theme-dark, .button--theme-dark:link, .button--theme-dark:visited {
   color: #222;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .button--theme-dark svg path, .button--theme-dark:link svg path, .button--theme-dark:visited svg path {
   fill: #222;
 }
 .root[data-is-touch=false] .button--theme-dark:hover {
   color: #222;
-  background-color: rgba(219.3, 219.3, 219.3, 0.9);
+  background-color: rgba(219.3, 219.3, 219.3, 0.8);
 }
 .root[data-is-touch=false] .button--theme-dark:hover svg path {
   fill: #222;
 }
 .root[data-is-touch] .button--theme-dark.active, .root[data-is-touch] .button--theme-dark:active {
   color: #222;
-  background-color: rgba(181.05, 181.05, 181.05, 0.9);
+  background-color: rgba(181.05, 181.05, 181.05, 0.8);
 }
 .root[data-is-touch] .button--theme-dark.active svg path, .root[data-is-touch] .button--theme-dark:active svg path {
   fill: #222;
 }
 .root[data-is-touch] .button--theme-dark.focus {
   color: default;
-  background-color: rgba(219.3, 219.3, 219.3, 0.9);
+  background-color: rgba(219.3, 219.3, 219.3, 0.8);
   box-shadow: 0 0 0 2px rgba(219.3, 219.3, 219.3, 0.4);
 }
 .root[data-is-touch] .button--theme-dark.focus svg path {
@@ -2051,15 +2320,15 @@ input:focus {
 }
 .button--theme-dark.disabled, .button--theme-dark:disabled {
   color: rgba(34, 34, 34, 0.2) !important;
-  background-color: rgba(255, 255, 255, 0.9) !important;
+  background-color: rgba(255, 255, 255, 0.8) !important;
 }
 .button--theme-dark.disabled svg path, .button--theme-dark:disabled svg path {
   fill: rgba(34, 34, 34, 0.2) !important;
 }
 
 .button--outline-primary {
-  color: #fc4d50;
-  border: 1px solid #fc4d50;
+  color: #ff9500;
+  border: 1px solid #ff9500;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2068,45 +2337,45 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-primary, .button--outline-primary:link, .button--outline-primary:visited {
-  color: #fc4d50;
+  color: #ff9500;
   background-color: transparent;
 }
 .button--outline-primary svg path, .button--outline-primary:link svg path, .button--outline-primary:visited svg path {
-  fill: #fc4d50;
+  fill: #ff9500;
 }
 .root[data-is-touch=false] .button--outline-primary:hover {
-  color: #fff;
-  background-color: #fc4d50;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff9500;
 }
 .root[data-is-touch=false] .button--outline-primary:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-primary.active, .root[data-is-touch] .button--outline-primary:active {
-  color: #fff;
-  background-color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(178.5, 104.3, 0);
 }
 .root[data-is-touch] .button--outline-primary.active svg path, .root[data-is-touch] .button--outline-primary:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-primary.focus {
   color: default;
-  background-color: #fc4d50;
-  box-shadow: 0 0 0 2px rgba(252, 77, 80, 0.4);
+  background-color: #ff9500;
+  box-shadow: 0 0 0 2px rgba(255, 149, 0, 0.4);
 }
 .root[data-is-touch] .button--outline-primary.focus svg path {
   fill: default;
 }
 .button--outline-primary.disabled, .button--outline-primary:disabled {
-  color: rgba(252, 77, 80, 0.2) !important;
+  color: rgba(255, 149, 0, 0.2) !important;
   background-color: transparent !important;
 }
 .button--outline-primary.disabled svg path, .button--outline-primary:disabled svg path {
-  fill: rgba(252, 77, 80, 0.2) !important;
+  fill: rgba(255, 149, 0, 0.2) !important;
 }
 
 .button--outline-secondary {
-  color: #f2f2f2;
-  border: 1px solid #f2f2f2;
+  color: #202020;
+  border: 1px solid #202020;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2115,45 +2384,45 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-secondary, .button--outline-secondary:link, .button--outline-secondary:visited {
-  color: #f2f2f2;
+  color: #202020;
   background-color: transparent;
 }
 .button--outline-secondary svg path, .button--outline-secondary:link svg path, .button--outline-secondary:visited svg path {
-  fill: #f2f2f2;
+  fill: #202020;
 }
 .root[data-is-touch=false] .button--outline-secondary:hover {
-  color: #333;
-  background-color: #f2f2f2;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #202020;
 }
 .root[data-is-touch=false] .button--outline-secondary:hover svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-secondary.active, .root[data-is-touch] .button--outline-secondary:active {
-  color: #333;
-  background-color: rgb(203.75, 203.75, 203.75);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(72.8, 72.8, 72.8);
 }
 .root[data-is-touch] .button--outline-secondary.active svg path, .root[data-is-touch] .button--outline-secondary:active svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-secondary.focus {
   color: default;
-  background-color: #f2f2f2;
-  box-shadow: 0 0 0 2px rgba(242, 242, 242, 0.4);
+  background-color: #202020;
+  box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.4);
 }
 .root[data-is-touch] .button--outline-secondary.focus svg path {
   fill: default;
 }
 .button--outline-secondary.disabled, .button--outline-secondary:disabled {
-  color: rgba(242, 242, 242, 0.2) !important;
+  color: rgba(32, 32, 32, 0.4) !important;
   background-color: transparent !important;
 }
 .button--outline-secondary.disabled svg path, .button--outline-secondary:disabled svg path {
-  fill: rgba(242, 242, 242, 0.2) !important;
+  fill: rgba(32, 32, 32, 0.4) !important;
 }
 
 .button--outline-success {
-  color: #52c41a;
-  border: 1px solid #52c41a;
+  color: #5baa34;
+  border: 1px solid #5baa34;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2162,45 +2431,45 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-success, .button--outline-success:link, .button--outline-success:visited {
-  color: #52c41a;
+  color: #5baa34;
   background-color: transparent;
 }
 .button--outline-success svg path, .button--outline-success:link svg path, .button--outline-success:visited svg path {
-  fill: #52c41a;
+  fill: #5baa34;
 }
 .root[data-is-touch=false] .button--outline-success:hover {
-  color: #fff;
-  background-color: #52c41a;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #5baa34;
 }
 .root[data-is-touch=false] .button--outline-success:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-success.active, .root[data-is-touch] .button--outline-success:active {
-  color: #fff;
-  background-color: rgb(53.7432432432, 128.4594594595, 17.0405405405);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(59.6418918919, 111.4189189189, 34.0810810811);
 }
 .root[data-is-touch] .button--outline-success.active svg path, .root[data-is-touch] .button--outline-success:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-success.focus {
   color: default;
-  background-color: #52c41a;
-  box-shadow: 0 0 0 2px rgba(82, 196, 26, 0.4);
+  background-color: #5baa34;
+  box-shadow: 0 0 0 2px rgba(91, 170, 52, 0.4);
 }
 .root[data-is-touch] .button--outline-success.focus svg path {
   fill: default;
 }
 .button--outline-success.disabled, .button--outline-success:disabled {
-  color: rgba(82, 196, 26, 0.2) !important;
+  color: rgba(91, 170, 52, 0.2) !important;
   background-color: transparent !important;
 }
 .button--outline-success.disabled svg path, .button--outline-success:disabled svg path {
-  fill: rgba(82, 196, 26, 0.2) !important;
+  fill: rgba(91, 170, 52, 0.2) !important;
 }
 
 .button--outline-info {
-  color: #1890ff;
-  border: 1px solid #1890ff;
+  color: #1c7cd4;
+  border: 1px solid #1c7cd4;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2209,45 +2478,45 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-info, .button--outline-info:link, .button--outline-info:visited {
-  color: #1890ff;
+  color: #1c7cd4;
   background-color: transparent;
 }
 .button--outline-info svg path, .button--outline-info:link svg path, .button--outline-info:visited svg path {
-  fill: #1890ff;
+  fill: #1c7cd4;
 }
 .root[data-is-touch=false] .button--outline-info:hover {
-  color: #fff;
-  background-color: #1890ff;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #1c7cd4;
 }
 .root[data-is-touch=false] .button--outline-info:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-info.active, .root[data-is-touch] .button--outline-info:active {
-  color: #fff;
-  background-color: rgb(0, 105.1948051948, 202.5);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(19.075, 84.475, 144.425);
 }
 .root[data-is-touch] .button--outline-info.active svg path, .root[data-is-touch] .button--outline-info:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-info.focus {
   color: default;
-  background-color: #1890ff;
-  box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.4);
+  background-color: #1c7cd4;
+  box-shadow: 0 0 0 2px rgba(28, 124, 212, 0.4);
 }
 .root[data-is-touch] .button--outline-info.focus svg path {
   fill: default;
 }
 .button--outline-info.disabled, .button--outline-info:disabled {
-  color: rgba(24, 144, 255, 0.2) !important;
+  color: rgba(28, 124, 212, 0.2) !important;
   background-color: transparent !important;
 }
 .button--outline-info.disabled svg path, .button--outline-info:disabled svg path {
-  fill: rgba(24, 144, 255, 0.2) !important;
+  fill: rgba(28, 124, 212, 0.2) !important;
 }
 
 .button--outline-warning {
-  color: #fa8c16;
-  border: 1px solid #fa8c16;
+  color: #c9771f;
+  border: 1px solid #c9771f;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2256,45 +2525,45 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-warning, .button--outline-warning:link, .button--outline-warning:visited {
-  color: #fa8c16;
+  color: #c9771f;
   background-color: transparent;
 }
 .button--outline-warning svg path, .button--outline-warning:link svg path, .button--outline-warning:visited svg path {
-  fill: #fa8c16;
+  fill: #c9771f;
 }
 .root[data-is-touch=false] .button--outline-warning:hover {
-  color: #fff;
-  background-color: #fa8c16;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #c9771f;
 }
 .root[data-is-touch=false] .button--outline-warning:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-warning.active, .root[data-is-touch] .button--outline-warning:active {
-  color: #fff;
-  background-color: rgb(191.3928571429, 101.0357142857, 4.1071428571);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(134.7219827586, 79.7607758621, 20.7780172414);
 }
 .root[data-is-touch] .button--outline-warning.active svg path, .root[data-is-touch] .button--outline-warning:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-warning.focus {
   color: default;
-  background-color: #fa8c16;
-  box-shadow: 0 0 0 2px rgba(250, 140, 22, 0.4);
+  background-color: #c9771f;
+  box-shadow: 0 0 0 2px rgba(201, 119, 31, 0.4);
 }
 .root[data-is-touch] .button--outline-warning.focus svg path {
   fill: default;
 }
 .button--outline-warning.disabled, .button--outline-warning:disabled {
-  color: rgba(250, 140, 22, 0.2) !important;
+  color: rgba(201, 119, 31, 0.2) !important;
   background-color: transparent !important;
 }
 .button--outline-warning.disabled svg path, .button--outline-warning:disabled svg path {
-  fill: rgba(250, 140, 22, 0.2) !important;
+  fill: rgba(201, 119, 31, 0.2) !important;
 }
 
 .button--outline-error {
-  color: #f5222d;
-  border: 1px solid #f5222d;
+  color: #da3d45;
+  border: 1px solid #da3d45;
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2303,45 +2572,45 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-error, .button--outline-error:link, .button--outline-error:visited {
-  color: #f5222d;
+  color: #da3d45;
   background-color: transparent;
 }
 .button--outline-error svg path, .button--outline-error:link svg path, .button--outline-error:visited svg path {
-  fill: #f5222d;
+  fill: #da3d45;
 }
 .root[data-is-touch=false] .button--outline-error:hover {
-  color: #fff;
-  background-color: #f5222d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #da3d45;
 }
 .root[data-is-touch=false] .button--outline-error:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-error.active, .root[data-is-touch] .button--outline-error:active {
-  color: #fff;
-  background-color: rgb(193.7337662338, 8.7662337662, 18.4090909091);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(170.0649350649, 32.4350649351, 39.4480519481);
 }
 .root[data-is-touch] .button--outline-error.active svg path, .root[data-is-touch] .button--outline-error:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .button--outline-error.focus {
   color: default;
-  background-color: #f5222d;
-  box-shadow: 0 0 0 2px rgba(245, 34, 45, 0.4);
+  background-color: #da3d45;
+  box-shadow: 0 0 0 2px rgba(218, 61, 69, 0.4);
 }
 .root[data-is-touch] .button--outline-error.focus svg path {
   fill: default;
 }
 .button--outline-error.disabled, .button--outline-error:disabled {
-  color: rgba(245, 34, 45, 0.2) !important;
+  color: rgba(218, 61, 69, 0.2) !important;
   background-color: transparent !important;
 }
 .button--outline-error.disabled svg path, .button--outline-error:disabled svg path {
-  fill: rgba(245, 34, 45, 0.2) !important;
+  fill: rgba(218, 61, 69, 0.2) !important;
 }
 
 .button--outline-theme-light {
-  color: rgba(0, 0, 0, 0.9);
-  border: 1px solid rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2350,29 +2619,29 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-theme-light, .button--outline-theme-light:link, .button--outline-theme-light:visited {
-  color: rgba(0, 0, 0, 0.9);
+  color: rgba(0, 0, 0, 0.8);
   background-color: transparent;
 }
 .button--outline-theme-light svg path, .button--outline-theme-light:link svg path, .button--outline-theme-light:visited svg path {
-  fill: rgba(0, 0, 0, 0.9);
+  fill: rgba(0, 0, 0, 0.8);
 }
 .root[data-is-touch=false] .button--outline-theme-light:hover {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .root[data-is-touch=false] .button--outline-theme-light:hover svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .button--outline-theme-light.active, .root[data-is-touch] .button--outline-theme-light:active {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(40.8, 40.8, 40.8, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(40.8, 40.8, 40.8, 0.8);
 }
 .root[data-is-touch] .button--outline-theme-light.active svg path, .root[data-is-touch] .button--outline-theme-light:active svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .button--outline-theme-light.focus {
   color: default;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4);
 }
 .root[data-is-touch] .button--outline-theme-light.focus svg path {
@@ -2387,8 +2656,8 @@ input:focus {
 }
 
 .button--outline-theme-dark {
-  color: rgba(255, 255, 255, 0.9);
-  border: 1px solid rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.8);
   -webkit-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
 }
@@ -2397,29 +2666,29 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .button--outline-theme-dark, .button--outline-theme-dark:link, .button--outline-theme-dark:visited {
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.8);
   background-color: transparent;
 }
 .button--outline-theme-dark svg path, .button--outline-theme-dark:link svg path, .button--outline-theme-dark:visited svg path {
-  fill: rgba(255, 255, 255, 0.9);
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--outline-theme-dark:hover {
   color: #222;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .button--outline-theme-dark:hover svg path {
   fill: #222;
 }
 .root[data-is-touch] .button--outline-theme-dark.active, .root[data-is-touch] .button--outline-theme-dark:active {
   color: #222;
-  background-color: rgba(216.75, 216.75, 216.75, 0.9);
+  background-color: rgba(216.75, 216.75, 216.75, 0.8);
 }
 .root[data-is-touch] .button--outline-theme-dark.active svg path, .root[data-is-touch] .button--outline-theme-dark:active svg path {
   fill: #222;
 }
 .root[data-is-touch] .button--outline-theme-dark.focus {
   color: default;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
 }
 .root[data-is-touch] .button--outline-theme-dark.focus svg path {
@@ -2567,16 +2836,16 @@ input:focus {
   transition: all 0.2s ease-in-out;
 }
 .card__header, .card__header:link, .card__header:visited, .card__header > a, .card__header > a:link, .card__header > a:visited {
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .card__header:hover, .root[data-is-touch=false] .card__header > a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .card__header.active, .root[data-is-touch] .card__header:active, .root[data-is-touch] .card__header > a.active, .root[data-is-touch] .card__header > a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .card__header.disabled, .card__header:disabled, .card__header > a.disabled, .card__header > a:disabled {
-  color: rgba(0, 0, 0, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .card__image {
@@ -2910,7 +3179,7 @@ input:focus {
   z-index: 999;
   width: 100%;
   height: 100%;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   touch-action: none;
   background-color: rgba(0, 0, 0, 0.9);
   opacity: 0;
@@ -2936,7 +3205,7 @@ input:focus {
 ul.toc {
   display: block;
   margin: 0;
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
   list-style-type: none;
 }
 ul.toc > li {
@@ -3011,7 +3280,7 @@ ul.toc .toc-h5 a:visited,
 ul.toc .toc-h6 a,
 ul.toc .toc-h6 a:link,
 ul.toc .toc-h6 a:visited {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] ul.toc .toc-h1 a:hover,
 .root[data-is-touch=false] ul.toc .toc-h2 a:hover,
@@ -3019,7 +3288,7 @@ ul.toc .toc-h6 a:visited {
 .root[data-is-touch=false] ul.toc .toc-h4 a:hover,
 .root[data-is-touch=false] ul.toc .toc-h5 a:hover,
 .root[data-is-touch=false] ul.toc .toc-h6 a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] ul.toc .toc-h1 a.active, .root[data-is-touch] ul.toc .toc-h1 a:active,
 .root[data-is-touch] ul.toc .toc-h2 a.active,
@@ -3032,7 +3301,7 @@ ul.toc .toc-h6 a:visited {
 .root[data-is-touch] ul.toc .toc-h5 a:active,
 .root[data-is-touch] ul.toc .toc-h6 a.active,
 .root[data-is-touch] ul.toc .toc-h6 a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 ul.toc .toc-h1 a.disabled, ul.toc .toc-h1 a:disabled,
 ul.toc .toc-h2 a.disabled,
@@ -3045,7 +3314,7 @@ ul.toc .toc-h5 a.disabled,
 ul.toc .toc-h5 a:disabled,
 ul.toc .toc-h6 a.disabled,
 ul.toc .toc-h6 a:disabled {
-  color: rgba(34, 34, 34, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 ul.toc .toc-h1.active a, ul.toc .toc-h1.active a:link, ul.toc .toc-h1.active a:visited,
 ul.toc .toc-h2.active a,
@@ -3111,7 +3380,7 @@ ul.toc .toc-h5.active a:visited,
 ul.toc .toc-h6.active a,
 ul.toc .toc-h6.active a:link,
 ul.toc .toc-h6.active a:visited {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch=false] ul.toc .toc-h1.active a:hover,
 .root[data-is-touch=false] ul.toc .toc-h2.active a:hover,
@@ -3119,7 +3388,7 @@ ul.toc .toc-h6.active a:visited {
 .root[data-is-touch=false] ul.toc .toc-h4.active a:hover,
 .root[data-is-touch=false] ul.toc .toc-h5.active a:hover,
 .root[data-is-touch=false] ul.toc .toc-h6.active a:hover {
-  color: rgb(250.8165745856, 6.7834254144, 10.9668508287);
+  color: rgb(183.6, 107.28, 0);
 }
 .root[data-is-touch] ul.toc .toc-h1.active a.active, .root[data-is-touch] ul.toc .toc-h1.active a:active,
 .root[data-is-touch] ul.toc .toc-h2.active a.active,
@@ -3132,7 +3401,7 @@ ul.toc .toc-h6.active a:visited {
 .root[data-is-touch] ul.toc .toc-h5.active a:active,
 .root[data-is-touch] ul.toc .toc-h6.active a.active,
 .root[data-is-touch] ul.toc .toc-h6.active a:active {
-  color: rgb(178.0983425414, 3.0016574586, 6.0033149171);
+  color: rgb(107.1, 62.58, 0);
 }
 ul.toc .toc-h1.active a.disabled, ul.toc .toc-h1.active a:disabled,
 ul.toc .toc-h2.active a.disabled,
@@ -3145,7 +3414,7 @@ ul.toc .toc-h5.active a.disabled,
 ul.toc .toc-h5.active a:disabled,
 ul.toc .toc-h6.active a.disabled,
 ul.toc .toc-h6.active a:disabled {
-  color: rgba(252, 77, 80, 0.2) !important;
+  color: rgba(255, 149, 0, 0.2) !important;
 }
 ul.toc .toc-h2, ul.toc .toc-h2 a,
 ul.toc .toc-h3,
@@ -3161,11 +3430,11 @@ ul.toc .toc-h6 a {
   line-height: 1.2;
 }
 ul.toc .toc-h1 {
-  border: 0 solid rgb(229.5, 229.5, 229.5);
+  border: 0 solid rgb(41.7, 41.7, 41.7);
   border-bottom-width: 1px;
   padding: 0.5rem 0 0.25rem 0;
   margin-bottom: 0.5rem;
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 ul.toc .toc-h1, ul.toc .toc-h1 a {
   font-size: 0.85rem;
@@ -3186,16 +3455,16 @@ ul.toc .toc-h1 a {
   transition: all 0.2s ease-in-out;
 }
 ul.toc .toc-h1 a, ul.toc .toc-h1 a:link, ul.toc .toc-h1 a:visited {
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] ul.toc .toc-h1 a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] ul.toc .toc-h1 a.active, .root[data-is-touch] ul.toc .toc-h1 a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 ul.toc .toc-h1 a.disabled, ul.toc .toc-h1 a:disabled {
-  color: rgba(0, 0, 0, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 ul.toc .toc-h2, ul.toc .toc-h2 a {
   font-weight: 700;
@@ -3211,7 +3480,7 @@ ul.toc .toc-h6 {
   margin-left: 3rem;
 }
 ul.toc .toc-h6 {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 ul.toc .toc-h6 a, ul.toc .toc-h6 a:link, ul.toc .toc-h6 a:visited {
   text-decoration: none;
@@ -3227,16 +3496,16 @@ ul.toc .toc-h6 a {
   transition: all 0.2s ease-in-out;
 }
 ul.toc .toc-h6 a, ul.toc .toc-h6 a:link, ul.toc .toc-h6 a:visited {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .root[data-is-touch=false] ul.toc .toc-h6 a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] ul.toc .toc-h6 a.active, .root[data-is-touch] ul.toc .toc-h6 a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 ul.toc .toc-h6 a.disabled, ul.toc .toc-h6 a:disabled {
-  color: rgba(136, 136, 136, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 
 ul.toc--ellipsis > li {
@@ -3251,13 +3520,13 @@ ul.toc--navigator > li a {
 }
 ul.toc--navigator > li.active a {
   margin-left: -4px;
-  border: 0 solid #fc4d50;
+  border: 0 solid #ff9500;
   border-left-width: 4px;
 }
 ul.toc--navigator .toc-h2,
 ul.toc--navigator .toc-h3,
 ul.toc--navigator .toc-h4 {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 ul.toc--navigator .toc-h2 a, ul.toc--navigator .toc-h2 a:link, ul.toc--navigator .toc-h2 a:visited,
 ul.toc--navigator .toc-h3 a,
@@ -3293,33 +3562,33 @@ ul.toc--navigator .toc-h3 a:visited,
 ul.toc--navigator .toc-h4 a,
 ul.toc--navigator .toc-h4 a:link,
 ul.toc--navigator .toc-h4 a:visited {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .root[data-is-touch=false] ul.toc--navigator .toc-h2 a:hover,
 .root[data-is-touch=false] ul.toc--navigator .toc-h3 a:hover,
 .root[data-is-touch=false] ul.toc--navigator .toc-h4 a:hover {
-  color: rgb(100.3, 100.3, 100.3);
+  color: rgba(219.3, 219.3, 219.3, 0.5);
 }
 .root[data-is-touch] ul.toc--navigator .toc-h2 a.active, .root[data-is-touch] ul.toc--navigator .toc-h2 a:active,
 .root[data-is-touch] ul.toc--navigator .toc-h3 a.active,
 .root[data-is-touch] ul.toc--navigator .toc-h3 a:active,
 .root[data-is-touch] ul.toc--navigator .toc-h4 a.active,
 .root[data-is-touch] ul.toc--navigator .toc-h4 a:active {
-  color: rgb(62.05, 62.05, 62.05);
+  color: rgba(181.05, 181.05, 181.05, 0.5);
 }
 ul.toc--navigator .toc-h2 a.disabled, ul.toc--navigator .toc-h2 a:disabled,
 ul.toc--navigator .toc-h3 a.disabled,
 ul.toc--navigator .toc-h3 a:disabled,
 ul.toc--navigator .toc-h4 a.disabled,
 ul.toc--navigator .toc-h4 a:disabled {
-  color: rgba(136, 136, 136, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 ul.toc--navigator .toc-h1, ul.toc--navigator .toc-h1 a {
   font-size: 1rem;
   line-height: 1.6;
 }
 ul.toc--navigator .toc-h1 {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 ul.toc--navigator .toc-h1 a, ul.toc--navigator .toc-h1 a:link, ul.toc--navigator .toc-h1 a:visited {
   text-decoration: none;
@@ -3335,16 +3604,16 @@ ul.toc--navigator .toc-h1 a {
   transition: all 0.2s ease-in-out;
 }
 ul.toc--navigator .toc-h1 a, ul.toc--navigator .toc-h1 a:link, ul.toc--navigator .toc-h1 a:visited {
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] ul.toc--navigator .toc-h1 a:hover {
-  color: rgb(45.9, 45.9, 45.9);
+  color: rgba(219.3, 219.3, 219.3, 0.8);
 }
 .root[data-is-touch] ul.toc--navigator .toc-h1 a.active, .root[data-is-touch] ul.toc--navigator .toc-h1 a:active {
-  color: rgb(86.7, 86.7, 86.7);
+  color: rgba(181.05, 181.05, 181.05, 0.8);
 }
 ul.toc--navigator .toc-h1 a.disabled, ul.toc--navigator .toc-h1 a:disabled {
-  color: rgba(0, 0, 0, 0.4) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 ul.toc--navigator .toc-h2, ul.toc--navigator .toc-h2 a {
   font-size: 0.85rem;
@@ -3409,20 +3678,20 @@ a > .item__header, a.item__header, .item__header > a {
   transition: all 0.2s ease-in-out;
 }
 a > .item__header, a > .item__header:link, a > .item__header:visited, a.item__header, a.item__header:link, a.item__header:visited, .item__header > a, .item__header > a:link, .item__header > a:visited {
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] a > .item__header:hover, .root[data-is-touch=false] a.item__header:hover, .root[data-is-touch=false] .item__header > a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] a > .item__header.active, .root[data-is-touch] a > .item__header:active, .root[data-is-touch] a.item__header.active, .root[data-is-touch] a.item__header:active, .root[data-is-touch] .item__header > a.active, .root[data-is-touch] .item__header > a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled, a.item__header:disabled, .item__header > a.disabled, .item__header > a:disabled {
-  color: rgba(0, 0, 0, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .item__meta {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .item__description, .item__description .article__content {
@@ -3469,7 +3738,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   margin-top: 1rem;
 }
 .item__description h1, .item__description h2, .item__description h3, .item__description .article__content h1, .item__description .article__content h2, .item__description .article__content h3 {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .item__description h1, .item__description h2, .item__description .article__content h1, .item__description .article__content h2 {
   padding: 0;
@@ -3511,7 +3780,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 }
 .items--divided > .item:not(:last-child) {
   padding-bottom: 1.5rem;
-  border: 0 solid rgb(229.5, 229.5, 229.5);
+  border: 0 solid rgb(41.7, 41.7, 41.7);
   border-bottom-width: 1px;
 }
 .items--divided > .item {
@@ -3564,40 +3833,40 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .swiper__button, .swiper__button:link, .swiper__button:visited {
-  color: #000;
-  background-color: rgba(242, 242, 242, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(32, 32, 32, 0.4);
 }
 .swiper__button svg path, .swiper__button:link svg path, .swiper__button:visited svg path {
-  fill: #000;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .swiper__button:hover {
-  color: #000;
-  background-color: rgba(206.3, 206.3, 206.3, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(77.9, 77.9, 77.9, 0.4);
 }
 .root[data-is-touch=false] .swiper__button:hover svg path {
-  fill: #000;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .swiper__button.active, .root[data-is-touch] .swiper__button:active {
-  color: #000;
-  background-color: rgba(168.05, 168.05, 168.05, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(118.7, 118.7, 118.7, 0.4);
 }
 .root[data-is-touch] .swiper__button.active svg path, .root[data-is-touch] .swiper__button:active svg path {
-  fill: #000;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .swiper__button.focus {
   color: default;
-  background-color: rgba(206.3, 206.3, 206.3, 0.4);
-  box-shadow: 0 0 0 2px rgba(206.3, 206.3, 206.3, 0.4);
+  background-color: rgba(77.9, 77.9, 77.9, 0.4);
+  box-shadow: 0 0 0 2px rgba(77.9, 77.9, 77.9, 0.4);
 }
 .root[data-is-touch] .swiper__button.focus svg path {
   fill: default;
 }
 .swiper__button.disabled, .swiper__button:disabled {
-  color: rgba(0, 0, 0, 0.2) !important;
-  background-color: rgba(242, 242, 242, 0.4) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(32, 32, 32, 0.4) !important;
 }
 .swiper__button.disabled svg path, .swiper__button:disabled svg path {
-  fill: rgba(0, 0, 0, 0.2) !important;
+  fill: rgba(255, 255, 255, 0.4) !important;
 }
 
 .swiper--light .swiper__button {
@@ -3654,25 +3923,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .swiper--dark .swiper__button, .swiper--dark .swiper__button:link, .swiper--dark .swiper__button:visited {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(0, 0, 0, 0.4);
 }
 .swiper--dark .swiper__button svg path, .swiper--dark .swiper__button:link svg path, .swiper--dark .swiper__button:visited svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .swiper--dark .swiper__button:hover {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(45.9, 45.9, 45.9, 0.4);
 }
 .root[data-is-touch=false] .swiper--dark .swiper__button:hover svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .swiper--dark .swiper__button.active, .root[data-is-touch] .swiper--dark .swiper__button:active {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   background-color: rgba(86.7, 86.7, 86.7, 0.4);
 }
 .root[data-is-touch] .swiper--dark .swiper__button.active svg path, .root[data-is-touch] .swiper--dark .swiper__button:active svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .swiper--dark .swiper__button.focus {
   color: default;
@@ -3794,7 +4063,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 }
 
 .header {
-  background: #f2f2f2;
+  background: #202020;
 }
 .header a {
   font-weight: 400;
@@ -3814,16 +4083,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .header a, .header a:link, .header a:visited {
-  color: #333;
+  color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .header a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .header a.active, .root[data-is-touch] .header a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .header a.disabled, .header a:disabled {
-  color: rgba(51, 51, 51, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 .header .main {
   display: -webkit-box;
@@ -3847,7 +4116,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   background: rgba(0, 0, 0, 0.15);
 }
 .header--dark .navigation__item--active::after {
-  border: 0 solid rgba(255, 255, 255, 0.95);
+  border: 0 solid rgba(255, 255, 255, 0.7);
   border-bottom-width: 4px;
 }
 
@@ -4040,19 +4309,19 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .navigation__item--active a, .navigation__item--active a:link, .navigation__item--active a:visited {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch=false] .navigation__item--active a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .navigation__item--active a.active, .root[data-is-touch] .navigation__item--active a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .navigation__item--active a.disabled, .navigation__item--active a:disabled {
-  color: rgba(252, 77, 80, 0.2) !important;
+  color: rgba(255, 149, 0, 0.2) !important;
 }
 .navigation__item--active::after {
-  border: 0 solid #fc4d50;
+  border: 0 solid #ff9500;
   border-bottom-width: 4px;
 }
 
@@ -4070,8 +4339,8 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   -webkit-align-items: center;
   -moz-align-items: center;
   align-items: center;
-  color: #333;
-  background: #f2f2f2;
+  color: rgba(255, 255, 255, 0.8);
+  background: #202020;
 }
 .footer a, .footer a:link, .footer a:visited {
   text-decoration: none;
@@ -4087,16 +4356,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .footer a, .footer a:link, .footer a:visited {
-  color: #333;
+  color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .footer a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .footer a.active, .root[data-is-touch] .footer a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .footer a.disabled, .footer a:disabled {
-  color: rgba(51, 51, 51, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 .footer .site-info {
   font-size: 0.7rem;
@@ -4106,7 +4375,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   line-height: 1.2;
 }
 .footer .site-info .menu > *:not(:last-child) {
-  border: 0 solid #333;
+  border: 0 solid rgba(255, 255, 255, 0.8);
   border-right-width: 1px;
   padding-right: 0.25rem;
   margin-right: 0.25rem;
@@ -4138,7 +4407,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 
 .article__info {
   font-size: 0.85rem;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .article__info .left-col {
   float: left;
@@ -4158,7 +4427,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   }
 }
 .article__info .right-col > li:not(:last-child) {
-  border: 0 solid #888;
+  border: 0 solid rgba(255, 255, 255, 0.5);
   border-right-width: 1px;
   padding-right: 0.5rem;
   margin-right: 0.5rem;
@@ -4298,16 +4567,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .article__content h1 > .anchor, .article__content h1 > .anchor:link, .article__content h1 > .anchor:visited, .article__content h2 > .anchor, .article__content h2 > .anchor:link, .article__content h2 > .anchor:visited, .article__content h3 > .anchor, .article__content h3 > .anchor:link, .article__content h3 > .anchor:visited, .article__content h4 > .anchor, .article__content h4 > .anchor:link, .article__content h4 > .anchor:visited, .article__content h5 > .anchor, .article__content h5 > .anchor:link, .article__content h5 > .anchor:visited, .article__content h6 > .anchor, .article__content h6 > .anchor:link, .article__content h6 > .anchor:visited {
-  color: #cccccc;
+  color: rgb(65.4, 65.4, 65.4);
 }
 .root[data-is-touch=false] .article__content h1 > .anchor:hover, .root[data-is-touch=false] .article__content h2 > .anchor:hover, .root[data-is-touch=false] .article__content h3 > .anchor:hover, .root[data-is-touch=false] .article__content h4 > .anchor:hover, .root[data-is-touch=false] .article__content h5 > .anchor:hover, .root[data-is-touch=false] .article__content h6 > .anchor:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .article__content h1 > .anchor.active, .root[data-is-touch] .article__content h1 > .anchor:active, .root[data-is-touch] .article__content h2 > .anchor.active, .root[data-is-touch] .article__content h2 > .anchor:active, .root[data-is-touch] .article__content h3 > .anchor.active, .root[data-is-touch] .article__content h3 > .anchor:active, .root[data-is-touch] .article__content h4 > .anchor.active, .root[data-is-touch] .article__content h4 > .anchor:active, .root[data-is-touch] .article__content h5 > .anchor.active, .root[data-is-touch] .article__content h5 > .anchor:active, .root[data-is-touch] .article__content h6 > .anchor.active, .root[data-is-touch] .article__content h6 > .anchor:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .article__content h1 > .anchor.disabled, .article__content h1 > .anchor:disabled, .article__content h2 > .anchor.disabled, .article__content h2 > .anchor:disabled, .article__content h3 > .anchor.disabled, .article__content h3 > .anchor:disabled, .article__content h4 > .anchor.disabled, .article__content h4 > .anchor:disabled, .article__content h5 > .anchor.disabled, .article__content h5 > .anchor:disabled, .article__content h6 > .anchor.disabled, .article__content h6 > .anchor:disabled {
-  color: rgba(204, 204, 204, 0.2) !important;
+  color: rgba(65.4, 65.4, 65.4, 0.2) !important;
 }
 .article__content h1 > .anchor, .article__content h2 > .anchor, .article__content h3 > .anchor, .article__content h4 > .anchor, .article__content h5 > .anchor, .article__content h6 > .anchor {
   margin-left: 0.25rem;
@@ -4325,7 +4594,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 }
 .article__content h1,
 .article__content h2 {
-  border: 0 solid rgb(229.5, 229.5, 229.5);
+  border: 0 solid rgb(41.7, 41.7, 41.7);
   border-bottom-width: 1px;
 }
 .article__content hr {
@@ -4334,7 +4603,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 .article__content hr::before {
   display: block;
   font-size: 1.9rem;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   text-align: center;
   letter-spacing: 1.5rem;
   content: "...";
@@ -4342,8 +4611,8 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 .article__content blockquote {
   padding-left: 1rem;
   font-size: 0.85rem;
-  color: #888;
-  border: 0 solid #cccccc;
+  color: rgba(255, 255, 255, 0.5);
+  border: 0 solid rgb(65.4, 65.4, 65.4);
   border-left-width: 4px;
 }
 .article__content blockquote p {
@@ -4363,7 +4632,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   vertical-align: text-bottom;
 }
 .article__content .footnotes {
-  border: 0 solid rgb(229.5, 229.5, 229.5);
+  border: 0 solid rgb(41.7, 41.7, 41.7);
   border-top-width: 1px;
   margin-top: 3rem;
 }
@@ -4374,7 +4643,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 }
 .article__content code {
   padding: 0.25rem 0.5rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border-radius: 0.4rem;
 }
 .article__content code span {
@@ -4402,7 +4671,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 .article__content .highlighter-rouge > .highlight > pre, .article__content figure.highlight > pre {
   padding: 1rem 0 1rem 1rem;
   margin: 0;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border-radius: 0.4rem;
 }
 .article__content .highlighter-rouge > .highlight > pre > code, .article__content figure.highlight > pre > code {
@@ -4412,11 +4681,11 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   display: block;
   padding: 0.5rem 1rem 0.5rem 0;
   font-weight: 700;
-  color: rgba(0, 0, 0, 0.1);
+  color: rgba(255, 255, 255, 0.1);
   text-align: right;
   text-transform: uppercase;
   content: attr(data-lang);
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
   border-top-left-radius: 0.4rem;
   border-top-right-radius: 0.4rem;
 }
@@ -4465,7 +4734,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   -webkit-overflow-scrolling: touch;
 }
 .article__content figure.highlight > pre > code > .rouge-table tbody td > pre.lineno {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -4515,11 +4784,11 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   -webkit-overflow-scrolling: touch;
 }
 .article__content table thead, .article__content table tfoot {
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 .article__content table th, .article__content table td {
   padding: 0.5rem;
-  border: 1px solid rgb(229.5, 229.5, 229.5);
+  border: 1px solid rgb(41.7, 41.7, 41.7);
 }
 .article__content table th {
   font-weight: 700;
@@ -4544,20 +4813,20 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .article__license a, .article__license a:link, .article__license a:visited, .article__subscribe a, .article__subscribe a:link, .article__subscribe a:visited {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .article__license a:hover, .root[data-is-touch=false] .article__subscribe a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .article__license a.active, .root[data-is-touch] .article__license a:active, .root[data-is-touch] .article__subscribe a.active, .root[data-is-touch] .article__subscribe a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .article__license a.disabled, .article__license a:disabled, .article__subscribe a.disabled, .article__subscribe a:disabled {
-  color: rgba(34, 34, 34, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .article__license {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .article__license img {
   height: 1.6rem;
@@ -4575,25 +4844,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .mail-button, .author-links > ul > li > .mail-button:link, .author-links > ul > li > .mail-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #0072c5;
 }
 .author-links > ul > li > .mail-button svg path, .author-links > ul > li > .mail-button:link svg path, .author-links > ul > li > .mail-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .mail-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(0, 72.6822335025, 125.6);
 }
 .root[data-is-touch=false] .author-links > ul > li > .mail-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .mail-button.active, .root[data-is-touch] .author-links > ul > li > .mail-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(0, 28.4131979695, 49.1);
 }
 .root[data-is-touch] .author-links > ul > li > .mail-button.active svg path, .root[data-is-touch] .author-links > ul > li > .mail-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .mail-button.focus {
   color: default;
@@ -4619,25 +4888,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .facebook-button, .author-links > ul > li > .facebook-button:link, .author-links > ul > li > .facebook-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #4267b2;
 }
 .author-links > ul > li > .facebook-button svg path, .author-links > ul > li > .facebook-button:link svg path, .author-links > ul > li > .facebook-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .facebook-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(46.6868852459, 72.8598360656, 125.9131147541);
 }
 .root[data-is-touch=false] .author-links > ul > li > .facebook-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .facebook-button.active, .root[data-is-touch] .author-links > ul > li > .facebook-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(25.9942622951, 40.5668032787, 70.1057377049);
 }
 .root[data-is-touch] .author-links > ul > li > .facebook-button.active svg path, .root[data-is-touch] .author-links > ul > li > .facebook-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .facebook-button.focus {
   color: default;
@@ -4663,25 +4932,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .twitter-button, .author-links > ul > li > .twitter-button:link, .author-links > ul > li > .twitter-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #1da1f2;
 }
 .author-links > ul > li > .twitter-button svg path, .author-links > ul > li > .twitter-button:link svg path, .author-links > ul > li > .twitter-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .twitter-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(10.8569037657, 121.0962343096, 188.7430962343);
 }
 .root[data-is-touch=false] .author-links > ul > li > .twitter-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .twitter-button.active, .root[data-is-touch] .author-links > ul > li > .twitter-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(6.6958158996, 74.6841004184, 116.4041841004);
 }
 .root[data-is-touch] .author-links > ul > li > .twitter-button.active svg path, .root[data-is-touch] .author-links > ul > li > .twitter-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .twitter-button.focus {
   color: default;
@@ -4707,25 +4976,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .weibo-button, .author-links > ul > li > .weibo-button:link, .author-links > ul > li > .weibo-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #e6162d;
 }
 .author-links > ul > li > .weibo-button svg path, .author-links > ul > li > .weibo-button:link svg path, .author-links > ul > li > .weibo-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .weibo-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(164.8333333333, 15.7666666667, 32.25);
 }
 .root[data-is-touch=false] .author-links > ul > li > .weibo-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .weibo-button.active, .root[data-is-touch] .author-links > ul > li > .weibo-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(95.0119047619, 9.0880952381, 18.5892857143);
 }
 .root[data-is-touch] .author-links > ul > li > .weibo-button.active svg path, .root[data-is-touch] .author-links > ul > li > .weibo-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .weibo-button.focus {
   color: default;
@@ -4751,25 +5020,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .googlepluse-button, .author-links > ul > li > .googlepluse-button:link, .author-links > ul > li > .googlepluse-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #ea4335;
 }
 .author-links > ul > li > .googlepluse-button svg path, .author-links > ul > li > .googlepluse-button:link svg path, .author-links > ul > li > .googlepluse-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .googlepluse-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(195.2968609865, 33.8385650224, 20.3031390135);
 }
 .root[data-is-touch=false] .author-links > ul > li > .googlepluse-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .googlepluse-button.active, .root[data-is-touch] .author-links > ul > li > .googlepluse-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(126.000896861, 21.831838565, 13.099103139);
 }
 .root[data-is-touch] .author-links > ul > li > .googlepluse-button.active svg path, .root[data-is-touch] .author-links > ul > li > .googlepluse-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .googlepluse-button.focus {
   color: default;
@@ -4795,25 +5064,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .telegram-button, .author-links > ul > li > .telegram-button:link, .author-links > ul > li > .telegram-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #32afed;
 }
 .author-links > ul > li > .telegram-button svg path, .author-links > ul > li > .telegram-button:link svg path, .author-links > ul > li > .telegram-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .telegram-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(17.402690583, 138.2547085202, 198.197309417);
 }
 .root[data-is-touch=false] .author-links > ul > li > .telegram-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .telegram-button.active, .root[data-is-touch] .author-links > ul > li > .telegram-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(11.2278026906, 89.1986547085, 127.8721973094);
 }
 .root[data-is-touch] .author-links > ul > li > .telegram-button.active svg path, .root[data-is-touch] .author-links > ul > li > .telegram-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .telegram-button.focus {
   color: default;
@@ -4839,25 +5108,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .medium-button, .author-links > ul > li > .medium-button:link, .author-links > ul > li > .medium-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #000;
 }
 .author-links > ul > li > .medium-button svg path, .author-links > ul > li > .medium-button:link svg path, .author-links > ul > li > .medium-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .medium-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(45.9, 45.9, 45.9);
 }
 .root[data-is-touch=false] .author-links > ul > li > .medium-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .medium-button.active, .root[data-is-touch] .author-links > ul > li > .medium-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(86.7, 86.7, 86.7);
 }
 .root[data-is-touch] .author-links > ul > li > .medium-button.active svg path, .root[data-is-touch] .author-links > ul > li > .medium-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .medium-button.focus {
   color: default;
@@ -4883,25 +5152,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .zhihu-button, .author-links > ul > li > .zhihu-button:link, .author-links > ul > li > .zhihu-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #0084ff;
 }
 .author-links > ul > li > .zhihu-button svg path, .author-links > ul > li > .zhihu-button:link svg path, .author-links > ul > li > .zhihu-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .zhihu-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(0, 95.04, 183.6);
 }
 .root[data-is-touch=false] .author-links > ul > li > .zhihu-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .zhihu-button.active, .root[data-is-touch] .author-links > ul > li > .zhihu-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(0, 55.44, 107.1);
 }
 .root[data-is-touch] .author-links > ul > li > .zhihu-button.active svg path, .root[data-is-touch] .author-links > ul > li > .zhihu-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .zhihu-button.focus {
   color: default;
@@ -4927,25 +5196,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .douban-button, .author-links > ul > li > .douban-button:link, .author-links > ul > li > .douban-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #42bd56;
 }
 .author-links > ul > li > .douban-button svg path, .author-links > ul > li > .douban-button:link svg path, .author-links > ul > li > .douban-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .douban-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(47.52, 136.08, 61.92);
 }
 .root[data-is-touch=false] .author-links > ul > li > .douban-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .douban-button.active, .root[data-is-touch] .author-links > ul > li > .douban-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(27.72, 79.38, 36.12);
 }
 .root[data-is-touch] .author-links > ul > li > .douban-button.active svg path, .root[data-is-touch] .author-links > ul > li > .douban-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .douban-button.focus {
   color: default;
@@ -4971,25 +5240,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .linkedin-button, .author-links > ul > li > .linkedin-button:link, .author-links > ul > li > .linkedin-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #1074af;
 }
 .author-links > ul > li > .linkedin-button svg path, .author-links > ul > li > .linkedin-button:link svg path, .author-links > ul > li > .linkedin-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .linkedin-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(10.0188481675, 72.6366492147, 109.5811518325);
 }
 .root[data-is-touch=false] .author-links > ul > li > .linkedin-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .linkedin-button.active, .root[data-is-touch] .author-links > ul > li > .linkedin-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(3.6104712042, 26.1759162304, 39.4895287958);
 }
 .root[data-is-touch] .author-links > ul > li > .linkedin-button.active svg path, .root[data-is-touch] .author-links > ul > li > .linkedin-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .linkedin-button.focus {
   color: default;
@@ -5015,25 +5284,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .github-button, .author-links > ul > li > .github-button:link, .author-links > ul > li > .github-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #000;
 }
 .author-links > ul > li > .github-button svg path, .author-links > ul > li > .github-button:link svg path, .author-links > ul > li > .github-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .github-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(45.9, 45.9, 45.9);
 }
 .root[data-is-touch=false] .author-links > ul > li > .github-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .github-button.active, .root[data-is-touch] .author-links > ul > li > .github-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(86.7, 86.7, 86.7);
 }
 .root[data-is-touch] .author-links > ul > li > .github-button.active svg path, .root[data-is-touch] .author-links > ul > li > .github-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .github-button.focus {
   color: default;
@@ -5059,25 +5328,25 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-links > ul > li > .npm-button, .author-links > ul > li > .npm-button:link, .author-links > ul > li > .npm-button:visited {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: #fff;
 }
 .author-links > ul > li > .npm-button svg path, .author-links > ul > li > .npm-button:link svg path, .author-links > ul > li > .npm-button:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .author-links > ul > li > .npm-button:hover {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(219.3, 219.3, 219.3);
 }
 .root[data-is-touch=false] .author-links > ul > li > .npm-button:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .npm-button.active, .root[data-is-touch] .author-links > ul > li > .npm-button:active {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
   background-color: rgb(181.05, 181.05, 181.05);
 }
 .root[data-is-touch] .author-links > ul > li > .npm-button.active svg path, .root[data-is-touch] .author-links > ul > li > .npm-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .author-links > ul > li > .npm-button.focus {
   color: default;
@@ -5100,7 +5369,7 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   padding: 0.5rem 1rem;
   margin: 1.5rem 0;
   font-size: 0.85rem;
-  background-color: rgba(0, 0, 0, 0.05);
+  background-color: rgba(255, 255, 255, 0.05);
 }
 @media (max-width: 499px) {
   .author-profile {
@@ -5133,16 +5402,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .author-profile__name a, .author-profile__name a:link, .author-profile__name a:visited {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .author-profile__name a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .author-profile__name a.active, .root[data-is-touch] .author-profile__name a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .author-profile__name a.disabled, .author-profile__name a:disabled {
-  color: rgba(34, 34, 34, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 
 .author-profile__links {
@@ -5159,40 +5428,40 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .site-tags .tag-button, .site-tags .tag-button:link, .site-tags .tag-button:visited {
-  color: #333;
-  background-color: #f2f2f2;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #202020;
 }
 .site-tags .tag-button svg path, .site-tags .tag-button:link svg path, .site-tags .tag-button:visited svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .site-tags .tag-button:hover {
-  color: #333;
-  background-color: rgb(206.3, 206.3, 206.3);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(77.9, 77.9, 77.9);
 }
 .root[data-is-touch=false] .site-tags .tag-button:hover svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button.active, .root[data-is-touch] .site-tags .tag-button:active {
-  color: #fff;
-  background-color: #fca24d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
 }
 .root[data-is-touch] .site-tags .tag-button.active svg path, .root[data-is-touch] .site-tags .tag-button:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button.focus {
-  color: #fff;
-  background-color: #fca24d;
-  box-shadow: 0 0 0 2px rgba(252, 162, 77, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
+  box-shadow: 0 0 0 2px rgba(255, 0, 106, 0.4);
 }
 .root[data-is-touch] .site-tags .tag-button.focus svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .site-tags .tag-button.disabled, .site-tags .tag-button:disabled {
-  color: rgba(51, 51, 51, 0.2) !important;
-  background-color: #f2f2f2 !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  background-color: #202020 !important;
 }
 .site-tags .tag-button.disabled svg path, .site-tags .tag-button:disabled svg path {
-  fill: rgba(51, 51, 51, 0.2) !important;
+  fill: rgba(255, 255, 255, 0.4) !important;
 }
 .site-tags .tag-button > .tag-button__count {
   display: inline-block;
@@ -5210,37 +5479,37 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .site-tags .tag-button-1, .site-tags .tag-button-1:link, .site-tags .tag-button-1:visited {
-  color: #fff;
-  background-color: rgba(252, 77, 80, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 149, 0, 0.4);
 }
 .site-tags .tag-button-1 svg path, .site-tags .tag-button-1:link svg path, .site-tags .tag-button-1:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .site-tags .tag-button-1:hover {
-  color: #fff;
-  background-color: rgba(250.8165745856, 6.7834254144, 10.9668508287, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(183.6, 107.28, 0, 0.4);
 }
 .root[data-is-touch=false] .site-tags .tag-button-1:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-1.active, .root[data-is-touch] .site-tags .tag-button-1:active {
-  color: #fff;
-  background-color: #fca24d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
 }
 .root[data-is-touch] .site-tags .tag-button-1.active svg path, .root[data-is-touch] .site-tags .tag-button-1:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-1.focus {
-  color: #fff;
-  background-color: #fca24d;
-  box-shadow: 0 0 0 2px rgba(252, 162, 77, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
+  box-shadow: 0 0 0 2px rgba(255, 0, 106, 0.4);
 }
 .root[data-is-touch] .site-tags .tag-button-1.focus svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .site-tags .tag-button-1.disabled, .site-tags .tag-button-1:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(252, 77, 80, 0.4) !important;
+  background-color: rgba(255, 149, 0, 0.4) !important;
 }
 .site-tags .tag-button-1.disabled svg path, .site-tags .tag-button-1:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -5254,37 +5523,37 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .site-tags .tag-button-2, .site-tags .tag-button-2:link, .site-tags .tag-button-2:visited {
-  color: #fff;
-  background-color: rgba(252, 77, 80, 0.55);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 149, 0, 0.55);
 }
 .site-tags .tag-button-2 svg path, .site-tags .tag-button-2:link svg path, .site-tags .tag-button-2:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .site-tags .tag-button-2:hover {
-  color: #fff;
-  background-color: rgba(250.8165745856, 6.7834254144, 10.9668508287, 0.55);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(183.6, 107.28, 0, 0.55);
 }
 .root[data-is-touch=false] .site-tags .tag-button-2:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-2.active, .root[data-is-touch] .site-tags .tag-button-2:active {
-  color: #fff;
-  background-color: #fca24d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
 }
 .root[data-is-touch] .site-tags .tag-button-2.active svg path, .root[data-is-touch] .site-tags .tag-button-2:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-2.focus {
-  color: #fff;
-  background-color: #fca24d;
-  box-shadow: 0 0 0 2px rgba(252, 162, 77, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
+  box-shadow: 0 0 0 2px rgba(255, 0, 106, 0.4);
 }
 .root[data-is-touch] .site-tags .tag-button-2.focus svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .site-tags .tag-button-2.disabled, .site-tags .tag-button-2:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(252, 77, 80, 0.55) !important;
+  background-color: rgba(255, 149, 0, 0.55) !important;
 }
 .site-tags .tag-button-2.disabled svg path, .site-tags .tag-button-2:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -5298,37 +5567,37 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .site-tags .tag-button-3, .site-tags .tag-button-3:link, .site-tags .tag-button-3:visited {
-  color: #fff;
-  background-color: rgba(252, 77, 80, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 149, 0, 0.7);
 }
 .site-tags .tag-button-3 svg path, .site-tags .tag-button-3:link svg path, .site-tags .tag-button-3:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .site-tags .tag-button-3:hover {
-  color: #fff;
-  background-color: rgba(250.8165745856, 6.7834254144, 10.9668508287, 0.7);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(183.6, 107.28, 0, 0.7);
 }
 .root[data-is-touch=false] .site-tags .tag-button-3:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-3.active, .root[data-is-touch] .site-tags .tag-button-3:active {
-  color: #fff;
-  background-color: #fca24d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
 }
 .root[data-is-touch] .site-tags .tag-button-3.active svg path, .root[data-is-touch] .site-tags .tag-button-3:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-3.focus {
-  color: #fff;
-  background-color: #fca24d;
-  box-shadow: 0 0 0 2px rgba(252, 162, 77, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
+  box-shadow: 0 0 0 2px rgba(255, 0, 106, 0.4);
 }
 .root[data-is-touch] .site-tags .tag-button-3.focus svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .site-tags .tag-button-3.disabled, .site-tags .tag-button-3:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(252, 77, 80, 0.7) !important;
+  background-color: rgba(255, 149, 0, 0.7) !important;
 }
 .site-tags .tag-button-3.disabled svg path, .site-tags .tag-button-3:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -5342,37 +5611,37 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .site-tags .tag-button-4, .site-tags .tag-button-4:link, .site-tags .tag-button-4:visited {
-  color: #fff;
-  background-color: rgba(252, 77, 80, 0.9);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 149, 0, 0.9);
 }
 .site-tags .tag-button-4 svg path, .site-tags .tag-button-4:link svg path, .site-tags .tag-button-4:visited svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .site-tags .tag-button-4:hover {
-  color: #fff;
-  background-color: rgba(250.8165745856, 6.7834254144, 10.9668508287, 0.9);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(183.6, 107.28, 0, 0.9);
 }
 .root[data-is-touch=false] .site-tags .tag-button-4:hover svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-4.active, .root[data-is-touch] .site-tags .tag-button-4:active {
-  color: #fff;
-  background-color: #fca24d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
 }
 .root[data-is-touch] .site-tags .tag-button-4.active svg path, .root[data-is-touch] .site-tags .tag-button-4:active svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .site-tags .tag-button-4.focus {
-  color: #fff;
-  background-color: #fca24d;
-  box-shadow: 0 0 0 2px rgba(252, 162, 77, 0.4);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #ff006a;
+  box-shadow: 0 0 0 2px rgba(255, 0, 106, 0.4);
 }
 .root[data-is-touch] .site-tags .tag-button-4.focus svg path {
-  fill: #fff;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .site-tags .tag-button-4.disabled, .site-tags .tag-button-4:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
-  background-color: rgba(252, 77, 80, 0.9) !important;
+  background-color: rgba(255, 149, 0, 0.9) !important;
 }
 .site-tags .tag-button-4.disabled svg path, .site-tags .tag-button-4:disabled svg path {
   fill: rgba(255, 255, 255, 0.2) !important;
@@ -5398,13 +5667,13 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   margin-top: 1.5rem;
   font-size: 2.5rem;
   font-weight: 700;
-  color: #000;
+  color: rgba(255, 255, 255, 0.8);
 }
 .search--light .search__header {
   color: #000;
 }
 .search--dark .search__header {
-  color: #fff;
+  color: rgba(255, 255, 255, 0.8);
 }
 @media (max-width: 499px) {
   .search__header {
@@ -5439,16 +5708,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   padding: 0 2rem;
   margin: 0;
   line-height: 1 !important;
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
   background-color: transparent;
-  border: 2px solid #cccccc;
+  border: 2px solid rgb(65.4, 65.4, 65.4);
   border-radius: 6rem;
   -webkit-appearance: none; /* fix iOS don't display box-shadow properly */
   -webkit-transition: box-shadow 0.4s ease-in-out;
   transition: box-shadow 0.4s ease-in-out;
 }
 .root[data-is-touch] .search-box > input.focus {
-  box-shadow: 0 0 0 2px rgba(204, 204, 204, 0.4);
+  box-shadow: 0 0 0 2px rgba(65.4, 65.4, 65.4, 0.4);
 }
 .search--light .search-box > input {
   color: #222;
@@ -5458,20 +5727,20 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   box-shadow: 0 0 0 2px rgba(34, 34, 34, 0.4);
 }
 .search--dark .search-box > input {
-  color: rgba(255, 255, 255, 0.95);
-  border-color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .search--dark .search-box > input.focus {
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
 }
 .search-box > .search-box__icon-search {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .search--light .search-box > .search-box__icon-search {
   color: #888;
 }
 .search--dark .search-box > .search-box__icon-search {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.5);
 }
 .search-box > .search-box__icon-clear > a, .search-box > .search-box__icon-clear > a:link, .search-box > .search-box__icon-clear > a:visited {
   text-decoration: none;
@@ -5487,16 +5756,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .search-box > .search-box__icon-clear > a, .search-box > .search-box__icon-clear > a:link, .search-box > .search-box__icon-clear > a:visited {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .search-box > .search-box__icon-clear > a:hover {
-  color: rgb(79.9, 79.9, 79.9);
+  color: rgba(219.3, 219.3, 219.3, 0.7);
 }
 .root[data-is-touch] .search-box > .search-box__icon-clear > a.active, .root[data-is-touch] .search-box > .search-box__icon-clear > a:active {
-  color: rgb(120.7, 120.7, 120.7);
+  color: rgba(181.05, 181.05, 181.05, 0.7);
 }
 .search-box > .search-box__icon-clear > a.disabled, .search-box > .search-box__icon-clear > a:disabled {
-  color: rgba(34, 34, 34, 0.4) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 .search--light .search-box > .search-box__icon-clear > a, .search--light .search-box > .search-box__icon-clear > a:link, .search--light .search-box > .search-box__icon-clear > a:visited {
   text-decoration: none;
@@ -5537,13 +5806,13 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .search--dark .search-box > .search-box__icon-clear > a, .search--dark .search-box > .search-box__icon-clear > a:link, .search--dark .search-box > .search-box__icon-clear > a:visited {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .search--dark .search-box > .search-box__icon-clear > a:hover {
-  color: rgba(219.3, 219.3, 219.3, 0.95);
+  color: rgba(219.3, 219.3, 219.3, 0.7);
 }
 .root[data-is-touch] .search--dark .search-box > .search-box__icon-clear > a.active, .root[data-is-touch] .search--dark .search-box > .search-box__icon-clear > a:active {
-  color: rgba(181.05, 181.05, 181.05, 0.95);
+  color: rgba(181.05, 181.05, 181.05, 0.7);
 }
 .search--dark .search-box > .search-box__icon-clear > a.disabled, .search--dark .search-box > .search-box__icon-clear > a:disabled {
   color: rgba(255, 255, 255, 0.2) !important;
@@ -5588,14 +5857,14 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   margin: 1rem 0 0.5rem 0;
   font-size: 1.25rem;
   font-weight: 700;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
   text-transform: uppercase;
 }
 .search--light .search-result__header {
   color: #888;
 }
 .search--dark .search-result__header {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .search-result__item {
@@ -5613,40 +5882,40 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .search-result__item a, .search-result__item a:link, .search-result__item a:visited {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
   background-color: transparent;
 }
 .search-result__item a svg path, .search-result__item a:link svg path, .search-result__item a:visited svg path {
-  fill: #222;
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .search-result__item a:hover {
-  color: #333;
-  background-color: #f2f2f2;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #202020;
 }
 .root[data-is-touch=false] .search-result__item a:hover svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .search-result__item a.active, .root[data-is-touch] .search-result__item a:active {
-  color: #333;
-  background-color: rgb(203.75, 203.75, 203.75);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgb(72.8, 72.8, 72.8);
 }
 .root[data-is-touch] .search-result__item a.active svg path, .root[data-is-touch] .search-result__item a:active svg path {
-  fill: #333;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .search-result__item a.focus {
   color: default;
-  background-color: #f2f2f2;
-  box-shadow: 0 0 0 2px rgba(242, 242, 242, 0.4);
+  background-color: #202020;
+  box-shadow: 0 0 0 2px rgba(32, 32, 32, 0.4);
 }
 .root[data-is-touch] .search-result__item a.focus svg path {
   fill: default;
 }
 .search-result__item a.disabled, .search-result__item a:disabled {
-  color: rgba(34, 34, 34, 0.2) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
   background-color: transparent !important;
 }
 .search-result__item a.disabled svg path, .search-result__item a:disabled svg path {
-  fill: rgba(34, 34, 34, 0.2) !important;
+  fill: rgba(255, 255, 255, 0.4) !important;
 }
 .search--light .search-result__item a {
   -webkit-transition: all 0.2s ease-in-out;
@@ -5664,22 +5933,22 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   fill: #222;
 }
 .root[data-is-touch=false] .search--light .search-result__item a:hover {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .root[data-is-touch=false] .search--light .search-result__item a:hover svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .search--light .search-result__item a.active, .root[data-is-touch] .search--light .search-result__item a:active {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(40.8, 40.8, 40.8, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(40.8, 40.8, 40.8, 0.8);
 }
 .root[data-is-touch] .search--light .search-result__item a.active svg path, .root[data-is-touch] .search--light .search-result__item a:active svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch] .search--light .search-result__item a.focus {
   color: default;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.8);
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.4);
 }
 .root[data-is-touch] .search--light .search-result__item a.focus svg path {
@@ -5701,29 +5970,29 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   transition: all 0.2s ease-in-out;
 }
 .search--dark .search-result__item a, .search--dark .search-result__item a:link, .search--dark .search-result__item a:visited {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   background-color: transparent;
 }
 .search--dark .search-result__item a svg path, .search--dark .search-result__item a:link svg path, .search--dark .search-result__item a:visited svg path {
-  fill: rgba(255, 255, 255, 0.95);
+  fill: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .search--dark .search-result__item a:hover {
   color: #222;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .search--dark .search-result__item a:hover svg path {
   fill: #222;
 }
 .root[data-is-touch] .search--dark .search-result__item a.active, .root[data-is-touch] .search--dark .search-result__item a:active {
   color: #222;
-  background-color: rgba(216.75, 216.75, 216.75, 0.9);
+  background-color: rgba(216.75, 216.75, 216.75, 0.8);
 }
 .root[data-is-touch] .search--dark .search-result__item a.active svg path, .root[data-is-touch] .search--dark .search-result__item a:active svg path {
   fill: #222;
 }
 .root[data-is-touch] .search--dark .search-result__item a.focus {
   color: default;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
   box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.4);
 }
 .root[data-is-touch] .search--dark .search-result__item a.focus svg path {
@@ -5737,16 +6006,16 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
   fill: rgba(255, 255, 255, 0.2) !important;
 }
 .search-result__item.active a, .search-result__item.active a:link, .search-result__item.active a:visited {
-  color: #333;
-  background-color: #f2f2f2;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #202020;
 }
 .search--light .search-result__item.active a, .search--light .search-result__item.active a:link, .search--light .search-result__item.active a:visited {
-  color: rgba(255, 255, 255, 0.95);
-  background-color: rgba(0, 0, 0, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 .search--dark .search-result__item.active a, .search--dark .search-result__item.active a:link, .search--dark .search-result__item.active a:visited {
   color: #222;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .search-result__item.active a.active, .root[data-is-touch] .search-result__item.active a:active {
   -webkit-transition: all 0.2s ease-in-out;
@@ -5807,51 +6076,51 @@ a > .item__header.disabled, a > .item__header:disabled, a.item__header.disabled,
 
 .article__content p.success {
   padding: 0.5rem 1rem;
-  background-color: rgba(82, 196, 26, 0.1);
-  border: 1px solid #52c41a;
+  background-color: rgba(91, 170, 52, 0.1);
+  border: 1px solid #5baa34;
   border-radius: 0.4rem;
 }
 .article__content p.info {
   padding: 0.5rem 1rem;
-  background-color: rgba(24, 144, 255, 0.1);
-  border: 1px solid #1890ff;
+  background-color: rgba(28, 124, 212, 0.1);
+  border: 1px solid #1c7cd4;
   border-radius: 0.4rem;
 }
 .article__content p.warning {
   padding: 0.5rem 1rem;
-  background-color: rgba(250, 140, 22, 0.1);
-  border: 1px solid #fa8c16;
+  background-color: rgba(201, 119, 31, 0.1);
+  border: 1px solid #c9771f;
   border-radius: 0.4rem;
 }
 .article__content p.error {
   padding: 0.5rem 1rem;
-  background-color: rgba(245, 34, 45, 0.1);
-  border: 1px solid #f5222d;
+  background-color: rgba(218, 61, 69, 0.1);
+  border: 1px solid #da3d45;
   border-radius: 0.4rem;
 }
 
 .article__content code.success {
-  color: #fff;
-  background-color: #52c41a;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #5baa34;
 }
 .article__content code.info {
-  color: #fff;
-  background-color: #1890ff;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #1c7cd4;
 }
 .article__content code.warning {
-  color: #fff;
-  background-color: #fa8c16;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #c9771f;
 }
 .article__content code.error {
-  color: #fff;
-  background-color: #f5222d;
+  color: rgba(255, 255, 255, 0.8);
+  background-color: #da3d45;
 }
 
 .article__content img.shadow, .article__content .shadow > img {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.23), 0 1px 3px rgba(0, 0, 0, 0.08), 0 6px 12px rgba(0, 0, 0, 0.02);
 }
 .article__content img.border, .article__content .border > img {
-  border: 1px solid rgb(229.5, 229.5, 229.5);
+  border: 1px solid rgb(41.7, 41.7, 41.7);
 }
 .article__content img.rounded, .article__content .rounded > img {
   border-radius: 0.4rem;
@@ -5886,7 +6155,7 @@ html,
 
 .page__main {
   height: 100%;
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .page__main .col-aside {
   display: none;
@@ -5911,7 +6180,7 @@ html,
   -ms-flex-direction: column;
   flex-direction: column;
   min-height: 100%;
-  background-color: #fff;
+  background-color: #121212;
 }
 
 .page__content {
@@ -5956,8 +6225,8 @@ html,
   width: 80%;
   max-width: 250px;
   height: 100%;
-  background-color: #fff;
-  border: 0 solid rgb(229.5, 229.5, 229.5);
+  background-color: #121212;
+  border: 0 solid rgb(41.7, 41.7, 41.7);
   border-right-width: 1px;
   -webkit-transition: transform 0.4s;
   transition: transform 0.4s;
@@ -5977,40 +6246,40 @@ html,
   transition: all 0.2s ease-in-out;
 }
 .sidebar-button, .sidebar-button:link, .sidebar-button:visited {
-  color: #000;
-  background-color: rgba(242, 242, 242, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(32, 32, 32, 0.75);
 }
 .sidebar-button svg path, .sidebar-button:link svg path, .sidebar-button:visited svg path {
-  fill: #000;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch=false] .sidebar-button:hover {
-  color: #000;
-  background-color: rgba(206.3, 206.3, 206.3, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(77.9, 77.9, 77.9, 0.75);
 }
 .root[data-is-touch=false] .sidebar-button:hover svg path {
-  fill: #000;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .sidebar-button.active, .root[data-is-touch] .sidebar-button:active {
-  color: #000;
-  background-color: rgba(168.05, 168.05, 168.05, 0.75);
+  color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(118.7, 118.7, 118.7, 0.75);
 }
 .root[data-is-touch] .sidebar-button.active svg path, .root[data-is-touch] .sidebar-button:active svg path {
-  fill: #000;
+  fill: rgba(255, 255, 255, 0.8);
 }
 .root[data-is-touch] .sidebar-button.focus {
   color: default;
-  background-color: rgba(206.3, 206.3, 206.3, 0.75);
-  box-shadow: 0 0 0 2px rgba(206.3, 206.3, 206.3, 0.4);
+  background-color: rgba(77.9, 77.9, 77.9, 0.75);
+  box-shadow: 0 0 0 2px rgba(77.9, 77.9, 77.9, 0.4);
 }
 .root[data-is-touch] .sidebar-button.focus svg path {
   fill: default;
 }
 .sidebar-button.disabled, .sidebar-button:disabled {
-  color: rgba(0, 0, 0, 0.2) !important;
-  background-color: rgba(242, 242, 242, 0.75) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  background-color: rgba(32, 32, 32, 0.75) !important;
 }
 .sidebar-button.disabled svg path, .sidebar-button:disabled svg path {
-  fill: rgba(0, 0, 0, 0.2) !important;
+  fill: rgba(255, 255, 255, 0.4) !important;
 }
 
 .page__mask {
@@ -6020,7 +6289,7 @@ html,
   z-index: 997;
   width: 100%;
   height: 100%;
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
   touch-action: none;
   background-color: rgba(0, 0, 0, 0.9);
   opacity: 0;
@@ -6085,7 +6354,7 @@ html,
 }
 
 .hero--dark .article__info {
-  color: rgba(255, 255, 255, 0.95);
+  color: rgba(255, 255, 255, 0.7);
 }
 
 .page__main--immersive .page__header {
@@ -6104,7 +6373,7 @@ html,
   padding-top: 1rem;
   margin: 1.5rem 0 1rem 0;
   word-wrap: break-word;
-  border: 0 solid rgb(229.5, 229.5, 229.5);
+  border: 0 solid rgb(41.7, 41.7, 41.7);
   border-top-width: 4px;
 }
 .article__section-navigator > .previous, .article__section-navigator > .next {
@@ -6112,7 +6381,7 @@ html,
 }
 .article__section-navigator > .previous > span, .article__section-navigator > .next > span {
   font-weight: 700;
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .article__section-navigator > .previous > a, .article__section-navigator > .next > a {
   display: block;
@@ -6131,16 +6400,16 @@ html,
   transition: all 0.2s ease-in-out;
 }
 .article__section-navigator > .previous > a, .article__section-navigator > .previous > a:link, .article__section-navigator > .previous > a:visited, .article__section-navigator > .next > a, .article__section-navigator > .next > a:link, .article__section-navigator > .next > a:visited {
-  color: #222;
+  color: rgba(255, 255, 255, 0.7);
 }
 .root[data-is-touch=false] .article__section-navigator > .previous > a:hover, .root[data-is-touch=false] .article__section-navigator > .next > a:hover {
-  color: #fc4d50;
+  color: #ff9500;
 }
 .root[data-is-touch] .article__section-navigator > .previous > a.active, .root[data-is-touch] .article__section-navigator > .previous > a:active, .root[data-is-touch] .article__section-navigator > .next > a.active, .root[data-is-touch] .article__section-navigator > .next > a:active {
-  color: rgb(248.3149171271, 4.1850828729, 8.3701657459);
+  color: rgb(178.5, 104.3, 0);
 }
 .article__section-navigator > .previous > a.disabled, .article__section-navigator > .previous > a:disabled, .article__section-navigator > .next > a.disabled, .article__section-navigator > .next > a:disabled {
-  color: rgba(34, 34, 34, 0.2) !important;
+  color: rgba(255, 255, 255, 0.2) !important;
 }
 .article__section-navigator > .previous {
   float: left;
@@ -6181,7 +6450,7 @@ html,
   -webkit-overflow-scrolling: touch;
 }
 .layout--home .pagination__omit {
-  color: #888;
+  color: rgba(255, 255, 255, 0.5);
 }
 .layout--home .items {
   margin-top: 2.25rem;
