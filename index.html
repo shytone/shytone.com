@@ -1,5 +1,47 @@
 ---
-layout: home
-# articles:
-#   excerpt_type: html
+layout: page
+titles:
+  en      : &EN       Home
+  zh-Hans : 首页
+  zh      : 首页
+  zh-CN   : 首页
+key: page-home
 ---
+<section class="hero">
+  <h2>你好 👋</h2>
+  <p>我是 <strong>shytone</strong>，一个热爱技术的开发者。</p>
+  <p>这里是我的个人博客，记录技术分享、学习心得和折腾记录。</p>
+</section>
+
+<!--more-->
+
+---
+
+## 🚀 最新动态
+
+欢迎来到我的个人网站！
+
+### 关于这个博客
+
+使用 <a href="https://jekyllrb.com/" target="_blank">Jekyll</a> + <a href="https://github.com/kitian616/jekyll-TeXt-theme" target="_blank">TeXt Theme</a> 构建，托管在 GitHub Pages。
+
+### 最近更新
+
+{% for post in site.posts limit:5 %}
+- **{{ post.date | date: "%Y-%m-%d" }}** — [{{ post.title }}]({{ post.url }})
+{% endfor %}
+
+{% if site.posts.size == 0 %}
+_还没有文章，敬请期待~_
+{% endif %}
+
+---
+
+## 📬 联系我
+
+- **GitHub**: [github.com/shytone](https://github.com/shytone)
+- **邮箱**: shytone@qq.com
+
+---
+
+*Last updated: {{ 'now' | date: "%Y-%m-%d %H:%M" }}*
