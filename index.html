@@ -336,7 +336,21 @@
 
 ---
 
-*Last updated: 2026-04-19*
+<div class="visitor-counter">
+  <span class="counter-item">👁️ 浏览 <span id="visit-count">-</span></span>
+  <span class="counter-sep">·</span>
+  <span class="counter-item">🕐 最后更新 2026-04-19</span>
+</div>
+
+<script>
+(function() {
+  var key = 'shytone_blog_views';
+  var count = parseInt(localStorage.getItem(key) || '0');
+  count++;
+  localStorage.setItem(key, count);
+  document.getElementById('visit-count').textContent = count;
+})();
+</script>
 
 <style>
 .hero {
@@ -428,6 +442,16 @@
 .contact a:hover {
   text-decoration: underline;
 }
+
+.visitor-counter {
+  text-align: center;
+  padding: 1.5rem 0;
+  color: #666;
+  font-size: 0.85rem;
+}
+.counter-item { margin: 0 4px; }
+.counter-sep { color: #999; }
+
 </style>
 </div><section class="page__comments d-print-none"></section></article><!-- start custom main bottom snippet -->
 
