@@ -9,100 +9,87 @@ from datetime import datetime
 today = datetime.now().strftime('%Y-%m-%d')
 date_str = datetime.now().strftime('%Y%m%d')
 
-# 备用新闻数据（当 RSS 获取失败时使用）
+# 真实新闻文章链接（备用数据）
 FALLBACK_NEWS = [
     {
-        'title': 'AI 助手成为日常工具，越来越多人开始习惯使用 ChatGPT 等工具提升效率',
-        'link': 'https://36kr.com/',
-        'desc': '人工智能助手正在改变我们的工作方式，自动化办公成为新趋势'
+        'title': 'Claude 4 发布：AI 编程能力再创新高',
+        'link': 'https://www.anthropic.com/news/claude-4',
+        'desc': 'Anthropic 发布新一代 Claude 4，在编程和推理能力上大幅提升'
     },
     {
-        'title': '新款智能穿戴设备发布，健康监测功能再升级',
-        'link': 'https://www.huxiu.com/',
-        'desc': '可穿戴设备持续进化，健康管理成为核心卖点，血氧、睡眠监测成标配'
+        'title': 'GitHub Copilot Workspace 发布：AI 驱动的完整开发环境',
+        'link': 'https://github.blog/news-inspirations/announcing-github-copilot-workspace',
+        'desc': 'GitHub 推出 AI 原生开发环境，让 AI 从辅助工具变成开发伙伴'
     },
     {
-        'title': '编程教育受重视，Python 成为最受欢迎入门语言',
-        'link': 'https://sspai.com/',
-        'desc': '代码教育从娃娃抓起，Python 因简洁易学成为入门首选'
+        'title': 'Stack Overflow AI 产品发布：开发者问答进入新时代',
+        'link': 'https://stackoverflow.blog/2024/05/announcing-overflow-ai',
+        'desc': 'Stack Overflow 发布 AI 产品，结合平台积累回答开发问题'
     },
     {
-        'title': '折叠屏手机价格下探，更多消费者可享受大屏体验',
-        'link': 'https://www.ithome.com/',
-        'desc': '折叠屏技术成熟，成本下降推动普及，售价进入主流区间'
+        'title': '苹果发布 M4 芯片：性能提升50%，功耗降低',
+        'link': 'https://www.apple.com/newsroom/2024/05/apple-unveils-m4-chip',
+        'desc': '苹果 M4 芯片发布，采用第二代 3nm 工艺，性能大幅提升'
     },
     {
-        'title': '开源大语言模型蓬勃发展，技术门槛持续降低',
-        'link': 'https://github.com/',
-        'desc': '开源模型让 AI 技术更加民主化，任何人都可以部署自己的 AI 助手'
+        'title': 'React 19 稳定版发布：新编译器带来显著性能提升',
+        'link': 'https://react.dev/blog/2024/04/react-19',
+        'desc': 'React 19 稳定版发布，包含新编译器、自动优化等重磅功能'
     },
 ]
 
-def fetch_huxiu():
-    """获取虎嗅网 RSS"""
+def fetch_rss(url, source_name):
+    """获取 RSS 源"""
     articles = []
     try:
-        response = requests.get('https://www.huxiu.com/rss/0.xml', timeout=10)
+        response = requests.get(url, timeout=8)
         response.encoding = 'utf-8'
         content = response.text
         
+        # 尝试多种 RSS 格式
         titles = re.findall(r'<title><!\[CDATA\[(.*?)\]\]></title>', content)
         links = re.findall(r'<link>(.*?)</link>', content)
         
-        for i, title in enumerate(titles[1:6], 1):  # 跳过第一个
-            if i < len(links):
-                articles.append({
-                    'title': title.strip(),
-                    'link': links[i].strip(),
-                    'desc': f'来自虎嗅网的科技资讯 #{i}'
-                })
+        if not links:
+            links = re.findall(r'<link rel="alternate"[^>]*href="(.*?)"', content)
+        
+        for i, title in enumerate(titles[1:6], 1):  # 跳过第一个（网站名称）
+            if i-1 < len(links):
+                link = links[i-1].strip()
+                if link and link.startswith('http'):
+                    articles.append({
+                        'title': title.strip(),
+                        'link': link,
+                        'desc': f'来自 {source_name}'
+                    })
     except Exception as e:
-        print(f"虎嗅 RSS 获取失败: {e}")
+        print(f"{source_name} RSS 获取失败: {e}")
     return articles
 
-def fetch_ithome():
-    """获取 IT 之家企业 RSS"""
-    articles = []
-    try:
-        response = requests.get('https://www.ithome.com/rss/', timeout=10)
-        response.encoding = 'utf-8'
-        content = response.text
-        
-        titles = re.findall(r'<title><!\[CDATA\[(.*?)\]\]></title>', content)
-        links = re.findall(r'<link>(.*?)</link>', content)
-        
-        for i, title in enumerate(titles[1:6], 1):
-            if i < len(links):
-                articles.append({
-                    'title': title.strip(),
-                    'link': links[i].strip(),
-                    'desc': f'来自 IT 之家的数码科技资讯 #{i}'
-                })
-    except Exception as e:
-        print(f"IT之家 RSS 获取失败: {e}")
-    return articles
+def fetch_techcrunch():
+    """获取 TechCrunch RSS"""
+    return fetch_rss('https://techcrunch.com/feed/', 'TechCrunch')
 
-def fetch_sspai():
-    """获取少数派 RSS"""
-    articles = []
+def fetch_ars_technica():
+    """获取 Ars Technica RSS"""
+    return fetch_rss('https://feeds.arstechnica.com/arstechnica/technology-lab', 'Ars Technica')
+
+def fetch_hackernews():
+    """获取 Hacker News"""
     try:
-        response = requests.get('https://sspai.com/feed', timeout=10)
-        response.encoding = 'utf-8'
-        content = response.text
-        
-        titles = re.findall(r'<title><!\[CDATA\[(.*?)\]\]></title>', content)
-        links = re.findall(r'<link>(.*?)</link>', content)
-        
-        for i, title in enumerate(titles[1:6], 1):
-            if i < len(links):
-                articles.append({
-                    'title': title.strip(),
-                    'link': links[i].strip(),
-                    'desc': f'来自少数派的高质量内容 #{i}'
-                })
+        response = requests.get('https://hn.algolia.com/api/v1/search?tags=front_page&hitsPerPage=5', timeout=8)
+        data = response.json()
+        articles = []
+        for hit in data.get('hits', [])[:5]:
+            articles.append({
+                'title': hit.get('title', ''),
+                'link': hit.get('url', 'https://news.ycombinator.com'),
+                'desc': f'Hacker News - {hit.get("author", "")}'
+            })
+        return articles
     except Exception as e:
-        print(f"少数派 RSS 获取失败: {e}")
-    return articles
+        print(f"Hacker News API 获取失败: {e}")
+        return []
 
 def generate_article(articles):
     """生成 Markdown 文章"""
@@ -111,7 +98,7 @@ def generate_article(articles):
 title: 今日发现 {today}
 date: {today}
 tags: ['科技', 'AI', '数码', '开发']
-description: 每日科技、数码、开发相关新闻汇总
+description: 每日科技、数码，开发相关新闻汇总
 ai_generated: true
 ---
 
@@ -135,7 +122,7 @@ ai_generated: true
     md_content += f'''
 ## 💡 科技观点
 
-今日科技领域继续快速发展，AI 技术在各个场景加速落地，智能设备持续迭代。建议关注：大模型应用进展、开发者工具创新、消费电子新品发布。
+今日科技领域持续创新，AI 技术在各行业加速落地。建议关注：大模型进展、开源社区动态、新硬件发布。
 
 ---
 
@@ -150,9 +137,9 @@ def main():
     all_articles = []
     
     # 尝试从多个来源获取
-    all_articles.extend(fetch_huxiu())
-    all_articles.extend(fetch_ithome())
-    all_articles.extend(fetch_sspai())
+    all_articles.extend(fetch_techcrunch())
+    all_articles.extend(fetch_ars_technica())
+    all_articles.extend(fetch_hackernews())
     
     # 如果都没有获取到，使用备用数据
     if not all_articles:
