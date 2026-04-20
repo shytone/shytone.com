@@ -406,6 +406,108 @@ You may want to config the site or writing a post next. Please feel free to crea
 })();*/
 </script>
 
+<!-- 首页封面 -->
+<section class="hero">
+  <div class="hero__content">
+    <div class="hero__brand">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewbox="0 0 32 32">
+        <rect width="32" height="32" fill="#1d1f21" rx="4"></rect>
+        <text x="2" y="24" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#fc4d50">S</text>
+        <text x="16" y="30" font-family="monospace" font-size="8" font-weight="bold" fill="#ffffff">&lt;/&gt;</text>
+      </svg>
+    </div>
+    <h1 class="hero__title">SHYTONE.COM</h1>
+    <p class="hero__desc">技术分享 · 学习记录 · 开发者博客</p>
+    <div class="hero__tags">
+      <span class="tag">🖥️ 软件开发</span>
+      <span class="tag">🤖 AI 工具</span>
+      <span class="tag">📚 学习备考</span>
+      <span class="tag">🎮 摸鱼时光</span>
+    </div>
+    <div class="hero__actions">
+      <a href="/archive.html" class="button button--primary">浏览文章</a>
+      <a href="/about.html" class="button button--secondary">关于我</a>
+    </div>
+  </div>
+</section>
+
+<style>
+.hero {
+  text-align: center;
+  padding: 4rem 2rem;
+  background: linear-gradient(135deg, #1d1f21 0%, #2d2d2d 100%);
+  border-radius: 12px;
+  margin: 2rem 0;
+}
+.hero__brand {
+  margin-bottom: 1.5rem;
+}
+.hero__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #fc4d50;
+  margin: 0.5rem 0;
+  letter-spacing: 2px;
+}
+.hero__desc {
+  font-size: 1.1rem;
+  color: #969896;
+  margin: 1rem 0 2rem;
+}
+.hero__tags {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-bottom: 2rem;
+}
+.tag {
+  background: rgba(252, 77, 80, 0.15);
+  color: #fc4d50;
+  padding: 0.4rem 1rem;
+  border-radius: 20px;
+  font-size: 0.9rem;
+}
+.hero__actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+.button {
+  padding: 0.75rem 2rem;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+.button--primary {
+  background: #fc4d50;
+  color: #fff;
+}
+.button--primary:hover {
+  background: #e63e42;
+}
+.button--secondary {
+  background: transparent;
+  color: #fff;
+  border: 1px solid #969896;
+}
+.button--secondary:hover {
+  border-color: #fc4d50;
+  color: #fc4d50;
+}
+@media (max-width: 600px) {
+  .hero {
+    padding: 2rem 1rem;
+  }
+  .hero__title {
+    font-size: 1.8rem;
+  }
+  .hero__actions {
+    flex-direction: column;
+  }
+}
+</style>
 
 
 </div>
