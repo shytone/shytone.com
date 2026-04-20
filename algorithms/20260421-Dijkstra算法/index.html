@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Welcome - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Dijkstra算法 (Dijkstra Algorithm) - SHYTONE.COM</title>
 
-<meta name="description" content="If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:You may want to config the site or writing a post next. Please feel ...">
-<link rel="canonical" href="https://shytone.com/2018/07/01/welcome.html"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="🧮 Dijkstra算法 (Dijkstra Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 (Shortest Path)时间复杂度 / Time Complexity: O((V + E) log V)空间复杂度 / Space Comple...">
+<link rel="canonical" href="https://shytone.com/algorithms/20260421-Dijkstra%E7%AE%97%E6%B3%95/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -14,26 +14,26 @@
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="Welcome - SHYTONE.COM">
-<meta property="og:description" content="If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:You may want to config the site or writing a post next. Please feel ...">
+<meta property="og:title" content="Dijkstra算法 (Dijkstra Algorithm) - SHYTONE.COM">
+<meta property="og:description" content="🧮 Dijkstra算法 (Dijkstra Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 (Shortest Path)时间复杂度 / Time Complexity: O((V + E) log V)空间复杂度 / Space Comple...">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://shytone.com/2018/07/01/welcome.html">
+<meta property="og:url" content="https://shytone.com/algorithms/20260421-Dijkstra%E7%AE%97%E6%B3%95/">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Welcome - SHYTONE.COM">
-<meta name="twitter:description" content="If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:You may want to config the site or writing a post next. Please feel ...">
+<meta name="twitter:title" content="Dijkstra算法 (Dijkstra Algorithm) - SHYTONE.COM">
+<meta name="twitter:description" content="🧮 Dijkstra算法 (Dijkstra Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 (Shortest Path)时间复杂度 / Time Complexity: O((V + E) log V)空间复杂度 / Space Comple...">
 <meta name="twitter:site" content="@shytone">
 
-<!-- Article Specific --><meta property="article:published_time" content="2018-07-01T00:00:00+08:00"><meta property="article:tag" content="TeXt"><!-- JSON-LD Structured Data --><script type="application/ld+json">
+<!-- Article Specific --><meta property="article:published_time" content="2026-04-21T00:00:00+08:00"><meta property="article:tag" content="算法"><meta property="article:tag" content="最短路径"><meta property="article:tag" content="困难"><meta property="article:tag" content="数据结构"><meta property="article:tag" content="算法讲解"><!-- JSON-LD Structured Data --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "Welcome",
-  "description": "If you see this page, that means you have setup your site. enjoy! :ghost: :ghost: :ghost:You may want to config the site or writing a post next. Please feel ...",
-  "datePublished": "2018-07-01T00:00:00+08:00",
+  "headline": "Dijkstra算法 (Dijkstra Algorithm)",
+  "description": "🧮 Dijkstra算法 (Dijkstra Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 (Shortest Path)时间复杂度 / Time Complexity: O((V + E) log V)空间复杂度 / Space Comple...",
+  "datePublished": "2026-04-21T00:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "shytone",
@@ -49,7 +49,7 @@
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://shytone.com/2018/07/01/welcome.html"
+    "@id": "https://shytone.com/algorithms/20260421-Dijkstra%E7%AE%97%E6%B3%95/"
   }
 }
 </script><!-- Google AdSense -->
@@ -304,88 +304,144 @@ window.addEventListener('DOMContentLoaded', function() {
 </head>
   <body>
     <div class="root" data-is-touch="false">
-      <div class="layout--page js-page-root">
-<div class="page__main js-page-main page__viewport cell cell--auto">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
 
-      <div class="page__main-inner">
-<div class="page__header d-print-none">
-<header class="header"><div class="main">
+      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
       <div class="header__title">
-        <div class="header__brand">
-<svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewbox="0 0 32 32">
-  <rect width="32" height="32" fill="#1d1f21" rx="4"></rect>
+        <div class="header__brand"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1d1f21" rx="4"/>
   <text x="2" y="24" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#fc4d50">S</text>
   <text x="16" y="30" font-family="monospace" font-size="8" font-weight="bold" fill="#ffffff">&lt;/&gt;</text>
 </svg>
-<a title="分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。" href="/">SHYTONE.COM</a>
-</div>
-</div>
-<nav class="navigation">
-        <ul>
-<li class="navigation__item"><a href="/discover.html">发现</a></li>
-<li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li>
-<li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li>
-<li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li>
-<li class="navigation__item"><a href="/archive.html">归档</a></li>
-<li class="navigation__item"><a href="/about.html">关于</a></li>
-</ul>
-      </nav>
-</div>
+<a title="分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。" href="/">SHYTONE.COM</a></div></div><nav class="navigation">
+        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
+      </nav></div>
   </header>
-</div>
-<div class="page__content"><div class="main"><div class="grid grid--reverse">
+</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
 
               <div class="col-aside d-print-none js-col-aside"></div>
 
-              <div class="col-main cell cell--auto">
-<!-- start custom main top snippet -->
+              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Welcome</h1></header></div>
-<meta itemprop="headline" content="Welcome">
-<div class="article__info clearfix">
-<ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm" href="/archive.html?tag=TeXt">TeXt</a>
-            </li></ul>
-<ul class="right-col menu"><li>
-<i class="far fa-calendar-alt"></i> <span>2018年 07月01日</span>
-            </li></ul>
-</div>
-<meta itemprop="author" content="shytone">
-<meta itemprop="datePublished" content="2018-07-01T00:00:00+08:00">
-    <meta itemprop="keywords" content="TeXt">
-<div class="js-article-content">
-<div class="layout--article">
-<div class="article-ad" style="margin: 1.5rem 0; text-align: center;">
-  <ins class="adsbygoogle" style="display:block; width: 100%; max-width: 728px; margin: 0 auto;" data-ad-client="ca-pub-8144860176707664" data-ad-slot="YOUR_AD_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true">
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Dijkstra算法 (Dijkstra Algorithm)</h1></header></div><meta itemprop="headline" content="Dijkstra算法 (Dijkstra Algorithm)"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">最短路径</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%9B%B0%E9%9A%BE">困难</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月21日</span>
+            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-21T00:00:00+08:00">
+    <meta itemprop="keywords" content="算法,最短路径,困难,数据结构,算法讲解"><div class="js-article-content"><div class="layout--article"><div class="article-ad" style="margin: 1.5rem 0; text-align: center;">
+  <ins class="adsbygoogle"
+       style="display:block; width: 100%; max-width: 728px; margin: 0 auto;"
+       data-ad-client="ca-pub-8144860176707664"
+       data-ad-slot="YOUR_AD_SLOT_ID_1"
+       data-ad-format="auto"
+       data-full-width-responsive="true">
   </ins>
-</div>
-<div class="article__content" itemprop="articleBody">
-<p>If you see this page, that means you have setup your site. enjoy! <img class="emoji" title=":ghost:" alt=":ghost:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f47b.png" height="20" width="20"> <img class="emoji" title=":ghost:" alt=":ghost:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f47b.png" height="20" width="20"> <img class="emoji" title=":ghost:" alt=":ghost:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f47b.png" height="20" width="20"></p>
+</div><div class="article__content" itemprop="articleBody"><h1 id="-dijkstra算法-dijkstra-algorithm">🧮 Dijkstra算法 (Dijkstra Algorithm)</h1>
 
-<p>You may want to <a href="https://kitian616.github.io/jekyll-TeXt-theme/docs/en/configuration">config the site</a> or <a href="https://kitian616.github.io/jekyll-TeXt-theme/docs/en/writing-posts">writing a post</a> next. Please feel free to <a href="https://github.com/kitian616/jekyll-TeXt-theme/issues">create an issue</a> or <a href="mailto:kitian616@outlook.com">send me an email</a> if you have any questions.</p>
+<blockquote>
+  <p><strong>难度 / Difficulty</strong>: 困难 (Hard)<br />
+<strong>分类 / Category</strong>: 最短路径 (Shortest Path)<br />
+<strong>时间复杂度 / Time Complexity</strong>: O((V + E) log V)<br />
+<strong>空间复杂度 / Space Complexity</strong>: O(V)</p>
+</blockquote>
 
-<!--more-->
+<hr />
 
-<hr>
+<h2 id="-算法简介--introduction">📖 算法简介 / Introduction</h2>
 
-<p>If you like TeXt, don’t forget to give me a star. <img class="emoji" title=":star2:" alt=":star2:" src="https://github.githubassets.com/images/icons/emoji/unicode/1f31f.png" height="20" width="20"></p>
+<p>Dijkstra 算法是用于计算单源最短路径的贪心算法，适用于非负权边。</p>
 
-<p><a href="https://github.com/kitian616/jekyll-TeXt-theme/"><img src="https://img.shields.io/github/stars/kitian616/jekyll-TeXt-theme.svg?label=Stars&amp;style=social" alt="Star This Project"></a></p>
-</div>
-<div class="d-print-none">
-<footer class="article__footer"><meta itemprop="dateModified" content="2018-07-01T00:00:00+08:00">
-<!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle" style="display:block; text-align:center; margin: 2rem 0;" data-ad-client="ca-pub-8144860176707664" data-ad-slot="XXXXXXX" data-ad-format="horizontal" data-full-width-responsive="true">
+<p>Dijkstra is a greedy algorithm for single-source shortest path in graphs with non-negative edge weights.</p>
+
+<hr />
+
+<h2 id="-算法原理--principle">💡 算法原理 / Principle</h2>
+
+<p>从起点开始，每次选择未处理节点中距离最小的，加入已处理集合，更新邻居距离。</p>
+
+<p>Starting from source, each time select the closest unprocessed node, add to processed set, update neighbor distances.</p>
+
+<hr />
+
+<h2 id="-代码实现--implementation">📝 代码实现 / Implementation</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">heapq</span>
+
+<span class="k">def</span> <span class="nf">dijkstra</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">start</span><span class="p">):</span>
+    <span class="n">dist</span> <span class="o">=</span> <span class="p">{</span><span class="n">node</span><span class="p">:</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">inf</span><span class="sh">'</span><span class="p">)</span> <span class="k">for</span> <span class="n">node</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">}</span>
+    <span class="n">dist</span><span class="p">[</span><span class="n">start</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="n">pq</span> <span class="o">=</span> <span class="p">[(</span><span class="mi">0</span><span class="p">,</span> <span class="n">start</span><span class="p">)]</span>
+    
+    <span class="k">while</span> <span class="n">pq</span><span class="p">:</span>
+        <span class="n">d</span><span class="p">,</span> <span class="n">node</span> <span class="o">=</span> <span class="n">heapq</span><span class="p">.</span><span class="nf">heappop</span><span class="p">(</span><span class="n">pq</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">d</span> <span class="o">&gt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="k">continue</span>
+        <span class="k">for</span> <span class="n">neighbor</span><span class="p">,</span> <span class="n">weight</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">[</span><span class="n">node</span><span class="p">]:</span>
+            <span class="n">new_dist</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">node</span><span class="p">]</span> <span class="o">+</span> <span class="n">weight</span>
+            <span class="k">if</span> <span class="n">new_dist</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]:</span>
+                <span class="n">dist</span><span class="p">[</span><span class="n">neighbor</span><span class="p">]</span> <span class="o">=</span> <span class="n">new_dist</span>
+                <span class="n">heapq</span><span class="p">.</span><span class="nf">heappush</span><span class="p">(</span><span class="n">pq</span><span class="p">,</span> <span class="p">(</span><span class="n">new_dist</span><span class="p">,</span> <span class="n">neighbor</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">dist</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-示例--example">✨ 示例 / Example</h2>
+
+<p>在带权Graph中计算从A到所有节点的最短距离。</p>
+
+<p>Computing shortest distances from node A to all nodes in a weighted graph.</p>
+
+<hr />
+
+<h2 id="-适用场景--scenarios">🎯 适用场景 / Scenarios</h2>
+
+<p>导航路线规划, 网络路由, 航班价格优化</p>
+
+<p>Navigation routing, Network routing, Flight price optimization</p>
+
+<hr />
+
+<h2 id="-扩展阅读--further-reading">🔄 扩展阅读 / Further Reading</h2>
+
+<ul>
+  <li>建议在 LeetCode 或 HackerRank 上刷相关题目</li>
+  <li>尝试自己实现非递归版本</li>
+  <li>对比其他同类型算法的性能差异</li>
+</ul>
+
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>*本文由 AI 自动生成</td>
+      <td>Generated by AI*</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-21T00:00:00+08:00">
+<!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
+     style="display:block; text-align:center; margin: 2rem 0;"
+     data-ad-client="ca-pub-8144860176707664"
+     data-ad-slot="XXXXXXX"
+     data-ad-format="horizontal"
+     data-full-width-responsive="true">
 </ins></footer>
-<div class="article__section-navigator clearfix">
-<div class="previous">
-<span>上篇</span><a href="/2017/10/18/github-change-commit-info.html">GitHub更改历史commit作者信息</a>
-</div>
-<div class="next">
-<span>下篇</span><a href="/2019/11/05/crash_on__lll_unlock_elision.html">记录一次排查__lll_unlock_elsion()函数coredump问题过程</a>
-</div>
-</div>
-</div>
+<div class="article__section-navigator clearfix"><div class="next"><span>下篇</span><a href="/algorithms/20260421-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">📚 LeetCode 刷题指南：高效准备技术面试</a></div></div></div>
 
 </div>
 
@@ -414,36 +470,29 @@ window.addEventListener('DOMContentLoaded', function() {
   });
 })();
 </script>
-</div>
-<section class="page__comments d-print-none"></section></article>
+</div><section class="page__comments d-print-none"></section></article>
 <!-- Google AdSense - Bottom Ads -->
 <div style="margin: 2rem auto; text-align: center; max-width: 728px;">
-  <ins class="adsbygoogle" style="display:block; width: 100%;" data-ad-client="ca-pub-8144860176707664" data-ad-slot="YOUR_AD_SLOT_ID_2" data-ad-format="auto" data-full-width-responsive="true">
+  <ins class="adsbygoogle"
+       style="display:block; width: 100%;"
+       data-ad-client="ca-pub-8144860176707664"
+       data-ad-slot="YOUR_AD_SLOT_ID_2"
+       data-ad-format="auto"
+       data-full-width-responsive="true">
   </ins>
 </div>
 </div>
-            </div></div></div>
-<div class="page__footer d-print-none">
-<footer class="footer py-4 js-page-footer">
-  <div class="main">
-<div itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="shytone">
-<meta itemprop="url" content="https://shytone.com">
-<meta itemprop="description" content="Developer · Learner · Builder">
-<div class="footer__author-links">
-<div class="author-links">
-  <ul class="menu menu--nowrap menu--inline">
-<link itemprop="url" href="https://shytone.com">
-<li title="在 Github 上关注我。">
+            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
+  <div class="main"><div itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shytone"><meta itemprop="url" content="https://shytone.com"><meta itemprop="description" content="Developer · Learner · Builder"><div class="footer__author-links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://shytone.com"><li title="在 Github 上关注我。">
         <a class="button button--circle github-button" itemprop="sameAs" href="https://github.com/shytone" target="_blank">
-          <div class="icon">
-<svg fill="#000000" width="24px" height="24px" viewbox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
-  <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z"></path>
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
 </svg>
 </div>
         </a>
-      </li>
-</ul>
+      </li></ul>
 </div>
 </div>
     </div>
@@ -462,15 +511,14 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
     <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div class="site-info mt-2">
       <div>© SHYTONE.COM 2021,
-        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> &amp; <a title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
+        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
       </div>
     </div>
   </div>
 </footer>
-</div>
-</div>
-    </div>
-<script>(function() {
+</div></div>
+    </div><script>(function() {
   var SOURCES = window.TEXT_VARIABLES.sources;
   window.Lazyload.js(SOURCES.jquery, function() {
     var $body = $('body'), $window = $(window);
@@ -534,8 +582,7 @@ window.addEventListener('DOMContentLoaded', function() {
     $.fn.modal = modal;
   });
 })();
-</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"></div>
-</div>
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"></div></div>
 
 
 <script>(function() {
