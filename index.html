@@ -41,15 +41,18 @@
 }
 </script><!-- Google AdSense -->
 <meta name="google-adsense-account" content="ca-pub-8144860176707664">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8144860176707664" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8144860176707664" crossorigin="anonymous" loading="lazy"></script>
 
-<!-- Initialize AdSense Ads -->
+<!-- Initialize AdSense Ads with lazy loading -->
 <script>
 window.addEventListener('DOMContentLoaded', function() {
-  (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-8144860176707664',
+    enable_page_level_ads: true,
+    overlays: { bottom: true }
+  });
 });
-</script>
-<script>(function() {
+</script><script>(function() {
   window.isArray = function(val) {
     return Object.prototype.toString.call(val) === '[object Array]';
   };
@@ -655,6 +658,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <div>© SHYTONE.COM 2021,
         Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
         title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+        <span style="margin-left:1rem"><a href="/privacy.html">隐私政策</a></span>
       </div>
     </div>
   </div>

@@ -54,15 +54,18 @@
 }
 </script><!-- Google AdSense -->
 <meta name="google-adsense-account" content="ca-pub-8144860176707664">
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8144860176707664" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8144860176707664" crossorigin="anonymous" loading="lazy"></script>
 
-<!-- Initialize AdSense Ads -->
+<!-- Initialize AdSense Ads with lazy loading -->
 <script>
 window.addEventListener('DOMContentLoaded', function() {
-  (adsbygoogle = window.adsbygoogle || []).push({});
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: 'ca-pub-8144860176707664',
+    enable_page_level_ads: true,
+    overlays: { bottom: true }
+  });
 });
-</script>
-<script>(function() {
+</script><script>(function() {
   window.isArray = function(val) {
     return Object.prototype.toString.call(val) === '[object Array]';
   };
@@ -381,14 +384,33 @@ window.addEventListener('DOMContentLoaded', function() {
 
 <hr />
 <p><em>每天进步一点点，坚持带来大改变。</em></p>
-</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-19T00:00:00+08:00">
-<!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
+</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-19T00:00:00+08:00"><!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
      style="display:block; text-align:center; margin: 2rem 0;"
      data-ad-client="ca-pub-8144860176707664"
      data-ad-slot="XXXXXXX"
      data-ad-format="horizontal"
      data-full-width-responsive="true">
-</ins></footer>
+</ins><!-- Privacy Notice -->
+<footer class="article-footer">
+  <div class="privacy-notice">
+    <p>📌 隐私说明：网站使用 Google AdSense 推送相关广告。Google 可能使用 Cookie 进行访客分析。</p>
+    <p>📌 Privacy Notice: This site uses Google AdSense to serve relevant ads. Google may use cookies for visitor analytics.</p>
+  </div>
+</footer>
+
+<style>
+.privacy-notice {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(102, 126, 234, 0.08);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #666;
+}
+.privacy-notice p {
+  margin: 0.25rem 0;
+}
+</style></footer>
 <div class="article__section-navigator clearfix"><div class="next"><span>下篇</span><a href="/ai-daily/20260419-%E7%94%A8-AI-%E5%8A%A0%E9%80%9F%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5--GitHub/">用 AI 加速代码审查 — GitHub Copilot 实战</a></div></div></div>
 
 </div>
@@ -461,6 +483,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <div>© SHYTONE.COM 2021,
         Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
         title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+        <span style="margin-left:1rem"><a href="/privacy.html">隐私政策</a></span>
       </div>
     </div>
   </div>
