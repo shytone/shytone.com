@@ -57,6 +57,19 @@ window.addEventListener('storage', function(e) {
 });
 </script>
 
+/* Language toggle button */
+.lang-btn, .bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.lang-btn:hover, .bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+
 <!-- Bilingual CSS: show/hide based on data-lang attribute -->
 <style>
 [data-lang="en"] [lang="zh"],
@@ -466,21 +479,7 @@ function toggleLang() {
        data-full-width-responsive="true">
   </ins>
 </div>
-<div class="article__content" itemprop="articleBody"><!-- Language Switcher -->
-<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
-  <button class="lang-btn" onclick="toggleLang()">🌐 <span class="lang-label">中文</span></button>
-</div>
-
-<script>
-function toggleLang() {
-  var current = document.documentElement.getAttribute('data-lang') || 'zh';
-  var next = (current === 'zh') ? 'en' : 'zh';
-  document.documentElement.setAttribute('data-lang', next);
-  document.body.setAttribute('data-lang', next);
-  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
-  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
-}
-<style>
+<div class="article__content" itemprop="articleBody"><style>
 .about-hero {
   text-align: center;
   padding: 4rem 2rem;
@@ -504,13 +503,6 @@ function toggleLang() {
 .contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
 .contact-links a { color: #667eea; text-decoration: none; padding: 10px 24px; border: 1px solid rgba(102,126,234,0.3); border-radius: 30px; transition: all 0.2s; }
 .contact-links a:hover { background: rgba(102,126,234,0.15); }
-.lang-btn {
-  background: rgba(102,126,234,0.1); border: 1px solid rgba(102,126,234,0.3);
-  color: #667eea; padding: 4px 12px; border-radius: 12px;
-  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
-}
-[data-lang="en"] [lang="zh"] { display: none !important; }
-[data-lang="en"] [lang="en"] { display: initial !important; }
 </style>
 
 <div class="about-hero">
@@ -519,15 +511,17 @@ function toggleLang() {
   <p class="bio" lang="en" style="display:none">I'm shytone — a tech-enthusiast developer who loves building things. Full-stack dev, passionate about solving problems with code.</p>
 </div>
 
-## 🎯 <span lang="zh">在做的事</span><span lang="en" style="display:none">What I Do</span>
+<h2 id="-在做的事what-i-do">🎯 <span lang="zh">在做的事</span><span lang="en" style="display:none">What I Do</span></h2>
 
-- **<span lang="zh">技术开发</span><span lang="en" style="display:none">Tech Development</span>** — <span lang="zh">全栈开发，擅长 Python、Go、JavaScript</span><span lang="en" style="display:none">Full-stack dev, Python, Go, JavaScript</span>
-- **<span lang="zh">软考备考</span><span lang="en" style="display:none">Exam Prep</span>** — <span lang="zh">信息系统项目管理师（高级）</span><span lang="en" style="display:none">Senior IT Project Manager Certification</span>
-- **<span lang="zh">终身学习</span><span lang="en" style="display:none">Lifelong Learning</span>** — <span lang="zh">持续输出，持续成长</span><span lang="en" style="display:none">Keep shipping, keep growing</span>
+<ul>
+  <li><strong><span lang="zh">技术开发</span><span lang="en" style="display:none">Tech Development</span></strong> — <span lang="zh">全栈开发，擅长 Python、Go、JavaScript</span><span lang="en" style="display:none">Full-stack dev, Python, Go, JavaScript</span></li>
+  <li><strong><span lang="zh">软考备考</span><span lang="en" style="display:none">Exam Prep</span></strong> — <span lang="zh">信息系统项目管理师（高级）</span><span lang="en" style="display:none">Senior IT Project Manager Certification</span></li>
+  <li><strong><span lang="zh">终身学习</span><span lang="en" style="display:none">Lifelong Learning</span></strong> — <span lang="zh">持续输出，持续成长</span><span lang="en" style="display:none">Keep shipping, keep growing</span></li>
+</ul>
 
----
+<hr />
 
-## 🛠 <span lang="zh">技术栈</span><span lang="en" style="display:none">Tech Stack</span>
+<h2 id="-技术栈tech-stack">🛠 <span lang="zh">技术栈</span><span lang="en" style="display:none">Tech Stack</span></h2>
 
 <div class="skill-section">
   <h3>💻 <span lang="zh">语言</span><span lang="en" style="display:none">Languages</span></h3>
@@ -540,7 +534,7 @@ function toggleLang() {
 </div>
 
 <div class="skill-section">
-  <h3>⚙️ <span lang="zh">框架 & 工具</span><span lang="en" style="display:none">Frameworks & Tools</span></h3>
+  <h3>⚙️ <span lang="zh">框架 &amp; 工具</span><span lang="en" style="display:none">Frameworks &amp; Tools</span></h3>
   <div class="skill-grid">
     <div class="skill-item"><strong>Django / Flask</strong><span lang="zh">Python Web</span><span lang="en" style="display:none">Python Web</span></div>
     <div class="skill-item"><strong>Spring Boot</strong><span lang="zh">Java 框架</span><span lang="en" style="display:none">Java Framework</span></div>
@@ -557,15 +551,17 @@ function toggleLang() {
   </div>
 </div>
 
----
+<hr />
 
-## 📚 <span lang="zh">最近在学</span><span lang="en" style="display:none">Currently Learning</span>
+<h2 id="-最近在学currently-learning">📚 <span lang="zh">最近在学</span><span lang="en" style="display:none">Currently Learning</span></h2>
 
-- <span lang="zh">信息系统项目管理（软考高项）</span><span lang="en" style="display:none">IT Project Management (Senior Certification)</span>
-- <span lang="zh">高等数学</span><span lang="en" style="display:none">Advanced Mathematics</span>
-- <span lang="zh">AI/LLM 应用开发</span><span lang="en" style="display:none">AI / LLM Application Development</span>
+<ul>
+  <li><span lang="zh">信息系统项目管理（软考高项）</span><span lang="en" style="display:none">IT Project Management (Senior Certification)</span></li>
+  <li><span lang="zh">高等数学</span><span lang="en" style="display:none">Advanced Mathematics</span></li>
+  <li><span lang="zh">AI/LLM 应用开发</span><span lang="en" style="display:none">AI / LLM Application Development</span></li>
+</ul>
 
----
+<hr />
 
 <div class="contact-section">
   <h3>🌐 <span lang="zh">联系方式</span><span lang="en" style="display:none">Contact</span></h3>
@@ -576,10 +572,9 @@ function toggleLang() {
   </div>
 </div>
 
----
+<hr />
 
-*Stay hungry, stay foolish.*
-</script>
+<p><em>Stay hungry, stay foolish.</em></p>
 </div><div class="d-print-none"><footer class="article__footer"><!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
      style="display:block; text-align:center; margin: 2rem 0;"
      data-ad-client="ca-pub-8144860176707664"

@@ -57,6 +57,19 @@ window.addEventListener('storage', function(e) {
 });
 </script>
 
+/* Language toggle button */
+.lang-btn, .bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.lang-btn:hover, .bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+
 <!-- Bilingual CSS: show/hide based on data-lang attribute -->
 <style>
 [data-lang="en"] [lang="zh"],
