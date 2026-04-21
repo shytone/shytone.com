@@ -341,7 +341,28 @@ window.addEventListener('DOMContentLoaded', function() {
        data-ad-format="auto"
        data-full-width-responsive="true">
   </ins>
-</div><div class="article__content" itemprop="articleBody"><style>
+</div><div class="article__content" itemprop="articleBody"><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()">🌐 <span class="lang-label">中文</span></button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<style>
 .about-hero {
   text-align: center;
   padding: 4rem 2rem;
@@ -349,130 +370,95 @@ window.addEventListener('DOMContentLoaded', function() {
   border-radius: 20px;
   margin-bottom: 3rem;
 }
-.about-hero h2 {
-  font-size: 2.5rem;
-  color: #fff;
-  margin-bottom: 1rem;
-}
-.about-hero .bio {
-  font-size: 1.1rem;
-  color: #aaa;
-  max-width: 500px;
-  margin: 0 auto;
-  line-height: 1.7;
-}
-.skill-section {
-  margin: 2rem 0;
-}
-.skill-section h3 {
-  color: #667eea;
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-.skill-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-}
-.skill-item {
-  background: rgba(102,126,234,0.08);
-  padding: 1rem;
-  border-radius: 10px;
-  border-left: 3px solid #667eea;
-}
+.about-hero h2 { font-size: 2.5rem; color: #fff; margin-bottom: 1rem; }
+.about-hero .bio { font-size: 1.1rem; color: #aaa; max-width: 500px; margin: 0 auto; line-height: 1.7; }
+.skill-section { margin: 2rem 0; }
+.skill-section h3 { color: #667eea; font-size: 1.2rem; margin-bottom: 1rem; }
+.skill-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; }
+.skill-item { background: rgba(102,126,234,0.08); padding: 1rem; border-radius: 10px; border-left: 3px solid #667eea; }
 .skill-item strong { color: #fff; display: block; margin-bottom: 0.3rem; }
 .skill-item span { color: #888; font-size: 0.9rem; }
-
 .contact-section {
   background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
-  padding: 2rem;
-  border-radius: 16px;
-  margin-top: 3rem;
-  text-align: center;
+  padding: 2rem; border-radius: 16px; margin-top: 3rem; text-align: center;
 }
 .contact-section h3 { color: #fff; margin-bottom: 1rem; }
-.contact-links {
-  display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
+.contact-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+.contact-links a { color: #667eea; text-decoration: none; padding: 10px 24px; border: 1px solid rgba(102,126,234,0.3); border-radius: 30px; transition: all 0.2s; }
+.contact-links a:hover { background: rgba(102,126,234,0.15); }
+.lang-btn {
+  background: rgba(102,126,234,0.1); border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
 }
-.contact-links a {
-  color: #667eea;
-  text-decoration: none;
-  padding: 10px 24px;
-  border: 1px solid rgba(102,126,234,0.3);
-  border-radius: 30px;
-  transition: all 0.2s;
-}
-.contact-links a:hover {
-  background: rgba(102,126,234,0.15);
-}
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
 </style>
 
 <div class="about-hero">
-  <h2>👤 关于我</h2>
-  <p class="bio">我是 shytone，一个热爱技术、喜欢折腾的开发者。专注于全栈开发，享受用代码解决问题的过程。</p>
+  <h2>👤 <span lang="zh">关于我</span><span lang="en" style="display:none">About Me</span></h2>
+  <p class="bio" lang="zh">我是 shytone，一个热爱技术、喜欢折腾的开发者。专注于全栈开发，享受用代码解决问题的过程。</p>
+  <p class="bio" lang="en" style="display:none">I'm shytone — a tech-enthusiast developer who loves building things. Full-stack dev, passionate about solving problems with code.</p>
 </div>
 
-<h2 id="-在做的事">🎯 在做的事</h2>
+<h2 id="-在做的事what-i-do">🎯 <span lang="zh">在做的事</span><span lang="en" style="display:none">What I Do</span></h2>
 
 <ul>
-  <li><strong>技术开发</strong> — 全栈开发，擅长 Python、Go、JavaScript</li>
-  <li><strong>软考备考</strong> — 信息系统项目管理师（高级）</li>
-  <li><strong>终身学习</strong> — 持续输出，持续成长</li>
+  <li><strong><span lang="zh">技术开发</span><span lang="en" style="display:none">Tech Development</span></strong> — <span lang="zh">全栈开发，擅长 Python、Go、JavaScript</span><span lang="en" style="display:none">Full-stack dev, Python, Go, JavaScript</span></li>
+  <li><strong><span lang="zh">软考备考</span><span lang="en" style="display:none">Exam Prep</span></strong> — <span lang="zh">信息系统项目管理师（高级）</span><span lang="en" style="display:none">Senior IT Project Manager Certification</span></li>
+  <li><strong><span lang="zh">终身学习</span><span lang="en" style="display:none">Lifelong Learning</span></strong> — <span lang="zh">持续输出，持续成长</span><span lang="en" style="display:none">Keep shipping, keep growing</span></li>
 </ul>
 
 <hr />
 
-<h2 id="-技术栈">🛠 技术栈</h2>
+<h2 id="-技术栈tech-stack">🛠 <span lang="zh">技术栈</span><span lang="en" style="display:none">Tech Stack</span></h2>
 
 <div class="skill-section">
-  <h3>💻 语言</h3>
+  <h3>💻 <span lang="zh">语言</span><span lang="en" style="display:none">Languages</span></h3>
   <div class="skill-grid">
-    <div class="skill-item"><strong>Python</strong><span>主力语言</span></div>
-    <div class="skill-item"><strong>Go</strong><span>并发处理</span></div>
-    <div class="skill-item"><strong>JavaScript</strong><span>前端开发</span></div>
-    <div class="skill-item"><strong>Java</strong><span>企业级开发</span></div>
+    <div class="skill-item"><strong>Python</strong><span lang="zh">主力语言</span><span lang="en" style="display:none">Primary language</span></div>
+    <div class="skill-item"><strong>Go</strong><span lang="zh">并发处理</span><span lang="en" style="display:none">Concurrency</span></div>
+    <div class="skill-item"><strong>JavaScript</strong><span lang="zh">前端开发</span><span lang="en" style="display:none">Frontend</span></div>
+    <div class="skill-item"><strong>Java</strong><span lang="zh">企业级开发</span><span lang="en" style="display:none">Enterprise</span></div>
   </div>
 </div>
 
 <div class="skill-section">
-  <h3>⚙️ 框架 &amp; 工具</h3>
+  <h3>⚙️ <span lang="zh">框架 &amp; 工具</span><span lang="en" style="display:none">Frameworks &amp; Tools</span></h3>
   <div class="skill-grid">
-    <div class="skill-item"><strong>Django / Flask</strong><span>Python Web</span></div>
-    <div class="skill-item"><strong>Spring Boot</strong><span>Java 框架</span></div>
-    <div class="skill-item"><strong>React</strong><span>前端框架</span></div>
-    <div class="skill-item"><strong>Git / Docker</strong><span>DevOps 工具</span></div>
+    <div class="skill-item"><strong>Django / Flask</strong><span lang="zh">Python Web</span><span lang="en" style="display:none">Python Web</span></div>
+    <div class="skill-item"><strong>Spring Boot</strong><span lang="zh">Java 框架</span><span lang="en" style="display:none">Java Framework</span></div>
+    <div class="skill-item"><strong>React</strong><span lang="zh">前端框架</span><span lang="en" style="display:none">Frontend Framework</span></div>
+    <div class="skill-item"><strong>Git / Docker</strong><span lang="zh">DevOps 工具</span><span lang="en" style="display:none">DevOps Tools</span></div>
   </div>
 </div>
 
 <div class="skill-section">
-  <h3>☁️ 云服务</h3>
+  <h3>☁️ <span lang="zh">云服务</span><span lang="en" style="display:none">Cloud Services</span></h3>
   <div class="skill-grid">
-    <div class="skill-item"><strong>腾讯云</strong><span>主力云平台</span></div>
-    <div class="skill-item"><strong>阿里云</strong><span>备用云平台</span></div>
+    <div class="skill-item"><strong>腾讯云</strong><span lang="zh">主力云平台</span><span lang="en" style="display:none">Primary cloud</span></div>
+    <div class="skill-item"><strong>阿里云</strong><span lang="zh">备用云平台</span><span lang="en" style="display:none">Backup cloud</span></div>
   </div>
 </div>
 
 <hr />
 
-<h2 id="-最近在学">📚 最近在学</h2>
+<h2 id="-最近在学currently-learning">📚 <span lang="zh">最近在学</span><span lang="en" style="display:none">Currently Learning</span></h2>
 
 <ul>
-  <li>信息系统项目管理（软考高项）</li>
-  <li>高等数学</li>
-  <li>AI/LLM 应用开发</li>
+  <li><span lang="zh">信息系统项目管理（软考高项）</span><span lang="en" style="display:none">IT Project Management (Senior Certification)</span></li>
+  <li><span lang="zh">高等数学</span><span lang="en" style="display:none">Advanced Mathematics</span></li>
+  <li><span lang="zh">AI/LLM 应用开发</span><span lang="en" style="display:none">AI / LLM Application Development</span></li>
 </ul>
 
 <hr />
 
 <div class="contact-section">
-  <h3>🌐 联系方式</h3>
+  <h3>🌐 <span lang="zh">联系方式</span><span lang="en" style="display:none">Contact</span></h3>
   <div class="contact-links">
     <a href="https://github.com/shytone" target="_blank">📦 GitHub</a>
-    <a href="/relax.html">🎮 摸鱼专区</a>
-    <a href="/ai-daily.html">🤖 AI 日刊</a>
+    <a href="/relax.html">🎮 <span lang="zh">摸鱼专区</span><span lang="en" style="display:none">Relax Zone</span></a>
+    <a href="/ai-daily.html">🤖 <span lang="zh">AI 日刊</span><span lang="en" style="display:none">AI Daily</span></a>
   </div>
 </div>
 

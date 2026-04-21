@@ -320,10 +320,46 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>404</h1></header><meta itemprop="headline" content="404"><meta itemprop="author" content="shytone"/><div class="js-article-content"><div class="layout--404">
+<article itemscope itemtype="http://schema.org/WebPage"><header style="display:none;"><h1>404</h1></header><meta itemprop="headline" content="404"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()">🌐 <span class="lang-label">中文</span></button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<style>
+.layout--404 { text-align: center; padding: 4rem 2rem; }
+.layout--404 .sign h1 { font-size: 6rem; color: #fc4d50; }
+.layout--404 .sign p { font-size: 1.5rem; color: #969896; }
+.lang-btn {
+  background: rgba(252,77,80,0.1); border: 1px solid rgba(252,77,80,0.3);
+  color: #fc4d50; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem;
+}
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+</style>
+
+<div class="layout--404">
   <div class="sign">
     <h1>404</h1>
-    <p>Page not found :(</p>
+    <p lang="zh">页面不存在 :(</p>
+    <p lang="en" style="display:none">Page not found :(</p>
+    <p><a href="/" style="color:#fc4d50;"><span lang="zh">← 返回首页</span><span lang="en" style="display:none">← Back to Home</span></a></p>
   </div>
 </div>
 

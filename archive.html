@@ -320,7 +320,44 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>归档</h1></header></div><meta itemprop="headline" content="归档"><meta itemprop="author" content="shytone"/><div class="js-article-content"><div class="layout--archive js-all"><div class="site-tags js-tags">
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>归档</h1></header></div><meta itemprop="headline" content="归档"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<style>
+.lang-btn {
+  background: rgba(252,77,80,0.1); border: 1px solid rgba(252,77,80,0.3);
+  color: #fc4d50; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
+}
+.lang-btn:hover { background: rgba(252,77,80,0.2); }
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+</style>
+
+<div class="layout--archive js-all"><div class="site-tags js-tags">
   <ul class="menu">
     <li>
       <button type="button" class="button button--secondary button--pill tag-button tag-button--all" data-encode="">

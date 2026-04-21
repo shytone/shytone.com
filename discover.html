@@ -320,7 +320,33 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>发现</h1></header></div><meta itemprop="headline" content="发现"><meta itemprop="author" content="shytone"/><div class="js-article-content"><style>
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>发现</h1></header></div><meta itemprop="headline" content="发现"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<style>
 .discover-intro {
   text-align: center;
   padding: 4rem 2rem;
@@ -329,27 +355,31 @@ window.addEventListener('DOMContentLoaded', function() {
   margin-bottom: 3rem;
 }
 .discover-intro h2 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
+  font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem;
   background: linear-gradient(90deg, #fc4d50, #ff6b6b);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
   background-clip: text;
 }
-.discover-intro p {
-  font-size: 1.2rem;
-  color: #a0a0a0;
+.discover-intro p { font-size: 1.2rem; color: #a0a0a0; }
+.lang-btn {
+  background: rgba(252,77,80,0.1); border: 1px solid rgba(252,77,80,0.3);
+  color: #fc4d50; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
 }
+.lang-btn:hover { background: rgba(252,77,80,0.2); }
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
 </style>
 
 <div class="discover-intro">
-  <h2>🔍 每日发现</h2>
-  <p>科技、数码、开发资讯汇总</p>
+  <h2 lang="zh">🔍 每日发现</h2>
+  <h2 lang="en" style="display:none">🔍 Daily Discover</h2>
+  <p lang="zh">科技、数码、开发资讯汇总</p>
+  <p lang="en" style="display:none">Tech, Gadgets & Developer News</p>
 </div>
 
 <div class="article-list">
-  
+
 
   <article class="article-card">
     <h3><a href="/discover/20260421-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/">今日发现 2026-04-21</a></h3>
@@ -357,15 +387,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="date">2026-04-21</span>
       
       <div class="tags">
-        
-        <span class="tag">科技</span>
-        
-        <span class="tag">AI</span>
-        
-        <span class="tag">数码</span>
-        
-        <span class="tag">开发</span>
-        
+        <span class="tag">科技</span><span class="tag">AI</span><span class="tag">数码</span><span class="tag">开发</span>
       </div>
       
     </div>
@@ -373,22 +395,14 @@ window.addEventListener('DOMContentLoaded', function() {
     <p class="description">每日科技、数码，开发相关新闻汇总</p>
     
   </article>
-  
+
   <article class="article-card">
     <h3><a href="/discover/20260420-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/">今日发现 2026-04-20</a></h3>
     <div class="article-meta">
       <span class="date">2026-04-20</span>
       
       <div class="tags">
-        
-        <span class="tag">科技</span>
-        
-        <span class="tag">AI</span>
-        
-        <span class="tag">数码</span>
-        
-        <span class="tag">开发</span>
-        
+        <span class="tag">科技</span><span class="tag">AI</span><span class="tag">数码</span><span class="tag">开发</span>
       </div>
       
     </div>
@@ -396,7 +410,7 @@ window.addEventListener('DOMContentLoaded', function() {
     <p class="description">每日科技、数码，开发相关新闻汇总</p>
     
   </article>
-  
+
 </div>
 
 ---

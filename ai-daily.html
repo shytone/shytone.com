@@ -320,7 +320,33 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>AI 日刊</h1></header></div><meta itemprop="headline" content="AI 日刊"><meta itemprop="author" content="shytone"/><div class="js-article-content"><style>
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>AI 日刊</h1></header></div><meta itemprop="headline" content="AI 日刊"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<style>
 .ai-daily-intro {
   text-align: center;
   padding: 4rem 2rem;
@@ -328,109 +354,68 @@ window.addEventListener('DOMContentLoaded', function() {
   border-radius: 20px;
   margin-bottom: 3rem;
 }
-.ai-daily-intro h2 {
-  font-size: 2.5rem;
-  color: #fff;
-  margin-bottom: 0.5rem;
-}
-.ai-daily-intro .subtitle {
-  color: rgba(255,255,255,0.7);
-  font-size: 1rem;
-}
-
+.ai-daily-intro h2 { font-size: 2.5rem; color: #fff; margin-bottom: 0.5rem; }
+.ai-daily-intro .subtitle { color: rgba(255,255,255,0.7); font-size: 1rem; }
 .page-nav {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  flex-wrap: wrap;
+  display: flex; justify-content: center; gap: 1rem;
+  margin-bottom: 2rem; flex-wrap: wrap;
 }
 .page-nav a {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
-  padding: 10px 24px;
-  border-radius: 30px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: transform 0.2s;
+  color: #fff; padding: 10px 24px; border-radius: 30px;
+  text-decoration: none; font-weight: 600; transition: transform 0.2s;
 }
 .page-nav a:hover { transform: translateY(-2px); }
-
-.ai-articles {
-  display: grid;
-  gap: 1.5rem;
-}
+.ai-articles { display: grid; gap: 1.5rem; }
 .ai-article-item {
   background: linear-gradient(145deg, #1a1a2e 0%, #16213e 100%);
   border: 1px solid rgba(102,126,234,0.15);
-  border-radius: 16px;
-  padding: 1.5rem;
+  border-radius: 16px; padding: 1.5rem;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.ai-article-item:hover {
-  transform: translateX(8px);
-  box-shadow: 0 8px 30px rgba(102,126,234,0.15);
-}
-.ai-article-item h3 {
-  margin: 0 0 0.8rem;
-  font-size: 1.2rem;
-}
-.ai-article-item h3 a {
-  color: #fff;
-  text-decoration: none;
-  transition: color 0.2s;
-}
+.ai-article-item:hover { transform: translateX(8px); box-shadow: 0 8px 30px rgba(102,126,234,0.15); }
+.ai-article-item h3 { margin: 0 0 0.8rem; font-size: 1.2rem; }
+.ai-article-item h3 a { color: #fff; text-decoration: none; transition: color 0.2s; }
 .ai-article-item h3 a:hover { color: #667eea; }
-.article-meta {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 0.8rem;
-}
+.article-meta { font-size: 0.85rem; color: #666; margin-bottom: 0.8rem; }
 .article-meta .tag {
-  background: rgba(102,126,234,0.15);
-  padding: 3px 10px;
-  border-radius: 12px;
-  margin-left: 8px;
-  color: #667eea;
+  background: rgba(102,126,234,0.15); padding: 3px 10px;
+  border-radius: 12px; margin-left: 8px; color: #667eea;
 }
-.description {
-  color: #888;
-  font-size: 0.95rem;
-  line-height: 1.6;
-  margin: 0;
-}
-.empty {
-  text-align: center;
-  color: #555;
-  padding: 3rem 0;
-  font-size: 1.1rem;
-}
-
+.description { color: #888; font-size: 0.95rem; line-height: 1.6; margin: 0; }
+.empty { text-align: center; color: #555; padding: 3rem 0; font-size: 1.1rem; }
 .ai-footer {
-  text-align: center;
-  padding: 2rem 0;
-  margin-top: 3rem;
+  text-align: center; padding: 2rem 0; margin-top: 3rem;
   border-top: 1px solid rgba(102,126,234,0.1);
-  color: #555;
-  font-size: 0.9rem;
+  color: #555; font-size: 0.9rem;
 }
+.lang-btn {
+  background: rgba(102,126,234,0.1); border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
+}
+.lang-btn:hover { background: rgba(102,126,234,0.2); }
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
 </style>
 
 <div class="page-nav">
-  <a href="/">📝 首页</a>
-  <a href="/relax.html">🎮 摸鱼专区</a>
-  <a href="/about.html">👤 关于</a>
+  <a href="/">📝 <span lang="zh">首页</span><span lang="en" style="display:none">Home</span></a>
+  <a href="/relax.html">🎮 <span lang="zh">摸鱼专区</span><span lang="en" style="display:none">Relax</span></a>
+  <a href="/about.html">👤 <span lang="zh">关于</span><span lang="en" style="display:none">About</span></a>
 </div>
 
 <section class="ai-daily-intro">
   <h2>🤖 AI Daily</h2>
-  <p>每日一篇 AI 相关文章 · One AI article every day</p>
-  <p class="subtitle">分享 AI 工具技巧、行业发展、个人思考</p>
+  <p lang="zh">每日一篇 AI 相关文章</p>
+  <p lang="en" style="display:none">One AI article every day</p>
+  <p class="subtitle" lang="zh">分享 AI 工具技巧、行业发展、个人思考</p>
+  <p class="subtitle" lang="en" style="display:none">AI tool tips, industry news & personal insights</p>
 </section>
 
 ---
 
-## 📅 最新文章
+## 📅 <span lang="zh">最新文章</span><span lang="en" style="display:none">Latest Articles</span>
 
 <div class="ai-articles">
 
@@ -443,13 +428,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="date">2026-04-20</span>
       
         <span class="tags">
-          
-            <span class="tag">AI</span>
-          
-            <span class="tag">ChatGPT</span>
-          
-            <span class="tag">提示词</span>
-          
+          <span class="tag">AI</span><span class="tag">ChatGPT</span><span class="tag">提示词</span>
         </span>
       
     </div>
@@ -466,13 +445,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="date">2026-04-19</span>
       
         <span class="tags">
-          
-            <span class="tag">AI</span>
-          
-            <span class="tag">编程</span>
-          
-            <span class="tag">GitHub Copilot</span>
-          
+          <span class="tag">AI</span><span class="tag">编程</span><span class="tag">GitHub Copilot</span>
         </span>
       
     </div>
@@ -489,13 +462,7 @@ window.addEventListener('DOMContentLoaded', function() {
       <span class="date">2026-04-19</span>
       
         <span class="tags">
-          
-            <span class="tag">AI</span>
-          
-            <span class="tag">英语</span>
-          
-            <span class="tag">学习</span>
-          
+          <span class="tag">AI</span><span class="tag">英语</span><span class="tag">学习</span>
         </span>
       
     </div>
@@ -508,97 +475,19 @@ window.addEventListener('DOMContentLoaded', function() {
 
 ---
 
-## 📜 历史文章
+## 📜 <span lang="zh">历史文章</span><span lang="en" style="display:none">Archive</span>
 
-<p><a href="/ai-daily/archive.html">查看全部文章 →</a></p>
+<p><a href="/ai-daily/archive.html"><span lang="zh">查看全部文章 →</span><span lang="en" style="display:none">View all articles →</span></a></p>
 
 <div class="ai-footer">
   <span id="busuanzi_container_page_pv">
-    👁️ 本页浏览 <span id="busuanzi_value_page_pv">-</span>
+    👁️ <span lang="zh">本页浏览</span><span lang="en" style="display:none">Page views</span> <span id="busuanzi_value_page_pv">-</span>
   </span>
   <span class="counter-sep">·</span>
-  <span>🤖 AI 辅助内容</span>
+  <span>🤖 <span lang="zh">AI 辅助内容</span><span lang="en" style="display:none">AI-assisted content</span></span>
 </div>
 
-<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
-
----
-
-<style>
-.ai-daily-intro {
-  text-align: center;
-  padding: 2rem 0;
-}
-.ai-daily-intro h2 {
-  font-size: 2rem;
-  margin-bottom: 0.5rem;
-}
-.ai-daily-intro .subtitle {
-  color: #666;
-  font-size: 0.95rem;
-}
-.ai-articles {
-  margin: 2rem 0;
-}
-.ai-article-item {
-  padding: 1rem 0;
-  border-bottom: 1px solid #eee;
-}
-.ai-article-item:last-child {
-  border-bottom: none;
-}
-.ai-article-item h3 {
-  margin: 0 0 0.5rem 0;
-  font-size: 1.2rem;
-}
-.ai-article-item h3 a {
-  color: #333;
-  text-decoration: none;
-}
-.ai-article-item h3 a:hover {
-  color: #007bff;
-}
-.article-meta {
-  font-size: 0.85rem;
-  color: #888;
-  margin-bottom: 0.5rem;
-}
-.article-meta .tag {
-  background: #f0f0f0;
-  padding: 2px 8px;
-  border-radius: 4px;
-  margin-left: 8px;
-}
-.article-meta .tags {
-  margin-left: 8px;
-}
-.description {
-  color: #555;
-  font-size: 0.95rem;
-  line-height: 1.6;
-}
-.empty {
-  text-align: center;
-  color: #999;
-  padding: 3rem 0;
-}
-/* AI Generated Badge */
-.ai-badge {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  display: inline-block;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
-.article-content .ai-badge {
-  display: block;
-  margin: 0 0 1.5rem 0;
-}
-</style>
+<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
 
 ---
 seo:

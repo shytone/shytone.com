@@ -404,9 +404,37 @@ Dijkstra is a greedy algorithm for single-source shortest path in graphs with no
             </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-21T00:00:00+08:00">
     <meta itemprop="keywords" content="算法,最短路径,困难,数据结构,算法讲解"></div>
       </article></div>
-</div><div class="algorithms-header">
-  <h1>🧮 算法专栏</h1>
-  <p>从基础到复杂，每日精讲一个算法 | From Basics to Advanced, Daily Algorithm Deep Dive</p>
+</div><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<div class="algorithms-header">
+  <h1 lang="zh">🧮 算法专栏</h1>
+  <h1 lang="en" style="display:none">🧮 Algorithms</h1>
+  <p lang="zh">从基础到复杂，每日精讲一个算法</p>
+  <p lang="en" style="display:none">From Basics to Advanced, Daily Algorithm Deep Dive</p>
 </div>
 
 <style>
@@ -417,14 +445,16 @@ Dijkstra is a greedy algorithm for single-source shortest path in graphs with no
   border-radius: 12px;
   margin-bottom: 2rem;
 }
-.algorithms-header h1 {
-  color: #fc4d50;
-  margin-bottom: 0.5rem;
+.algorithms-header h1 { color: #fc4d50; margin-bottom: 0.5rem; }
+.algorithms-header p { color: #969896; font-size: 1rem; }
+.lang-btn {
+  background: rgba(252,77,80,0.1); border: 1px solid rgba(252,77,80,0.3);
+  color: #fc4d50; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
 }
-.algorithms-header p {
-  color: #969896;
-  font-size: 1rem;
-}
+.lang-btn:hover { background: rgba(252,77,80,0.2); }
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
 </style>
 
 </div><section class="page__comments d-print-none"></section></article>

@@ -487,19 +487,27 @@ window.addEventListener('DOMContentLoaded', function() {
 }
 .visitor-counter { color: #666; font-size: 0.9rem; }
 .counter-item { margin: 0 6px; }
+.lang-btn {
+  background: rgba(102,126,234,0.1); border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
+}
+.lang-btn:hover { background: rgba(102,126,234,0.2); }
+[data-lang="en"] [lang="zh"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
 .counter-sep { color: #444; }
 </style>
 
 <section class="relax-hero">
-  <h2>🎮 摸鱼专区</h2>
-  <p>工作学习累了？来玩个小游戏放松一下吧~</p>
+  <h2>🎮 <span lang="zh">摸鱼专区</span><span lang="en" style="display:none">Relax Zone</span></h2>
+  <p lang="zh">工作学习累了？来玩个小游戏放松一下吧~</p><p lang="en" style="display:none">Need a break? Play a quick game to unwind~</p>
   <p class="subtitle">休息是为了走更远的路 · Rest makes the journey worthwhile</p>
 </section>
 
 <div class="page-nav">
-  <a href="/">📝 首页</a>
-  <a href="/ai-daily.html">🤖 AI日刊</a>
-  <a href="/about.html">👤 关于</a>
+  <a href="/">📝 <span lang="zh">首页</span><span lang="en" style="display:none">Home</span></a>
+  <a href="/ai-daily.html">🤖 <span lang="zh">AI日刊</span><span lang="en" style="display:none">AI Daily</span></a>
+  <a href="/about.html">👤 <span lang="zh">关于</span><span lang="en" style="display:none">About</span></a>
 </div>
 
 ## 🕹️ 游戏列表
@@ -508,56 +516,56 @@ window.addEventListener('DOMContentLoaded', function() {
 
   <div class="game-card">
     <div class="game-header">
-      <h3>✈️ 雷电飞机大战</h3>
-      <span class="game-tag">热门</span>
+      <h3>✈️ <span lang="zh">雷电飞机大战</span><span lang="en" style="display:none">Plane Battle</span></h3>
+      <span class="game-tag" lang="zh">热门</span><span class="game-tag" lang="en" style="display:none">Popular</span>
     </div>
     <div class="game-frame">
       <canvas id="plane-canvas" width="240" height="320"></canvas>
     </div>
     <div class="game-controls">
-      <button class="game-btn" id="btn-start-plane">开始</button>
-      <button class="game-btn" id="btn-stop-plane">停止</button>
+      <button class="game-btn" id="btn-start-plane"><span lang="zh">开始</span><span lang="en" style="display:none">Start</span></button>
+      <button class="game-btn" id="btn-stop-plane"><span lang="zh">停止</span><span lang="en" style="display:none">Stop</span></button>
     </div>
-    <p class="game-desc">← → 移动 | 空格 射击</p>
+    <p class="game-desc" lang="zh">← → 移动 | 空格 射击</p><p class="game-desc" lang="en" style="display:none">← → Move | Space to shoot</p>
     <div class="game-tips">
-      <strong>📱 触屏：</strong>点击屏幕左/右半边移动，点击中间发射
+      <strong lang="zh">📱 触屏：</strong><strong lang="en" style="display:none">📱 Touch:</strong><span lang="zh">点击屏幕左/右半边移动，点击中间发射</span><span lang="en" style="display:none">Tap left/right to move, center to shoot</span>
     </div>
   </div>
 
   <div class="game-card">
     <div class="game-header">
-      <h3>📦 俄罗斯方块</h3>
+      <h3>📦 <span lang="zh">俄罗斯方块</span><span lang="en" style="display:none">Tetris</span></h3>
       <span class="game-tag">Classic</span>
     </div>
     <div class="game-frame">
       <canvas id="tetris-canvas" width="200" height="320"></canvas>
     </div>
     <div class="game-controls">
-      <button class="game-btn" id="btn-start-tetris">开始</button>
-      <button class="game-btn" id="btn-pause-tetris">暂停</button>
-      <button class="game-btn" id="btn-reset-tetris">重置</button>
+      <button class="game-btn" id="btn-start-tetris"><span lang="zh">开始</span><span lang="en" style="display:none">Start</span></button>
+      <button class="game-btn" id="btn-pause-tetris"><span lang="zh">暂停</span><span lang="en" style="display:none">Pause</span></button>
+      <button class="game-btn" id="btn-reset-tetris"><span lang="zh">重置</span><span lang="en" style="display:none">Reset</span></button>
     </div>
-    <p class="game-desc">← → 移动 | ↑ 旋转 | ↓ 加速 | 空格 快速下落</p>
+    <p class="game-desc" lang="zh">← → 移动 | ↑ 旋转 | ↓ 加速 | 空格 快速下落</p><p class="game-desc" lang="en" style="display:none">← → Move | ↑ Rotate | ↓ Drop | Space fast drop</p>
     <div class="game-tips">
-      <strong>📱 触屏：</strong>左右滑动移动，点击旋转，点击两次快速下落
+      <strong lang="zh">📱 触屏：</strong><strong lang="en" style="display:none">📱 Touch:</strong><span lang="zh">左右滑动移动，点击旋转，点击两次快速下落</span><span lang="en" style="display:none">Swipe to move, tap to rotate, double-tap to drop</span>
     </div>
   </div>
 
   <div class="game-card">
     <div class="game-header">
       <h3>🧩 2048</h3>
-      <span class="game-tag">益智</span>
+      <span class="game-tag" lang="zh">益智</span><span class="game-tag" lang="en" style="display:none">Puzzle</span>
     </div>
     <div class="game-frame">
       <div id="grid2048"></div>
     </div>
     <div class="game-controls">
-      <button class="game-btn" id="btn-new-2048">新游戏</button>
-      <button class="game-btn" id="btn-reset-2048">重置</button>
+      <button class="game-btn" id="btn-new-2048"><span lang="zh">新游戏</span><span lang="en" style="display:none">New Game</span></button>
+      <button class="game-btn" id="btn-reset-2048"><span lang="zh">重置</span><span lang="en" style="display:none">Reset</span></button>
     </div>
-    <p class="game-desc">↑ ↓ ← → 方向键合并相同数字</p>
+    <p class="game-desc" lang="zh">↑ ↓ ← → 方向键合并相同数字</p><p class="game-desc" lang="en" style="display:none">↑ ↓ ← → Arrow keys to merge numbers</p>
     <div class="game-tips">
-      <strong>📱 触屏：</strong>上下左右滑动合并
+      <strong lang="zh">📱 触屏：</strong><strong lang="en" style="display:none">📱 Touch:</strong><span lang="zh">上下左右滑动合并</span><span lang="en" style="display:none">Swipe to merge</span>
     </div>
   </div>
 
@@ -569,7 +577,7 @@ window.addEventListener('DOMContentLoaded', function() {
       👁️ 本页浏览 <span id="busuanzi_value_page_pv">-</span>
     </span>
     <span class="counter-sep">·</span>
-    <span class="counter-item">🎮 摸鱼愉快~</span>
+    <span class="counter-item">🎮 <span lang="zh">摸鱼愉快~</span><span lang="en" style="display:none">Have fun!</span></span>
   </div>
 </div>
 
