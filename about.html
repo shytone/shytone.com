@@ -11,6 +11,65 @@
 <meta name="theme-color" content="#ffffff">
 <!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
 
+<!-- Bilingual: Global Language Detection & CSS (applies to all pages) -->
+<script>
+(function() {
+  var lang = null;
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) lang = urlParams.get('lang');
+  if (!lang) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) lang = c.substring('preferred_lang='.length);
+    }
+  }
+  if (!lang) {
+    var previewLang = document.documentElement.getAttribute('data-preview-lang');
+    if (previewLang) lang = previewLang;
+  }
+  if (!lang) {
+    var navLang = navigator.language || '';
+    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  document.documentElement.setAttribute('data-lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+window.addEventListener('storage', function(e) {
+  if (e.key === 'preferred_lang') {
+    var lang = e.newValue || 'zh';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+  }
+});
+</script>
+
+<!-- Bilingual CSS: show/hide based on data-lang attribute -->
+<style>
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+[data-lang="en"] [lang="en"].tag { display: inline !important; }
+[data-lang="en"] [lang="en"].promo-card__desc,
+[data-lang="en"] [lang="en"].promo-card__sub,
+[data-lang="en"] [lang="en"].button,
+[data-lang="en"] [lang="en"].promo-section-title,
+[data-lang="en"] [lang="en"].hero__desc { display: block !important; }
+</style>
+
 <!-- DNS Prefetch for faster external resource resolution -->
 <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
 <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
@@ -333,7 +392,72 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>关于</h1></header></div><meta itemprop="headline" content="关于"><meta itemprop="author" content="shytone"/><div class="js-article-content"><div class="layout--article"><div class="article-ad" style="margin: 1.5rem 0; text-align: center;">
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>关于</h1></header></div><meta itemprop="headline" content="关于"><meta itemprop="author" content="shytone"/><div class="js-article-content"><div class="layout--article"><!-- Language Toggle for Article Pages -->
+<div style="text-align:right; padding: 0.5rem 1rem; margin-bottom: -0.5rem;">
+  <button class="bilingual-toggle" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+(function(){
+  // Detect and apply language on article pages
+  function applyLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+    var labels = document.querySelectorAll('.lang-label');
+    labels.forEach(function(el) { el.textContent = (lang === 'zh') ? '中文' : 'EN'; });
+  }
+  function getLang() {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('lang')) return urlParams.get('lang');
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) return c.substring('preferred_lang='.length);
+    }
+    var navLang = navigator.language || '';
+    return (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  function init() {
+    applyLang(getLang());
+    // Listen for toggle from other pages via storage event
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'preferred_lang') applyLang(e.newValue || 'zh');
+    });
+  }
+  init();
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+</script>
+
+<style>
+.bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+</style><div class="article-ad" style="margin: 1.5rem 0; text-align: center;">
   <ins class="adsbygoogle"
        style="display:block; width: 100%; max-width: 728px; margin: 0 auto;"
        data-ad-client="ca-pub-8144860176707664"
@@ -341,7 +465,8 @@ window.addEventListener('DOMContentLoaded', function() {
        data-ad-format="auto"
        data-full-width-responsive="true">
   </ins>
-</div><div class="article__content" itemprop="articleBody"><!-- Language Switcher -->
+</div>
+<div class="article__content" itemprop="articleBody"><!-- Language Switcher -->
 <div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
   <button class="lang-btn" onclick="toggleLang()">🌐 <span class="lang-label">中文</span></button>
 </div>
@@ -355,13 +480,6 @@ function toggleLang() {
   document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
   document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
 }
-function updateLangLabel() {
-  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
-  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
-}
-document.addEventListener('DOMContentLoaded', updateLangLabel);
-</script>
-
 <style>
 .about-hero {
   text-align: center;
@@ -401,17 +519,15 @@ document.addEventListener('DOMContentLoaded', updateLangLabel);
   <p class="bio" lang="en" style="display:none">I'm shytone — a tech-enthusiast developer who loves building things. Full-stack dev, passionate about solving problems with code.</p>
 </div>
 
-<h2 id="-在做的事what-i-do">🎯 <span lang="zh">在做的事</span><span lang="en" style="display:none">What I Do</span></h2>
+## 🎯 <span lang="zh">在做的事</span><span lang="en" style="display:none">What I Do</span>
 
-<ul>
-  <li><strong><span lang="zh">技术开发</span><span lang="en" style="display:none">Tech Development</span></strong> — <span lang="zh">全栈开发，擅长 Python、Go、JavaScript</span><span lang="en" style="display:none">Full-stack dev, Python, Go, JavaScript</span></li>
-  <li><strong><span lang="zh">软考备考</span><span lang="en" style="display:none">Exam Prep</span></strong> — <span lang="zh">信息系统项目管理师（高级）</span><span lang="en" style="display:none">Senior IT Project Manager Certification</span></li>
-  <li><strong><span lang="zh">终身学习</span><span lang="en" style="display:none">Lifelong Learning</span></strong> — <span lang="zh">持续输出，持续成长</span><span lang="en" style="display:none">Keep shipping, keep growing</span></li>
-</ul>
+- **<span lang="zh">技术开发</span><span lang="en" style="display:none">Tech Development</span>** — <span lang="zh">全栈开发，擅长 Python、Go、JavaScript</span><span lang="en" style="display:none">Full-stack dev, Python, Go, JavaScript</span>
+- **<span lang="zh">软考备考</span><span lang="en" style="display:none">Exam Prep</span>** — <span lang="zh">信息系统项目管理师（高级）</span><span lang="en" style="display:none">Senior IT Project Manager Certification</span>
+- **<span lang="zh">终身学习</span><span lang="en" style="display:none">Lifelong Learning</span>** — <span lang="zh">持续输出，持续成长</span><span lang="en" style="display:none">Keep shipping, keep growing</span>
 
-<hr />
+---
 
-<h2 id="-技术栈tech-stack">🛠 <span lang="zh">技术栈</span><span lang="en" style="display:none">Tech Stack</span></h2>
+## 🛠 <span lang="zh">技术栈</span><span lang="en" style="display:none">Tech Stack</span>
 
 <div class="skill-section">
   <h3>💻 <span lang="zh">语言</span><span lang="en" style="display:none">Languages</span></h3>
@@ -424,7 +540,7 @@ document.addEventListener('DOMContentLoaded', updateLangLabel);
 </div>
 
 <div class="skill-section">
-  <h3>⚙️ <span lang="zh">框架 &amp; 工具</span><span lang="en" style="display:none">Frameworks &amp; Tools</span></h3>
+  <h3>⚙️ <span lang="zh">框架 & 工具</span><span lang="en" style="display:none">Frameworks & Tools</span></h3>
   <div class="skill-grid">
     <div class="skill-item"><strong>Django / Flask</strong><span lang="zh">Python Web</span><span lang="en" style="display:none">Python Web</span></div>
     <div class="skill-item"><strong>Spring Boot</strong><span lang="zh">Java 框架</span><span lang="en" style="display:none">Java Framework</span></div>
@@ -441,17 +557,15 @@ document.addEventListener('DOMContentLoaded', updateLangLabel);
   </div>
 </div>
 
-<hr />
+---
 
-<h2 id="-最近在学currently-learning">📚 <span lang="zh">最近在学</span><span lang="en" style="display:none">Currently Learning</span></h2>
+## 📚 <span lang="zh">最近在学</span><span lang="en" style="display:none">Currently Learning</span>
 
-<ul>
-  <li><span lang="zh">信息系统项目管理（软考高项）</span><span lang="en" style="display:none">IT Project Management (Senior Certification)</span></li>
-  <li><span lang="zh">高等数学</span><span lang="en" style="display:none">Advanced Mathematics</span></li>
-  <li><span lang="zh">AI/LLM 应用开发</span><span lang="en" style="display:none">AI / LLM Application Development</span></li>
-</ul>
+- <span lang="zh">信息系统项目管理（软考高项）</span><span lang="en" style="display:none">IT Project Management (Senior Certification)</span>
+- <span lang="zh">高等数学</span><span lang="en" style="display:none">Advanced Mathematics</span>
+- <span lang="zh">AI/LLM 应用开发</span><span lang="en" style="display:none">AI / LLM Application Development</span>
 
-<hr />
+---
 
 <div class="contact-section">
   <h3>🌐 <span lang="zh">联系方式</span><span lang="en" style="display:none">Contact</span></h3>
@@ -462,9 +576,10 @@ document.addEventListener('DOMContentLoaded', updateLangLabel);
   </div>
 </div>
 
-<hr />
+---
 
-<p><em>Stay hungry, stay foolish.</em></p>
+*Stay hungry, stay foolish.*
+</script>
 </div><div class="d-print-none"><footer class="article__footer"><!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
      style="display:block; text-align:center; margin: 2rem 0;"
      data-ad-client="ca-pub-8144860176707664"

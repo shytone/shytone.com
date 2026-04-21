@@ -11,6 +11,65 @@
 <meta name="theme-color" content="#ffffff">
 <!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
 
+<!-- Bilingual: Global Language Detection & CSS (applies to all pages) -->
+<script>
+(function() {
+  var lang = null;
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) lang = urlParams.get('lang');
+  if (!lang) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) lang = c.substring('preferred_lang='.length);
+    }
+  }
+  if (!lang) {
+    var previewLang = document.documentElement.getAttribute('data-preview-lang');
+    if (previewLang) lang = previewLang;
+  }
+  if (!lang) {
+    var navLang = navigator.language || '';
+    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  document.documentElement.setAttribute('data-lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+window.addEventListener('storage', function(e) {
+  if (e.key === 'preferred_lang') {
+    var lang = e.newValue || 'zh';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+  }
+});
+</script>
+
+<!-- Bilingual CSS: show/hide based on data-lang attribute -->
+<style>
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+[data-lang="en"] [lang="en"].tag { display: inline !important; }
+[data-lang="en"] [lang="en"].promo-card__desc,
+[data-lang="en"] [lang="en"].promo-card__sub,
+[data-lang="en"] [lang="en"].button,
+[data-lang="en"] [lang="en"].promo-section-title,
+[data-lang="en"] [lang="en"].hero__desc { display: block !important; }
+</style>
+
 <!-- DNS Prefetch for faster external resource resolution -->
 <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
 <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
@@ -365,6 +424,72 @@ window.addEventListener('DOMContentLoaded', function() {
     <meta itemprop="keywords" content="TeXt">
 <div class="js-article-content">
 <div class="layout--article">
+<!-- Language Toggle for Article Pages -->
+<div style="text-align:right; padding: 0.5rem 1rem; margin-bottom: -0.5rem;">
+  <button class="bilingual-toggle" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+(function(){
+  // Detect and apply language on article pages
+  function applyLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+    var labels = document.querySelectorAll('.lang-label');
+    labels.forEach(function(el) { el.textContent = (lang === 'zh') ? '中文' : 'EN'; });
+  }
+  function getLang() {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('lang')) return urlParams.get('lang');
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) return c.substring('preferred_lang='.length);
+    }
+    var navLang = navigator.language || '';
+    return (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  function init() {
+    applyLang(getLang());
+    // Listen for toggle from other pages via storage event
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'preferred_lang') applyLang(e.newValue || 'zh');
+    });
+  }
+  init();
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+</script>
+
+<style>
+.bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+</style>
 <div class="article-ad" style="margin: 1.5rem 0; text-align: center;">
   <ins class="adsbygoogle" style="display:block; width: 100%; max-width: 728px; margin: 0 auto;" data-ad-client="ca-pub-8144860176707664" data-ad-slot="YOUR_AD_SLOT_ID_1" data-ad-format="auto" data-full-width-responsive="true">
   </ins>

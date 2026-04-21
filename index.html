@@ -11,6 +11,65 @@
 <meta name="theme-color" content="#ffffff">
 <!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" ><link rel="preconnect" href="https://pagead2.googlesyndication.com" crossorigin>
 
+<!-- Bilingual: Global Language Detection & CSS (applies to all pages) -->
+<script>
+(function() {
+  var lang = null;
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) lang = urlParams.get('lang');
+  if (!lang) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) lang = c.substring('preferred_lang='.length);
+    }
+  }
+  if (!lang) {
+    var previewLang = document.documentElement.getAttribute('data-preview-lang');
+    if (previewLang) lang = previewLang;
+  }
+  if (!lang) {
+    var navLang = navigator.language || '';
+    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  document.documentElement.setAttribute('data-lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+window.addEventListener('storage', function(e) {
+  if (e.key === 'preferred_lang') {
+    var lang = e.newValue || 'zh';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+  }
+});
+</script>
+
+<!-- Bilingual CSS: show/hide based on data-lang attribute -->
+<style>
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+[data-lang="en"] [lang="en"].tag { display: inline !important; }
+[data-lang="en"] [lang="en"].promo-card__desc,
+[data-lang="en"] [lang="en"].promo-card__sub,
+[data-lang="en"] [lang="en"].button,
+[data-lang="en"] [lang="en"].promo-section-title,
+[data-lang="en"] [lang="en"].hero__desc { display: block !important; }
+</style>
+
 <!-- DNS Prefetch for faster external resource resolution -->
 <link rel="dns-prefetch" href="https://cdn.bootcdn.net">
 <link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
@@ -320,70 +379,12 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>首页</h1></header></div><meta itemprop="headline" content="首页"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Toggle Script (must be in body for immediate execution) -->
-<script>
-// Language detection: check cookie first, then browser lang, then IP (via preview server header)
-(function() {
-  var lang = null;
-  // Check URL param ?lang=en|zh
-  var urlParams = new URLSearchParams(window.location.search);
-  if (urlParams.has('lang')) {
-    lang = urlParams.get('lang');
-  }
-  // Check cookie
-  if (!lang) {
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var c = cookies[i].trim();
-      if (c.indexOf('preferred_lang=') === 0) {
-        lang = c.substring('preferred_lang='.length);
-      }
-    }
-  }
-  // Check preview server header (set by Nginx based on CF-IPCountry)
-  if (!lang) {
-    var previewLang = document.documentElement.getAttribute('data-preview-lang');
-    if (previewLang) lang = previewLang;
-  }
-  // Default: use browser language
-  if (!lang) {
-    var navLang = navigator.language || navigator.userLanguage || '';
-    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
-  }
-  // Apply
-  document.documentElement.setAttribute('data-lang', lang);
-  document.body.setAttribute('data-lang', lang);
-  // Save cookie (30 days)
-  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
-})();
-</script>
-
-<!-- Language Switcher -->
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>首页</h1></header></div><meta itemprop="headline" content="首页"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
 <div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
   <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
     🌐 <span class="lang-label">中文</span>
   </button>
 </div>
-
-<script>
-function toggleLang() {
-  var current = document.documentElement.getAttribute('data-lang') || 'zh';
-  var next = (current === 'zh') ? 'en' : 'zh';
-  document.documentElement.setAttribute('data-lang', next);
-  document.body.setAttribute('data-lang', next);
-  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
-  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
-  // Update URL param without reload
-  var url = new URL(window.location);
-  url.searchParams.set('lang', next);
-  window.history.replaceState({}, '', url);
-}
-function updateLangLabel() {
-  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
-  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
-}
-document.addEventListener('DOMContentLoaded', updateLangLabel);
-</script>
 
 <!-- 首页封面 -->
 <section class="hero">
@@ -568,20 +569,8 @@ document.addEventListener('DOMContentLoaded', updateLangLabel);
 }
 
 /* ============================================
-   Bilingual: Lang-switched visibility
-   Default: show zh, hide en
-   When [data-lang=en]: show en, hide zh
+   Bilingual CSS is now in head/custom.html (global)
    ============================================ */
-[data-lang="en"] [lang="zh"],
-[data-lang="en"] [lang="zh-Hans"] {
-  display: none !important;
-}
-[data-lang="en"] [lang="en"] {
-  display: initial !important;
-}
-[data-lang="en"] [lang="en"].tag {
-  display: inline !important;
-}
 [data-lang="en"] [lang="en"].promo-card__desc,
 [data-lang="en"] [lang="en"].promo-card__sub,
 [data-lang="en"] [lang="en"].button,
