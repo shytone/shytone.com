@@ -320,7 +320,72 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>首页</h1></header></div><meta itemprop="headline" content="首页"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- 首页封面 -->
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>首页</h1></header></div><meta itemprop="headline" content="首页"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Toggle Script (must be in body for immediate execution) -->
+<script>
+// Language detection: check cookie first, then browser lang, then IP (via preview server header)
+(function() {
+  var lang = null;
+  // Check URL param ?lang=en|zh
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) {
+    lang = urlParams.get('lang');
+  }
+  // Check cookie
+  if (!lang) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) {
+        lang = c.substring('preferred_lang='.length);
+      }
+    }
+  }
+  // Check preview server header (set by Nginx based on CF-IPCountry)
+  if (!lang) {
+    var previewLang = document.documentElement.getAttribute('data-preview-lang');
+    if (previewLang) lang = previewLang;
+  }
+  // Default: use browser language
+  if (!lang) {
+    var navLang = navigator.language || navigator.userLanguage || '';
+    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  // Apply
+  document.documentElement.setAttribute('data-lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  // Save cookie (30 days)
+  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
+})();
+</script>
+
+<!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
+
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  // Update URL param without reload
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+function updateLangLabel() {
+  var lang = document.documentElement.getAttribute('data-lang') || 'zh';
+  document.querySelector('.lang-label').textContent = (lang === 'zh') ? '中文' : 'EN';
+}
+document.addEventListener('DOMContentLoaded', updateLangLabel);
+</script>
+
+<!-- 首页封面 -->
 <section class="hero">
   <div class="hero__content">
     <div class="hero__brand">
@@ -331,35 +396,54 @@ window.addEventListener('DOMContentLoaded', function() {
       </svg>
     </div>
     <h1 class="hero__title">SHYTONE.COM</h1>
-    <p class="hero__desc">技术分享 · 学习记录 · 开发者博客</p>
+
+    <!-- Bilingual tagline -->
+    <p class="hero__desc" lang="zh">技术分享 · 学习记录 · 开发者博客</p>
+    <p class="hero__desc" lang="en" style="display:none">Tech Sharing · Learning Notes · Developer Blog</p>
+
     <div class="hero__tags">
-      <span class="tag">🖥️ 软件开发</span>
-      <span class="tag">🤖 AI 工具</span>
-      <span class="tag">📚 学习备考</span>
-      <span class="tag">🎮 摸鱼时光</span>
+      <span class="tag" lang="zh">🖥️ 软件开发</span>
+      <span class="tag" lang="zh">🤖 AI 工具</span>
+      <span class="tag" lang="zh">📚 学习备考</span>
+      <span class="tag" lang="zh">🎮 摸鱼时光</span>
+      <span class="tag" lang="en" style="display:none">🖥️ Software Dev</span>
+      <span class="tag" lang="en" style="display:none">🤖 AI Tools</span>
+      <span class="tag" lang="en" style="display:none">📚 Exam Prep</span>
+      <span class="tag" lang="en" style="display:none">🎮 Leasure Time</span>
     </div>
+
     <div class="hero__actions">
-      <a href="/archive.html" class="button button--primary">浏览文章</a>
-      <a href="/about.html" class="button button--secondary">关于我</a>
+      <a href="/archive.html" class="button button--primary">
+        <span lang="zh">浏览文章</span><span lang="en" style="display:none">Browse Articles</span>
+      </a>
+      <a href="/about.html" class="button button--secondary">
+        <span lang="zh">关于我</span><span lang="en" style="display:none">About Me</span>
+      </a>
     </div>
   </div>
 </section>
 
 <!-- 推广专区 -->
 <section class="promo-section">
-  <h2 class="promo-section-title">🎁 精选推荐</h2>
+  <h2 class="promo-section-title" lang="zh">🎁 精选推荐</h2>
+  <h2 class="promo-section-title" lang="en" style="display:none">🎁 Featured Picks</h2>
   <div class="promo-grid">
 
     <!-- V2SS -->
     <div class="promo-card">
       <div class="promo-card__header">
         <span class="promo-card__icon">🪜</span>
-        <span class="promo-card__badge">科学上网</span>
+        <span class="promo-card__badge" lang="zh">科学上网</span>
+        <span class="promo-card__badge" lang="en" style="display:none">VPN</span>
       </div>
       <h3 class="promo-card__title">V2SS</h3>
-      <p class="promo-card__desc">全球节点 · 无限节点 · 自动配置 · 立即激活</p>
-      <p class="promo-card__sub">新用户 $0.15 起试用</p>
-      <a href="https://shop.v2ss.bid/users/aff.php?aff=722" class="promo-card__btn" target="_blank" rel="noopener">🚀 立即试用</a>
+      <p class="promo-card__desc" lang="zh">全球节点 · 无限节点 · 自动配置 · 立即激活</p>
+      <p class="promo-card__desc" lang="en" style="display:none">Global Nodes · Unlimited Bandwidth · Auto Config · Instant Activation</p>
+      <p class="promo-card__sub" lang="zh">新用户 $0.15 起试用</p>
+      <p class="promo-card__sub" lang="en" style="display:none">New users: $0.15 trial</p>
+      <a href="https://shop.v2ss.bid/users/aff.php?aff=722" class="promo-card__btn" target="_blank" rel="noopener">
+        <span lang="zh">🚀 立即试用</span><span lang="en" style="display:none">🚀 Get Started</span>
+      </a>
     </div>
 
     <!-- MiniMax -->
@@ -369,9 +453,13 @@ window.addEventListener('DOMContentLoaded', function() {
         <span class="promo-card__badge">AI 工具</span>
       </div>
       <h3 class="promo-card__title">MiniMax Token Plan</h3>
-      <p class="promo-card__desc">语音、音乐、视频、图片生成权益</p>
-      <p class="promo-card__sub">邀请好友立享 9折 + Builder 权益</p>
-      <a href="https://platform.minimaxi.com/subscribe/token-plan?code=E81AA6csdy&source=link" class="promo-card__btn" target="_blank" rel="noopener">👉 立即参与</a>
+      <p class="promo-card__desc" lang="zh">语音、音乐、视频、图片生成权益</p>
+      <p class="promo-card__desc" lang="en" style="display:none">Voice, Music, Video & Image Generation Credits</p>
+      <p class="promo-card__sub" lang="zh">邀请好友立享 9折 + Builder 权益</p>
+      <p class="promo-card__sub" lang="en" style="display:none">Refer friends: 10% off + Builder Perks</p>
+      <a href="https://platform.minimaxi.com/subscribe/token-plan?code=E81AA6csdy&source=link" class="promo-card__btn" target="_blank" rel="noopener">
+        <span lang="zh">👉 立即参与</span><span lang="en" style="display:none">👉 Join Now</span>
+      </a>
     </div>
 
   </div>
@@ -385,9 +473,7 @@ window.addEventListener('DOMContentLoaded', function() {
   border-radius: 12px;
   margin: 2rem 0;
 }
-.hero__brand {
-  margin-bottom: 1.5rem;
-}
+.hero__brand { margin-bottom: 1.5rem; }
 .hero__title {
   font-size: 2.5rem;
   font-weight: 700;
@@ -395,61 +481,33 @@ window.addEventListener('DOMContentLoaded', function() {
   margin: 0.5rem 0;
   letter-spacing: 2px;
 }
-.hero__desc {
-  font-size: 1.1rem;
-  color: #969896;
-  margin: 1rem 0 2rem;
-}
+.hero__desc { font-size: 1.1rem; color: #969896; margin: 1rem 0 2rem; }
 .hero__tags {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
+  display: flex; justify-content: center; flex-wrap: wrap;
+  gap: 0.75rem; margin-bottom: 2rem;
 }
 .tag {
-  background: rgba(252, 77, 80, 0.15);
-  color: #fc4d50;
-  padding: 0.4rem 1rem;
-  border-radius: 20px;
-  font-size: 0.9rem;
+  background: rgba(252,77,80,0.15); color: #fc4d50;
+  padding: 0.4rem 1rem; border-radius: 20px; font-size: 0.9rem;
 }
-.hero__actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-}
+.hero__actions { display: flex; justify-content: center; gap: 1rem; }
 .button {
-  padding: 0.75rem 2rem;
-  border-radius: 8px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.3s ease;
+  padding: 0.75rem 2rem; border-radius: 8px;
+  text-decoration: none; font-weight: 600; transition: all 0.3s ease;
 }
-.button--primary {
-  background: #fc4d50;
-  color: #fff;
+.button--primary { background: #fc4d50; color: #fff; }
+.button--primary:hover { background: #e63e42; }
+.button--secondary { background: transparent; color: #fff; border: 1px solid #969896; }
+.button--secondary:hover { border-color: #fc4d50; color: #fc4d50; }
+.lang-btn {
+  background: rgba(252,77,80,0.1); border: 1px solid rgba(252,77,80,0.3);
+  color: #fc4d50; padding: 4px 12px; border-radius: 12px;
+  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
 }
-.button--primary:hover {
-  background: #e63e42;
-}
-.button--secondary {
-  background: transparent;
-  color: #fff;
-  border: 1px solid #969896;
-}
-.button--secondary:hover {
-  border-color: #fc4d50;
-  color: #fc4d50;
-}
-.promo-section {
-  margin: 2rem 0;
-}
+.lang-btn:hover { background: rgba(252,77,80,0.2); }
+.promo-section { margin: 2rem 0; }
 .promo-section-title {
-  font-size: 1.2rem;
-  color: #969896;
-  margin-bottom: 1rem;
-  text-align: center;
+  font-size: 1.2rem; color: #969896; margin-bottom: 1rem; text-align: center;
 }
 .promo-grid {
   display: grid;
@@ -459,169 +517,129 @@ window.addEventListener('DOMContentLoaded', function() {
 .promo-card {
   background: linear-gradient(145deg, #1e1e28 0%, #252530 100%);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 16px;
-  padding: 1.5rem;
-  position: relative;
-  overflow: hidden;
+  border-radius: 16px; padding: 1.5rem;
+  position: relative; overflow: hidden;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.promo-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
-}
-.promo-card--ai {
-  border-color: rgba(102,126,234,0.2);
-}
-.promo-card__header {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin-bottom: 1rem;
-}
-.promo-card__icon {
-  font-size: 1.8rem;
-}
+.promo-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.3); }
+.promo-card--ai { border-color: rgba(102,126,234,0.2); }
+.promo-card__header { display: flex; align-items: center; gap: 0.75rem; margin-bottom: 1rem; }
+.promo-card__icon { font-size: 1.8rem; }
 .promo-card__badge {
-  background: rgba(102,126,234,0.15);
-  color: #667eea;
-  padding: 3px 10px;
-  border-radius: 12px;
-  font-size: 0.75rem;
-  font-weight: 600;
+  background: rgba(102,126,234,0.15); color: #667eea;
+  padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600;
 }
-.promo-card__title {
-  margin: 0 0 0.5rem;
-  font-size: 1.3rem;
-  color: #fff;
-  font-weight: 700;
-}
-.promo-card__desc {
-  margin: 0 0 0.5rem;
-  color: rgba(255,255,255,0.6);
-  font-size: 0.9rem;
-  line-height: 1.5;
-}
-.promo-card__sub {
-  margin: 0 0 1rem;
-  color: #667eea;
-  font-size: 0.85rem;
-  font-weight: 500;
-}
+.promo-card__title { margin: 0 0 0.5rem; font-size: 1.3rem; color: #fff; font-weight: 700; }
+.promo-card__desc { margin: 0 0 0.5rem; color: rgba(255,255,255,0.6); font-size: 0.9rem; line-height: 1.5; }
+.promo-card__sub { margin: 0 0 1rem; color: #667eea; font-size: 0.85rem; font-weight: 500; }
 .promo-card__btn {
   display: inline-block;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-  color: #fff;
-  padding: 10px 20px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9rem;
+  color: #fff; padding: 10px 20px; border-radius: 20px;
+  text-decoration: none; font-weight: 600; font-size: 0.9rem;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 4px 15px rgba(102,126,234,0.3);
 }
-.promo-card__btn:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102,126,234,0.4);
-}
-@media (max-width: 600px) {
-  .hero {
-    padding: 2rem 1rem;
-  }
-  .hero__title {
-    font-size: 1.8rem;
-  }
-  .hero__actions {
-    flex-direction: column;
-  }
-  .promo-grid {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-
-<!-- 分类浏览 -->
-<section class="categories">
-  <h2 class="section-title">🗂️ 内容分类</h2>
-  <div class="category-grid">
-    <a href="/algorithms.html" class="category-card">
-      <span class="category-icon">🧮</span>
-      <span class="category-name">算法专栏</span>
-      <span class="category-desc">从基础到复杂，每日精讲</span>
-    </a>
-    <a href="/ai-daily.html" class="category-card">
-      <span class="category-icon">🤖</span>
-      <span class="category-name">AI 日刊</span>
-      <span class="category-desc">AI 工具技巧、行业资讯</span>
-    </a>
-    <a href="/discover.html" class="category-card">
-      <span class="category-icon">🔍</span>
-      <span class="category-name">每日发现</span>
-      <span class="category-desc">科技、数码、开发资讯</span>
-    </a>
-    <a href="/relax.html" class="category-card">
-      <span class="category-icon">🎮</span>
-      <span class="category-name">摸鱼专区</span>
-      <span class="category-desc">工作累了，来放松一下</span>
-    </a>
-    <a href="/archive.html" class="category-card">
-      <span class="category-icon">📚</span>
-      <span class="category-name">全部文章</span>
-      <span class="category-desc">归档、搜索、分类浏览</span>
-    </a>
-    <a href="/about.html" class="category-card">
-      <span class="category-icon">👤</span>
-      <span class="category-name">关于我</span>
-      <span class="category-desc">个人介绍、联系方式</span>
-    </a>
-  </div>
-</section>
-
-<style>
-.categories {
-  margin: 3rem 0;
-}
-.section-title {
-  font-size: 1.5rem;
-  color: #fff;
-  margin-bottom: 1.5rem;
-  text-align: center;
-}
+.promo-card__btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(102,126,234,0.4); }
+.categories { margin: 3rem 0; }
+.section-title { font-size: 1.5rem; color: #fff; margin-bottom: 1.5rem; text-align: center; }
 .category-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
 .category-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: flex; flex-direction: column; align-items: center;
   padding: 1.5rem;
   background: linear-gradient(145deg, #1e1e28 0%, #252530 100%);
   border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 12px;
-  text-decoration: none;
+  border-radius: 12px; text-decoration: none;
   transition: transform 0.2s, box-shadow 0.2s;
 }
-.category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+.category-card:hover { transform: translateY(-4px); box-shadow: 0 8px 30px rgba(0,0,0,0.3); }
+.category-icon { font-size: 2rem; margin-bottom: 0.75rem; }
+.category-name { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 0.25rem; }
+.category-desc { font-size: 0.85rem; color: #666; text-align: center; }
+@media (max-width: 600px) {
+  .hero { padding: 2rem 1rem; }
+  .hero__title { font-size: 1.8rem; }
+  .hero__actions { flex-direction: column; }
+  .promo-grid { grid-template-columns: 1fr; }
 }
-.category-icon {
-  font-size: 2rem;
-  margin-bottom: 0.75rem;
+
+/* ============================================
+   Bilingual: Lang-switched visibility
+   Default: show zh, hide en
+   When [data-lang=en]: show en, hide zh
+   ============================================ */
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] {
+  display: none !important;
 }
-.category-name {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  margin-bottom: 0.25rem;
+[data-lang="en"] [lang="en"] {
+  display: initial !important;
 }
-.category-desc {
-  font-size: 0.85rem;
-  color: #666;
-  text-align: center;
+[data-lang="en"] [lang="en"].tag {
+  display: inline !important;
 }
-</style></div><section class="page__comments d-print-none"></section></article>
+[data-lang="en"] [lang="en"].promo-card__desc,
+[data-lang="en"] [lang="en"].promo-card__sub,
+[data-lang="en"] [lang="en"].button,
+[data-lang="en"] [lang="en"].promo-section-title,
+[data-lang="en"] [lang="en"].hero__desc {
+  display: block !important;
+}
+</style>
+
+<!-- 分类浏览 -->
+<section class="categories">
+  <h2 class="section-title" lang="zh">🗂️ 内容分类</h2>
+  <h2 class="section-title" lang="en" style="display:none">🗂️ Content Categories</h2>
+  <div class="category-grid">
+    <a href="/algorithms.html" class="category-card">
+      <span class="category-icon">🧮</span>
+      <span class="category-name" lang="zh">算法专栏</span>
+      <span class="category-name" lang="en" style="display:none">Algorithms</span>
+      <span class="category-desc" lang="zh">从基础到复杂，每日精讲</span>
+      <span class="category-desc" lang="en" style="display:none">From basics to advanced, daily deep dives</span>
+    </a>
+    <a href="/ai-daily.html" class="category-card">
+      <span class="category-icon">🤖</span>
+      <span class="category-name">AI 日刊</span>
+      <span class="category-desc" lang="zh">AI 工具技巧、行业资讯</span>
+      <span class="category-desc" lang="en" style="display:none">AI tool tips & industry news</span>
+    </a>
+    <a href="/discover.html" class="category-card">
+      <span class="category-icon">🔍</span>
+      <span class="category-name" lang="zh">每日发现</span>
+      <span class="category-name" lang="en" style="display:none">Daily Discover</span>
+      <span class="category-desc" lang="zh">科技、数码、开发资讯</span>
+      <span class="category-desc" lang="en" style="display:none">Tech, gadgets & dev news</span>
+    </a>
+    <a href="/relax.html" class="category-card">
+      <span class="category-icon">🎮</span>
+      <span class="category-name" lang="zh">摸鱼专区</span>
+      <span class="category-name" lang="en" style="display:none">Relax Zone</span>
+      <span class="category-desc" lang="zh">工作累了，来放松一下</span>
+      <span class="category-desc" lang="en" style="display:none">Take a break from work</span>
+    </a>
+    <a href="/archive.html" class="category-card">
+      <span class="category-icon">📚</span>
+      <span class="category-name" lang="zh">全部文章</span>
+      <span class="category-name" lang="en" style="display:none">All Articles</span>
+      <span class="category-desc" lang="zh">归档、搜索、分类浏览</span>
+      <span class="category-desc" lang="en" style="display:none">Archive, search & categories</span>
+    </a>
+    <a href="/about.html" class="category-card">
+      <span class="category-icon">👤</span>
+      <span class="category-name" lang="zh">关于我</span>
+      <span class="category-name" lang="en" style="display:none">About Me</span>
+      <span class="category-desc" lang="zh">个人介绍、联系方式</span>
+      <span class="category-desc" lang="en" style="display:none">Intro & contact info</span>
+    </a>
+  </div>
+</section>
+</div><section class="page__comments d-print-none"></section></article>
 <!-- Google AdSense - Bottom Ads -->
 <div style="margin: 2rem auto; text-align: center; max-width: 728px;">
   <ins class="adsbygoogle"
