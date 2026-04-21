@@ -336,6 +336,38 @@ window.addEventListener('DOMContentLoaded', function() {
   </div>
 </section>
 
+<!-- 推广专区 -->
+<section class="promo-section">
+  <h2 class="promo-section-title">🎁 精选推荐</h2>
+  <div class="promo-grid">
+
+    <!-- V2SS -->
+    <div class="promo-card">
+      <div class="promo-card__header">
+        <span class="promo-card__icon">🪜</span>
+        <span class="promo-card__badge">科学上网</span>
+      </div>
+      <h3 class="promo-card__title">V2SS</h3>
+      <p class="promo-card__desc">全球节点 · 无限节点 · 自动配置 · 立即激活</p>
+      <p class="promo-card__sub">新用户 $0.15 起试用</p>
+      <a href="https://shop.v2ss.bid/users/aff.php?aff=722" class="promo-card__btn" target="_blank" rel="noopener">🚀 立即试用</a>
+    </div>
+
+    <!-- MiniMax -->
+    <div class="promo-card promo-card--ai">
+      <div class="promo-card__header">
+        <span class="promo-card__icon">🚀</span>
+        <span class="promo-card__badge">AI 工具</span>
+      </div>
+      <h3 class="promo-card__title">MiniMax Token Plan</h3>
+      <p class="promo-card__desc">语音、音乐、视频、图片生成权益</p>
+      <p class="promo-card__sub">邀请好友立享 9折 + Builder 权益</p>
+      <a href="https://platform.minimaxi.com/subscribe/token-plan?code=E81AA6csdy&source=link" class="promo-card__btn" target="_blank" rel="noopener">👉 立即参与</a>
+    </div>
+
+  </div>
+</section>
+
 <style>
 .hero {
   text-align: center;
@@ -401,6 +433,87 @@ window.addEventListener('DOMContentLoaded', function() {
   border-color: #fc4d50;
   color: #fc4d50;
 }
+.promo-section {
+  margin: 2rem 0;
+}
+.promo-section-title {
+  font-size: 1.2rem;
+  color: #969896;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+.promo-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+}
+.promo-card {
+  background: linear-gradient(145deg, #1e1e28 0%, #252530 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 16px;
+  padding: 1.5rem;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.promo-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.3);
+}
+.promo-card--ai {
+  border-color: rgba(102,126,234,0.2);
+}
+.promo-card__header {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+.promo-card__icon {
+  font-size: 1.8rem;
+}
+.promo-card__badge {
+  background: rgba(102,126,234,0.15);
+  color: #667eea;
+  padding: 3px 10px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+.promo-card__title {
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+  color: #fff;
+  font-weight: 700;
+}
+.promo-card__desc {
+  margin: 0 0 0.5rem;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+.promo-card__sub {
+  margin: 0 0 1rem;
+  color: #667eea;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+.promo-card__btn {
+  display: inline-block;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 15px rgba(102,126,234,0.3);
+}
+.promo-card__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102,126,234,0.4);
+}
 @media (max-width: 600px) {
   .hero {
     padding: 2rem 1rem;
@@ -411,9 +524,95 @@ window.addEventListener('DOMContentLoaded', function() {
   .hero__actions {
     flex-direction: column;
   }
+  .promo-grid {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
-</div><section class="page__comments d-print-none"></section></article>
+
+<!-- 分类浏览 -->
+<section class="categories">
+  <h2 class="section-title">🗂️ 内容分类</h2>
+  <div class="category-grid">
+    <a href="/algorithms.html" class="category-card">
+      <span class="category-icon">🧮</span>
+      <span class="category-name">算法专栏</span>
+      <span class="category-desc">从基础到复杂，每日精讲</span>
+    </a>
+    <a href="/ai-daily.html" class="category-card">
+      <span class="category-icon">🤖</span>
+      <span class="category-name">AI 日刊</span>
+      <span class="category-desc">AI 工具技巧、行业资讯</span>
+    </a>
+    <a href="/discover.html" class="category-card">
+      <span class="category-icon">🔍</span>
+      <span class="category-name">每日发现</span>
+      <span class="category-desc">科技、数码、开发资讯</span>
+    </a>
+    <a href="/relax.html" class="category-card">
+      <span class="category-icon">🎮</span>
+      <span class="category-name">摸鱼专区</span>
+      <span class="category-desc">工作累了，来放松一下</span>
+    </a>
+    <a href="/archive.html" class="category-card">
+      <span class="category-icon">📚</span>
+      <span class="category-name">全部文章</span>
+      <span class="category-desc">归档、搜索、分类浏览</span>
+    </a>
+    <a href="/about.html" class="category-card">
+      <span class="category-icon">👤</span>
+      <span class="category-name">关于我</span>
+      <span class="category-desc">个人介绍、联系方式</span>
+    </a>
+  </div>
+</section>
+
+<style>
+.categories {
+  margin: 3rem 0;
+}
+.section-title {
+  font-size: 1.5rem;
+  color: #fff;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.category-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+}
+.category-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1.5rem;
+  background: linear-gradient(145deg, #1e1e28 0%, #252530 100%);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.category-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+}
+.category-icon {
+  font-size: 2rem;
+  margin-bottom: 0.75rem;
+}
+.category-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 0.25rem;
+}
+.category-desc {
+  font-size: 0.85rem;
+  color: #666;
+  text-align: center;
+}
+</style></div><section class="page__comments d-print-none"></section></article>
 <!-- Google AdSense - Bottom Ads -->
 <div style="margin: 2rem auto; text-align: center; max-width: 728px;">
   <ins class="adsbygoogle"
