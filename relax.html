@@ -606,6 +606,49 @@ window.addEventListener('DOMContentLoaded', function() {
 
   <div class="game-card">
     <div class="game-header">
+      <h3>🧩 <span lang="zh">四色消除</span><span lang="en" style="display:none">SameGame</span></h3>
+      <span class="game-tag">Classic</span>
+    </div>
+    <div class="game-frame">
+      <div id="samegame-container" style="display:flex;justify-content:center;align-items:center;min-height:240px;">
+        <style>
+#samegame-wrap{display:flex;flex-direction:column;align-items:center;gap:6px}
+#sg-info{display:flex;justify-content:space-between;width:100%;max-width:310px;color:#667eea;font-size:13px;font-weight:600;padding:0 2px}
+#sg-board{display:grid;gap:2px;background:#0a0a15;padding:6px;border-radius:10px;border:2px solid rgba(102,126,234,0.15);touch-action:none;user-select:none}
+.sg-cell{width:36px;height:36px;border-radius:6px;cursor:pointer;transition:transform 0.1s;display:flex;align-items:center;justify-content:center;font-size:16px}
+.sg-cell:hover{transform:scale(1.08)}
+.sg-cell.r0{background:linear-gradient(135deg,#FF6B6B,#ee5a5a)}
+.sg-cell.r1{background:linear-gradient(135deg,#4ECDC4,#3dbdb5)}
+.sg-cell.r2{background:linear-gradient(135deg,#FFE66D,#f0d85e)}
+.sg-cell.r3{background:linear-gradient(135deg,#A78BFA,#9678f0)}
+.sg-cell.r4{background:linear-gradient(135deg,#60A5FA,#4a94f0)}
+.sg-cell.r5{background:linear-gradient(135deg,#F472B6,#e060a8)}
+.sg-cell.empty{background:transparent;cursor:default}
+@keyframes sg-pop{0%{transform:scale(1)}50%{transform:scale(1.3);opacity:0.7}100%{transform:scale(0);opacity:0}}
+.sg-cell.popping{animation:sg-pop 0.25s ease-out forwards}
+@keyframes sg-drop{0%{transform:translateY(-20px);opacity:0}100%{transform:translateY(0);opacity:1}}
+.sg-cell.dropping{animation:sg-drop 0.2s ease-out}
+</style>
+<div id="samegame-wrap">
+  <div id="sg-info"><span>🧩 SameGame</span><span>Score: <span id="sg-score">0</span></span></div>
+  <div id="sg-board"></div>
+</div>
+      </div>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" id="btn-start-samegame"><span lang="zh">新游戏</span><span lang="en" style="display:none">New</span></button>
+      <button class="game-btn" id="btn-reset-samegame"><span lang="zh">重置</span><span lang="en" style="display:none">Reset</span></button>
+    </div>
+    <p class="game-desc" lang="zh">🖱️ 点击相同颜色方块组消除（≥2个）</p><p class="game-desc" lang="en" style="display:none">🖱️ Click groups of 2+ same colors to clear</p>
+    <div class="game-tips">
+      <strong lang="zh">💡 提示：</strong><strong lang="en" style="display:none">💡 Tip:</strong><span lang="zh">消除越多得分越高，方块自动下落填充</span><span lang="en" style="display:none">More blocks = more points. Blocks fall down automatically.</span>
+    </div>
+  </div>
+
+
+
+  <div class="game-card">
+    <div class="game-header">
       <h3>📦 <span lang="zh">俄罗斯方块</span><span lang="en" style="display:none">Tetris</span></h3>
       <span class="game-tag">Classic</span>
     </div>
@@ -1263,8 +1306,131 @@ window.addEventListener('DOMContentLoaded', function() {
 
   newGame();
 })();
-</script>
-</div><section class="page__comments d-print-none"></section></article>
+
+// ==================== SameGame 四色消除 ====================
+(function() {
+  var ROWS = 10, COLS = 8, COLORS = 6;
+  var board = [], score = 0, animating = false;
+  var boardEl, scoreEl;
+
+  function init() {
+    board = [];
+    for (var r = 0; r < ROWS; r++) {
+      board[r] = [];
+      for (var c = 0; c < COLS; c++) {
+        board[r][c] = Math.floor(Math.random() * COLORS);
+      }
+    }
+    score = 0;
+    animating = false;
+    render();
+  }
+
+  function render() {
+    boardEl.style.gridTemplateColumns = 'repeat(' + COLS + ', 36px)';
+    boardEl.innerHTML = '';
+    for (var r = 0; r < ROWS; r++) {
+      for (var c = 0; c < COLS; c++) {
+        var cell = document.createElement('div');
+        var color = board[r][c];
+        cell.className = 'sg-cell' + (color < 0 ? ' empty' : ' r' + color);
+        cell.dataset.r = r;
+        cell.dataset.c = c;
+        if (color >= 0) {
+          cell.onclick = function() { handleClick(+this.dataset.r, +this.dataset.c); };
+        }
+        boardEl.appendChild(cell);
+      }
+    }
+    scoreEl.textContent = score;
+  }
+
+  function findGroup(r, c, color) {
+    if (r < 0 || r >= ROWS || c < 0 || c >= COLS) return [];
+    if (board[r][c] !== color || color < 0) return [];
+    var visited = [];
+    var stack = [[r, c]];
+    while (stack.length) {
+      var pos = stack.pop();
+      var rr = pos[0], cc = pos[1];
+      var key = rr + ',' + cc;
+      if (visited.includes(key)) continue;
+      if (board[rr][cc] !== color) continue;
+      visited.push(key);
+      stack.push([rr-1, cc], [rr+1, cc], [rr, cc-1], [rr, cc+1]);
+    }
+    return visited.map(function(v) { var parts = v.split(','); return [+parts[0], +parts[1]]; });
+  }
+
+  function handleClick(r, c) {
+    if (animating) return;
+    if (board[r][c] < 0) return;
+    var group = findGroup(r, c, board[r][c]);
+    if (group.length < 2) {
+      var cells = boardEl.querySelectorAll('.sg-cell');
+      var idx = r * COLS + c;
+      cells[idx].style.transform = 'scale(0.85)';
+      setTimeout(function() { cells[idx].style.transform = ''; }, 120);
+      return;
+    }
+    var points = group.length * (group.length - 1);
+    group.forEach(function(pos) { board[pos[0]][pos[1]] = -1; });
+    score += points;
+    animating = true;
+    render();
+    var cells = boardEl.querySelectorAll('.sg-cell');
+    group.forEach(function(pos) {
+      var idx = pos[0] * COLS + pos[1];
+      if (cells[idx]) cells[idx].classList.add('popping');
+    });
+    setTimeout(function() {
+      applyGravity();
+      animating = false;
+    }, 280);
+  }
+
+  function applyGravity() {
+    for (var c = 0; c < COLS; c++) {
+      var column = [];
+      for (var r = ROWS - 1; r >= 0; r--) {
+        if (board[r][c] >= 0) column.push(board[r][c]);
+      }
+      for (var r = ROWS - 1; r >= 0; r--) {
+        board[r][c] = column.length > 0 ? column.shift() : -1;
+      }
+    }
+    render();
+    setTimeout(function() {
+      var cells = boardEl.querySelectorAll('.sg-cell');
+      cells.forEach(function(cell) { cell.classList.add('dropping'); });
+      setTimeout(function() { cells.forEach(function(cell) { cell.classList.remove('dropping'); }); }, 200);
+    }, 10);
+  }
+
+  boardEl = document.getElementById('sg-board');
+  scoreEl = document.getElementById('sg-score');
+  if (!boardEl) return;
+
+  init();
+  document.getElementById('btn-start-samegame').onclick = init;
+  document.getElementById('btn-reset-samegame').onclick = init;
+
+  boardEl.addEventListener('touchend', function(e) {
+    e.preventDefault();
+    var rect = boardEl.getBoundingClientRect();
+    var touch = e.changedTouches[0];
+    var x = touch.clientX - rect.left;
+    var y = touch.clientY - rect.top;
+    var cellW = rect.width / COLS;
+    var cellH = rect.height / ROWS;
+    var c = Math.floor(x / cellW);
+    var r = Math.floor(y / cellH);
+    if (r >= 0 && r < ROWS && c >= 0 && c < COLS) handleClick(r, c);
+  }, { passive: false });
+})();
+
+
+</script></div><section class="page__comments d-print-none"></section></article>
 <!-- Google AdSense - Bottom Ads -->
 <div style="margin: 2rem auto; text-align: center; max-width: 728px;">
   <ins class="adsbygoogle"
