@@ -57,6 +57,7 @@ window.addEventListener('storage', function(e) {
 });
 </script>
 
+<style>
 /* Language toggle button */
 .lang-btn, .bilingual-toggle {
   background: rgba(102,126,234,0.1);
@@ -70,8 +71,7 @@ window.addEventListener('storage', function(e) {
 }
 .lang-btn:hover, .bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
 
-<!-- Bilingual CSS: show/hide based on data-lang attribute -->
-<style>
+/* Bilingual CSS: show/hide based on data-lang attribute */
 [data-lang="en"] [lang="zh"],
 [data-lang="en"] [lang="zh-Hans"] { display: none !important; }
 [data-lang="en"] [lang="en"] { display: initial !important; }
