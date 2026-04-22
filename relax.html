@@ -1560,8 +1560,9 @@ window.addEventListener('DOMContentLoaded', function() {
   }
 
   function lockPair() {
-    if (!canMove(fX, fY)) map[fX][fY] = fColor;
-    if (!canMove(sX, sY)) map[sX][sY] = sColor;
+    // When called, both balls have reached their final position (can't move down)
+    map[fX][fY] = fColor;
+    map[sX][sY] = sColor;
     checkAndClear();
     spawn();
   }
