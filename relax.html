@@ -666,6 +666,47 @@ window.addEventListener('DOMContentLoaded', function() {
     </div>
   </div>
 
+
+  <div class="game-card">
+    <div class="game-header">
+      <h3>🎯 <span lang="zh">泡泡消除</span><span lang="en" style="display:none">Popu</span></h3>
+      <span class="game-tag">Classic</span>
+    </div>
+    <div class="game-frame">
+      <div style="display:flex;justify-content:center;align-items:center;min-height:240px;">
+        <style>
+#popu-wrap{display:flex;flex-direction:column;align-items:center;gap:4px}
+#popu-info{display:flex;justify-content:space-between;width:240px;color:#667eea;font-size:12px;font-weight:600;padding:0 2px}
+#popu-board{background:#0a0a15;padding:4px;border-radius:8px;border:2px solid rgba(102,126,234,0.15);touch-action:none;user-select:none;position:relative}
+#popu-canvas{border-radius:4px;display:block}
+#popu-over{position:absolute;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.75);border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;font-size:14px;display:none}
+#popu-over.show{display:flex}
+#popu-over p{margin:4px 0;font-size:12px;color:#aaa}
+#popu-over button{margin-top:8px;padding:6px 20px;background:linear-gradient(135deg,#667eea,#764ba2);border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px}
+</style>
+<div id="popu-wrap">
+  <div id="popu-info"><span>🎯 Popu</span><span>Score: <span id="popu-score">0</span></span></div>
+  <div id="popu-board">
+    <canvas id="popu-canvas" width="240" height="320"></canvas>
+    <div id="popu-over">
+      <span>Game Over</span>
+      <p>Score: <span id="popu-final">0</span></p>
+      <button id="btn-popu-restart">Restart</button>
+    </div>
+  </div>
+</div>
+      </div>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" id="btn-start-popu"><span lang="zh">开始</span><span lang="en" style="display:none">Start</span></button>
+      <button class="game-btn" id="btn-pause-popu"><span lang="zh">暂停</span><span lang="en" style="display:none">Pause</span></button>
+    </div>
+    <p class="game-desc" lang="zh">← → 移动 | ↑ 旋转 | ↓ 加速 | 空格 快速下落</p><p class="game-desc" lang="en" style="display:none">← → Move | ↑ Rotate | ↓ Drop | Space fast drop</p>
+    <div class="game-tips">
+      <strong lang="zh">💡 规则：</strong><strong lang="en" style="display:none">💡 Rules:</strong><span lang="zh">两个球一起下落，旋转切换排列方式，4个以上相同色球相连自动消除</span><span lang="en" style="display:none">Two balls fall together, rotate to change arrangement, 4+ connected same-color balls clear automatically</span>
+    </div>
+  </div>
+
   <div class="game-card">
     <div class="game-header">
       <h3>🧩 2048</h3>
@@ -1427,6 +1468,262 @@ window.addEventListener('DOMContentLoaded', function() {
     var r = Math.floor(y / cellH);
     if (r >= 0 && r < ROWS && c >= 0 && c < COLS) handleClick(r, c);
   }, { passive: false });
+})();
+
+
+
+// ==================== Popu 泡泡消除 ====================
+(function() {
+  var COLS = 12, ROWS = 16, CELL = 20;
+  var RGB = [[0,153,204],[153,51,204],[204,0,0],[255,136,0],[102,153,0],[30,30,40]];
+  var map, fX, fY, sX, sY, fColor, sColor, turnState;
+  var score = 0, gameOver = false, paused = false, running = false;
+  var timer = null;
+  var canvas, ctx, scoreEl, overEl, finalEl;
+
+  function init() {
+    map = [];
+    for (var i = 0; i < COLS; i++) {
+      map[i] = [];
+      for (var j = 0; j < ROWS; j++) map[i][j] = 5;
+    }
+    // Walls
+    for (var j = 0; j < ROWS; j++) { map[0][j] = 6; map[COLS-1][j] = 6; }
+    for (var i = 0; i < COLS; i++) map[i][ROWS-1] = 6;
+    score = 0; gameOver = false; paused = false;
+    spawn();
+    render();
+  }
+
+  function spawn() {
+    fColor = Math.floor(Math.random() * 5);
+    sColor = Math.floor(Math.random() * 5);
+    turnState = 0;
+    fX = 5; fY = 0; sX = 6; sY = 1;
+    if (!canMove(fX, fY) || !canMove(sX, sY)) {
+      gameOver = true;
+      if (running) {
+        finalEl.textContent = score;
+        overEl.classList.add('show');
+      }
+    }
+  }
+
+  function canMove(x, y) {
+    if (x < 0 || x >= COLS || y >= ROWS) return false;
+    if (y < 0) return true;
+    return map[x][y] === 5;
+  }
+
+  function canLeft() {
+    return canMove(fX-1, fY) && canMove(sX-1, sY);
+  }
+  function canRight() {
+    return canMove(fX+1, fY) && canMove(sX+1, sY);
+  }
+  function canDown() {
+    return canMove(fX, fY+1) && canMove(sX, sY+1);
+  }
+
+  function moveLeft() {
+    if (!running || gameOver || paused) return;
+    if (canLeft()) { fX--; sX--; }
+    render();
+  }
+  function moveRight() {
+    if (!running || gameOver || paused) return;
+    if (canRight()) { fX++; sX++; }
+    render();
+  }
+
+  function rotate() {
+    if (!running || gameOver || paused) return;
+    // States: 0=vertical(fX,sX same,sY=fY+1), 1=left horiz(fX-1,sX=fX,sY=same), 2=vertical flipped(sY=fY-1), 3=right horiz
+    var next = (turnState + 1) % 4;
+    var nFX = fX, nFY = fY, nSX = sX, nSY = sY;
+    if (next === 1) { nSX = fX - 1; nSY = fY; }
+    else if (next === 2) { nSX = fX; nSY = fY - 1; }
+    else if (next === 3) { nSX = fX + 1; nSY = fY; }
+    else { nSX = fX; nSY = fY + 1; }
+    if (canMove(nFX, nFY) && canMove(nSX, nSY)) {
+      turnState = next;
+      sX = nSX; sY = nSY;
+    }
+    render();
+  }
+
+  function dropFast() {
+    if (!running || gameOver || paused) return;
+    while (canDown()) { fY++; sY++; }
+    lockPair();
+    render();
+  }
+
+  function lockPair() {
+    if (!canMove(fX, fY)) map[fX][fY] = fColor;
+    if (!canMove(sX, sY)) map[sX][sY] = sColor;
+    checkAndClear();
+    spawn();
+  }
+
+  function tick() {
+    if (!running || gameOver || paused) return;
+    if (canDown()) { fY++; sY++; }
+    else { lockPair(); }
+    render();
+  }
+
+  var isRelated = [];
+  function resetRelated() { isRelated = []; for (var i = 0; i < COLS; i++) { isRelated[i] = []; for (var j = 0; j < ROWS; j++) isRelated[i][j] = false; } }
+
+  function groupOval(a, b, value) {
+    if (a < 1 || a > COLS-2 || b < 0 || b >= ROWS-1) return;
+    if (isRelated[a][b] || map[a][b] !== value) return;
+    window._popu_nCount = (window._popu_nCount || 0) + 1;
+    isRelated[a][b] = true;
+    groupOval(a, b+1, value); groupOval(a+1, b, value);
+    groupOval(a, b-1, value); groupOval(a-1, b, value);
+  }
+
+  function setOval(a, b, value) {
+    if (a < 1 || a > COLS-2 || b < 0 || b >= ROWS-1) return;
+    if (!isRelated[a][b] || map[a][b] !== value) return;
+    isRelated[a][b] = false;
+    map[a][b] = 5;
+    setOval(a, b+1, value); setOval(a+1, b, value);
+    setOval(a, b-1, value); setOval(a-1, b, value);
+  }
+
+  function checkAndClear() {
+    var changed = true;
+    while (changed) {
+      changed = false;
+      resetRelated();
+      for (var j = ROWS - 2; j >= 0; j--) {
+        for (var i = 1; i <= COLS - 2; i++) {
+          if (map[i][j] < 5 && !isRelated[i][j]) {
+            window._popu_nCount = 0;
+            groupOval(i, j, map[i][j]);
+            if (window._popu_nCount >= 4) {
+              setOval(i, j, map[i][j]);
+              score += window._popu_nCount;
+              changed = true;
+            }
+          }
+        }
+      }
+      if (changed) dropBalls();
+    }
+  }
+
+  function dropBalls() {
+    for (var j = ROWS - 2; j >= 0; j--) {
+      for (var i = 1; i <= COLS - 2; i++) {
+        if (map[i][j] === 5) {
+          var n = j;
+          while (n > 0 && map[i][n] === 5) n--;
+          if (n !== j && map[i][n] < 5) {
+            map[i][j] = map[i][n];
+            map[i][n] = 5;
+          }
+        }
+      }
+    }
+  }
+
+  function render() {
+    if (!ctx) return;
+    ctx.fillStyle = '#0a0a15';
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // Draw map
+    for (var j = 0; j < ROWS; j++) {
+      for (var i = 0; i < COLS; i++) {
+        if (map[i][j] < 5) {
+          ctx.fillStyle = 'rgb(' + RGB[map[i][j]].join(',') + ')';
+          ctx.beginPath();
+          ctx.arc(i * CELL + CELL/2, j * CELL + CELL/2, CELL/2 - 2, 0, Math.PI * 2);
+          ctx.fill();
+        } else if (map[i][j] === 6) {
+          ctx.strokeStyle = 'rgba(102,126,234,0.3)';
+          ctx.strokeRect(i * CELL, j * CELL, CELL, CELL);
+        }
+      }
+    }
+    // Draw falling pair
+    if (running && !gameOver) {
+      ctx.fillStyle = 'rgb(' + RGB[fColor].join(',') + ')';
+      ctx.beginPath();
+      ctx.arc(fX * CELL + CELL/2, fY * CELL + CELL/2, CELL/2 - 2, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.fillStyle = 'rgb(' + RGB[sColor].join(',') + ')';
+      ctx.beginPath();
+      ctx.arc(sX * CELL + CELL/2, sY * CELL + CELL/2, CELL/2 - 2, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    scoreEl.textContent = score;
+  }
+
+  function startGame() {
+    if (timer) clearInterval(timer);
+    running = true;
+    paused = false;
+    overEl.classList.remove('show');
+    init();
+    timer = setInterval(tick, 600);
+    document.addEventListener('keydown', onKey);
+  }
+
+  function pauseGame() {
+    if (!running) return;
+    paused = !paused;
+  }
+
+  function onKey(e) {
+    if (!running) return;
+    if (e.key === 'ArrowLeft') { e.preventDefault(); moveLeft(); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); moveRight(); }
+    else if (e.key === 'ArrowUp') { e.preventDefault(); rotate(); }
+    else if (e.key === 'ArrowDown') { e.preventDefault(); if (canDown()) { fY++; sY++; render(); } }
+    else if (e.key === ' ') { e.preventDefault(); dropFast(); }
+  }
+
+  canvas = document.getElementById('popu-canvas');
+  if (!canvas) return;
+  ctx = canvas.getContext('2d');
+  scoreEl = document.getElementById('popu-score');
+  overEl = document.getElementById('popu-over');
+  finalEl = document.getElementById('popu-final');
+
+  // Button events
+  var startBtn = document.getElementById('btn-start-popu');
+  if (startBtn) startBtn.onclick = startGame;
+  var pauseBtn = document.getElementById('btn-pause-popu');
+  if (pauseBtn) pauseBtn.onclick = pauseGame;
+  var restartBtn = document.getElementById('btn-popu-restart');
+  if (restartBtn) restartBtn.onclick = startGame;
+
+  // Touch controls
+  var board = document.getElementById('popu-board');
+  if (board) {
+    var startX = 0, startY = 0;
+    board.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+      startY = e.touches[0].clientY;
+    }, { passive: true });
+    board.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - startX;
+      var dy = e.changedTouches[0].clientY - startY;
+      if (Math.abs(dx) < 15 && Math.abs(dy) < 15) { rotate(); return; }
+      if (Math.abs(dx) > Math.abs(dy)) {
+        if (dx < 0) moveLeft(); else moveRight();
+      } else {
+        if (dy > 0) { if (canDown()) { fY++; sY++; render(); } }
+        else rotate();
+      }
+    }, { passive: false });
+  }
+
+  init();
 })();
 
 
