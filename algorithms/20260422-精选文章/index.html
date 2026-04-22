@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>今日发现 2026-04-21 - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>Floyd-Warshall算法 (Floyd-Warshall Algorithm) - SHYTONE.COM</title>
 
-<meta name="description" content="🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. Qwen3.6-Max-Preview: Smarter, Sharper, Still EvolvingHacker News - mfiguiere来源：阅读原文2. All phones sold in the EU to ha...">
-<link rel="canonical" href="https://shytone.com/discover/20260421-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="🧮 Floyd-Warshall算法 (Floyd-Warshall Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 / 动态规划 (Shortest Path / Dynamic Programming)时间复杂度 / Time Complex...">
+<link rel="canonical" href="https://shytone.com/algorithms/20260422-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -92,26 +92,26 @@ window.addEventListener('storage', function(e) {
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="今日发现 2026-04-21 - SHYTONE.COM">
-<meta property="og:description" content="🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. Qwen3.6-Max-Preview: Smarter, Sharper, Still EvolvingHacker News - mfiguiere来源：阅读原文2. All phones sold in the EU to ha...">
+<meta property="og:title" content="Floyd-Warshall算法 (Floyd-Warshall Algorithm) - SHYTONE.COM">
+<meta property="og:description" content="🧮 Floyd-Warshall算法 (Floyd-Warshall Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 / 动态规划 (Shortest Path / Dynamic Programming)时间复杂度 / Time Complex...">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://shytone.com/discover/20260421-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/">
+<meta property="og:url" content="https://shytone.com/algorithms/20260422-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="今日发现 2026-04-21 - SHYTONE.COM">
-<meta name="twitter:description" content="🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. Qwen3.6-Max-Preview: Smarter, Sharper, Still EvolvingHacker News - mfiguiere来源：阅读原文2. All phones sold in the EU to ha...">
+<meta name="twitter:title" content="Floyd-Warshall算法 (Floyd-Warshall Algorithm) - SHYTONE.COM">
+<meta name="twitter:description" content="🧮 Floyd-Warshall算法 (Floyd-Warshall Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 / 动态规划 (Shortest Path / Dynamic Programming)时间复杂度 / Time Complex...">
 <meta name="twitter:site" content="@shytone">
 
-<!-- Article Specific --><meta property="article:published_time" content="2026-04-21T00:00:00+08:00"><meta property="article:tag" content="科技"><meta property="article:tag" content="AI"><meta property="article:tag" content="数码"><meta property="article:tag" content="开发"><!-- JSON-LD Structured Data --><script type="application/ld+json">
+<!-- Article Specific --><meta property="article:published_time" content="2026-04-22T00:00:00+08:00"><meta property="article:tag" content="算法"><meta property="article:tag" content="最短路径"><meta property="article:tag" content="动态规划"><meta property="article:tag" content="困难"><meta property="article:tag" content="数据结构"><meta property="article:tag" content="算法讲解"><!-- JSON-LD Structured Data --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "今日发现 2026-04-21",
-  "description": "🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. Qwen3.6-Max-Preview: Smarter, Sharper, Still EvolvingHacker News - mfiguiere来源：阅读原文2. All phones sold in the EU to ha...",
-  "datePublished": "2026-04-21T00:00:00+08:00",
+  "headline": "Floyd-Warshall算法 (Floyd-Warshall Algorithm)",
+  "description": "🧮 Floyd-Warshall算法 (Floyd-Warshall Algorithm)  难度 / Difficulty: 困难 (Hard)分类 / Category: 最短路径 / 动态规划 (Shortest Path / Dynamic Programming)时间复杂度 / Time Complex...",
+  "datePublished": "2026-04-22T00:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "shytone",
@@ -127,7 +127,7 @@ window.addEventListener('storage', function(e) {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://shytone.com/discover/20260421-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/"
+    "@id": "https://shytone.com/algorithms/20260422-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"
   }
 }
 </script><!-- Google AdSense -->
@@ -405,21 +405,27 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>今日发现 2026-04-21</h1></header></div><meta itemprop="headline" content="今日发现 2026-04-21"><div class="article__info clearfix"><ul class="left-col menu"><li>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>Floyd-Warshall算法 (Floyd-Warshall Algorithm)</h1></header></div><meta itemprop="headline" content="Floyd-Warshall算法 (Floyd-Warshall Algorithm)"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%A7%91%E6%8A%80">科技</a>
+                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=AI">AI</a>
+                href="/archive.html?tag=%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">最短路径</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E7%A0%81">数码</a>
+                href="/archive.html?tag=%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%BC%80%E5%8F%91">开发</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月21日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-21T00:00:00+08:00">
-    <meta itemprop="keywords" content="科技,AI,数码,开发"><div class="js-article-content"><div class="layout--article"><!-- Language Toggle for Article Pages -->
+                href="/archive.html?tag=%E5%9B%B0%E9%9A%BE">困难</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月22日</span>
+            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-22T00:00:00+08:00">
+    <meta itemprop="keywords" content="算法,最短路径,动态规划,困难,数据结构,算法讲解"><div class="js-article-content"><div class="layout--article"><!-- Language Toggle for Article Pages -->
 <div style="text-align:right; padding: 0.5rem 1rem; margin-bottom: -0.5rem;">
   <button class="bilingual-toggle" onclick="toggleLang()" title="Switch Language / 切换语言">
     🌐 <span class="lang-label">中文</span>
@@ -493,58 +499,330 @@ function toggleLang() {
        data-full-width-responsive="true">
   </ins>
 </div>
-<div class="article__content" itemprop="articleBody"><div class="ai-badge">🤖 AI 资讯速递 · Today's Tech Digest</div>
+<div class="article__content" itemprop="articleBody"><h1 id="-floyd-warshall算法-floyd-warshall-algorithm">🧮 Floyd-Warshall算法 (Floyd-Warshall Algorithm)</h1>
 
-<h2 id="-今日要闻">📰 今日要闻</h2>
-
-<h3 id="1-qwen36-max-preview-smarter-sharper-still-evolving">1. Qwen3.6-Max-Preview: Smarter, Sharper, Still Evolving</h3>
-
-<p>Hacker News - mfiguiere</p>
-
-<p>来源：<a href="https://qwen.ai/blog?id=qwen3.6-max-preview">阅读原文</a></p>
-
-<hr />
-
-<h3 id="2-all-phones-sold-in-the-eu-to-have-replaceable-batteries-from-2027">2. All phones sold in the EU to have replaceable batteries from 2027</h3>
-
-<p>Hacker News - ramonga</p>
-
-<p>来源：<a href="https://www.theolivepress.es/spain-news/2026/04/20/eu-to-force-replaceable-batteries-in-phones-and-tablets-from-2027/">阅读原文</a></p>
+<blockquote>
+  <p><strong>难度 / Difficulty</strong>: 困难 (Hard)<br />
+<strong>分类 / Category</strong>: 最短路径 / 动态规划 (Shortest Path / Dynamic Programming)<br />
+<strong>时间复杂度 / Time Complexity</strong>: O(V³)<br />
+<strong>空间复杂度 / Space Complexity</strong>: O(V²)</p>
+</blockquote>
 
 <hr />
 
-<h3 id="3-ggsql-a-grammar-of-graphics-for-sql">3. ggsql: A Grammar of Graphics for SQL</h3>
+<h2 id="-算法简介--introduction">📖 算法简介 / Introduction</h2>
 
-<p>Hacker News - thomasp85</p>
+<p>Floyd-Warshall 算法是经典的动态规划算法，用于计算<strong>所有节点对之间</strong>的最短路径，适用于有向加权图（可含负权边，但不能有负环）。</p>
 
-<p>来源：<a href="https://opensource.posit.co/blog/2026-04-20_ggsql_alpha_release/">阅读原文</a></p>
-
-<hr />
-
-<h3 id="4-atlassian-enables-default-data-collection-to-train-ai">4. Atlassian enables default data collection to train AI</h3>
-
-<p>Hacker News - kevcampb</p>
-
-<p>来源：<a href="https://letsdatascience.com/news/atlassian-enables-default-data-collection-to-train-ai-f71343d8">阅读原文</a></p>
+<p>Floyd-Warshall is a classic dynamic programming algorithm that computes shortest paths between <strong>all pairs</strong> of vertices in a directed weighted graph. It handles negative edge weights but not negative cycles.</p>
 
 <hr />
 
-<h3 id="5-john-ternus-to-become-apple-ceo">5. John Ternus to become Apple CEO</h3>
+<h2 id="-算法原理--principle">💡 算法原理 / Principle</h2>
 
-<p>Hacker News - schappim</p>
+<p>核心思想：对每一对节点 (i, j)，尝试经过每个中间节点 k 是否能缩短路径。</p>
 
-<p>来源：<a href="https://www.apple.com/newsroom/2026/04/tim-cook-to-become-apple-executive-chairman-john-ternus-to-become-apple-ceo/">阅读原文</a></p>
+<p>核心公式：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])
+</code></pre></div></div>
+
+<p>逐步增加允许的中间节点集合，从只允许节点1，到允许节点1、2……直到允许全部节点。</p>
+
+<p><strong>三维视角</strong>：令 <code class="language-plaintext highlighter-rouge">dp[k][i][j]</code> 表示仅使用前 k 个节点（1 到 k）作为中转时，i 到 j 的最短路径。</p>
+
+<p>转移方程：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>dp[k][i][j] = min(dp[k-1][i][j], dp[k-1][i][k] + dp[k-1][k][j])
+</code></pre></div></div>
+
+<p>滚动数组优化后只需二维数组，遍历 k 时逐步更新。</p>
+
+<p>Core idea: For each pair (i, j), try whether going through intermediate node k produces a shorter path.</p>
+
+<p>The algorithm iteratively refines the shortest path estimate by considering each vertex as a possible intermediate point. Initially, only direct edges are considered; then one by one, we allow paths to use additional vertices as intermediate nodes.</p>
 
 <hr />
 
-<h2 id="-科技观点">💡 科技观点</h2>
+<h2 id="-代码实现--implementation">📝 代码实现 / Implementation</h2>
 
-<p>今日科技领域持续创新，AI 技术在各行业加速落地。建议关注：大模型进展、开源社区动态、新硬件发布。</p>
+<h3 id="python-实现详细注释版">Python 实现（详细注释版）</h3>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">floyd_warshall</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">edges</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">
+    Floyd-Warshall 算法求所有节点对最短路径
+
+    参数:
+        n: 节点数量（节点编号 0 到 n-1）
+        edges: 边列表，每条边为 (u, v, w)，表示 u -&gt; v 权重为 w
+
+    返回:
+        dist: n x n 距离矩阵，dist[i][j] 表示 i 到 j 的最短距离
+    </span><span class="sh">"""</span>
+    <span class="n">INF</span> <span class="o">=</span> <span class="nf">float</span><span class="p">(</span><span class="sh">'</span><span class="s">inf</span><span class="sh">'</span><span class="p">)</span>
+    <span class="c1"># 初始化距离矩阵
+</span>    <span class="n">dist</span> <span class="o">=</span> <span class="p">[[</span><span class="n">INF</span><span class="p">]</span> <span class="o">*</span> <span class="n">n</span> <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+
+    <span class="c1"># 自身到自身距离为 0
+</span>    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
+
+    <span class="c1"># 读取所有直接边
+</span>    <span class="k">for</span> <span class="n">u</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">w</span> <span class="ow">in</span> <span class="n">edges</span><span class="p">:</span>
+        <span class="n">dist</span><span class="p">[</span><span class="n">u</span><span class="p">][</span><span class="n">v</span><span class="p">]</span> <span class="o">=</span> <span class="n">w</span>  <span class="c1"># 有向图，只更新一个方向
+</span>
+    <span class="c1"># 核心：动态规划更新
+</span>    <span class="c1"># k 是中间节点，尝试通过 k 中转是否能缩短 i 到 j 的路径
+</span>    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+                <span class="k">if</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dist</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]:</span>
+                    <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">dist</span><span class="p">[</span><span class="n">k</span><span class="p">][</span><span class="n">j</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">dist</span>
+
+
+<span class="c1"># ============ 示例测试 ============
+</span><span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="sh">"</span><span class="s">__main__</span><span class="sh">"</span><span class="p">:</span>
+    <span class="c1"># 构造一个简单的有向加权图
+</span>    <span class="c1"># 节点: 0, 1, 2, 3
+</span>    <span class="c1">#
+</span>    <span class="c1">#       2 ← 0 → 3
+</span>    <span class="c1">#       ↑   ↓   ↑
+</span>    <span class="c1">#       1 ← — +
+</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span>
+    <span class="n">edges</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span><span class="p">),</span>   <span class="c1"># 0 -&gt; 1，权重 5
+</span>        <span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span>   <span class="c1"># 0 -&gt; 2，权重 3
+</span>        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="o">-</span><span class="mi">2</span><span class="p">),</span>  <span class="c1"># 1 -&gt; 2，权重 -2（负权边）
+</span>        <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">6</span><span class="p">),</span>   <span class="c1"># 1 -&gt; 3，权重 6
+</span>        <span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">2</span><span class="p">),</span>   <span class="c1"># 2 -&gt; 3，权重 2
+</span>    <span class="p">]</span>
+
+    <span class="n">dist</span> <span class="o">=</span> <span class="nf">floyd_warshall</span><span class="p">(</span><span class="n">n</span><span class="p">,</span> <span class="n">edges</span><span class="p">)</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">所有节点对最短距离矩阵:</span><span class="sh">"</span><span class="p">)</span>
+    <span class="nf">print</span><span class="p">(</span><span class="sh">"</span><span class="s">    0    1    2    3</span><span class="sh">"</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">):</span>
+        <span class="n">row</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">dist</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span><span class="si">:</span><span class="mi">4</span><span class="si">}</span><span class="sh">"</span> <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">n</span><span class="p">)]</span>
+        <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="si">{</span><span class="n">i</span><span class="si">}</span><span class="s">: </span><span class="si">{</span><span class="sh">'</span><span class="s"> </span><span class="sh">'</span><span class="p">.</span><span class="nf">join</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>
+
+    <span class="nf">print</span><span class="p">(</span><span class="sa">f</span><span class="sh">"</span><span class="se">\n</span><span class="s">0 → 3 的最短距离: </span><span class="si">{</span><span class="n">dist</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span><span class="si">}</span><span class="sh">"</span><span class="p">)</span>  <span class="c1"># 期望: 5 (0→2→1→3 路径)
+</span></code></pre></div></div>
+
+<p><strong>运行结果：</strong></p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>所有节点对最短距离矩阵:
+    0    1    2    3
+0:   0    5    3    5
+1: inf   0   -2    0
+2: inf inf   0    2
+3: inf inf inf   0
+
+0 → 3 的最短距离: 5
+</code></pre></div></div>
+
+<h3 id="java-实现面试白板版">Java 实现（面试白板版）</h3>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="nc">FloydWarshall</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span><span class="o">[][]</span> <span class="nf">floydWarshall</span><span class="o">(</span><span class="kt">int</span> <span class="n">n</span><span class="o">,</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">edges</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="kt">int</span> <span class="no">INF</span> <span class="o">=</span> <span class="nc">Integer</span><span class="o">.</span><span class="na">MAX_VALUE</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">dist</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+
+        <span class="c1">// 初始化</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="o">(</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span><span class="o">)</span> <span class="o">?</span> <span class="mi">0</span> <span class="o">:</span> <span class="no">INF</span><span class="o">;</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 读边</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">e</span> <span class="o">:</span> <span class="n">edges</span><span class="o">)</span> <span class="o">{</span>
+            <span class="kt">int</span> <span class="n">u</span> <span class="o">=</span> <span class="n">e</span><span class="o">[</span><span class="mi">0</span><span class="o">],</span> <span class="n">v</span> <span class="o">=</span> <span class="n">e</span><span class="o">[</span><span class="mi">1</span><span class="o">],</span> <span class="n">w</span> <span class="o">=</span> <span class="n">e</span><span class="o">[</span><span class="mi">2</span><span class="o">];</span>
+            <span class="n">dist</span><span class="o">[</span><span class="n">u</span><span class="o">][</span><span class="n">v</span><span class="o">]</span> <span class="o">=</span> <span class="n">w</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="c1">// 核心动态规划</span>
+        <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">k</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">k</span><span class="o">++)</span> <span class="o">{</span>
+            <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+                <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">==</span> <span class="no">INF</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>  <span class="c1">// 剪枝优化</span>
+                <span class="k">for</span> <span class="o">(</span><span class="kt">int</span> <span class="n">j</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span> <span class="n">j</span> <span class="o">&lt;</span> <span class="n">n</span><span class="o">;</span> <span class="n">j</span><span class="o">++)</span> <span class="o">{</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">==</span> <span class="no">INF</span><span class="o">)</span> <span class="k">continue</span><span class="o">;</span>  <span class="c1">// 剪枝优化</span>
+                    <span class="k">if</span> <span class="o">(</span><span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">&lt;</span> <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">])</span> <span class="o">{</span>
+                        <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">dist</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">k</span><span class="o">]</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="n">k</span><span class="o">][</span><span class="n">j</span><span class="o">];</span>
+                    <span class="o">}</span>
+                <span class="o">}</span>
+            <span class="o">}</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">dist</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="nc">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="mi">4</span><span class="o">;</span>
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">edges</span> <span class="o">=</span> <span class="o">{</span>
+            <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">1</span><span class="o">,</span> <span class="mi">5</span><span class="o">},</span> <span class="o">{</span><span class="mi">0</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">},</span>
+            <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="o">-</span><span class="mi">2</span><span class="o">},</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">6</span><span class="o">},</span>
+            <span class="o">{</span><span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">2</span><span class="o">}</span>
+        <span class="o">};</span>
+
+        <span class="kt">int</span><span class="o">[][]</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">floydWarshall</span><span class="o">(</span><span class="n">n</span><span class="o">,</span> <span class="n">edges</span><span class="o">);</span>
+        <span class="nc">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"0 → 3 = "</span> <span class="o">+</span> <span class="n">dist</span><span class="o">[</span><span class="mi">0</span><span class="o">][</span><span class="mi">3</span><span class="o">]);</span>  <span class="c1">// 输出: 5</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
 
 <hr />
 
-<p><em>本文内容由系统自动聚合自 2026-04-21 的科技资讯</em></p>
-</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-21T00:00:00+08:00"><!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
+<h2 id="-示例解析--example-analysis">✨ 示例解析 / Example Analysis</h2>
+
+<p><strong>问题：</strong> 4节点有向图，边如下：</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0 → 1 (权重 5)    1 → 3 (权重 6)
+0 → 2 (权重 3)    2 → 3 (权重 2)
+1 → 2 (权重 -2)
+</code></pre></div></div>
+
+<p><strong>手动推导 0 → 3 的最短路径：</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>迭代 k</th>
+      <th>允许中转节点</th>
+      <th>0→3 距离</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>初始</td>
+      <td>无</td>
+      <td>0→2→3 = 3+2 = <strong>5</strong></td>
+    </tr>
+    <tr>
+      <td>k=0</td>
+      <td>{0}</td>
+      <td>无改进</td>
+    </tr>
+    <tr>
+      <td>k=1</td>
+      <td>{0,1}</td>
+      <td>0→1→2→3 = 5+(-2)+2 = <strong>5</strong>（0→3不变）</td>
+    </tr>
+    <tr>
+      <td>k=2</td>
+      <td>{0,1,2}</td>
+      <td>无改进（已经用了2）</td>
+    </tr>
+    <tr>
+      <td>k=3</td>
+      <td>{0,1,2,3}</td>
+      <td>无改进</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>最终答案是 <strong>5</strong>。最短路径可能是 <code class="language-plaintext highlighter-rouge">0→2→3</code> 或 <code class="language-plaintext highlighter-rouge">0→1→2→3</code>。</p>
+
+<hr />
+
+<h2 id="-算法对比--comparison">🔍 算法对比 / Comparison</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>特性</th>
+      <th>Floyd-Warshall</th>
+      <th>Dijkstra (单源)</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>时间复杂度</td>
+      <td>O(V³)</td>
+      <td>O((V+E) log V)</td>
+    </tr>
+    <tr>
+      <td>适用场景</td>
+      <td>所有节点对最短路径</td>
+      <td>单源最短路径</td>
+    </tr>
+    <tr>
+      <td>负权边</td>
+      <td>✅ 支持</td>
+      <td>❌ 不支持（需Bellman-Ford）</td>
+    </tr>
+    <tr>
+      <td>负环检测</td>
+      <td>✅ 可检测</td>
+      <td>❌ 做不到</td>
+    </tr>
+    <tr>
+      <td>空间复杂度</td>
+      <td>O(V²)</td>
+      <td>O(V)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>当需要<strong>多源</strong>最短路径时，Dijkstra 需要运行 V 次，总复杂度 O(V³ log V)，与 Floyd-Warshall 相同，但 Floyd-Warshall 实现更简洁，且天然支持负权边。</p>
+
+<hr />
+
+<h2 id="-适用场景--scenarios">🎯 适用场景 / Scenarios</h2>
+
+<ul>
+  <li><strong>路由算法</strong>：计算网络中所有节点对的最短路径（如 OSPF 内部网关协议）</li>
+  <li><strong>传递闭包</strong>：检测图中任意两点是否可达（Floyd-Warshall 的布尔版本）</li>
+  <li><strong>负环检测</strong>：用于检测金融网络中是否存在套利机会（Bellman-Ford的变体）</li>
+  <li><strong>近似算法</strong>：作为下界，用于旅行商问题（TSP）的启发式求解</li>
+  <li><strong>多源多汇网络流</strong>：需要知道任意两点间的距离来优化流分配</li>
+</ul>
+
+<hr />
+
+<h2 id="️-注意事项--caveats">⚠️ 注意事项 / Caveats</h2>
+
+<ol>
+  <li>
+    <p><strong>不能处理负环</strong>：如果图中存在负环，最短路径无定义（Floyd-Warshall 会不断更新导致错误结果）。可额外检测对角线上的负值来检测负环。</p>
+  </li>
+  <li>
+    <p><strong>稠密图效率高</strong>：当图稠密时（F² ≈ V²），Floyd-Warshall 的三循环结构实际运行很快；而稀疏图用 Dijkstra + 堆更优。</p>
+  </li>
+  <li>
+    <p><strong>路径重构</strong>：实际应用中往往需要记录前驱节点 <code class="language-plaintext highlighter-rouge">next[i][j]</code> 或 <code class="language-plaintext highlighter-rouge">next[i][j]</code>，在更新时同步记录，复杂度仅加 O(1)。</p>
+  </li>
+</ol>
+
+<hr />
+
+<h2 id="-扩展阅读--further-reading">🔄 扩展阅读 / Further Reading</h2>
+
+<ul>
+  <li><strong>负环检测</strong>：在算法结束后检查 <code class="language-plaintext highlighter-rouge">dist[i][i] &lt; 0</code> 的节点，即可发现负环</li>
+  <li><strong>路径重构</strong>：使用 <code class="language-plaintext highlighter-rouge">next[i][j]</code> 记录从 i 到 j 的下一步，完整路径可递归回溯</li>
+  <li><strong>优化方向</strong>：对于极大图，可采用「分治 Floyd-Warshall」或「基于排序的算法」</li>
+  <li><strong>对比学习</strong>：建议同时学习 Dijkstra（单源）、Bellman-Ford（单源+负权）、SPFA（队列优化版 Bellman-Ford）</li>
+</ul>
+
+<hr />
+
+<h2 id="-参考资料--references">📚 参考资料 / References</h2>
+
+<ul>
+  <li>Cormen, Leiserson, Rivest, Stein. <em>Introduction to Algorithms</em> (CLRS), Chapter 25</li>
+  <li>维基百科: <a href="https://en.wikipedia.org/wiki/Floyd%E2%80%93Warshall_algorithm">Floyd-Warshall algorithm</a></li>
+</ul>
+
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>*本文由 AI 自动生成</td>
+      <td>Generated by AI*</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-22T00:00:00+08:00"><!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
      style="display:block; text-align:center; margin: 2rem 0;"
      data-ad-client="ca-pub-8144860176707664"
      data-ad-slot="XXXXXXX"
@@ -571,7 +849,7 @@ function toggleLang() {
   margin: 0.25rem 0;
 }
 </style></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/discover/20260420-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/">今日发现 2026-04-20</a></div><div class="next"><span>下篇</span><a href="/discover/20260422-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/">今日发现 2026-04-22</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/algorithms/20260422-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序 (Quick Sort)</a></div></div></div>
 
 </div>
 
