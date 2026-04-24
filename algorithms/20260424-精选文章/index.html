@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>算法专栏 - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>📚 算法复杂度分析：时间与空间的权衡 - SHYTONE.COM</title>
 
-<meta name="description" content="分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。">
-<link rel="canonical" href="https://shytone.com/algorithms.html"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="📚 算法复杂度分析：时间与空间的权衡英文标题 / English Title: Algorithm Complexity Analysis: Time-Space Tradeoff来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认真学习...">
+<link rel="canonical" href="https://shytone.com/algorithms/20260424-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -92,29 +92,42 @@ window.addEventListener('storage', function(e) {
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="SHYTONE.COM">
-<meta property="og:description" content="分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://shytone.com/algorithms.html">
+<meta property="og:title" content="📚 算法复杂度分析：时间与空间的权衡 - SHYTONE.COM">
+<meta property="og:description" content="📚 算法复杂度分析：时间与空间的权衡英文标题 / English Title: Algorithm Complexity Analysis: Time-Space Tradeoff来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认真学习...">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shytone.com/algorithms/20260424-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SHYTONE.COM">
-<meta name="twitter:description" content="分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。">
+<meta name="twitter:title" content="📚 算法复杂度分析：时间与空间的权衡 - SHYTONE.COM">
+<meta name="twitter:description" content="📚 算法复杂度分析：时间与空间的权衡英文标题 / English Title: Algorithm Complexity Analysis: Time-Space Tradeoff来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认真学习...">
 <meta name="twitter:site" content="@shytone">
 
-<!-- Article Specific --><!-- JSON-LD Structured Data --><script type="application/ld+json">
+<!-- Article Specific --><meta property="article:published_time" content="2026-04-24T00:00:00+08:00"><meta property="article:tag" content="算法"><meta property="article:tag" content="精选文章"><meta property="article:tag" content="学习资源"><!-- JSON-LD Structured Data --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "SHYTONE.COM",
-  "description": "分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。",
-  "url": "https://shytone.com",
+  "@type": "Article",
+  "headline": "📚 算法复杂度分析：时间与空间的权衡",
+  "description": "📚 算法复杂度分析：时间与空间的权衡英文标题 / English Title: Algorithm Complexity Analysis: Time-Space Tradeoff来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认真学习...",
+  "datePublished": "2026-04-24T00:00:00+08:00",
   "author": {
     "@type": "Person",
-    "name": "shytone"
+    "name": "shytone",
+    "url": "https://shytone.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SHYTONE.COM",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shytone.com/assets/favicon.ico"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shytone.com/algorithms/20260424-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"
   }
 }
 </script><!-- Google AdSense -->
@@ -382,7 +395,7 @@ window.addEventListener('DOMContentLoaded', function() {
   <text x="16" y="30" font-family="monospace" font-size="8" font-weight="bold" fill="#ffffff">&lt;/&gt;</text>
 </svg>
 <a title="分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。" href="/">SHYTONE.COM</a></div></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item navigation__item--active"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
+        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
       </nav></div>
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
@@ -392,39 +405,7 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>算法专栏</h1></header></div><meta itemprop="headline" content="算法专栏"><meta itemprop="author" content="shytone"/><div class="js-article-content"><div class="layout--articles"><div class="article-list items items--divided"><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260424-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><h2 itemprop="headline" class="item__header">📚 算法复杂度分析：时间与空间的权衡</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">📚 算法复杂度分析：时间与空间的权衡
-
-英文标题 / English Title: Algorithm Complexity Analysis: Time-Space Tradeoff
-
-来源 / Source: GeeksforGeeks
-
-
-
-📌 文章简介 / Introduction
-
-这是一篇精选的算法相关文章，建议认真学习：
-
-👉 阅读原文: 点击访问
-
-
-
-🔍 内容要点 / Key Points
-
-
-  深入理解核心概念
-  结合实例理解原理
-  多动手实践练习
-
-
-
-
-
-  
-    
-      *每日精选，持续更新
-      Curated daily*</div><p><a href="/algorithms/20260424-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>📚 算法复杂度分析：时间与空间的权衡</h1></header></div><meta itemprop="headline" content="📚 算法复杂度分析：时间与空间的权衡"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
             </li><li>
@@ -435,330 +416,170 @@ window.addEventListener('DOMContentLoaded', function() {
                 href="/archive.html?tag=%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90">学习资源</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月24日</span>
             </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-24T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,精选文章,学习资源"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260424-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"><h2 itemprop="headline" class="item__header">快速排序 (Quick Sort)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">🧮 快速排序 (Quick Sort)
-
-
-  难度 / Difficulty: 中等 (Medium)
-分类 / Category: 排序 (Sorting)
-时间复杂度 / Time Complexity: O(n log n)
-空间复杂度 / Space Complexity: O(log n)
-
-
-
-
-📖 算法简介 / Introduction
-
-快速排序是一种高效的分治排序算法，采用递归和分区策略。
-
-Quick sort is an efficient divide-and-conquer sorting algorithm using recursion and partitioning.
-
-
-
-💡 算法原理 / Principle
-
-选择一个基准元素，将数组分为两部分，...</div><p><a href="/algorithms/20260424-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%8E%92%E5%BA%8F">排序</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E4%B8%AD%E7%AD%89">中等</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月24日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-24T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,排序,中等,数据结构,算法讲解"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260423-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><h2 itemprop="headline" class="item__header">📚 回溯算法详解：解决组合优化问题</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">📚 回溯算法详解：解决组合优化问题
-
-英文标题 / English Title: Backtracking Algorithm: Solving Combinatorial Problems
-
-来源 / Source: GeeksforGeeks
-
-
-
-📌 文章简介 / Introduction
-
-这是一篇精选的算法相关文章，建议认真学习：
-
-👉 阅读原文: 点击访问
-
-
-
-🔍 内容要点 / Key Points
-
-
-  深入理解核心概念
-  结合实例理解原理
-  多动手实践练习
-
-
-
-
-
-  
-    
-      *每日精选，持续更新
-      Curated daily*</div><p><a href="/algorithms/20260423-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0">精选文章</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90">学习资源</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月23日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-23T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,精选文章,学习资源"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260423-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/"><h2 itemprop="headline" class="item__header">冒泡排序 (Bubble Sort)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">🧮 冒泡排序 (Bubble Sort)
-
-
-  难度 / Difficulty: 简单 (Easy)
-分类 / Category: 排序 (Sorting)
-时间复杂度 / Time Complexity: O(n²)
-空间复杂度 / Space Complexity: O(1)
-
-
-
-
-📖 算法简介 / Introduction
-
-冒泡排序是一种简单的排序算法，通过相邻元素的比较和交换将最大（或最小）的元素逐步冒泡到序列的一端。
-
-Bubble sort is a simple sorting algorithm that repeatedly steps through the list, compares adjacent elements and swaps them if ...</div><p><a href="/algorithms/20260423-%E5%86%92%E6%B3%A1%E6%8E%92%E5%BA%8F/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%8E%92%E5%BA%8F">排序</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%80%E5%8D%95">简单</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月23日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-23T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,排序,简单,数据结构,算法讲解"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260422-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><h2 itemprop="headline" class="item__header">Floyd-Warshall算法 (Floyd-Warshall Algorithm)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">🧮 Floyd-Warshall算法 (Floyd-Warshall Algorithm)
-
-
-  难度 / Difficulty: 困难 (Hard)
-分类 / Category: 最短路径 / 动态规划 (Shortest Path / Dynamic Programming)
-时间复杂度 / Time Complexity: O(V³)
-空间复杂度 / Space Complexity: O(V²)
-
-
-
-
-📖 算法简介 / Introduction
-
-Floyd-Warshall 算法是经典的动态规划算法，用于计算所有节点对之间的最短路径，适用于有向加权图（可含负权边，但不能有负环）。
-
-Floyd-Warshall is a classic dynamic programmi...</div><p><a href="/algorithms/20260422-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">最短路径</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92">动态规划</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%9B%B0%E9%9A%BE">困难</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月22日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-22T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,最短路径,动态规划,困难,数据结构,算法讲解"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260422-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"><h2 itemprop="headline" class="item__header">快速排序 (Quick Sort)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">🚀 快速排序 (Quick Sort)
-
-
-  难度 / Difficulty: 中等 (Medium)
-分类 / Category: 排序 (Sorting)
-时间复杂度 / Time Complexity: 平均 O(n log n)，最坏 O(n²)
-空间复杂度 / Space Complexity: O(log n)
-
-
-
-
-📖 算法简介 / Introduction
-
-快速排序是一种分治排序算法，通过选择基准元素将数组划分为两部分，递归排序。
-
-Quick Sort is a divide-and-conquer sorting algorithm that partitions the array around a pivot element and recursively...</div><p><a href="/algorithms/20260422-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%8E%92%E5%BA%8F">排序</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E4%B8%AD%E7%AD%89">中等</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月22日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-22T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,排序,中等,数据结构,算法讲解"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260421-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><h2 itemprop="headline" class="item__header">📚 LeetCode 刷题指南：高效准备技术面试</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">📚 LeetCode 刷题指南：高效准备技术面试
-
-英文标题 / English Title: LeetCode Guide: Preparing for Technical Interviews
-
-来源 / Source: LeetCode
-
-
-
-📌 文章简介 / Introduction
-
-这是一篇精选的算法相关文章，建议认真学习：
-
-👉 阅读原文: 点击访问
-
-
-
-🔍 内容要点 / Key Points
-
-
-  深入理解核心概念
-  结合实例理解原理
-  多动手实践练习
-
-
-
-
-
-  
-    
-      *每日精选，持续更新
-      Curated daily*</div><p><a href="/algorithms/20260421-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0">精选文章</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90">学习资源</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月21日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-21T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,精选文章,学习资源"></div>
-      </article><article class="item"><div class="item__content">
-          <header><a href="/algorithms/20260421-Dijkstra%E7%AE%97%E6%B3%95/"><h2 itemprop="headline" class="item__header">Dijkstra算法 (Dijkstra Algorithm)</h2></a></header>
-          <div class="item__description"><div class="article__content" itemprop="description articleBody">🧮 Dijkstra算法 (Dijkstra Algorithm)
-
-
-  难度 / Difficulty: 困难 (Hard)
-分类 / Category: 最短路径 (Shortest Path)
-时间复杂度 / Time Complexity: O((V + E) log V)
-空间复杂度 / Space Complexity: O(V)
-
-
-
-
-📖 算法简介 / Introduction
-
-Dijkstra 算法是用于计算单源最短路径的贪心算法，适用于非负权边。
-
-Dijkstra is a greedy algorithm for single-source shortest path in graphs with non-negative edge weights.
-
-
-
-...</div><p><a href="/algorithms/20260421-Dijkstra%E7%AE%97%E6%B3%95/">阅读更多</a></p></div><div class="article__info clearfix"><ul class="left-col menu"><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%9C%80%E7%9F%AD%E8%B7%AF%E5%BE%84">最短路径</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%9B%B0%E9%9A%BE">困难</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
-            </li><li>
-              <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月21日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-21T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,最短路径,困难,数据结构,算法讲解"></div>
-      </article></div>
-</div><!-- Language Switcher -->
-<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
-  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    <meta itemprop="keywords" content="算法,精选文章,学习资源"><div class="js-article-content"><div class="layout--article"><!-- Language Toggle for Article Pages -->
+<div style="text-align:right; padding: 0.5rem 1rem; margin-bottom: -0.5rem;">
+  <button class="bilingual-toggle" onclick="toggleLang()" title="Switch Language / 切换语言">
     🌐 <span class="lang-label">中文</span>
   </button>
 </div>
 
 <script>
+(function(){
+  // Detect and apply language on article pages
+  function applyLang(lang) {
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+    var labels = document.querySelectorAll('.lang-label');
+    labels.forEach(function(el) { el.textContent = (lang === 'zh') ? '中文' : 'EN'; });
+  }
+  function getLang() {
+    var urlParams = new URLSearchParams(window.location.search);
+    if (urlParams.has('lang')) return urlParams.get('lang');
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) return c.substring('preferred_lang='.length);
+    }
+    var navLang = navigator.language || '';
+    return (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  function init() {
+    applyLang(getLang());
+    // Listen for toggle from other pages via storage event
+    window.addEventListener('storage', function(e) {
+      if (e.key === 'preferred_lang') applyLang(e.newValue || 'zh');
+    });
+  }
+  init();
+})();
 function toggleLang() {
   var current = document.documentElement.getAttribute('data-lang') || 'zh';
   var next = (current === 'zh') ? 'en' : 'zh';
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
   document.documentElement.setAttribute('data-lang', next);
   document.body.setAttribute('data-lang', next);
-  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
-  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
   var url = new URL(window.location);
   url.searchParams.set('lang', next);
   window.history.replaceState({}, '', url);
 }
-<div class="algorithms-header">
-  <h1 lang="zh">🧮 算法专栏</h1>
-  <h1 lang="en" style="display:none">🧮 Algorithms</h1>
-  <p lang="zh">从基础到复杂，每日精讲一个算法</p>
-  <p lang="en" style="display:none">From Basics to Advanced, Daily Algorithm Deep Dive</p>
-</div>
+</script>
 
 <style>
-.algorithms-header {
-  text-align: center;
-  padding: 2rem;
-  background: linear-gradient(135deg, #1d1f21 0%, #2d2d2d 100%);
+.bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
   border-radius: 12px;
-  margin-bottom: 2rem;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
 }
-.algorithms-header h1 { color: #fc4d50; margin-bottom: 0.5rem; }
-.algorithms-header p { color: #969896; font-size: 1rem; }
-.lang-btn {
-  background: rgba(252,77,80,0.1); border: 1px solid rgba(252,77,80,0.3);
-  color: #fc4d50; padding: 4px 12px; border-radius: 12px;
-  cursor: pointer; font-size: 0.85rem; transition: all 0.2s;
-}
-.lang-btn:hover { background: rgba(252,77,80,0.2); }
-[data-lang="en"] [lang="zh"] { display: none !important; }
+.bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
 [data-lang="en"] [lang="en"] { display: initial !important; }
-</style>
+</style><div class="article-ad" style="margin: 1.5rem 0; text-align: center;">
+  <ins class="adsbygoogle"
+       style="display:block; width: 100%; max-width: 728px; margin: 0 auto;"
+       data-ad-client="ca-pub-8144860176707664"
+       data-ad-slot="YOUR_AD_SLOT_ID_1"
+       data-ad-format="auto"
+       data-full-width-responsive="true">
+  </ins>
+</div>
+<div class="article__content" itemprop="articleBody"><h1 id="-算法复杂度分析时间与空间的权衡">📚 算法复杂度分析：时间与空间的权衡</h1>
 
+<p><strong>英文标题 / English Title</strong>: Algorithm Complexity Analysis: Time-Space Tradeoff</p>
+
+<p><strong>来源 / Source</strong>: GeeksforGeeks</p>
+
+<hr />
+
+<h2 id="-文章简介--introduction">📌 文章简介 / Introduction</h2>
+
+<p>这是一篇精选的算法相关文章，建议认真学习：</p>
+
+<p>👉 <strong>阅读原文</strong>: <a href="https://www.geeksforgeeks.org/complexity-analysis-of-algorithms/">点击访问</a></p>
+
+<hr />
+
+<h2 id="-内容要点--key-points">🔍 内容要点 / Key Points</h2>
+
+<ol>
+  <li>深入理解核心概念</li>
+  <li>结合实例理解原理</li>
+  <li>多动手实践练习</li>
+</ol>
+
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>*每日精选，持续更新</td>
+      <td>Curated daily*</td>
+    </tr>
+  </tbody>
+</table>
+</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-24T00:00:00+08:00"><!-- Google AdSense - In-Article Ads --><ins class="adsbygoogle"
+     style="display:block; text-align:center; margin: 2rem 0;"
+     data-ad-client="ca-pub-8144860176707664"
+     data-ad-slot="XXXXXXX"
+     data-ad-format="horizontal"
+     data-full-width-responsive="true">
+</ins><!-- Privacy Notice -->
+<footer class="article-footer">
+  <div class="privacy-notice">
+    <p>📌 隐私说明：网站使用 Google AdSense 推送相关广告。Google 可能使用 Cookie 进行访客分析。</p>
+    <p>📌 Privacy Notice: This site uses Google AdSense to serve relevant ads. Google may use cookies for visitor analytics.</p>
+  </div>
+</footer>
+
+<style>
+.privacy-notice {
+  margin-top: 2rem;
+  padding: 1rem;
+  background: rgba(102, 126, 234, 0.08);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #666;
+}
+.privacy-notice p {
+  margin: 0.25rem 0;
+}
+</style></footer>
+<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/algorithms/20260424-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">快速排序 (Quick Sort)</a></div></div></div>
+
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script>
 </div><section class="page__comments d-print-none"></section></article>
 <!-- Google AdSense - Bottom Ads -->
 <div style="margin: 2rem auto; text-align: center; max-width: 728px;">
