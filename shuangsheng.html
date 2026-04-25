@@ -1,0 +1,679 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>🎴 双升 · 80分</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#1a1a2e;
+  color:#e0e0e0;
+  font-family:'PingFang SC','Microsoft YaHei',sans-serif;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  user-select:none;
+}
+#top-bar{
+  width:100%;max-width:900px;padding:12px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+  font-size:14px;
+}
+#top-bar .label{color:#667eea;font-weight:600}
+.score-board{
+  display:flex;gap:24px;
+}
+.score-item{text-align:center}
+.score-item .val{font-size:22px;font-weight:700;color:#fff}
+.score-item .lbl{font-size:11px;color:#888}
+.bar-container{
+  width:120px;height:8px;background:#333;border-radius:4px;overflow:hidden;margin-top:4px;
+}
+.bar-fill{height:100%;border-radius:4px;transition:width 0.4s}
+.bar-you{background:#4ecdc4}
+.bar-ai{background:#f5576c}
+#game-area{
+  flex:1;width:100%;max-width:900px;
+  display:flex;flex-direction:column;align-items:center;
+  padding:8px 16px;gap:8px;
+}
+/* AI手牌区 */
+#ai-hand{
+  display:flex;justify-content:center;gap:4px;
+  height:56px;
+}
+.ai-card{
+  width:36px;height:52px;
+  background:linear-gradient(135deg,#2a2a4a,#1a1a3a);
+  border:1px solid #444;
+  border-radius:5px;
+  position:relative;
+}
+.ai-card::after{
+  content:'';position:absolute;inset:3px;
+  background:linear-gradient(135deg,#3a3a6a,#2a2a5a);
+  border-radius:3px;
+}
+/* 出牌区 */
+#play-zone{
+  display:flex;justify-content:center;align-items:center;
+  gap:12px;min-height:120px;
+  background:linear-gradient(180deg,rgba(102,126,234,0.08) 0%,transparent 100%);
+  border-radius:16px;padding:16px;width:100%;
+}
+.play-slot{
+  position:relative;width:60px;height:84px;
+}
+.play-slot .card{position:absolute;top:0;left:0}
+.play-label{
+  position:absolute;bottom:-18px;width:100%;
+  text-align:center;font-size:10px;color:#666;
+}
+/* 提示区 */
+#message-box{
+  min-height:32px;text-align:center;
+  font-size:14px;color:#aaa;padding:4px;
+}
+#message-box.highlight{color:#ffe66d;font-weight:600}
+/* 玩家手牌区 */
+#player-hand{
+  display:flex;justify-content:center;flex-wrap:wrap;
+  gap:4px;padding:8px 0;width:100%;
+}
+.card{
+  width:60px;height:84px;
+  border-radius:8px;
+  cursor:pointer;
+  position:relative;
+  transition:transform 0.12s,box-shadow 0.12s;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  font-size:22px;font-weight:700;
+}
+.card:hover{transform:translateY(-10px);box-shadow:0 8px 20px rgba(0,0,0,0.5)}
+.card.back{
+  background:linear-gradient(135deg,#2a2a4a,#1a1a3a);
+  border:2px solid #444;
+}
+.card.back::before{
+  content:'🎴';
+  font-size:24px;
+}
+/* 按钮 */
+.btn-row{display:flex;gap:10px;flex-wrap:wrap;justify-content:center}
+.btn{
+  padding:10px 22px;border:none;border-radius:10px;
+  cursor:pointer;font-size:14px;font-weight:600;
+  transition:transform 0.1s,opacity 0.1s;
+  color:#fff;
+}
+.btn:active{transform:scale(0.95)}
+.btn:disabled{opacity:0.4;cursor:default}
+.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2)}
+.btn-danger{background:linear-gradient(135deg,#f5576c,#c0392b)}
+.btn-success{background:linear-gradient(135deg,#4ecdc4,#2cb5a0)}
+/* 叫主按钮组 */
+.trump-buttons{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+/* 遮罩 */
+#overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.8);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:100;
+}
+#overlay.hidden{display:none}
+#overlay h2{font-size:28px;margin-bottom:16px}
+#overlay p{color:#aaa;margin-bottom:24px;text-align:center;line-height:1.8}
+#overlay .result{
+  font-size:48px;margin-bottom:16px;
+}
+/* 手牌花色颜色 */
+.card.s♠,.card.s♣{color:#e8e8e8}
+.card.s♥,.card.s♦{color:#ff6b6b}
+/* 牌背面 */
+.card.red{color:#ff6b6b}
+.card.black{color:#e8e8e8}
+</style>
+</head>
+<body>
+
+<div id="top-bar">
+  <div class="score-board">
+    <div class="score-item">
+      <div class="val" id="score-you">0</div>
+      <div class="lbl">你得分</div>
+      <div class="bar-container"><div class="bar-fill bar-you" id="bar-you" style="width:0%"></div></div>
+    </div>
+    <div class="score-item">
+      <div class="val" id="score-ai">0</div>
+      <div class="lbl">AI得分</div>
+      <div class="bar-container"><div class="bar-fill bar-ai" style="width:0%" id="bar-ai"></div></div>
+    </div>
+    <div class="score-item">
+      <div class="val" id="score-target">80</div>
+      <div class="lbl">目标</div>
+    </div>
+  </div>
+  <div class="label" id="turn-indicator">🎴 等待开始</div>
+</div>
+
+<div id="game-area">
+  <!-- AI手牌 -->
+  <div id="ai-hand"></div>
+
+  <!-- 出牌区 -->
+  <div id="play-zone">
+    <div class="play-slot" id="slot-you">
+      <div class="card back" id="card-you" style="display:none"></div>
+      <div class="play-label">你</div>
+    </div>
+    <div class="play-slot" id="slot-ai">
+      <div class="card back" id="card-ai" style="display:none"></div>
+      <div class="play-label">AI</div>
+    </div>
+  </div>
+
+  <!-- 消息 -->
+  <div id="message-box">点击"开始游戏"进入双升 🎴</div>
+
+  <!-- 玩家手牌 -->
+  <div id="player-hand"></div>
+
+  <!-- 操作按钮 -->
+  <div class="btn-row">
+    <button class="btn btn-primary" id="btn-start">开始游戏</button>
+    <button class="btn btn-danger" id="btn-restart" style="display:none">重新开始</button>
+  </div>
+</div>
+
+<!-- 覆盖层 -->
+<div id="overlay" class="hidden">
+  <div class="result" id="result-emoji">🎉</div>
+  <h2 id="result-title">游戏结束</h2>
+  <p id="result-desc"></p>
+  <button class="btn btn-primary" id="btn-replay">再来一局</button>
+</div>
+
+<script>
+// ========== 常量 ==========
+const SUITS=['♠','♥','♦','♣'];
+const RANKS=['5','6','7','8','9','10','J','Q','K','A'];
+const POINT={5:5,10:10,J:10,Q:0,K:10,A:0};
+// 主牌：大王(★), 小王(☆), 主5, 其他5, 级牌6-A
+const TRUMP_ORDER=['★','☆','5','6','7','8','9','10','J','Q','K','A'];
+// 副牌花色顺序
+const SUIT_ORDER=['5','6','7','8','9','10','J','Q','K','A'];
+const DECK_SIZE=2; // 2副牌，每张牌DECK_SIZE份
+
+// ========== 状态 ==========
+let deck=[];
+let playerHand=[];
+let aiHand=[];
+let playerScores=0, aiScores=0;
+let isPlayerTurn=false;
+let gamePhase='idle'; // idle, dealing, calling, playing, roundEnd, gameEnd
+let currentTrump='';
+let calledTrumps=[];
+let roundStarter=''; // 'you'|'ai'
+let playZone={you:null, ai:null};
+let roundCards=[];
+let mustCall=false; // 玩家必须先叫主
+let pendingTrumpCall=false;
+let passCount=0;
+
+// ========== 工具函数 ==========
+function shuffle(arr){
+  for(let i=arr.length-1;i>0;i--){
+    const j=Math.floor(Math.random()*(i+1));
+    [arr[i],arr[j]]=[arr[j],arr[i]];
+  }
+  return arr;
+}
+function cardKey(suit,rank){return suit+rank;}
+
+// ========== 发牌 ==========
+function buildDeck(){
+  let d=[];
+  for(let copy=0;copy<DECK_SIZE;copy++){
+    for(let s of SUITS){
+      for(let r of RANKS){
+        d.push({suit:s,rank:r,key:cardKey(s,r)});
+      }
+    }
+  }
+  // 大王小王各2张
+  d.push({suit:'★',rank:'★',key:'★',isJoker:true,isRed:true});
+  d.push({suit:'★',rank:'★',key:'★2',isJoker:true,isRed:true});
+  d.push({suit:'☆',rank:'☆',key:'☆',isJoker:true,isRed:false});
+  d.push({suit:'☆',rank:'☆',key:'☆2',isJoker:true,isRed:false});
+  return shuffle(d);
+}
+
+function deal(){
+  deck=buildDeck();
+  playerHand=deck.splice(0,54);
+  aiHand=deck.splice(0,54);
+  sortHand(playerHand);
+  sortHand(aiHand);
+  gamePhase='calling';
+  mustCall=true;
+  pendingTrumpCall=true;
+  currentTrump='';
+  passCount=0;
+  renderHands();
+  setMessage('请叫主（选择将牌花色），无人叫主则随机定主',true);
+  showTrumpButtons();
+}
+
+// ========== 手牌排序 ==========
+function cmpCards(a,b){
+  // 主牌排前面
+  const aT=a.isMain,bT=b.isMain;
+  if(aT!==bT) return aT?-1:1;
+  if(a.isJoker&&!b.isJoker) return -1;
+  if(!a.isJoker&&b.isJoker) return 1;
+  // 同花色按RANKS顺序
+  if(a.suit!==b.suit) return SUITS.indexOf(a.suit)-SUITS.indexOf(b.suit);
+  return RANKS.indexOf(a.rank)-RANKS.indexOf(b.rank);
+}
+
+// ========== 叫主 ==========
+function makeTrumps(){
+  playerHand.forEach(c=>c.isMain=c.suit===currentTrump);
+  aiHand.forEach(c=>c.isMain=c.suit===currentTrump);
+  // 主5和主10也是主牌
+  playerHand.forEach(c=>{if(c.suit===currentTrump&&(c.rank==='5'||c.rank==='10'))c.isMain=true;});
+  aiHand.forEach(c=>{if(c.suit===currentTrump&&(c.rank==='5'||c.rank==='10'))c.isMain=true;});
+}
+
+function sortHand(hand){
+  hand.forEach(c=>{
+    c.isMain=(c.suit===currentTrump||c.isJoker);
+    if(c.suit===currentTrump&&(c.rank==='5')) c.isMain=true;
+  });
+  hand.sort(cmpCards);
+}
+
+function callTrump(suit){
+  currentTrump=suit;
+  calledTrumps.push(suit);
+  makeTrumps();
+  sortHand(playerHand);
+  sortHand(aiHand);
+  renderHands();
+  hideTrumpButtons();
+  pendingTrumpCall=false;
+  setMessage('主牌已定：'+suit+(' ♥♦'.includes(suit)?'（红心/方片）':'（黑桃/梅花）'),true);
+  startFirstRound();
+}
+
+function passCall(){
+  passCount++;
+  if(passCount>=2){
+    // 无人叫主，随机定主
+    currentTrump=SUITS[Math.floor(Math.random()*4)];
+    makeTrumps();
+    sortHand(playerHand);
+    sortHand(aiHand);
+    renderHands();
+    hideTrumpButtons();
+    pendingTrumpCall=false;
+    setMessage('无人叫主，随机指定：'+currentTrump,true);
+    startFirstRound();
+  } else {
+    setMessage('你选择不叫，AI请叫主...',false);
+    setTimeout(()=>aiCalls(),600);
+  }
+}
+
+function aiCalls(){
+  // AI叫主：优先红心/方片
+  const aiTrumps=playerHand.filter(c=>calledTrumps.includes(c.suit)===false);
+  const canCall=SUITS.filter(s=>!calledTrumps.includes(s));
+  if(canCall.length===0){
+    currentTrump=SUITS[Math.floor(Math.random()*4)];
+  } else {
+    currentTrump=canCall[Math.floor(Math.random()*canCall.length)];
+  }
+  calledTrumps.push(currentTrump);
+  makeTrumps();
+  sortHand(playerHand);
+  sortHand(aiHand);
+  renderHands();
+  hideTrumpButtons();
+  pendingTrumpCall=false;
+  setMessage('AI叫主：'+currentTrump,true);
+  startFirstRound();
+}
+
+// ========== 第一轮：随机决定先手 ==========
+function startFirstRound(){
+  roundStarter=Math.random()<0.5?'you':'ai';
+  isPlayerTurn=(roundStarter==='you');
+  gamePhase='playing';
+  updateTurnIndicator();
+  renderPlayZone();
+  if(!isPlayerTurn){
+    setTimeout(()=>aiPlaysCard(),800);
+  } else {
+    setMessage('你的回合，请出牌',true);
+  }
+}
+
+// ========== 出牌 ==========
+function canPlay(card){
+  if(!isPlayerTurn||gamePhase!=='playing') return false;
+  // 如果是跟牌阶段，需要同花色
+  if(playZone.you && !playZone.ai){
+    // 玩家先出，AI跟牌
+    return true; // 玩家随便出
+  }
+  if(playZone.you && playZone.ai){
+    // 第二轮，玩家跟牌
+    const leadSuit=playZone.you.isMain?'MAIN':playZone.you.suit;
+    if(card.isMain){
+      if(leadSuit==='MAIN') return true;
+      // 没有主花色可跟
+      return true; // 可以降级
+    }
+    return card.suit===leadSuit;
+  }
+  return true;
+}
+
+function playerPlayCard(card){
+  if(!canPlay(card)) return;
+  playZone.you=card;
+  playerHand=playerHand.filter(c=>c.key!==card.key);
+  renderHands();
+  renderPlayZone();
+
+  if(!playZone.ai){
+    isPlayerTurn=false;
+    setMessage('等待AI出牌...',false);
+    setTimeout(()=>aiPlaysCard(),700);
+  } else {
+    // 双方都出了，计算回合
+    isPlayerTurn=false;
+    setTimeout(()=>resolveRound(),500);
+  }
+}
+
+function aiPlaysCard(){
+  if(aiHand.length===0) return;
+  let card;
+  if(!playZone.you){
+    // AI先出
+    card=aiHand[Math.floor(Math.random()*aiHand.length)];
+  } else {
+    // AI跟牌
+    const leadSuit=playZone.you.isMain?'MAIN':playZone.you.suit;
+    let candidates=aiHand.filter(c=>{
+      if(leadSuit==='MAIN') return c.isMain;
+      return !c.isMain&&c.suit===leadSuit;
+    });
+    if(candidates.length===0){
+      candidates=aiHand; // 降级
+    }
+    // AI简单策略：优先出非主牌小牌
+    candidates.sort((a,b)=>{
+      if(a.isMain!==b.isMain) return a.isMain?1:-1;
+      return RANKS.indexOf(a.rank)-RANKS.indexOf(b.rank);
+    });
+    card=candidates[0];
+  }
+  playZone.ai=card;
+  aiHand=aiHand.filter(c=>c.key!==card.key);
+  renderPlayZone();
+  renderHands();
+  if(playZone.you && playZone.ai){
+    setTimeout(()=>resolveRound(),500);
+  } else {
+    isPlayerTurn=true;
+    updateTurnIndicator();
+    setMessage('你的回合，请出牌',true);
+  }
+}
+
+// ========== 回合结算 ==========
+function cardPower(c){
+  if(c.isJoker) return c.suit==='★'?200:190;
+  if(c.isMain) return 150+TRUMP_ORDER.indexOf(c.rank);
+  if('♥♦'.includes(c.suit)) return 100+SUIT_ORDER.indexOf(c.rank);
+  return SUIT_ORDER.indexOf(c.rank);
+}
+
+function resolveRound(){
+  const w=playZone.you;
+  const a=playZone.ai;
+  const leadSuit=w.isMain?'MAIN':w.suit;
+  const followSuit=a.isMain?'MAIN':a.suit;
+
+  let winner;
+  if(a.isMain&&!w.isMain){
+    winner='ai';
+  } else if(w.isMain&&!a.isMain){
+    winner='you';
+  } else if(w.isMain&&a.isMain){
+    winner=cardPower(w)>=cardPower(a)?'you':'ai';
+  } else if(w.suit===a.suit){
+    winner=cardPower(w)>=cardPower(a)?'you':'ai';
+  } else {
+    winner=w.suit===leadSuit?'you':'ai'; // 跟牌赢
+  }
+
+  // 计算得分
+  let pts=0;
+  [w,a].forEach(c=>{
+    if(c.isJoker) pts+=50;
+    else if(c.rank==='5') pts+=5;
+    else if(c.rank==='10'||c.rank==='K') pts+=10;
+  });
+
+  const roundWinner=winner;
+  const firstPlayer='you';
+
+  if(roundWinner==='you'){
+    playerScores+=pts;
+  } else {
+    aiScores+=pts;
+  }
+
+  playZone={you:null,ai:null};
+  renderPlayZone();
+  updateScore();
+
+  if(playerScores>=80 || aiScores>=80 || playerHand.length===0){
+    endGame();
+    return;
+  }
+
+  setMessage((roundWinner==='you'?'你赢了这轮 ':'AI赢了这轮 ')+'+'+pts+'分',true);
+  isPlayerTurn=(roundWinner==='you');
+  updateTurnIndicator();
+
+  if(!isPlayerTurn){
+    setTimeout(()=>aiPlaysCard(),700);
+  } else {
+    setMessage('你的回合，请出牌',true);
+  }
+}
+
+// ========== 游戏结束 ==========
+function endGame(){
+  gamePhase='gameEnd';
+  const youWin=playerScores>=80;
+  const resultEl=document.getElementById('overlay');
+  document.getElementById('result-emoji').textContent=youWin?'🎉':'😢';
+  document.getElementById('result-title').textContent=youWin?'你赢了！':'你输了！';
+  document.getElementById('result-desc').innerHTML=
+    '你得分：'+playerScores+' | AI得分：'+aiScores+'<br>'+
+    (youWin?'恭喜！先到80分获胜':'下次再接再厉');
+  resultEl.classList.remove('hidden');
+  document.getElementById('btn-restart').style.display='inline-block';
+}
+
+// ========== 渲染函数 ==========
+function renderHands(){
+  // 玩家手牌
+  const playerEl=document.getElementById('player-hand');
+  playerEl.innerHTML='';
+  playerHand.forEach(card=>{
+    const div=document.createElement('div');
+    const isRed='♥♦'.includes(card.suit);
+    div.className='card'+(card.isJoker?'':(isRed?' red':' black'));
+    if(card.isJoker){
+      div.textContent=card.suit==='★'?'🃏':'🃏';
+      div.style.color=card.suit==='★'?'#ffd700':'#e0e0e0';
+    } else {
+      const color=isRed?'#e74c3c':'#ecf0f1';
+      div.innerHTML='<span style="color:'+color+'">'+card.rank+'</span><br><span style="font-size:28px;color:'+color+'">'+card.suit+'</span>';
+      div.style.background='linear-gradient(145deg,#1e1e3a,#252550)';
+      div.style.border='2px solid '+color+'44';
+    }
+    div.dataset.key=card.key;
+    if(card.isMain) div.style.boxShadow='0 0 12px #ffd70066';
+    div.onclick=()=>playerPlayCard(card);
+    playerEl.appendChild(div);
+  });
+
+  // AI手牌背面
+  const aiEl=document.getElementById('ai-hand');
+  aiEl.innerHTML='';
+  for(let i=0;i<aiHand.length;i++){
+    const div=document.createElement('div');
+    div.className='ai-card';
+    aiEl.appendChild(div);
+  }
+}
+
+function renderPlayZone(){
+  const youEl=document.getElementById('card-you');
+  const aiEl=document.getElementById('card-ai');
+
+  if(playZone.you){
+    const c=playZone.you;
+    const isRed='♥♦'.includes(c.suit);
+    youEl.style.display='';
+    youEl.className='card';
+    youEl.style.background='linear-gradient(145deg,#1e1e3a,#252550)';
+    youEl.style.border='2px solid '+(isRed?'#e74c3c44':'#ecf0f144');
+    if(c.isJoker){
+      youEl.innerHTML=c.suit==='★'?'<span style="font-size:36px;color:#ffd700">🃏</span>':'<span style="font-size:36px;color:#ccc">🃏</span>';
+    } else {
+      const color=isRed?'#e74c3c':'#ecf0f1';
+      youEl.innerHTML='<span style="color:'+color+'">'+c.rank+'</span><br><span style="font-size:32px;color:'+color+'">'+c.suit+'</span>';
+    }
+  } else {
+    youEl.style.display='none';
+  }
+
+  if(playZone.ai){
+    const c=playZone.ai;
+    const isRed='♥♦'.includes(c.suit);
+    aiEl.style.display='';
+    aiEl.className='card';
+    aiEl.style.background='linear-gradient(145deg,#1e1e3a,#252550)';
+    aiEl.style.border='2px solid '+(isRed?'#e74c3c44':'#ecf0f144');
+    if(c.isJoker){
+      aiEl.innerHTML=c.suit==='★'?'<span style="font-size:36px;color:#ffd700">🃏</span>':'<span style="font-size:36px;color:#ccc">🃏</span>';
+    } else {
+      const color=isRed?'#e74c3c':'#ecf0f1';
+      aiEl.innerHTML='<span style="color:'+color+'">'+c.rank+'</span><br><span style="font-size:32px;color:'+color+'">'+c.suit+'</span>';
+    }
+  } else {
+    aiEl.style.display='none';
+  }
+}
+
+function updateScore(){
+  document.getElementById('score-you').textContent=playerScores;
+  document.getElementById('score-ai').textContent=aiScores;
+  document.getElementById('bar-you').style.width=Math.min(100,playerScores/80*100)+'%';
+  document.getElementById('bar-ai').style.width=Math.min(100,aiScores/80*100)+'%';
+}
+
+function updateTurnIndicator(){
+  const el=document.getElementById('turn-indicator');
+  if(gamePhase==='idle') el.textContent='🎴 等待开始';
+  else if(gamePhase==='calling') el.textContent='🎴 叫主阶段';
+  else if(isPlayerTurn) el.textContent='⬇️ 你的回合';
+  else el.textContent='🤖 AI回合';
+}
+
+function setMessage(msg,highlight=false){
+  const el=document.getElementById('message-box');
+  el.textContent=msg;
+  el.className=highlight?'highlight':'none';
+}
+
+// ========== 叫主UI ==========
+function showTrumpButtons(){
+  const existing=document.getElementById('trump-ui');
+  if(existing) return;
+  const ui=document.createElement('div');
+  ui.id='trump-ui';
+  ui.style.cssText='display:flex;flex-direction:column;align-items:center;gap:10px;margin:8px 0;';
+  const label=document.createElement('div');
+  label.textContent='请选择主牌花色：';
+  label.style.color='#667eea';
+  ui.appendChild(label);
+  const btns=document.createElement('div');
+  btns.className='trump-buttons';
+  const suitNames={♠:'黑桃',♥:'红心',♦:'方片',♣:'梅花'};
+  const suitColors={♠:'#e0e0e0',♥:'#e74c3c',♦:'#e74c3c',♣:'#e0e0e0'};
+  SUITS.forEach(s=>{
+    const b=document.createElement('button');
+    b.className='btn btn-primary';
+    b.textContent=suitNames[s]+' '+s;
+    b.style.color=suitColors[s];
+    b.onclick=()=>callTrump(s);
+    btns.appendChild(b);
+  });
+  const pass=document.createElement('button');
+  pass.className='btn btn-danger';
+  pass.textContent='不叫（过）';
+  pass.onclick=()=>passCall();
+  btns.appendChild(pass);
+  ui.appendChild(btns);
+  document.getElementById('game-area').insertBefore(ui,document.getElementById('player-hand'));
+}
+
+function hideTrumpButtons(){
+  const ui=document.getElementById('trump-ui');
+  if(ui) ui.remove();
+}
+
+// ========== 重新开始 ==========
+function resetGame(){
+  playerScores=0;
+  aiScores=0;
+  currentTrump='';
+  calledTrumps=[];
+  playZone={you:null,ai:null};
+  roundCards=[];
+  gamePhase='idle';
+  isPlayerTurn=false;
+  updateScore();
+  updateTurnIndicator();
+  renderPlayZone();
+  document.getElementById('player-hand').innerHTML='';
+  document.getElementById('ai-hand').innerHTML='';
+  document.getElementById('overlay').classList.add('hidden');
+  document.getElementById('btn-restart').style.display='none';
+  setMessage('点击"开始游戏"进入双升 🎴',false);
+}
+
+// ========== 按钮事件 ==========
+document.getElementById('btn-start').onclick=()=>{
+  document.getElementById('btn-start').style.display='none';
+  deal();
+};
+document.getElementById('btn-restart').onclick=()=>{resetGame();};
+document.getElementById('btn-replay').onclick=()=>{resetGame();};
+
+// ========== 初始 ==========
+renderHands();
+renderPlayZone();
+</script>
+</body>
+</html>
