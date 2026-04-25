@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>📦 推箱子 · Sokoban</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:#1a1a2e;
+  color:#e0e0e0;
+  font-family:'PingFang SC','Microsoft YaHei',sans-serif;
+  min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;
+  user-select:none;
+}
+#top-bar{
+  width:100%;max-width:600px;padding:14px 16px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+#top-bar .title{font-size:20px;font-weight:700}
+.score-info{display:flex;gap:20px;font-size:14px}
+.score-info span{color:#888}
+.score-info .val{color:#fff;font-weight:700}
+.btn{
+  padding:8px 20px;border:none;border-radius:8px;
+  cursor:pointer;font-size:13px;font-weight:600;color:#fff;
+  transition:transform 0.1s;
+}
+.btn:active{transform:scale(0.95)}
+.btn-primary{background:linear-gradient(135deg,#667eea,#764ba2)}
+.btn-success{background:linear-gradient(135deg,#4ecdc4,#2cb5a0)}
+.btn-danger{background:linear-gradient(135deg,#f5576c,#c0392b)}
+#game-container{
+  display:flex;flex-direction:column;align-items:center;gap:12px;
+  padding:8px 16px;width:100%;max-width:600px;
+}
+#sokoban-board{
+  display:grid;
+  gap:2px;
+  background:#0a0a15;
+  padding:8px;
+  border-radius:12px;
+  border:2px solid rgba(102,126,234,0.2);
+  touch-action:none;
+}
+.cell{
+  width:48px;height:48px;
+  border-radius:6px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:24px;
+  transition:background 0.1s;
+}
+/* 墙 */
+.cell.wall{background:#2a2a4a}
+/* 空地 */
+.cell.floor{background:#1a1a2e}
+/* 玩家 */
+.cell.player{background:#667eea;border-radius:50%;box-shadow:0 0 12px #667eea88}
+/* 箱子 */
+.cell.box{background:#f5a623}
+/* 目标位 */
+.cell.target{background:#1a1a2e;border:2px dashed #4ecdc4}
+/* 箱子在目标位 */
+.cell.box-done{background:#2cb5a0;border:2px solid #4ecdc4}
+/* 玩家在目标位 */
+.cell.player-done{background:#4ecdc4;border-radius:50%;box-shadow:0 0 12px #4ecdc488}
+#controls{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+#message{font-size:14px;color:#aaa;text-align:center;min-height:22px}
+#message.highlight{color:#ffe66d;font-weight:600}
+/* 通关弹窗 */
+#win-overlay{
+  position:fixed;inset:0;
+  background:rgba(0,0,0,0.8);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  z-index:100;
+}
+#win-overlay.hidden{display:none}
+#win-overlay h2{font-size:32px;margin-bottom:12px}
+#win-overlay p{color:#aaa;margin-bottom:24px;text-align:center}
+#win-overlay .stars{font-size:56px;margin-bottom:16px}
+/* 关卡选择 */
+#level-select{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin-bottom:8px}
+.level-btn{
+  padding:6px 14px;border:none;border-radius:20px;
+  cursor:pointer;font-size:12px;font-weight:600;
+  background:rgba(102,126,234,0.15);
+  color:#667eea;
+  transition:all 0.2s;
+}
+.level-btn:hover,.level-btn.active{
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:#fff;
+}
+/* 触屏按钮 */
+#touch-controls{
+  display:grid;
+  grid-template-areas:
+    ". up ."
+    "left . right"
+    ". down .";
+  gap:6px;
+  margin-top:8px;
+}
+.touch-btn{
+  width:56px;height:56px;
+  border:none;border-radius:12px;
+  background:linear-gradient(135deg,#2a2a4a,#1a1a3a);
+  color:#667eea;
+  font-size:22px;
+  cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all 0.1s;
+  border:1px solid #444;
+}
+.touch-btn:active{transform:scale(0.9);background:#667eea;color:#fff}
+.touch-btn#btn-up{grid-area:up}
+.touch-btn#btn-down{grid-area:down}
+.touch-btn#btn-left{grid-area:left}
+.touch-btn#btn-right{grid-area:right}
+/* 撤销/重置 */
+#action-btns{display:flex;gap:8px;flex-wrap:wrap;justify-content:center}
+/* 移动次数 */
+#move-counter{font-size:12px;color:#666}
+</style>
+</head>
+<body>
+
+<div id="top-bar">
+  <div class="title">📦 推箱子</div>
+  <div class="score-info">
+    <span>关卡 <span class="val" id="level-num">1</span>/<span id="total-levels">5</span></span>
+    <span>步数 <span class="val" id="step-count">0</span></span>
+  </div>
+</div>
+
+<div id="game-container">
+  <div id="level-select"></div>
+  <div id="sokoban-board"></div>
+  <div id="message">用方向键 ← ↑ → ↓ 或 WASD 移动工人，把箱子推到目标位</div>
+  <div id="touch-controls">
+    <button class="touch-btn" id="btn-up">↑</button>
+    <button class="touch-btn" id="btn-left">←</button>
+    <button class="touch-btn" id="btn-right">→</button>
+    <button class="touch-btn" id="btn-down">↓</button>
+  </div>
+  <div id="action-btns">
+    <button class="btn btn-primary" id="btn-undo">↩ 撤销</button>
+    <button class="btn btn-danger" id="btn-reset">🔄 重置</button>
+    <button class="btn btn-success" id="btn-next" style="display:none">下一关 →</button>
+  </div>
+  <div id="move-counter"></div>
+</div>
+
+<div id="win-overlay" class="hidden">
+  <div class="stars">🎉</div>
+  <h2>通关！</h2>
+  <p id="win-msg">用时 0 步</p>
+  <button class="btn btn-primary" id="btn-next-win">下一关</button>
+</div>
+
+<script>
+// ========== 关卡定义 ==========
+// 图例: #墙, @玩家, $箱子, .目标, *箱子在目标, +玩家在目标, 空格空地
+const LEVELS=[
+  {
+    name:'第1关 · 新手',
+    map:[
+      '########',
+      '#      #',
+      '# $ @  #',
+      '# $    #',
+      '#  . . #',
+      '#      #',
+      '########'
+    ]
+  },
+  {
+    name:'第2关 · 简单',
+    map:[
+      '#######',
+      '#  .  #',
+      '# $ $ #',
+      '#  @  #',
+      '# $ $ #',
+      '#  .  #',
+      '#######'
+    ]
+  },
+  {
+    name:'第3关 · 进阶',
+    map:[
+      '  #####',
+      '###   #',
+      '# $ # ##',
+      '# #  . #',
+      '#    # #',
+      '## #$.@#',
+      ' #######'
+    ]
+  },
+  {
+    name:'第4关 · 挑战',
+    map:[
+      '######',
+      '#    #',
+      '# #@ #',
+      '# $$ #',
+      '# .  #',
+      '######'
+    ]
+  },
+  {
+    name:'第5关 · 烧脑',
+    map:[
+      '  #####',
+      '###   #',
+      '# .$# ##',
+      '# #$#  #',
+      '#  @   #',
+      '########'
+    ]
+  }
+];
+
+const SYMBOLS={WALL:'#',PLAYER:'@',BOX:'$',TARGET:'.',BOX_DONE:'*',PLAYER_DONE:'+'};
+const DRAW={WALL:'🧱',PLAYER:'😀',BOX:'📦',TARGET:'🎯',BOX_DONE:'✅',PLAYER_DONE:'😀'};
+const DIRS={ArrowUp:[-1,0],ArrowDown:[1,0],ArrowLeft:[0,-1],ArrowRight:[0,1],w:[-1,0],s:[1,0],a:[0,-1],d:[0,1],W:[-1,0],S:[1,0],A:[0,-1],D:[0,1]};
+
+// ========== 状态 ==========
+let currentLevel=0;
+let grid=[],boxes=[],targets=[],playerPos={r:0,c:0};
+let moves=0,history=[];
+let win=false;
+
+// ========== 解析关卡 ==========
+function parseLevel(lv){
+  const map=lv.map;
+  const maxC=Math.max(...map.map(r=>r.length));
+  grid=[];boxes=[];targets=[];playerPos={r:0,c:0};
+  for(let r=0;r<map.length;r++){
+    grid[r]=[];
+    for(let c=0;c<maxC;c++){
+      const ch=map[r][c]||' ';
+      let cell='floor';
+      if(ch==='#'||ch===' '){cell='wall';} // 外围空格当墙
+      else if(ch==='@'||ch==='+'){playerPos={r,c};cell='floor';}
+      else if(ch==='$'){boxes.push({r,c});cell='floor';}
+      else if(ch==='.'){targets.push({r,c});cell='target';}
+      else if(ch==='*'){boxes.push({r,c});targets.push({r,c});cell='target';}
+      else if(ch==='+'){playerPos={r,c};targets.push({r,c});cell='target';}
+      else {cell='floor';}
+      grid[r][c]=cell;
+    }
+  }
+  // 修正：空地边界外当墙
+  for(let r=0;r<grid.length;r++){
+    for(let c=0;c<grid[r].length;c++){
+      if(map[r]&&map[r][c]===' '){
+        grid[r][c]='wall';
+      }
+    }
+  }
+}
+
+// ========== 渲染 ==========
+function render(){
+  const board=document.getElementById('sokoban-board');
+  const rows=grid.length;
+  const cols=Math.max(...grid.map(r=>r.length));
+  board.style.gridTemplateColumns='repeat('+cols+',48px)';
+  board.innerHTML='';
+
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      const cell=document.createElement('div');
+      cell.className='cell '+grid[r][c];
+      const isBox=boxes.some(b=>b.r===r&&b.c===c);
+      const isTarget=targets.some(t=>t.r===r&&t.c===c);
+      const isPlayer=playerPos.r===r&&playerPos.c===c;
+
+      if(isPlayer){
+        if(isTarget) cell.className='cell player-done';
+        else cell.className='cell player';
+        cell.textContent='😀';
+      } else if(isBox){
+        if(isTarget) cell.className='cell box-done';
+        else cell.className='cell box';
+        cell.textContent='📦';
+      } else if(grid[r][c]==='wall'){
+        cell.textContent='🧱';
+      } else if(grid[r][c]==='target'){
+        cell.textContent='🎯';
+      }
+      board.appendChild(cell);
+    }
+  }
+
+  document.getElementById('step-count').textContent=moves;
+  document.getElementById('level-num').textContent=currentLevel+1;
+}
+
+// ========== 移动逻辑 ==========
+function isWall(r,c){
+  if(r<0||r>=grid.length||c<0||c>=grid[r].length) return true;
+  return grid[r][c]==='wall';
+}
+function isBox(r,c){return boxes.some(b=>b.r===r&&b.c===c);}
+function getBox(r,c){return boxes.find(b=>b.r===r&&b.c===c);}
+
+function move(dr,dc){
+  if(win) return;
+  const {r,c}=playerPos;
+  const nr=r+dr,nc=c+dc;
+  if(isWall(nr,nc)) return;
+
+  let pushBox=null;
+  if(isBox(nr,nc)){
+    const br=nr+dr,bc=nc+dc;
+    if(isWall(br,bc)||isBox(br,bc)) return;
+    pushBox=getBox(nr,nc);
+  }
+
+  // 保存历史
+  history.push({playerPos:{...playerPos},boxes:boxes.map(b=>({...b})),moves});
+
+  playerPos={r:nr,c:nc};
+  if(pushBox){
+    pushBox.r+=dr;pushBox.c+=dc;
+  }
+  moves++;
+  render();
+  checkWin();
+}
+
+function undo(){
+  if(history.length===0) return;
+  const s=history.pop();
+  playerPos=s.playerPos;
+  boxes=s.boxes;
+  moves=s.moves;
+  win=false;
+  render();
+  setMessage('撤销一步',false);
+}
+
+function reset(){
+  history=[];
+  moves=0;
+  win=false;
+  parseLevel(LEVELS[currentLevel]);
+  render();
+  setMessage('关卡重置',false);
+}
+
+function checkWin(){
+  const allDone=targets.every(t=>boxes.some(b=>b.r===t.r&&b.c===t.c));
+  if(allDone){
+    win=true;
+    setTimeout(showWin,200);
+  }
+}
+
+function showWin(){
+  const el=document.getElementById('win-overlay');
+  const stars= moves<=30?'🌟🌟🌟': moves<=60?'🌟🌟':'🌟';
+  document.querySelector('#win-overlay .stars').textContent=stars;
+  document.getElementById('win-msg').textContent='用时 '+moves+' 步 '+stars;
+  const isLast=currentLevel>=LEVELS.length-1;
+  document.getElementById('btn-next-win').textContent=isLast?'🎮 重玩':'下一关 →';
+  el.classList.remove('hidden');
+  document.getElementById('btn-next').style.display=currentLevel<LEVELS.length-1?'inline-block':'none';
+}
+
+function nextLevel(){
+  document.getElementById('win-overlay').classList.add('hidden');
+  if(currentLevel<LEVELS.length-1){
+    currentLevel++;
+  } else {
+    currentLevel=0;
+  }
+  loadLevel(currentLevel);
+}
+
+function loadLevel(idx){
+  currentLevel=idx;
+  history=[];moves=0;win=false;
+  parseLevel(LEVELS[idx]);
+  render();
+  setMessage(LEVELS[idx].name+' — 开始！',true);
+  updateLevelButtons();
+  document.getElementById('total-levels').textContent=LEVELS.length;
+  document.getElementById('btn-next').style.display=idx<LEVELS.length-1?'inline-block':'none';
+}
+
+function updateLevelButtons(){
+  document.querySelectorAll('.level-btn').forEach((btn,i)=>{
+    btn.classList.toggle('active',i===currentLevel);
+  });
+}
+
+function setMessage(msg,highlight=false){
+  const el=document.getElementById('message');
+  el.textContent=msg;
+  el.className=highlight?'highlight':'none';
+}
+
+// ========== 关卡按钮 ==========
+function buildLevelButtons(){
+  const container=document.getElementById('level-select');
+  LEVELS.forEach((lv,i)=>{
+    const btn=document.createElement('button');
+    btn.className='level-btn'+(i===0?' active':'');
+    btn.textContent=i+1;
+    btn.onclick=()=>{document.getElementById('win-overlay').classList.add('hidden');loadLevel(i);};
+    container.appendChild(btn);
+  });
+}
+
+// ========== 键盘事件 ==========
+document.addEventListener('keydown',e=>{
+  const dir=DIRS[e.key];
+  if(dir){e.preventDefault();move(dir[0],dir[1]);}
+  if(e.key==='z'&&(e.ctrlKey||e.metaKey)){e.preventDefault();undo();}
+  if(e.key==='r')reset();
+});
+
+// ========== 触屏按钮 ==========
+function addTouchBtn(id,dr,dc){
+  document.getElementById(id).onclick=()=>move(dr,dc);
+}
+addTouchBtn('btn-up',-1,0);
+addTouchBtn('btn-down',1,0);
+addTouchBtn('btn-left',0,-1);
+addTouchBtn('btn-right',0,1);
+
+// ========== 触屏滑动 ==========
+let touchStart=null;
+const board=document.getElementById('sokoban-board');
+board.addEventListener('touchstart',e=>{
+  touchStart={x:e.touches[0].clientX,y:e.touches[0].clientY};
+},{passive:true});
+board.addEventListener('touchend',e=>{
+  if(!touchStart) return;
+  const dx=e.changedTouches[0].clientX-touchStart.x;
+  const dy=e.changedTouches[0].clientY-touchStart.y;
+  const absD=Math.max(Math.abs(dx),Math.abs(dy));
+  if(absD<20) return;
+  if(Math.abs(dx)>Math.abs(dy)) move(0,dx>0?1:-1);
+  else move(dy>0?1:-1,0);
+  touchStart=null;
+},{passive:true});
+
+// ========== 按钮 ==========
+document.getElementById('btn-undo').onclick=undo;
+document.getElementById('btn-reset').onclick=reset;
+document.getElementById('btn-next').onclick=nextLevel;
+document.getElementById('btn-next-win').onclick=nextLevel;
+
+// ========== 启动 ==========
+buildLevelButtons();
+loadLevel(0);
+</script>
+</body>
+</html>
