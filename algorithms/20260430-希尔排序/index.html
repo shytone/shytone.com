@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>📚 回溯算法详解：解决组合优化问题 - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>🧮 希尔排序 (Shell Sort) - SHYTONE.COM</title>
 
-<meta name="description" content="📚 回溯算法详解：解决组合优化问题英文标题 / English Title: Backtracking Algorithm: Solving Combinatorial Problems来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认...">
-<link rel="canonical" href="https://shytone.com/algorithms/20260429-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="🧮 希尔排序 (Shell Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 插入排序改进 (Insertion Sort Variant)时间复杂度 / Time Complexity: O(n^1.3) ~ O(n²)空间复杂度 / Space Complex...">
+<link rel="canonical" href="https://shytone.com/algorithms/20260430-%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -92,26 +92,26 @@ window.addEventListener('storage', function(e) {
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="📚 回溯算法详解：解决组合优化问题 - SHYTONE.COM">
-<meta property="og:description" content="📚 回溯算法详解：解决组合优化问题英文标题 / English Title: Backtracking Algorithm: Solving Combinatorial Problems来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认...">
+<meta property="og:title" content="🧮 希尔排序 (Shell Sort) - SHYTONE.COM">
+<meta property="og:description" content="🧮 希尔排序 (Shell Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 插入排序改进 (Insertion Sort Variant)时间复杂度 / Time Complexity: O(n^1.3) ~ O(n²)空间复杂度 / Space Complex...">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://shytone.com/algorithms/20260429-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">
+<meta property="og:url" content="https://shytone.com/algorithms/20260430-%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="📚 回溯算法详解：解决组合优化问题 - SHYTONE.COM">
-<meta name="twitter:description" content="📚 回溯算法详解：解决组合优化问题英文标题 / English Title: Backtracking Algorithm: Solving Combinatorial Problems来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认...">
+<meta name="twitter:title" content="🧮 希尔排序 (Shell Sort) - SHYTONE.COM">
+<meta name="twitter:description" content="🧮 希尔排序 (Shell Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 插入排序改进 (Insertion Sort Variant)时间复杂度 / Time Complexity: O(n^1.3) ~ O(n²)空间复杂度 / Space Complex...">
 <meta name="twitter:site" content="@shytone">
 
-<!-- Article Specific --><meta property="article:published_time" content="2026-04-29T00:00:00+08:00"><meta property="article:tag" content="算法"><meta property="article:tag" content="精选文章"><meta property="article:tag" content="学习资源"><!-- JSON-LD Structured Data --><script type="application/ld+json">
+<!-- Article Specific --><meta property="article:published_time" content="2026-04-30T00:00:00+08:00"><meta property="article:tag" content="算法"><meta property="article:tag" content="排序"><meta property="article:tag" content="插入排序改进"><meta property="article:tag" content="非稳定排序"><meta property="article:tag" content="数据结构"><!-- JSON-LD Structured Data --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "📚 回溯算法详解：解决组合优化问题",
-  "description": "📚 回溯算法详解：解决组合优化问题英文标题 / English Title: Backtracking Algorithm: Solving Combinatorial Problems来源 / Source: GeeksforGeeks📌 文章简介 / Introduction这是一篇精选的算法相关文章，建议认...",
-  "datePublished": "2026-04-29T00:00:00+08:00",
+  "headline": "🧮 希尔排序 (Shell Sort)",
+  "description": "🧮 希尔排序 (Shell Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 插入排序改进 (Insertion Sort Variant)时间复杂度 / Time Complexity: O(n^1.3) ~ O(n²)空间复杂度 / Space Complex...",
+  "datePublished": "2026-04-30T00:00:00+08:00",
   "author": {
     "@type": "Person",
     "name": "shytone",
@@ -127,7 +127,7 @@ window.addEventListener('storage', function(e) {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://shytone.com/algorithms/20260429-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/"
+    "@id": "https://shytone.com/algorithms/20260430-%E5%B8%8C%E5%B0%94%E6%8E%92%E5%BA%8F/"
   }
 }
 </script><!-- Google AdSense -->
@@ -405,18 +405,24 @@ window.addEventListener('DOMContentLoaded', function() {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>📚 回溯算法详解：解决组合优化问题</h1></header></div><meta itemprop="headline" content="📚 回溯算法详解：解决组合优化问题"><div class="article__info clearfix"><ul class="left-col menu"><li>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>🧮 希尔排序 (Shell Sort)</h1></header></div><meta itemprop="headline" content="🧮 希尔排序 (Shell Sort)"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
                 href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0">精选文章</a>
+                href="/archive.html?tag=%E6%8E%92%E5%BA%8F">排序</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%BA%90">学习资源</a>
-            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月29日</span>
-            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-29T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,精选文章,学习资源"><div class="js-article-content"><div class="layout--article"><!-- Language Detection -->
+                href="/archive.html?tag=%E6%8F%92%E5%85%A5%E6%8E%92%E5%BA%8F%E6%94%B9%E8%BF%9B">插入排序改进</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E9%9D%9E%E7%A8%B3%E5%AE%9A%E6%8E%92%E5%BA%8F">非稳定排序</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月30日</span>
+            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-30T00:00:00+08:00">
+    <meta itemprop="keywords" content="算法,排序,插入排序改进,非稳定排序,数据结构"><div class="js-article-content"><div class="layout--article"><!-- Language Detection -->
 <script>
 (function(){
   function applyLang(lang) {
@@ -479,41 +485,165 @@ function toggleLang() {
     🌐 <span class="lang-label">中文</span>
   </button>
 </div>
-<div class="article__content" itemprop="articleBody"><h1 id="-回溯算法详解解决组合优化问题">📚 回溯算法详解：解决组合优化问题</h1>
+<div class="article__content" itemprop="articleBody"><h1 id="-希尔排序-shell-sort">🧮 希尔排序 (Shell Sort)</h1>
 
-<p><strong>英文标题 / English Title</strong>: Backtracking Algorithm: Solving Combinatorial Problems</p>
-
-<p><strong>来源 / Source</strong>: GeeksforGeeks</p>
-
-<hr />
-
-<h2 id="-文章简介--introduction">📌 文章简介 / Introduction</h2>
-
-<p>这是一篇精选的算法相关文章，建议认真学习：</p>
-
-<p>👉 <strong>阅读原文</strong>: <a href="https://www.geeksforgeeks.org/backtracking-algorithms/">点击访问</a></p>
+<blockquote>
+  <p><strong>难度 / Difficulty</strong>: 中等 (Medium)<br />
+<strong>分类 / Category</strong>: 插入排序改进 (Insertion Sort Variant)<br />
+<strong>时间复杂度 / Time Complexity</strong>: O(n^1.3) ~ O(n²)<br />
+<strong>空间复杂度 / Space Complexity</strong>: O(1)</p>
+</blockquote>
 
 <hr />
 
-<h2 id="-内容要点--key-points">🔍 内容要点 / Key Points</h2>
+<h2 id="-算法简介--introduction">📖 算法简介 / Introduction</h2>
+
+<p>希尔排序是插入排序的改进版本，由 Donald Shell 于 1959 年提出。核心思想是<strong>设置递减的间隔</strong>，先对间隔较大的子序列进行排序（让元素快速移动到正确位置），逐步减少间隔直到 1。</p>
+
+<p>Shell sort is an improved version of insertion sort, proposed by Donald Shell in 1959. The key idea is to use a <strong>decreasing gap sequence</strong> — first sort sub-arrays with large gaps, then progressively reduce the gap until it becomes 1.</p>
+
+<hr />
+
+<h2 id="-算法原理--principle">💡 算法原理 / Principle</h2>
 
 <ol>
-  <li>深入理解核心概念</li>
-  <li>结合实例理解原理</li>
-  <li>多动手实践练习</li>
+  <li><strong>设置间隔</strong>：选择一个递减的间隔序列（如 n/2, n/4, …, 1）</li>
+  <li><strong>分组排序</strong>：对于每个间隔 g，将数组分为 g 个子序列，每个子序列间隔 g 个元素</li>
+  <li><strong>插入排序</strong>：对每个子序列使用插入排序</li>
+  <li><strong>缩小间隔</strong>：重复以上过程，直到间隔为 1</li>
 </ol>
+
+<p>核心思想：<strong>大的间隔让元素可以远距离跳跃，减少移位次数</strong></p>
+
+<p>为什么比插入排序快？插入排序每次只移动相邻元素，希尔排序通过大间隔让元素一次性移动更远的距离，减少总体移位次数。</p>
+
+<hr />
+
+<h2 id="-代码实现--implementation">📝 代码实现 / Implementation</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">shell_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+    
+    <span class="c1"># 设置初始间隔（n/2）
+</span>    <span class="n">gap</span> <span class="o">=</span> <span class="n">n</span> <span class="o">//</span> <span class="mi">2</span>
+    
+    <span class="k">while</span> <span class="n">gap</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="c1"># 对每个间隔为 gap 的子序列进行插入排序
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">gap</span><span class="p">,</span> <span class="n">n</span><span class="p">):</span>
+            <span class="n">temp</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+            <span class="n">j</span> <span class="o">=</span> <span class="n">i</span>
+            
+            <span class="c1"># 插入排序逻辑（带间隔）
+</span>            <span class="k">while</span> <span class="n">j</span> <span class="o">&gt;=</span> <span class="n">gap</span> <span class="ow">and</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">gap</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">temp</span><span class="p">:</span>
+                <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="n">j</span> <span class="o">-</span> <span class="n">gap</span><span class="p">]</span>
+                <span class="n">j</span> <span class="o">-=</span> <span class="n">gap</span>
+            
+            <span class="n">arr</span><span class="p">[</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">temp</span>
+        
+        <span class="c1"># 缩小间隔
+</span>        <span class="n">gap</span> <span class="o">//=</span> <span class="mi">2</span>
+    
+    <span class="k">return</span> <span class="n">arr</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-示例--example">✨ 示例 / Example</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>输入数组：[12, 34, 54, 2, 3, 45, 8]
+
+Step 1: gap = 7 // 2 = 3
+分组：[12, 2, 8] 和 [34, 3] 和 [54, 45]
+子序列排序后：[2, 8, 12] 和 [3, 34] 和 [45, 54]
+数组变为：[2, 3, 45, 12, 34, 54, 8]
+
+Step 2: gap = 3 // 2 = 1
+使用插入排序对整个数组排序
+最终：[2, 3, 8, 12, 34, 45, 54]
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-适用场景--scenarios">🎯 适用场景 / Scenarios</h2>
+
+<ul>
+  <li><strong>中等规模数据</strong> — 数据量在几千到几万时效率较好</li>
+  <li><strong>接近有序的数据</strong> — 比普通插入排序更快</li>
+  <li><strong>嵌入式系统</strong> — 原地排序，空间复杂度 O(1)</li>
+  <li><strong>初步学习排序</strong> — 理解插入排序改进思路</li>
+</ul>
+
+<p>Medium-sized datasets, Nearly sorted data, Space-constrained environments, Understanding insertion sort improvements.</p>
+
+<hr />
+
+<h2 id="️-优缺点--pros--cons">⚠️ 优缺点 / Pros &amp; Cons</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>优点</th>
+      <th>缺点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>实现简单，代码短小</td>
+      <td>不稳定排序（相等元素可能改变相对位置）</td>
+    </tr>
+    <tr>
+      <td>比插入排序快（减少移位次数）</td>
+      <td>时间复杂度取决于间隔序列的选择</td>
+    </tr>
+    <tr>
+      <td>原地排序 O(1) 空间</td>
+      <td>最坏情况仍是 O(n²)</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-间隔序列的选择--gap-sequence-options">🔄 间隔序列的选择 / Gap Sequence Options</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>序列</th>
+      <th>复杂度</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>n/2, n/4, …, 1</td>
+      <td>O(n²)</td>
+      <td>最原始，简单但不是最优</td>
+    </tr>
+    <tr>
+      <td>2^k - 1</td>
+      <td>O(n^1.5)</td>
+      <td>Knuth 序列</td>
+    </tr>
+    <tr>
+      <td>2.3^k</td>
+      <td>O(n log n)</td>
+      <td>Pratt 序列</td>
+    </tr>
+  </tbody>
+</table>
 
 <hr />
 
 <table>
   <tbody>
     <tr>
-      <td>*每日精选，持续更新</td>
-      <td>Curated daily*</td>
+      <td>*本文由 AI 自动生成</td>
+      <td>Generated by AI*</td>
     </tr>
   </tbody>
 </table>
-</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-29T00:00:00+08:00"><!-- Privacy Notice -->
+</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-30T00:00:00+08:00"><!-- Privacy Notice -->
 <footer class="article-footer">
   <div class="privacy-notice">
     <p>🔒 隐私说明：网站使用 Google AdSense 投放广告，Google 可能使用 Cookie 进行访客分析。了解详情请阅读我们的 <a href="/privacy.html" style="color:#667eea;">隐私政策</a>。</p>
@@ -534,7 +664,7 @@ function toggleLang() {
   margin: 0.25rem 0;
 }
 </style></footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/algorithms/20260429-Dijkstra%E7%AE%97%E6%B3%95/">Dijkstra算法 (Dijkstra Algorithm)</a></div><div class="next"><span>下篇</span><a href="/algorithms/20260430-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/">🧮 动态规划 (Dynamic Programming)</a></div></div></div>
+<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/algorithms/20260430-%E5%9F%BA%E6%95%B0%E6%8E%92%E5%BA%8F/">🧮 基数排序 (Radix Sort)</a></div><div class="next"><span>下篇</span><a href="/algorithms/20260430-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">🧮 广度优先搜索 (BFS)</a></div></div></div>
 
 </div>
 
