@@ -1,0 +1,143 @@
+<blockquote>
+  <p><strong>Context is everything.</strong> 没有上下文，AI 只是一个超强的词向量预测器；有了上下文，它才能真正理解你在说什么、为什么说、想要什么。</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="什么是-ai-上下文">什么是 AI 上下文？</h2>
+
+<p>上下文（Context）是指模型在一次对话中能”看到”的所有信息。它就像 AI 的<strong>工作记忆</strong>，决定了它在回答当前问题时，能调动多少已知信息。</p>
+
+<p><strong>Context is the AI’s working memory — the information it can “see” while answering your current question.</strong></p>
+
+<p>一个完整的上下文通常包含以下几个层面：</p>
+
+<ul>
+  <li><strong>System Prompt</strong> — 角色设定与能力边界</li>
+  <li><strong>对话历史</strong> — 之前的问答记录</li>
+  <li><strong>当前输入</strong> — 你此刻提出的问题</li>
+  <li><strong>附件与文件</strong> — 上传的文档、图片、代码</li>
+  <li><strong>工具返回</strong> — 搜索结果、API 响应、代码执行输出</li>
+</ul>
+
+<hr />
+
+<h2 id="为什么上下文如此重要">为什么上下文如此重要？</h2>
+
+<h3 id="1-让对话成为真正的对话">1. 让对话成为真正的对话</h3>
+
+<p>没有上下文，AI 每次回答都是独立的——它不知道你上句说了什么，不知道你纠正过什么，也不知道这次对话的目标是什么。对话变成了”问答游戏”而非”协作过程”。</p>
+
+<p><strong>Without context, every exchange is isolated. With it, AI can build on what you’ve already established.</strong></p>
+
+<h3 id="2-实现真正的个性化">2. 实现真正的个性化</h3>
+
+<p>同样的指令”帮我看看这段代码”，在不同的上下文中，AI 的响应完全不同：</p>
+
+<ul>
+  <li>附上了报错信息 → AI 会针对错误分析</li>
+  <li>附上了性能数据 → AI 会从优化角度切入</li>
+  <li>什么都没附 → AI 给出一堆通用建议</li>
+</ul>
+
+<p>上下文让 AI 从”泛泛而谈”变成”有的放矢”。</p>
+
+<h3 id="3-显著减少幻觉">3. 显著减少幻觉</h3>
+
+<p>当 AI 能直接”看到”相关文档、数据或背景信息时，它不需要凭空编造答案。引用文档、分析数据、回答基于特定知识库的问题——这些能力都建立在充足的上下文之上。</p>
+
+<hr />
+
+<h2 id="上下文窗口从瓶颈到优势">上下文窗口：从瓶颈到优势</h2>
+
+<p>早期 AI 模型的上下文窗口只有几千 tokens，严重限制了信息量。如今 128K、200K tokens 的上下文窗口已经很常见，GPT-4o 支持高达 1M tokens。</p>
+
+<p>但<strong>更长的上下文不等于更好的效果</strong>。实践中发现：</p>
+
+<h3 id="位置偏见positional-bias">位置偏见（Positional Bias）</h3>
+
+<p>信息放在<strong>开头</strong>或<strong>结尾</strong>时，模型理解效果最好；放在中间容易被”稀释”，模型可能注意不到。</p>
+
+<h3 id="中间信息遗忘lost-in-the-middle">中间信息遗忘（Lost in the Middle）</h3>
+
+<p>当上下文变得很长，即使模型理论上”能看到”所有内容，重要信息被大量文本包围时，模型的实际命中率也会下降。</p>
+
+<p><strong>Longer context is a necessary condition, not a sufficient one. How you structure it matters just as much.</strong></p>
+
+<hr />
+
+<h2 id="实战从塞内容到建结构">实战：从”塞内容”到”建结构”</h2>
+
+<p>很多人以为给 AI 塞越多的信息越好，结果把自己绕进去了。以下是更有效的做法：</p>
+
+<h3 id="-结构化你的指令">✅ 结构化你的指令</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>背景：公司正在从 MVC 迁移到微服务架构
+任务：帮我写一份技术选型文档的初稿
+要求：对比 3 种方案，重点评估迁移成本，语言简洁专业
+</code></pre></div></div>
+
+<p>混乱的输入 → 混乱的输出。结构清晰的需求 → 精准的响应。</p>
+
+<h3 id="-明确输出格式">✅ 明确输出格式</h3>
+
+<p>与其说”给我一个方案”，不如说”用表格对比，包含方案名称、优点、缺点、适用场景三列”。</p>
+
+<h3 id="-适时小结保持上下文健康">✅ 适时小结，保持上下文健康</h3>
+
+<p>长对话中，每完成一个阶段，可以让 AI 做个小结：</p>
+
+<blockquote>
+  <p>“请总结我们目前已确定的方案方向，用 3 句话概括。”</p>
+</blockquote>
+
+<p>这样做有两个好处：让后续对话更高效，也避免模型在膨胀的上下文中”迷失”。</p>
+
+<h3 id="-精简胜于堆砌">✅ 精简胜于堆砌</h3>
+
+<p>无关的背景信息只会分散 AI 的注意力。问自己：<strong>这段信息真的对回答这个问题有帮助吗？</strong> 没有的话，删掉。</p>
+
+<hr />
+
+<h2 id="常见误区">常见误区</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>误区</th>
+      <th>真相</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>上下文越长越好</td>
+      <td>过多无关内容会稀释关键信息</td>
+    </tr>
+    <tr>
+      <td>重复强调能加深印象</td>
+      <td>模型不会因为你说三遍就更重视</td>
+    </tr>
+    <tr>
+      <td>AI 记住了就是理解了</td>
+      <td>模型只是”看到”，不一定”用到”</td>
+    </tr>
+    <tr>
+      <td>所有对话都需要完整上下文</td>
+      <td>简单独立的问题不需要”喂”背景</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="写在最后">写在最后</h2>
+
+<p>上下文是 AI 能力的<strong>放大器</strong>，也是它的<strong>边界所在</strong>。理解上下文的工作原理，本质上是在理解 AI 的思维方式。</p>
+
+<p>你不需要记住每一个技术细节——但记住这一点就够了：</p>
+
+<blockquote>
+  <p><strong>问更好的问题，给足够的背景，接受它的局限。</strong> 这就是与 AI 高效协作的核心。</p>
+</blockquote>
+
+<p><strong>Context is the bridge between human intent and AI capability. Master it, and every conversation becomes more productive.</strong></p>
