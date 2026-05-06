@@ -45,8 +45,6 @@ def encrypt_html(filepath, key)
       </div>
       <p class="encrypt-error" style="display:none;color:#fc4d50;margin-top:8px;font-size:0.9rem;" lang="zh">❌ 密钥错误，请重试</p>
       <p class="encrypt-error" style="display:none;color:#fc4d50;margin-top:8px;font-size:0.9rem;" lang="en">❌ Wrong key, please try again</p>
-      <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;margin-top:20px;" lang="zh">🔑 密钥每日00:00更新，通过邮件发送至 shytone@qq.com</p>
-      <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;margin-top:20px;" lang="en" style="display:none">🔑 Key renews daily at 00:00, sent to shytone@qq.com</p>
     </div>
     <div class="encrypt-body" style="display:none"></div>
   </div>

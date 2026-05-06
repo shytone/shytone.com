@@ -105,19 +105,6 @@ def main():
     <p style="font-size:1.4em; font-family:monospace; background:#f0f0f0; padding:12px 16px; border-radius:8px; display:inline-block;">
     <strong>{daily_key}</strong>
     </p>
-    <h3 lang="zh">📖 使用说明</h3>
-    <p lang="zh" style="color:#555;">访问加密文章时，在解锁框中输入上方密钥即可查看内容。密钥每日 00:00 更新。</p>
-    <h3 lang="en" style="display:none">📖 How to Use</h3>
-    <p lang="en" style="display:none;color:#555;">Enter the key above in the unlock box when visiting encrypted articles. Key renews daily at 00:00.</p>
-    <hr style="margin:20px 0;">
-    <p style="color:#888; font-size:0.85em;" lang="zh">
-    此密钥由 master_key 派生：HMAC-SHA256(master_key, {today_str}).hexdigest()[:32]<br>
-    如有疑问请联系你的 AI 助手。
-    </p>
-    <p style="color:#888; font-size:0.85em; display:none;" lang="en">
-    Key derived from master_key: HMAC-SHA256(master_key, {today_str}).hexdigest()[:32]<br>
-    Contact your AI assistant if you have questions.
-    </p>
     """
 
     print(f'[SEND] Sending email to {EMAIL_TO}...')
