@@ -1,0 +1,2 @@
+# ads.txt - placeholder
+# AdSense was removed, this file prevents 404 errors
