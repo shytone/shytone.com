@@ -44,22 +44,24 @@ DECRYPT_JS = <<~JS
     var input=box.querySelector('.encrypt-key-input');
     var err=box.querySelectorAll('.encrypt-error');
     var payload=box.getAttribute('data-payload');
-    err.forEach(function(e){e.style.display='none'});
+    err.forEach(function(el){el.style.display='none'});
     deriveKey(input.value).then(function(key){
-      try{
-        var data=atob(payload);
-        var bytes=new Uint8Array(atob(data).split('').map(function(c){return c.charCodeAt(0)}));
-        var iv=bytes.slice(0,12);
-        var tag=bytes.slice(12,28);
-        var ct=bytes.slice(28);
-        return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},key,ct).then(function(pt){
-          var dec=new TextDecoder().decode(pt);
-          var body=box.closest('.encrypt-wrapper').querySelector('.encrypt-body');
-          body.style.display='block';
-          body.innerHTML=dec;
-          box.style.display='none';
-        });
-      }catch(e){err.forEach(function(e){e.style.display='block'})}
+      var data=atob(payload);
+      var bytes=new Uint8Array(data.split('').map(function(c){return c.charCodeAt(0)}));
+      var iv=bytes.slice(0,12);
+      var tag=bytes.slice(12,28);
+      var ct=bytes.slice(28);
+      return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},key,ct).then(function(pt){
+        var dec=new TextDecoder().decode(pt);
+        var body=box.closest('.encrypt-wrapper').querySelector('.encrypt-body');
+        body.style.display='block';
+        body.innerHTML=dec;
+        box.style.display='none';
+      }).catch(function(e){
+        err.forEach(function(el){el.style.display='block'});
+      });
+    }).catch(function(e){
+      err.forEach(function(el){el.style.display='block'});
     });
   }
   window.DecryptBox={unlock:unlock};

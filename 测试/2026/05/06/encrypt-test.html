@@ -38,7 +38,7 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
       <p class="article-meta">2026-05-06</p>
     </div>
     <div class="encrypt-wrapper">
-      <div class="encrypt-box" data-payload="znqIiwqovPX1/SNfxJB4Hdyei1ciNNV0TOtxznB9Ivs+8fuKpC9TflJYW75Pn8vFnfZc+7dbcdZtElkuQ53wGuInnG/HOR8d+ga9Ln7gFojxRvn5fXD9KsvG1Kjnqy/232nBxoWh2/Jjc/Rh2j8bfB7vQXhGbju0ZE/CihqjLv3qiac7OYu6xsixYTSJtJv009QFvDjpzKxlFJ6dyhYW82bQZ5NbQU7abgAXhsffhPUhBADYaSEDKKN8tVcdSj3OyoYNSMrbU+lEjj90FnmzBYZecmLzE+UZumd4a+w38Pw+9p5jJRaITWWEX/kQnEEvMtk8OdMfePbKBFwia7P7i8z5toulG78CvzgiJ24KMr779B+oT4rPQM+oPpkLsUEjYrnaRw/udoG8hYJghQvXKhre43pIGyQfxJ1RnaimkuFZQe6rAbE26oWE34HRjimKKdi/RO2UgX9bVbHFNUJ2FUyQC94YBvrnkpOz17EQQj90+Pn7iRklpMN4CHrGwmoCWp7tb2A6B4r8yLWIdRIV5/gttK8TC7fZV3HF3Gg2VvpNsxNg1fgajPvmi84vwIblQYL9G1fctBzBaa/888egwGqMPnWvnnhjq8G2SDXXBGmjiA1xgNl7uiH6Zwu93vX3knb1+EoFFUr5ls0XyJljrh0oT0OwoeVJQ2CTGUxR33BsG57mnBrGJQKFw9ZojpBLl4U630sg2kAre5AUlx05/8K8sAmzLIJKSxkJvG/thfmazLd1LywhI2zBILeR53id6kRhkuQf+rJFGm7pbH/eG50CtkY85ATuxCqLYJ8eto1C">
+      <div class="encrypt-box" data-payload="tSl+SQmij5Ys0f7d5H+CaN2qcmtAwqCNRw2oZWFGzVZ27eUxbnakEsnhUS0KMcL0GIlJIiJutnVQPe9pBJcoMxCxomMvDr1D7VbC7SdIHIzW8nFhtbeE9jtzTj+oqpcKIdgUe9f4rtYxeL50XbizNndA5hpfkqyx67y/ypl5ZG4WgRW54dtIlakfJBBI4JTRSoV5lTBGV7C0riaQVK3nMmgFqeLp6s2kmu+ewrzZUdXL3oMU1W4rTbKDtVmOPB5TQ2e6T4omNk6642BuZGVBcCxmPK/rm5yQKIoa1l1VjGWBbEi2DDbZPuQj+e/b+DeT5pV8/FGbk1c/Q7ckB4/k8NgImDQm2YHOvlpo90H9FwfkbmNr/o0+ps3FvrF6SB3JWqtiSYnyox0tcVu+2Xn2mLELM/E1qygCFhISrTWJLs8mc4o1HwbXOTHWmk7hnzBsiQfWxc9OSrVKRXefmfxfppKunr+EarvgFCrDVzZkP0MLrA3Pzly813V6Cxw7K3BzVCxAFxlbo0IM+aO8SnH6y/FuPiD+2zZJQY1SmC/ewKr7Robpg511xIAetZ/zCYqgZ+LweTQdpUfEG/RqCjF4N/ql/ThFINRM/dCXw7h7fxEB5DhHZiJnbQqyXD5UKqCSrNBJs4/GjmVuW5yyjAvITlCqVH3R7HaEyDr+rHENV90hKbwfYKv8BXLaAHMr6+Sn+KnkL5fFw1gd7IgxkUvanWQBYVtwvoTfdiLeSw5Wzs7w3Vy7Lsr8m/xDTXTF6fAAtDOzmJEBLxQCDyFhbySHDx0T4EPS4HSKzhzLFw4tKNtN">
         <div class="encrypt-icon">🔐</div>
         <h3>此文章已加密 / Encrypted</h3>
         <div class="encrypt-input-row">
@@ -63,22 +63,24 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;b
     var input=box.querySelector('.encrypt-key-input');
     var err=box.querySelectorAll('.encrypt-error');
     var payload=box.getAttribute('data-payload');
-    err.forEach(function(e){e.style.display='none'});
+    err.forEach(function(el){el.style.display='none'});
     deriveKey(input.value).then(function(key){
-      try{
-        var data=atob(payload);
-        var bytes=new Uint8Array(atob(data).split('').map(function(c){return c.charCodeAt(0)}));
-        var iv=bytes.slice(0,12);
-        var tag=bytes.slice(12,28);
-        var ct=bytes.slice(28);
-        return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},key,ct).then(function(pt){
-          var dec=new TextDecoder().decode(pt);
-          var body=box.closest('.encrypt-wrapper').querySelector('.encrypt-body');
-          body.style.display='block';
-          body.innerHTML=dec;
-          box.style.display='none';
-        });
-      }catch(e){err.forEach(function(e){e.style.display='block'})}
+      var data=atob(payload);
+      var bytes=new Uint8Array(data.split('').map(function(c){return c.charCodeAt(0)}));
+      var iv=bytes.slice(0,12);
+      var tag=bytes.slice(12,28);
+      var ct=bytes.slice(28);
+      return crypto.subtle.decrypt({name:'AES-GCM',iv:iv},key,ct).then(function(pt){
+        var dec=new TextDecoder().decode(pt);
+        var body=box.closest('.encrypt-wrapper').querySelector('.encrypt-body');
+        body.style.display='block';
+        body.innerHTML=dec;
+        box.style.display='none';
+      }).catch(function(e){
+        err.forEach(function(el){el.style.display='block'});
+      });
+    }).catch(function(e){
+      err.forEach(function(el){el.style.display='block'});
     });
   }
   window.DecryptBox={unlock:unlock};
