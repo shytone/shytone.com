@@ -1,0 +1,40 @@
+
+/* ========== 加密文章解锁框 ========== */
+.encrypt-wrapper {
+  padding: 2rem;
+}
+.encrypt-box {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  border: 1px solid rgba(102,126,234,0.25);
+  border-radius: 16px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto;
+  color: #fff;
+}
+.encrypt-icon { font-size: 3rem; margin-bottom: 1rem; }
+.encrypt-box h3 { color: #667eea; margin: 0 0 0.5rem; font-size: 1.4rem; }
+.encrypt-box p { color: rgba(255,255,255,0.7); margin: 0.5rem 0; }
+.encrypt-input-row {
+  display: flex; gap: 8px; margin-top: 1.5rem; justify-content: center;
+}
+.encrypt-key-input {
+  flex: 1; max-width: 280px;
+  padding: 10px 16px; border-radius: 12px;
+  border: 1px solid rgba(102,126,234,0.4);
+  background: rgba(255,255,255,0.08); color: #fff; font-size: 1rem;
+  outline: none;
+}
+.encrypt-key-input:focus { border-color: #667eea; }
+.encrypt-key-input::placeholder { color: rgba(255,255,255,0.35); }
+.encrypt-unlock-btn {
+  padding: 10px 24px; border-radius: 12px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #fff; border: none; font-size: 1rem; cursor: pointer; font-weight: 600;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.encrypt-unlock-btn:hover {
+  transform: translateY(-2px); box-shadow: 0 4px 20px rgba(102,126,234,0.4);
+}
+.encrypt-body { margin-top: 2rem; }

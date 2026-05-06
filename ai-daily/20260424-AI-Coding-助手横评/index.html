@@ -127,7 +127,9 @@ window.addEventListener('storage', function(e) {
     "@id": "https://shytone.com/ai-daily/20260424-AI-Coding-%E5%8A%A9%E6%89%8B%E6%A8%AA%E8%AF%84/"
   }
 }
-</script><script>(function() {
+</script><!-- Decrypt JS (for encrypted articles) -->
+<script src="/assets/js/decrypt.js" defer></script>
+<script>(function() {
   window.isArray = function(val) {
     return Object.prototype.toString.call(val) === '[object Array]';
   };
@@ -409,70 +411,8 @@ window.addEventListener('storage', function(e) {
                 href="/archive.html?tag=Claude+Code">Claude Code</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月24日</span>
             </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-24T00:00:00+08:00">
-    <meta itemprop="keywords" content="AI工具,编程效率,Claude,Cursor,GitHub Copilot,Claude Code"><div class="js-article-content"><div class="layout--article"><!-- Language Detection -->
-<script>
-(function(){
-  function applyLang(lang) {
-    document.documentElement.setAttribute('data-lang', lang);
-    document.body.setAttribute('data-lang', lang);
-    var labels = document.querySelectorAll('.lang-label');
-    labels.forEach(function(el) { el.textContent = (lang === 'zh') ? '中文' : 'EN'; });
-  }
-  function getLang() {
-    var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('lang')) return urlParams.get('lang');
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var c = cookies[i].trim();
-      if (c.indexOf('preferred_lang=') === 0) return c.substring('preferred_lang='.length);
-    }
-    var navLang = navigator.language || '';
-    return (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
-  }
-  function init() {
-    applyLang(getLang());
-    window.addEventListener('storage', function(e) {
-      if (e.key === 'preferred_lang') applyLang(e.newValue || 'zh');
-    });
-  }
-  init();
-})();
-function toggleLang() {
-  var current = document.documentElement.getAttribute('data-lang') || 'zh';
-  var next = (current === 'zh') ? 'en' : 'zh';
-  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
-  localStorage.setItem('preferred_lang', next);
-  document.documentElement.setAttribute('data-lang', next);
-  document.body.setAttribute('data-lang', next);
-  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
-  var url = new URL(window.location);
-  url.searchParams.set('lang', next);
-  window.history.replaceState({}, '', url);
-}
-</script>
-
-<style>
-.bilingual-toggle {
-  background: rgba(102,126,234,0.1);
-  border: 1px solid rgba(102,126,234,0.3);
-  color: #667eea;
-  padding: 4px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-}
-.bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
-[data-lang="en"] [lang="zh"],
-[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
-[data-lang="en"] [lang="en"] { display: initial !important; }
-</style><!-- Language Toggle for Article Pages -->
-<div style="text-align:right; padding: 0.5rem 1rem; margin-bottom: -0.5rem;">
-  <button class="bilingual-toggle" onclick="toggleLang()" title="Switch Language / 切换语言">
-    🌐 <span class="lang-label">中文</span>
-  </button>
-</div>
-<div class="article__content" itemprop="articleBody"><h1 id="-2026年-ai-coding-助手横评谁才是真正的编程搭档">🤖 2026年 AI Coding 助手横评：谁才是真正的编程搭档？</h1>
+    <meta itemprop="keywords" content="AI工具,编程效率,Claude,Cursor,GitHub Copilot,Claude Code"><div class="js-article-content"><div class="layout--article" >
+  <div class="article__content" itemprop="articleBody"><h1 id="-2026年-ai-coding-助手横评谁才是真正的编程搭档">🤖 2026年 AI Coding 助手横评：谁才是真正的编程搭档？</h1>
 
 <hr />
 
@@ -875,12 +815,7 @@ function toggleLang() {
 <hr />
 
 <p><em>本文基于 2026年4月实际使用体验，数据为主观实测，仅供参考。</em></p>
-</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-24T00:00:00+08:00"><!-- start custom article footer snippet -->
-
-<!-- end custom article footer snippet -->
-</footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/ai-daily/20260423-AI-%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/">🤖 AI 驱动的代码审查：如何用 GitHub Copilot 提升代码质量</a></div><div class="next"><span>下篇</span><a href="/ai-daily/20260425-%E5%A4%9A%E6%A8%A1%E6%80%81AI%E6%96%B0%E7%AA%81%E7%A0%B4%EF%BC%9AGPT-4o-Vision-%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BB%A3%E7%A0%81%E5%AE%A1%E6%9F%A5/">🤖 多模态AI新突破：GPT-4o Vision 驱动的代码审查革命</a></div></div></div>
-
+</div>
 </div>
 
 <script>(function() {
@@ -907,8 +842,7 @@ function toggleLang() {
     });
   });
 })();
-</script>
-</div><section class="page__comments d-print-none"></section></article>
+</script></div><section class="page__comments d-print-none"></section></article>
 <!-- Footer placeholder - no ads at bottom to avoid policy issues -->
 </div>
             </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">

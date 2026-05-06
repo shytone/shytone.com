@@ -127,7 +127,9 @@ window.addEventListener('storage', function(e) {
     "@id": "https://shytone.com/algorithms/20260430-%E6%A0%88/"
   }
 }
-</script><script>(function() {
+</script><!-- Decrypt JS (for encrypted articles) -->
+<script src="/assets/js/decrypt.js" defer></script>
+<script>(function() {
   window.isArray = function(val) {
     return Object.prototype.toString.call(val) === '[object Array]';
   };
@@ -406,70 +408,8 @@ window.addEventListener('storage', function(e) {
                 href="/archive.html?tag=%E5%90%8E%E8%BF%9B%E5%85%88%E5%87%BA">后进先出</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 04月30日</span>
             </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-04-30T00:00:00+08:00">
-    <meta itemprop="keywords" content="算法,数据结构,栈,LIFO,后进先出"><div class="js-article-content"><div class="layout--article"><!-- Language Detection -->
-<script>
-(function(){
-  function applyLang(lang) {
-    document.documentElement.setAttribute('data-lang', lang);
-    document.body.setAttribute('data-lang', lang);
-    var labels = document.querySelectorAll('.lang-label');
-    labels.forEach(function(el) { el.textContent = (lang === 'zh') ? '中文' : 'EN'; });
-  }
-  function getLang() {
-    var urlParams = new URLSearchParams(window.location.search);
-    if (urlParams.has('lang')) return urlParams.get('lang');
-    var cookies = document.cookie.split(';');
-    for (var i = 0; i < cookies.length; i++) {
-      var c = cookies[i].trim();
-      if (c.indexOf('preferred_lang=') === 0) return c.substring('preferred_lang='.length);
-    }
-    var navLang = navigator.language || '';
-    return (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
-  }
-  function init() {
-    applyLang(getLang());
-    window.addEventListener('storage', function(e) {
-      if (e.key === 'preferred_lang') applyLang(e.newValue || 'zh');
-    });
-  }
-  init();
-})();
-function toggleLang() {
-  var current = document.documentElement.getAttribute('data-lang') || 'zh';
-  var next = (current === 'zh') ? 'en' : 'zh';
-  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
-  localStorage.setItem('preferred_lang', next);
-  document.documentElement.setAttribute('data-lang', next);
-  document.body.setAttribute('data-lang', next);
-  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
-  var url = new URL(window.location);
-  url.searchParams.set('lang', next);
-  window.history.replaceState({}, '', url);
-}
-</script>
-
-<style>
-.bilingual-toggle {
-  background: rgba(102,126,234,0.1);
-  border: 1px solid rgba(102,126,234,0.3);
-  color: #667eea;
-  padding: 4px 12px;
-  border-radius: 12px;
-  cursor: pointer;
-  font-size: 0.85rem;
-  transition: all 0.2s;
-}
-.bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
-[data-lang="en"] [lang="zh"],
-[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
-[data-lang="en"] [lang="en"] { display: initial !important; }
-</style><!-- Language Toggle for Article Pages -->
-<div style="text-align:right; padding: 0.5rem 1rem; margin-bottom: -0.5rem;">
-  <button class="bilingual-toggle" onclick="toggleLang()" title="Switch Language / 切换语言">
-    🌐 <span class="lang-label">中文</span>
-  </button>
-</div>
-<div class="article__content" itemprop="articleBody"><h1 id="-栈-stack">🧮 栈 (Stack)</h1>
+    <meta itemprop="keywords" content="算法,数据结构,栈,LIFO,后进先出"><div class="js-article-content"><div class="layout--article" >
+  <div class="article__content" itemprop="articleBody"><h1 id="-栈-stack">🧮 栈 (Stack)</h1>
 
 <blockquote>
   <p><strong>难度 / Difficulty</strong>: 简单 (Easy)<br />
@@ -640,12 +580,7 @@ top()    →  返回 1，栈仍为 [1]
     </tr>
   </tbody>
 </table>
-</div><div class="d-print-none"><footer class="article__footer"><meta itemprop="dateModified" content="2026-04-30T00:00:00+08:00"><!-- start custom article footer snippet -->
-
-<!-- end custom article footer snippet -->
-</footer>
-<div class="article__section-navigator clearfix"><div class="previous"><span>上篇</span><a href="/algorithms/20260430-%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2/">🧮 广度优先搜索 (BFS)</a></div><div class="next"><span>下篇</span><a href="/algorithms/20260430-%E6%A1%B6%E6%8E%92%E5%BA%8F/">🧮 桶排序 (Bucket Sort)</a></div></div></div>
-
+</div>
 </div>
 
 <script>(function() {
@@ -672,8 +607,7 @@ top()    →  返回 1，栈仍为 [1]
     });
   });
 })();
-</script>
-</div><section class="page__comments d-print-none"></section></article>
+</script></div><section class="page__comments d-print-none"></section></article>
 <!-- Footer placeholder - no ads at bottom to avoid policy issues -->
 </div>
             </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
