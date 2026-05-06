@@ -1,0 +1,24 @@
+<blockquote>
+  <p>🔐 这是一篇加密文章，只有输入正确密钥才能查看完整内容。</p>
+</blockquote>
+
+<!--more--><div class="encrypt-wrapper">
+  <div class="encrypt-box" data-payload="/wJ3iUeXI9rXV1YPS5zIUHRyZeNmSP+UnI5bDQ2E+B5JHlXQCFXNHxXGE4JlXlSAbbDnfNhVenmKCcx+d6U8lXc+QZC3fcpVeg8Aspxa1uJ68N7gpktrKfDAMKlu5G75SNJNKiUk1hr8xZ50PsqLxUQE2uqQRc0+LEP6KRST/8MzmkHjrvsIwMS8ouQwG/T8bNhGrA9YrX3hJX9t2j3artfixkwzGsT0fAVTyCu1YIT4KJbgWjZ4dZZ1lEz8b88e+T3fBdxVEErgTrG+LK5Ww7Gc2WE/b7fv1E6JofwrUVKoORHiErrBYO+xXHiKq3zYyzKLUlImKcLG6sTCkfMqKXTDOjvzFr+w3xVZL5bV5Wh8EWWfGCwgOwAOFRrYDKEXbI6nw6L6pdlhOMMKJT7+6OzgW/g8ZrUIw/t69Q/DgdAa7T+6ytZ4JedqD1SrqNsyCa/TxPV0qvOYfeV7Rzj+0FJRSxVzLg4eDWLA0lCph7HwuR2CYVjNJmGLpJ+drq7tzXH81QWH9YCg0TL4+nriIgpNiv7yyLVHXI26TzX4buc9dE0njPV5l54v1uxLx/R/UOv3N8LT+LPDSvT6UDeFqavoCRXmd4bwt484+Oy8g2WXlt2QGfrWc7ABT1zWsvmeRgPfWmsiKQYW+0AgJYp+fDJg0WmjRpjXR40ywgj4Vvsk986x3gdM5eAcmUAbsMfnor1q8htLCQ7FNFsNlWbC3k3IirYlt9aMClK9DYrXhDBaYMLZtL+sZp8KRQE8tzJPDQ6tewdg8P7WpRHsdSldz1BF5DRgChwIThpWGdKhcUyBBu715w3Ow+gNZgtOrOAaWFfe5pu75JiFRYG2GvYL9DYN1cOJcD5qjG6RWFa2f9Emvuk0eHLkbKwIywTFM+dIIjB7cUIQR7uN36G3/LMxgFTVkvaqf4jJOLBRP22tdRDfJM4/N54lSSr6T/RMCXdFi/STDzFw33EzrMVXQ6IYAFB6ZYgKvTNVYsQRKXO4qu9H20q4LtE8Usdw7kC67zMxxVMBdU61qFcliJHVVDQiqqAoCSKLoC92AQ+RVsknYspSfYR9tov8hVrPbCppxsMaw2cHZw2hw+jbZZFxvOOi4MGwdaSXIwsbNa9ifQGkZTtjbocqYab4JZ3tj+lJLSbvvgQCuXDwjn/J4ckuZ7fJSdOEMAc3r58cQE2CAydk9dmp2Z7sCLBR2ACBI5FE3aUSX5Y+bv0mOZriB2QCZ03zVAYwroRmDBP/M4hrpztY1YCuU+JUC1dQ9afoJXFZt6IfifzpfWxS3UwZkYHlpRreMkcqqExrHNWnSsUhUH0a1BjvwBILi4KvQFlImU8hPBe0BqIs8kW1rJqEsuaZs5VsSI1jFTEIPv7wkBjawAqi2uKak6tu1LkqFN0qk4RZxyAgDxKuCtrP2IXfPgUj0UWp+ackuH12f/MxL89fl5LDs/y/75rPwwiSbTISMd6pM0WqiiGm60a46rltuywq1WYVw6w9dpWRjYI4JrkHida+iAlvfJ8AgMlz4bS7TPhC9XD2HuhVd19QnMFY44xKqc2yuwG01A8WGMbpb/idy4oZ815wmlthB5407hYhyGblCvDW">
+    <div class="encrypt-icon">🔐</div>
+    <h3 lang="zh">🔒 此文章已加密</h3>
+    <h3 lang="en" style="display:none">🔒 This Article is Encrypted</h3>
+    <p lang="zh" style="color:rgba(255,255,255,0.7);margin:8px 0 16px;">输入密钥解锁文章内容</p>
+    <p lang="en" style="display:none;color:rgba(255,255,255,0.7);margin:8px 0 16px;">Enter the key to decrypt</p>
+    <div class="encrypt-input-row">
+      <input type="password" class="encrypt-key-input"
+             placeholder="输入密钥 / Enter key"
+             onkeydown="if(event.key==='Enter')document.querySelector('.encrypt-unlock-btn').click()" />
+      <button class="encrypt-unlock-btn" onclick="DecryptBox.unlock(this)">解锁 / Decrypt</button>
+    </div>
+    <p class="encrypt-error" style="display:none;color:#fc4d50;margin-top:8px;font-size:0.9rem;" lang="zh">❌ 密钥错误，请重试</p>
+    <p class="encrypt-error" style="display:none;color:#fc4d50;margin-top:8px;font-size:0.9rem;" lang="en">❌ Wrong key, please try again</p>
+    <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;margin-top:20px;" lang="zh">🔑 密钥每日00:00更新，通过邮件发送至 shytone@qq.com</p>
+    <p style="color:rgba(255,255,255,0.35);font-size:0.8rem;margin-top:20px;" lang="en" style="display:none">🔑 Key renews daily at 00:00, sent to shytone@qq.com</p>
+  </div>
+  <div class="encrypt-body" style="display:none"></div>
+</div>

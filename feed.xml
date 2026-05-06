@@ -1,4 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://shytone.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shytone.com/" rel="alternate" type="text/html" hreflang="zh-Hans" /><updated>2026-05-06T15:54:19+08:00</updated><id>https://shytone.com/feed.xml</id><title type="html">SHYTONE.COM</title><subtitle>分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。</subtitle><author><name>shytone</name></author><entry><title type="html">博客加密功能测试</title><link href="https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-test.html" rel="alternate" type="text/html" title="博客加密功能测试" /><published>2026-05-06T15:50:00+08:00</published><updated>2026-05-06T15:50:00+08:00</updated><id>https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-test</id><content type="html" xml:base="https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-test.html"><![CDATA[<p>这是一篇<strong>加密测试文章</strong>，用来验证加密功能是否正常工作。</p>
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="zh-Hans"><generator uri="https://jekyllrb.com/" version="4.4.1">Jekyll</generator><link href="https://shytone.com/feed.xml" rel="self" type="application/atom+xml" /><link href="https://shytone.com/" rel="alternate" type="text/html" hreflang="zh-Hans" /><updated>2026-05-06T16:18:48+08:00</updated><id>https://shytone.com/feed.xml</id><title type="html">SHYTONE.COM</title><subtitle>分享技术心得、编程经验、AI工具使用、学习方法。专注于软考高项、软件开发、效率工具的实用技术博客。</subtitle><author><name>shytone</name></author><entry><title type="html">加密文章功能验证</title><link href="https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-verify.html" rel="alternate" type="text/html" title="加密文章功能验证" /><published>2026-05-06T16:15:00+08:00</published><updated>2026-05-06T16:15:00+08:00</updated><id>https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-verify</id><content type="html" xml:base="https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-verify.html"><![CDATA[<blockquote>
+  <p>🔐 这是一篇加密文章，只有输入正确密钥才能查看完整内容。</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="加密功能验证">加密功能验证</h2>
+
+<p>如果你能看到这段文字，说明：</p>
+<ol>
+  <li>GitHub Actions 构建成功</li>
+  <li><code class="language-plaintext highlighter-rouge">ENCRYPT_KEY</code> Secret 已正确配置</li>
+  <li><code class="language-plaintext highlighter-rouge">post-build-encrypt.rb</code> 脚本正常执行</li>
+  <li>加密后的内容通过 AES-256-GCM 成功解锁</li>
+</ol>
+
+<hr />
+
+<h3 id="-验证步骤">🎯 验证步骤</h3>
+
+<ol>
+  <li>查看页面是否有解锁框（🔐 图标 + 密码输入框）</li>
+  <li>检查 HTML 源码是否包含 <code class="language-plaintext highlighter-rouge">data-payload</code> 属性</li>
+  <li>输入当日密钥，看正文是否正常显示</li>
+</ol>
+
+<h3 id="-每日密钥">📧 每日密钥</h3>
+
+<p>每日 07:00 会收到一封邮件，包含当日密钥。
+密钥格式：<code class="language-plaintext highlighter-rouge">HMAC-SHA256(master_key, YYYY-MM-DD).hexdigest[:32]</code></p>
+
+<p>今日密钥已通过邮件发送，可直接使用。</p>
+
+<hr />
+
+<blockquote>
+  <p>🚀 加密功能运行正常！欢迎体验完整每日推送流程。</p>
+</blockquote>]]></content><author><name>shytone</name></author><category term="测试" /><category term="测试" /><category term="加密" /><summary type="html"><![CDATA[🔐 这是一篇加密文章，只有输入正确密钥才能查看完整内容。]]></summary></entry><entry><title type="html">博客加密功能测试</title><link href="https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-test.html" rel="alternate" type="text/html" title="博客加密功能测试" /><published>2026-05-06T15:50:00+08:00</published><updated>2026-05-06T15:50:00+08:00</updated><id>https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-test</id><content type="html" xml:base="https://shytone.com/%E6%B5%8B%E8%AF%95/2026/05/06/encrypt-test.html"><![CDATA[<p>这是一篇<strong>加密测试文章</strong>，用来验证加密功能是否正常工作。</p>
 
 <!--more-->
 
