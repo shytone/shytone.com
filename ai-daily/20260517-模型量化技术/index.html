@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>AI 日刊 - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>模型量化技术：让大模型更轻更快 - SHYTONE.COM</title>
 
-<meta name="description" content="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.">
-<link rel="canonical" href="https://shytone.com/ai-daily.html"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。">
+<link rel="canonical" href="https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -89,29 +89,42 @@ window.addEventListener('storage', function(e) {
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="SHYTONE.COM">
-<meta property="og:description" content="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://shytone.com/ai-daily.html">
+<meta property="og:title" content="模型量化技术：让大模型更轻更快 - SHYTONE.COM">
+<meta property="og:description" content="量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="SHYTONE.COM">
-<meta name="twitter:description" content="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.">
+<meta name="twitter:title" content="模型量化技术：让大模型更轻更快 - SHYTONE.COM">
+<meta name="twitter:description" content="量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。">
 <meta name="twitter:site" content="@shytone">
 
-<!-- Article Specific --><!-- JSON-LD Structured Data --><script type="application/ld+json">
+<!-- Article Specific --><meta property="article:published_time" content="2026-05-17T08:00:00+08:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="量化"><meta property="article:tag" content="Quantization"><meta property="article:tag" content="INT8"><meta property="article:tag" content="INT4"><meta property="article:tag" content="FP8"><meta property="article:tag" content="模型压缩"><meta property="article:tag" content="推理优化"><!-- JSON-LD Structured Data --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
-  "@type": "WebSite",
-  "name": "SHYTONE.COM",
-  "description": "AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.",
-  "url": "https://shytone.com",
+  "@type": "Article",
+  "headline": "模型量化技术：让大模型更轻更快",
+  "description": "量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。",
+  "datePublished": "2026-05-17T08:00:00+08:00",
   "author": {
     "@type": "Person",
-    "name": "shytone"
+    "name": "shytone",
+    "url": "https://shytone.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SHYTONE.COM",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shytone.com/assets/favicon.ico"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/"
   }
 }
 </script><!-- Decrypt JS (for encrypted articles) -->
@@ -368,7 +381,7 @@ window.addEventListener('storage', function(e) {
   <text x="16" y="30" font-family="monospace" font-size="8" font-weight="bold" fill="#ffffff">&lt;/&gt;</text>
 </svg>
 <a title="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog." href="/">SHYTONE.COM</a></div></div><nav class="navigation">
-        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/gaokao.html">软考高项</a></li><li class="navigation__item navigation__item--active"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/tools.html">工具箱</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
+        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/gaokao.html">软考高项</a></li><li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/tools.html">工具箱</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
       </nav></div>
   </header>
 </div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
@@ -378,243 +391,507 @@ window.addEventListener('storage', function(e) {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>AI 日刊</h1></header></div><meta itemprop="headline" content="AI 日刊"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
-<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
-  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
-    🌐 <span class="lang-label">中文</span>
-  </button>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>模型量化技术：让大模型更轻更快</h1></header></div><meta itemprop="headline" content="模型量化技术：让大模型更轻更快"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=AI">AI</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E9%87%8F%E5%8C%96">量化</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Quantization">Quantization</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=INT8">INT8</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=INT4">INT4</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=FP8">FP8</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9">模型压缩</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96">推理优化</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 05月17日</span>
+            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-05-17T08:00:00+08:00">
+    <meta itemprop="keywords" content="AI,量化,Quantization,INT8,INT4,FP8,模型压缩,推理优化"><div class="js-article-content"><div class="layout--article" >
+  <div class="article__content" itemprop="articleBody"><blockquote>
+  <p>量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="为什么需要量化">为什么需要量化？</h2>
+
+<p>大模型的”重量”问题：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>模型</th>
+      <th>参数量</th>
+      <th>FP16 显存</th>
+      <th>INT8 显存</th>
+      <th>INT4 显存</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LLaMA 3 8B</td>
+      <td>8B</td>
+      <td>~16GB</td>
+      <td>~8GB</td>
+      <td>~4GB</td>
+    </tr>
+    <tr>
+      <td>LLaMA 3 70B</td>
+      <td>70B</td>
+      <td>~140GB</td>
+      <td>~70GB</td>
+      <td>~35GB</td>
+    </tr>
+    <tr>
+      <td>Qwen 72B</td>
+      <td>72B</td>
+      <td>~144GB</td>
+      <td>~72GB</td>
+      <td>~36GB</td>
+    </tr>
+    <tr>
+      <td>Mistral 7B</td>
+      <td>7B</td>
+      <td>~14GB</td>
+      <td>~7GB</td>
+      <td>~3.5GB</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一张消费级显卡（RTX 4090 = 24GB）跑不了 FP16 的 70B 模型，但 INT4 量化后可以。</p>
+
+<p><strong>量化的核心思想</strong>：用更少的位数表示权重，从 32位浮点(FP32) 或 16位浮点(FP16/BF16) 降到 INT8、INT4、甚至 INT2。</p>
+
+<hr />
+
+<h2 id="量化基础概念">量化基础概念</h2>
+
+<h3 id="数值格式">数值格式</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FP32 (32位浮点):  1位符号 + 8位指数 + 23位尾数
+                  [S][EEEEEEEE][MMMMMMMMMMMMMMMMMMMMMMM]
+                  精度高，范围大
+
+FP16 (16位浮点):  1位符号 + 5位指数 + 10位尾数
+                  [S][EEEEE][MMMMMMMMM]
+                  范围和精度都降低
+
+BF16 (16位浮点):  1位符号 + 8位指数 + 7位尾数
+                  [S][EEEEEEEE][MMM]
+                  范围同 FP32，精度降低
+
+INT8 (8位整数):   256 个离散值: -128 ~ 127
+                  体积是 FP16 的 1/2
+
+INT4 (4位整数):   16 个离散值: -8 ~ 7
+                  体积是 FP16 的 1/4
+</code></pre></div></div>
+
+<h3 id="量化误差">量化误差</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>原始值:  0.123456789
+FP16:   0.12346       (损失小)
+INT8:   0.12          (误差约 3%)
+INT4:   0.125         (误差约 1.5%)
+</code></pre></div></div>
+
+<p>INT4 看起来误差更小？别忘了那是”重新映射”后的误差。</p>
+
+<hr />
+
+<h2 id="量化方法分类">量化方法分类</h2>
+
+<h3 id="1-训练后量化ptq">1. 训练后量化（PTQ）</h3>
+
+<p>在模型训练/微调完成后，直接量化。不需要重新训练，速度快。</p>
+
+<p><strong>动态量化（Dynamic Quantization）</strong></p>
+<ul>
+  <li>权重提前量化，激活值推理时动态量化</li>
+  <li>最简单，效果一般</li>
+  <li>适用于推理场景</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+
+<span class="c1"># 动态量化（权重 INT8，激活保持 FP16）
+</span><span class="n">model_dynamic</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">quantize_dynamic</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> <span class="p">{</span><span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">},</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">qint8</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>静态量化（Static Quantization）</strong></p>
+<ul>
+  <li>需要校准数据集，计算激活分布</li>
+  <li>权重和激活都量化</li>
+  <li>效果更好，需要额外步骤</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 静态量化流程
+</span><span class="n">model</span><span class="p">.</span><span class="nf">eval</span><span class="p">()</span>
+
+<span class="c1"># Fuse layers (Linear + ReLU -&gt; Linear)
+</span><span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">fuse_modules</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[[</span><span class="sh">'</span><span class="s">fc1</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">]])</span>
+
+<span class="c1"># Prepare (插入观测节点)
+</span><span class="n">model</span><span class="p">.</span><span class="n">qconfig</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">get_default_qconfig</span><span class="p">(</span><span class="sh">'</span><span class="s">fbgemm</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Calibrate (用校准数据)
+</span><span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">calibration_data</span><span class="p">:</span>
+        <span class="nf">model</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+
+<span class="c1"># Convert (真正量化)
+</span><span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="2-量化感知训练qat">2. 量化感知训练（QAT）</h3>
+
+<p>在训练过程中模拟量化，让模型”适应”量化带来的误差。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># QAT 流程
+# 1. 在模型中插入 FakeQuant 节点
+</span><span class="n">model</span><span class="p">.</span><span class="n">qconfig</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">get_default_qat_qconfig</span><span class="p">(</span><span class="sh">'</span><span class="s">fbgemm</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">prepare_qat</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Fine-tune on training data
+</span><span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># 3. 转换
+</span><span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">eval</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>QAT vs PTQ 对比</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>精度</th>
+      <th>成本</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PTQ 动态</td>
+      <td>⭐⭐</td>
+      <td>免费</td>
+      <td>快速部署</td>
+    </tr>
+    <tr>
+      <td>PTQ 静态</td>
+      <td>⭐⭐⭐</td>
+      <td>低</td>
+      <td>生产环境</td>
+    </tr>
+    <tr>
+      <td>QAT</td>
+      <td>⭐⭐⭐⭐</td>
+      <td>高</td>
+      <td>极致精度</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="高级量化技术">高级量化技术</h2>
+
+<h3 id="1-gptq单卡量化-70b-模型">1. GPTQ：单卡量化 70B 模型</h3>
+
+<p>GPTQ（Generative Pre-trained Transformer Quantization）可以在单张 GPU 上用几小时量化 70B 模型。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">auto_gptq</span> <span class="kn">import</span> <span class="n">AutoGPTQForCausalLM</span>
+<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoGPTQForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span>
+    <span class="sh">"</span><span class="s">meta-llama/Llama-3-70B</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">bits</span><span class="sh">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="sh">"</span><span class="s">desc_act</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># bits: 4 或 8
+# desc_act: 激活顺序重排，减少精度损失
+</span></code></pre></div></div>
+
+<p><strong>GPTQ 核心原理</strong>：</p>
+<ol>
+  <li>分块量化（Chunk-based）</li>
+  <li>递归最小化量化误差</li>
+  <li>使用 Hickup 优化补偿</li>
+</ol>
+
+<h3 id="2-awqactivation-aware-weight-quantization">2. AWQ：Activation-Aware Weight Quantization</h3>
+
+<p>AWQ 观察到：不是所有权重都一样重要，<strong>激活值大的权重更重要</strong>。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">awq</span> <span class="kn">import</span> <span class="n">AutoAWQForCGMModel</span>
+<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoAWQForCGMModel</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="sh">"</span><span class="s">meta-llama/Llama-3-70B</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="sh">"</span><span class="s">meta-llama/Llama-3-70B</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">quant_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">zero_point</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">q_group_size</span><span class="sh">"</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>  <span class="c1"># 分组大小
+</span>    <span class="sh">"</span><span class="s">w_bit</span><span class="sh">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">version</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">GEMM</span><span class="sh">"</span>     <span class="c1"># GEMM 或 GEMV
+</span><span class="p">}</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">quantize</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">quant_config</span><span class="o">=</span><span class="n">quant_config</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="3-gguf本地部署的量化格式">3. GGUF：本地部署的量化格式</h3>
+
+<p>GGUF（GPT-Generated Unified Format）是 llama.cpp 推出的量化格式，适合 CPU 推理。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>量子化位数</th>
+      <th>70B 大小</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q8_0</td>
+      <td>8bit</td>
+      <td>~70GB</td>
+      <td>接近无损</td>
+    </tr>
+    <tr>
+      <td>Q6_K</td>
+      <td>6bit</td>
+      <td>~55GB</td>
+      <td>高质量</td>
+    </tr>
+    <tr>
+      <td>Q5_K_M</td>
+      <td>5bit</td>
+      <td>~48GB</td>
+      <td>均衡</td>
+    </tr>
+    <tr>
+      <td>Q4_K_M</td>
+      <td>4bit</td>
+      <td>~40GB</td>
+      <td>主流选择</td>
+    </tr>
+    <tr>
+      <td>Q3_K_M</td>
+      <td>3bit</td>
+      <td>~35GB</td>
+      <td>低显存</td>
+    </tr>
+    <tr>
+      <td>Q2_K</td>
+      <td>2bit</td>
+      <td>~30GB</td>
+      <td>极致压缩</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 使用 llama.cpp 量化</span>
+./quantize ./models/llama-70b-f16.gguf ./models/llama-70b-q4_k_m.gguf q4_k_m
+</code></pre></div></div>
+
+<h3 id="4-fp8新一代量化格式">4. FP8：新一代量化格式</h3>
+
+<p>NVIDIA H100 支持 FP8（8位浮点），兼顾范围和精度。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># PyTorch FP8 支持 (需要 H100)
+</span><span class="kn">from</span> <span class="n">torch.cuda.amp</span> <span class="kn">import</span> <span class="n">custom_fwd</span><span class="p">,</span> <span class="n">custom_bwd</span>
+
+<span class="nd">@custom_fwd</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">forward_fp8</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="nf">float8_e4m3fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="量化实战用-llamacpp-本地跑大模型">量化实战：用 llama.cpp 本地跑大模型</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. 安装 llama.cpp</span>
+git clone https://github.com/ggerganov/llama.cpp
+<span class="nb">cd </span>llama.cpp <span class="o">&amp;&amp;</span> <span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build <span class="o">&amp;&amp;</span> cmake .. <span class="o">&amp;&amp;</span> make
+
+<span class="c"># 2. 下载模型 (Qwen 2.5 7B)</span>
+<span class="c"># 3. 量化</span>
+./quantize ./models/qwen-7b-f16.gguf ./models/qwen-7b-q4_k_m.gguf q4_k_m
+
+<span class="c"># 4. 推理</span>
+./main <span class="nt">-m</span> ./models/qwen-7b-q4_k_m.gguf <span class="nt">-n</span> 512 <span class="nt">-p</span> <span class="s2">"你好，介绍一下自己"</span>
+</code></pre></div></div>
+
+<p><strong>内存占用对比（Qwen 2.5 7B）</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>内存占用</th>
+      <th>生成速度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FP16</td>
+      <td>~14GB</td>
+      <td>30 tok/s</td>
+    </tr>
+    <tr>
+      <td>Q8_0</td>
+      <td>~8GB</td>
+      <td>25 tok/s</td>
+    </tr>
+    <tr>
+      <td>Q4_K_M</td>
+      <td>~4.5GB</td>
+      <td>20 tok/s</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="量化方案的选用指南">量化方案的选用指南</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>场景</th>
+      <th>推荐方案</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>生产部署</td>
+      <td>INT8 + AWQ</td>
+      <td>精度损失 &lt; 1%</td>
+    </tr>
+    <tr>
+      <td>个人推理</td>
+      <td>Q4_K_M (GGUF)</td>
+      <td>RTX 3090/4090 可跑 70B</td>
+    </tr>
+    <tr>
+      <td>极致压缩</td>
+      <td>INT2/INT3</td>
+      <td>精度损失较大，仅实验</td>
+    </tr>
+    <tr>
+      <td>最新模型</td>
+      <td>GPTQ / AWQ</td>
+      <td>支持大多数开源模型</td>
+    </tr>
+    <tr>
+      <td>CPU 部署</td>
+      <td>GGUF Q4</td>
+      <td>llama.cpp 生态成熟</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-小结">💡 小结</h2>
+
+<p><strong>量化是让大模型”平民化”的关键技术</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>量化方法</th>
+      <th>精度损失</th>
+      <th>难度</th>
+      <th>适用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>动态量化</td>
+      <td>中等</td>
+      <td>低</td>
+      <td>快速部署</td>
+    </tr>
+    <tr>
+      <td>GPTQ</td>
+      <td>较小</td>
+      <td>中</td>
+      <td>70B+ 模型</td>
+    </tr>
+    <tr>
+      <td>AWQ</td>
+      <td>较小</td>
+      <td>中</td>
+      <td>最佳性价比</td>
+    </tr>
+    <tr>
+      <td>QAT</td>
+      <td>最小</td>
+      <td>高</td>
+      <td>极致精度</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>实践建议</strong>：</p>
+<ol>
+  <li>优先尝试 <strong>AWQ</strong> 或 <strong>GPTQ</strong>（4bit）</li>
+  <li>生产环境用 <strong>INT8</strong> 或 <strong>Q5_K_M</strong></li>
+  <li>CPU 推理用 <strong>GGUF Q4_K_M</strong></li>
+  <li>评估时用 <strong>困惑度(Perplexity)</strong> 和 <strong>下游任务准确率</strong></li>
+</ol>
+
+<hr />
+
+<p><em>相关阅读：<a href="/_ai-daily/20260516-AI-Agent记忆机制.md">AI Agent 记忆机制：让AI更懂你</a></em></p>
+</div>
 </div>
 
-<script>
-function toggleLang() {
-  var current = document.documentElement.getAttribute('data-lang') || 'zh';
-  var next = (current === 'zh') ? 'en' : 'zh';
-  document.documentElement.setAttribute('data-lang', next);
-  document.body.setAttribute('data-lang', next);
-  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
-  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
-  var url = new URL(window.location);
-  url.searchParams.set('lang', next);
-  window.history.replaceState({}, '', url);
-}
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
 </script>
-<link rel="stylesheet" href="/assets/css/ai-daily.css">
-
-<div class="page-nav">
-  <a href="/">📝 <span lang="zh">首页</span><span lang="en" style="display:none">Home</span></a>
-  <a href="/relax.html">🎮 <span lang="zh">摸鱼专区</span><span lang="en" style="display:none">Relax</span></a>
-  <a href="/about.html">👤 <span lang="zh">关于</span><span lang="en" style="display:none">About</span></a>
-</div>
-
-<section class="ai-daily-intro">
-  <h2>🤖 AI Daily</h2>
-  <p lang="zh">每日一篇 AI 相关文章</p>
-  <p lang="en" style="display:none">One AI article every day</p>
-  <p class="subtitle" lang="zh">分享 AI 工具技巧、行业发展、个人思考</p>
-  <p class="subtitle" lang="en" style="display:none">AI tool tips, industry news & personal insights</p>
-</section>
-
----
-
-## 📅 <span lang="zh">最新文章</span><span lang="en" style="display:none">Latest Articles</span>
-
-<div class="ai-articles">
-
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260519-AIAgent%E7%BC%96%E6%8E%92%E6%A1%86%E6%9E%B6%E6%B7%B1%E5%BA%A6%E5%AF%B9%E6%AF%94/">AI Agent 编排框架深度对比：LangGraph vs AutoGen vs CrewAI vs TaskMatrix</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-19</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">LangGraph</span><span class="tag">AutoGen</span><span class="tag">CrewAI</span><span class="tag">智能体</span><span class="tag">LLM</span><span class="tag">框架对比</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">深入对比主流 AI Agent 编排框架：LangGraph、Microsoft AutoGen、CrewAI、TaskMatrix 的架构设计、适用场景与选型建议。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260519-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章 2026-05-19</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-19</span>
-      
-        <span class="tags">
-          <span class="tag">精选文章</span><span class="tag">AI</span><span class="tag">技术</span><span class="tag">深度好文</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">每日精选技术文章推荐</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260518-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-18</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">Embedding</span><span class="tag">向量数据库</span><span class="tag">RAG</span><span class="tag">MTEB</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">Embedding 模型选型相关优质文章与技术资源推荐。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260518-Embedding%E6%A8%A1%E5%9E%8B%E9%80%89%E5%9E%8B%E6%8C%87%E5%8D%97/">Embedding 模型选型指南</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-18</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">Embedding</span><span class="tag">向量嵌入</span><span class="tag">Vector DB</span><span class="tag">RAG</span><span class="tag">模型选型</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">全面对比主流 Embedding 模型：BGE、M3E、text-embedding-3、Cohere 等，帮助你选择最适合的向量嵌入方案。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260517-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-17</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">量化</span><span class="tag">Quantization</span><span class="tag">INT4</span><span class="tag">INT8</span><span class="tag">模型压缩</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">模型量化技术相关优质文章与开源工具推荐。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/">模型量化技术：让大模型更轻更快</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-17</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">量化</span><span class="tag">Quantization</span><span class="tag">INT8</span><span class="tag">INT4</span><span class="tag">FP8</span><span class="tag">模型压缩</span><span class="tag">推理优化</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">深入解析模型量化技术原理，INT4/INT8/FP8 的区别与实践，以及如何选择合适的量化方案。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260516-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-16</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">Memory</span><span class="tag">RAG</span><span class="tag">记忆系统</span><span class="tag">MemGPT</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">AI Agent 记忆机制相关优质文章与技术解读推荐。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260516-AI-Agent%E8%AE%B0%E5%BF%86%E6%9C%BA%E5%88%B6/">AI Agent 记忆机制：让AI更懂你</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-16</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">Agent</span><span class="tag">Memory</span><span class="tag">记忆机制</span><span class="tag">向量数据库</span><span class="tag">RAG</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">深入解析 AI Agent 的记忆系统：短期记忆、长期记忆、向量记忆的实现原理与实践。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260515-%E7%B2%BE%E9%80%89%E6%96%87%E7%AB%A0/">精选文章</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-15</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">Context Window</span><span class="tag">Long-Context</span><span class="tag">技术解读</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">大模型上下文窗口相关优质文章与资源推荐。</p>
-    
-  </article>
-
-  <article class="ai-article-item">
-    <h3>
-      <a href="/ai-daily/20260515-AI-%E4%BB%8A%E6%97%A5%E8%B5%84%E8%AE%AF/">AI 今日资讯</a>
-    </h3>
-    <div class="article-meta">
-      <span class="date">2026-05-15</span>
-      
-        <span class="tags">
-          <span class="tag">AI</span><span class="tag">大模型</span><span class="tag">Context Window</span><span class="tag">Long-Context</span><span class="tag">技术解析</span>
-        </span>
-      
-    </div>
-    
-      <p class="description">大模型上下文窗口扩展技术最新进展，解析 Long-Context 背后的技术秘密。</p>
-    
-  </article>
-
-</div>
-
----
-
-## 📜 <span lang="zh">历史文章</span><span lang="en" style="display:none">Archive</span>
-
-<p><a href="/archive.html"><span lang="zh">查看全部文章 →</span><span lang="en" style="display:none">View all articles →</span></a></p>
-
-<div class="ai-footer">
-  <span id="busuanzi_container_page_pv">
-    👁️ <span lang="zh">本页浏览</span><span lang="en" style="display:none">Page views</span> <span id="busuanzi_value_page_pv">-</span>
-  </span>
-  <span class="counter-sep">·</span>
-  <span>🤖 <span lang="zh">AI 辅助内容</span><span lang="en" style="display:none">AI-assisted content</span></span>
-</div>
-
-<script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script>
-
----
-seo:
-  title: AI 日刊 - 人工智能 | ChatGPT | AI工具
-  description: 每日分享AI工具使用技巧、大模型资讯、人工智能应用案例。
----
-</div><section class="page__comments d-print-none"></section></article>
+<script src="/assets/js/decrypt.js" defer></script></div><section class="page__comments d-print-none"></section></article>
 <!-- Footer placeholder - no ads at bottom to avoid policy issues -->
 </div>
             </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
