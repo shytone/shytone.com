@@ -270,7 +270,7 @@ verify_articles() {
     log "  AI 日报:  ${ai_daily_count} 篇"
     
     # 统计 _discover
-    discover_count=$(ls "$REPO_DIR/_discover/"${TODAY_DATE}-*.md 2>/dev/null | wc -l)
+    discover_count=$(ls "$REPO_DIR/_discover/"${TODAY_SHORT}-*.md 2>/dev/null | wc -l)
     log "  今日发现: ${discover_count} 篇"
     
     if [ "$gaokao_count" -eq 0 ] && [ "$ai_daily_count" -eq 0 ] && [ "$discover_count" -eq 0 ]; then
