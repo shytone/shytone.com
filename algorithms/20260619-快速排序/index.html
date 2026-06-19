@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>今日发现 2026-06-19 - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>快速排序 (Quick Sort) - SHYTONE.COM</title>
 
-<meta name="description" content="🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. CS 6120: Advanced Compilers: The Self-Guided Online Course (2020)Hacker News - ibobev来源：阅读原文2. .gitignore Isn’t the o...">
-<link rel="canonical" href="https://shytone.com/discover/20260619-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<meta name="description" content="🧮 快速排序 (Quick Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 排序 (Sorting)时间复杂度 / Time Complexity: O(n log n)空间复杂度 / Space Complexity: O(log n)📖 算法简介 / Int...">
+<link rel="canonical" href="https://shytone.com/algorithms/20260619-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -89,25 +89,25 @@ window.addEventListener('storage', function(e) {
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="今日发现 2026-06-19 - SHYTONE.COM">
-<meta property="og:description" content="🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. CS 6120: Advanced Compilers: The Self-Guided Online Course (2020)Hacker News - ibobev来源：阅读原文2. .gitignore Isn’t the o...">
+<meta property="og:title" content="快速排序 (Quick Sort) - SHYTONE.COM">
+<meta property="og:description" content="🧮 快速排序 (Quick Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 排序 (Sorting)时间复杂度 / Time Complexity: O(n log n)空间复杂度 / Space Complexity: O(log n)📖 算法简介 / Int...">
 <meta property="og:type" content="article">
-<meta property="og:url" content="https://shytone.com/discover/20260619-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/">
+<meta property="og:url" content="https://shytone.com/algorithms/20260619-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="今日发现 2026-06-19 - SHYTONE.COM">
-<meta name="twitter:description" content="🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. CS 6120: Advanced Compilers: The Self-Guided Online Course (2020)Hacker News - ibobev来源：阅读原文2. .gitignore Isn’t the o...">
+<meta name="twitter:title" content="快速排序 (Quick Sort) - SHYTONE.COM">
+<meta name="twitter:description" content="🧮 快速排序 (Quick Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 排序 (Sorting)时间复杂度 / Time Complexity: O(n log n)空间复杂度 / Space Complexity: O(log n)📖 算法简介 / Int...">
 <meta name="twitter:site" content="@shytone">
 
-<!-- Article Specific --><meta property="article:published_time" content="2026-06-19T00:00:00+08:00"><meta property="article:tag" content="科技"><meta property="article:tag" content="AI"><meta property="article:tag" content="数码"><meta property="article:tag" content="开发"><!-- JSON-LD Structured Data --><script type="application/ld+json">
+<!-- Article Specific --><meta property="article:published_time" content="2026-06-19T00:00:00+08:00"><meta property="article:tag" content="算法"><meta property="article:tag" content="排序"><meta property="article:tag" content="中等"><meta property="article:tag" content="数据结构"><meta property="article:tag" content="算法讲解"><!-- JSON-LD Structured Data --><script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "Article",
-  "headline": "今日发现 2026-06-19",
-  "description": "🤖 AI 资讯速递 · Today's Tech Digest📰 今日要闻1. CS 6120: Advanced Compilers: The Self-Guided Online Course (2020)Hacker News - ibobev来源：阅读原文2. .gitignore Isn’t the o...",
+  "headline": "快速排序 (Quick Sort)",
+  "description": "🧮 快速排序 (Quick Sort)  难度 / Difficulty: 中等 (Medium)分类 / Category: 排序 (Sorting)时间复杂度 / Time Complexity: O(n log n)空间复杂度 / Space Complexity: O(log n)📖 算法简介 / Int...",
   "datePublished": "2026-06-19T00:00:00+08:00",
   "author": {
     "@type": "Person",
@@ -124,7 +124,7 @@ window.addEventListener('storage', function(e) {
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": "https://shytone.com/discover/20260619-%E4%BB%8A%E6%97%A5%E5%8F%91%E7%8E%B0/"
+    "@id": "https://shytone.com/algorithms/20260619-%E5%BF%AB%E9%80%9F%E6%8E%92%E5%BA%8F/"
   }
 }
 </script><!-- Decrypt JS (for encrypted articles) -->
@@ -391,72 +391,99 @@ window.addEventListener('storage', function(e) {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>今日发现 2026-06-19</h1></header></div><meta itemprop="headline" content="今日发现 2026-06-19"><div class="article__info clearfix"><ul class="left-col menu"><li>
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>快速排序 (Quick Sort)</h1></header></div><meta itemprop="headline" content="快速排序 (Quick Sort)"><div class="article__info clearfix"><ul class="left-col menu"><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E7%A7%91%E6%8A%80">科技</a>
+                href="/archive.html?tag=%E7%AE%97%E6%B3%95">算法</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=AI">AI</a>
+                href="/archive.html?tag=%E6%8E%92%E5%BA%8F">排序</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E6%95%B0%E7%A0%81">数码</a>
+                href="/archive.html?tag=%E4%B8%AD%E7%AD%89">中等</a>
             </li><li>
               <a class="button button--secondary button--pill button--sm"
-                href="/archive.html?tag=%E5%BC%80%E5%8F%91">开发</a>
+                href="/archive.html?tag=%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84">数据结构</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%AE%97%E6%B3%95%E8%AE%B2%E8%A7%A3">算法讲解</a>
             </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 06月19日</span>
             </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-06-19T00:00:00+08:00">
-    <meta itemprop="keywords" content="科技,AI,数码,开发"><div class="js-article-content"><div class="layout--article" >
-  <div class="article__content" itemprop="articleBody"><div class="ai-badge">🤖 AI 资讯速递 · Today's Tech Digest</div>
+    <meta itemprop="keywords" content="算法,排序,中等,数据结构,算法讲解"><div class="js-article-content"><div class="layout--article" >
+  <div class="article__content" itemprop="articleBody"><h1 id="-快速排序-quick-sort">🧮 快速排序 (Quick Sort)</h1>
 
-<h2 id="-今日要闻">📰 今日要闻</h2>
-
-<h3 id="1-cs-6120-advanced-compilers-the-self-guided-online-course-2020">1. CS 6120: Advanced Compilers: The Self-Guided Online Course (2020)</h3>
-
-<p>Hacker News - ibobev</p>
-
-<p>来源：<a href="https://www.cs.cornell.edu/courses/cs6120/2025fa/self-guided/">阅读原文</a></p>
-
-<hr />
-
-<h3 id="2-gitignore-isnt-the-only-way-to-ignore-files-in-git">2. .gitignore Isn’t the only way to ignore files in Git</h3>
-
-<p>Hacker News - FergusArgyll</p>
-
-<p>来源：<a href="https://nelson.cloud/.gitignore-isnt-the-only-way-to-ignore-files-in-git/">阅读原文</a></p>
+<blockquote>
+  <p><strong>难度 / Difficulty</strong>: 中等 (Medium)<br />
+<strong>分类 / Category</strong>: 排序 (Sorting)<br />
+<strong>时间复杂度 / Time Complexity</strong>: O(n log n)<br />
+<strong>空间复杂度 / Space Complexity</strong>: O(log n)</p>
+</blockquote>
 
 <hr />
 
-<h3 id="3-i-found-10k-github-repositories-distributing-trojan-malware">3. I found 10k GitHub repositories distributing Trojan malware</h3>
+<h2 id="-算法简介--introduction">📖 算法简介 / Introduction</h2>
 
-<p>Hacker News - theorchid</p>
+<p>快速排序是一种高效的分治排序算法，采用递归和分区策略。</p>
 
-<p>来源：<a href="https://orchidfiles.com/github-repositories-distributing-malware/">阅读原文</a></p>
-
-<hr />
-
-<h3 id="4-the-founder-of-craigslist-has-given-away-half-a-billion-dollars">4. The founder of Craigslist has given away half a billion dollars</h3>
-
-<p>Hacker News - Tomte</p>
-
-<p>来源：<a href="https://www.independent.co.uk/us/money/craigslist-multimillionaire-craig-newmark-b2980681.html">阅读原文</a></p>
+<p>Quick sort is an efficient divide-and-conquer sorting algorithm using recursion and partitioning.</p>
 
 <hr />
 
-<h3 id="5-swiss-parliament-lifts-ban-on-new-nuclear-power-plants">5. Swiss parliament lifts ban on new nuclear power plants</h3>
+<h2 id="-算法原理--principle">💡 算法原理 / Principle</h2>
 
-<p>Hacker News - leonidasrup</p>
+<p>选择一个基准元素，将数组分为两部分，小于基准的在左，大于基准的在右，递归排序两部分。</p>
 
-<p>来源：<a href="https://www.bluewin.ch/en/news/switzerland/parliament-lifts-ban-on-new-nuclear-power-plants-3257535.html">阅读原文</a></p>
-
-<hr />
-
-<h2 id="-科技观点">💡 科技观点</h2>
-
-<p>今日科技领域持续创新，AI 技术在各行业加速落地。建议关注：大模型进展、开源社区动态、新硬件发布。</p>
+<p>Select a pivot element, partition the array into two parts - elements less than pivot on left, greater on right, then recursively sort both parts.</p>
 
 <hr />
 
-<p><em>本文内容由系统自动聚合自 2026-06-19 的科技资讯</em></p>
+<h2 id="-代码实现--implementation">📝 代码实现 / Implementation</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="n">arr</span><span class="p">):</span>
+    <span class="k">if</span> <span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">&lt;=</span> <span class="mi">1</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">arr</span>
+    <span class="n">pivot</span> <span class="o">=</span> <span class="n">arr</span><span class="p">[</span><span class="nf">len</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span> <span class="o">//</span> <span class="mi">2</span><span class="p">]</span>
+    <span class="n">left</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&lt;</span> <span class="n">pivot</span><span class="p">]</span>
+    <span class="n">middle</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span> <span class="k">if</span> <span class="n">x</span> <span class="o">==</span> <span class="n">pivot</span><span class="p">]</span>
+    <span class="n">right</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">arr</span> <span class="k">if</span> <span class="n">x</span> <span class="o">&gt;</span> <span class="n">pivot</span><span class="p">]</span>
+    <span class="k">return</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="n">left</span><span class="p">)</span> <span class="o">+</span> <span class="n">middle</span> <span class="o">+</span> <span class="nf">quick_sort</span><span class="p">(</span><span class="n">right</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="-示例--example">✨ 示例 / Example</h2>
+
+<p>数组 [3, 6, 8, 10, 1, 2, 1] 排序后为 [1, 1, 2, 3, 6, 8, 10]。</p>
+
+<p>Array [3, 6, 8, 10, 1, 2, 1] becomes [1, 1, 2, 3, 6, 8, 10] after sorting.</p>
+
+<hr />
+
+<h2 id="-适用场景--scenarios">🎯 适用场景 / Scenarios</h2>
+
+<p>大规模数据排序, 需要稳定性能, 原地排序需求</p>
+
+<p>Large datasets, Requiring stable performance, In-place sorting requirements</p>
+
+<hr />
+
+<h2 id="-扩展阅读--further-reading">🔄 扩展阅读 / Further Reading</h2>
+
+<ul>
+  <li>建议在 LeetCode 或 HackerRank 上刷相关题目</li>
+  <li>尝试自己实现非递归版本</li>
+  <li>对比其他同类型算法的性能差异</li>
+</ul>
+
+<hr />
+
+<table>
+  <tbody>
+    <tr>
+      <td>*本文由 AI 自动生成</td>
+      <td>Generated by AI*</td>
+    </tr>
+  </tbody>
+</table>
 </div>
 </div>
 
