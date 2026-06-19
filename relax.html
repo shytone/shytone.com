@@ -747,6 +747,63 @@ window.addEventListener('storage', function(e) {
     </div>
   </div>
 
+  <div class="game-card">
+    <div class="game-header">
+      <h3>🔍 <span lang="zh">找茬大挑战</span><span lang="en" style="display:none">Spot the Difference</span></h3>
+      <span class="game-tag" lang="zh">益智</span><span class="game-tag" lang="en" style="display:none">Puzzle</span>
+    </div>
+    <div class="game-frame" style="min-height:280px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;">
+      <style>
+#spotdiff-wrap{display:flex;flex-direction:column;align-items:center;gap:8px;font-family:system-ui,-apple-system,sans-serif}
+#sd-header{display:flex;justify-content:space-between;align-items:center;width:320px;color:#667eea;font-size:13px;font-weight:600}
+#sd-board{display:grid;grid-template-columns:1fr 1fr;gap:8px;background:#0a0a15;padding:8px;border-radius:12px;border:2px solid rgba(102,126,234,0.15);touch-action:none;user-select:none;position:relative}
+.sd-img-wrap{position:relative;width:150px;height:200px;overflow:hidden;border-radius:8px}
+.sd-img-wrap canvas{width:150px;height:200px;display:block;border-radius:6px}
+.sd-label{position:absolute;top:4px;left:50%;transform:translateX(-50%);background:rgba(0,0,0,0.6);color:#fff;font-size:10px;padding:2px 8px;border-radius:8px;pointer-events:none;z-index:2}
+#sd-msg{color:#aaa;font-size:12px;min-height:16px;text-align:center}
+#sd-result{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);background:rgba(0,0,0,0.85);color:#fff;padding:16px 24px;border-radius:12px;text-align:center;font-size:14px;z-index:10;display:none}
+#sd-result.show{display:block}
+#sd-result p{margin:4px 0;font-size:12px;color:#aaa}
+#sd-result button{margin-top:8px;padding:6px 20px;background:linear-gradient(135deg,#667eea,#764ba2);border:none;border-radius:8px;color:#fff;cursor:pointer;font-size:13px}
+.sd-circle{position:absolute;border-radius:50%;border:2px solid #FFD700;background:rgba(255,215,0,0.15);pointer-events:none;z-index:5;transform:translate(-50%,-50%)}
+@keyframes sd-pulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:1}50%{transform:translate(-50%,-50%) scale(1.2);opacity:0.6}}
+.sd-circle.found{animation:sd-pulse 0.5s ease-out;border-color:#00FF00;background:rgba(0,255,0,0.15)}
+#sd-hint{font-size:11px;color:#666;margin-top:4px}
+</style>
+<div id="spotdiff-wrap">
+  <div id="sd-header">
+    <span>🔍 <span lang="zh">找茬大挑战</span><span lang="en" style="display:none">Spot the Difference</span></span>
+    <span lang="zh">剩余:</span><span lang="en" style="display:none">Left:</span> <span id="sd-left">5</span>
+  </div>
+  <div id="sd-board">
+    <div class="sd-img-wrap" id="sd-left-wrap">
+      <canvas id="sd-canvas-left" width="150" height="200"></canvas>
+      <span class="sd-label">A</span>
+    </div>
+    <div class="sd-img-wrap" id="sd-right-wrap">
+      <canvas id="sd-canvas-right" width="150" height="200"></canvas>
+      <span class="sd-label">B</span>
+    </div>
+    <div id="sd-result">
+      <span>🎉 <span lang="zh">太厉害了！</span><span lang="en" style="display:none">Amazing!</span></span>
+      <p><span lang="zh">全部找到！</span><span lang="en" style="display:none">All found!</span></p>
+      <button id="btn-sd-restart"><span lang="zh">再来一局</span><span lang="en" style="display:none">Play Again</span></button>
+    </div>
+  </div>
+  <div id="sd-msg"><span lang="zh">点击两张图的不同之处</span><span lang="en" style="display:none">Click on differences between the two images</span></div>
+  <div id="sd-hint" lang="zh">💡 提示：共 5 处不同，全部找到即通关</div>
+</div>
+    </div>
+    <div class="game-controls">
+      <button class="game-btn" id="btn-start-spotdiff"><span lang="zh">开始游戏</span><span lang="en" style="display:none">Start Game</span></button>
+      <button class="game-btn" id="btn-next-sd"><span lang="zh">新关卡</span><span lang="en" style="display:none">Next Level</span></button>
+    </div>
+    <p class="game-desc" lang="zh">🖱️ 仔细对比两张图，找出 5 处不同</p><p class="game-desc" lang="en" style="display:none">🖱️ Compare two images and find 5 differences</p>
+    <div class="game-tips">
+      <strong lang="zh">💡 玩法：</strong><strong lang="en" style="display:none">💡 How:</strong><span lang="zh">在右侧图上点击你认为不同的地方</span><span lang="en" style="display:none">Click where you spot a difference on the right image</span>
+    </div>
+  </div>
+
 </div>
 
 <div class="relax-footer">
@@ -1749,6 +1806,408 @@ window.addEventListener('storage', function(e) {
   init();
 })();
 
+// ==================== 找茬大挑战 Spot the Difference ====================
+(function() {
+  var DIFF_COUNT = 5;
+  var TOLERANCE = 18; // pixel radius for clicking a diff
+
+  var canvasL, ctxL, canvasR, ctxR;
+  var differences = [];
+  var found = [];
+  var level = 1;
+  var running = false;
+
+  var scenes = [
+    {
+      draw: function(ctx, w, h) {
+        // 场景1：夜空下的城市
+        // 背景
+        var grad = ctx.createLinearGradient(0, 0, 0, h);
+        grad.addColorStop(0, '#0a0a2e'); grad.addColorStop(1, '#1a1a4e');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+        // 月亮
+        ctx.fillStyle = '#FFEE88'; ctx.beginPath(); ctx.arc(w*0.75, h*0.15, 14, 0, Math.PI*2); ctx.fill();
+        // 星星
+        var stars = [[0.1,0.1],[0.3,0.05],[0.5,0.12],[0.8,0.08],[0.15,0.2],[0.6,0.18],[0.9,0.15]];
+        stars.forEach(function(s) {
+          ctx.fillStyle = 'rgba(255,255,255,' + (0.5+Math.random()*0.5) + ')';
+          ctx.fillRect(s[0]*w-1, s[1]*h-1, 2, 2);
+        });
+        // 地面
+        ctx.fillStyle = '#1a3a1a'; ctx.fillRect(0, h*0.75, w, h*0.25);
+        // 建筑群
+        var buildings = [
+          {x:0, w:w*0.15, h:h*0.35, c:'#2a2a4a'},
+          {x:w*0.13, w:w*0.12, h:h*0.28, c:'#1e1e3e'},
+          {x:w*0.24, w:w*0.18, h:h*0.42, c:'#252550'},
+          {x:w*0.41, w:w*0.14, h:h*0.32, c:'#2a2a4a'},
+          {x:w*0.54, w:w*0.16, h:h*0.38, c:'#1e1e3e'},
+          {x:w*0.69, w:w*0.13, h:h*0.30, c:'#252550'},
+          {x:w*0.81, w:w*0.19, h:h*0.40, c:'#2a2a4a'},
+        ];
+        buildings.forEach(function(b) {
+          ctx.fillStyle = b.c; ctx.fillRect(b.x*w, h - b.h, b.w*w, b.h);
+          // 窗户
+          for (var wy = h - b.h + 6; wy < h - 8; wy += 12) {
+            for (var wx = b.x*w + 4; wx < b.x*w + b.w*w - 6; wx += 10) {
+              ctx.fillStyle = Math.random() > 0.3 ? '#FFDD44' : '#333';
+              ctx.fillRect(wx, wy, 5, 6);
+            }
+          }
+        });
+        // 路灯
+        ctx.fillStyle = '#888'; ctx.fillRect(w*0.08, h*0.6, 2, h*0.15);
+        ctx.fillStyle = '#FFAA00'; ctx.beginPath(); ctx.arc(w*0.09, h*0.6, 4, 0, Math.PI*2); ctx.fill();
+        // 云
+        ctx.fillStyle = 'rgba(255,255,255,0.1)';
+        ctx.beginPath(); ctx.ellipse(w*0.2, h*0.2, 20, 8, 0, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(w*0.7, h*0.12, 15, 6, 0, 0, Math.PI*2); ctx.fill();
+      },
+      diffs: [
+        {x: 0.75, y: 0.15},   // 月亮位置不同
+        {x: 0.5, y: 0.5},     // 建筑中间窗户
+        {x: 0.09, y: 0.6},    // 路灯
+        {x: 0.2, y: 0.2},     // 云位置
+        {x: 0.85, y: 0.85},   // 地面树
+      ]
+    },
+    {
+      draw: function(ctx, w, h) {
+        // 场景2：海边日落
+        var grad = ctx.createLinearGradient(0, 0, 0, h);
+        grad.addColorStop(0, '#FF6B35'); grad.addColorStop(0.4, '#FF8C42'); grad.addColorStop(0.7, '#FFD166'); grad.addColorStop(1, '#06D6A0');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+        // 太阳
+        ctx.fillStyle = '#FF4500'; ctx.beginPath(); ctx.arc(w*0.7, h*0.3, 22, 0, Math.PI*2); ctx.fill();
+        // 海面
+        ctx.fillStyle = 'rgba(0,100,150,0.4)'; ctx.fillRect(0, h*0.65, w, h*0.35);
+        // 波浪线
+        ctx.strokeStyle = 'rgba(255,255,255,0.3)'; ctx.lineWidth = 1;
+        for (var i = 0; i < 3; i++) {
+          ctx.beginPath(); ctx.moveTo(0, h*0.7+i*15);
+          for (var x = 0; x <= w; x += 10) ctx.lineTo(x, h*0.7+i*15+Math.sin(x*0.05+i)*4);
+          ctx.stroke();
+        }
+        // 沙滩
+        ctx.fillStyle = '#e8c870'; ctx.fillRect(0, h*0.88, w, h*0.12);
+        // 椰子树
+        ctx.strokeStyle = '#8B4513'; ctx.lineWidth = 4;
+        ctx.beginPath(); ctx.moveTo(w*0.2, h*0.88); ctx.lineTo(w*0.2, h*0.55); ctx.stroke();
+        ctx.fillStyle = '#228B22';
+        ctx.beginPath(); ctx.ellipse(w*0.2, h*0.52, 18, 10, -0.3, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(w*0.2, h*0.52, 18, 10, 0.5, 0, Math.PI*2); ctx.fill();
+        // 船
+        ctx.fillStyle = '#8B4513';
+        ctx.beginPath(); ctx.moveTo(w*0.6, h*0.72); ctx.lineTo(w*0.75, h*0.72); ctx.lineTo(w*0.72, h*0.78); ctx.lineTo(w*0.63, h*0.78); ctx.closePath(); ctx.fill();
+        ctx.fillStyle = '#fff';
+        ctx.fillRect(w*0.67, h*0.58, 2, h*0.14);
+        ctx.fillStyle = 'rgba(255,255,255,0.8)';
+        ctx.beginPath(); ctx.moveTo(w*0.69, h*0.58); ctx.lineTo(w*0.8, h*0.62); ctx.lineTo(w*0.69, h*0.66); ctx.closePath(); ctx.fill();
+        // 贝壳
+        ctx.fillStyle = '#FFB6C1'; ctx.beginPath(); ctx.ellipse(w*0.4, h*0.91, 5, 3, 0, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#FFA07A'; ctx.beginPath(); ctx.ellipse(w*0.55, h*0.93, 4, 2.5, 0.2, 0, Math.PI*2); ctx.fill();
+      },
+      diffs: [
+        {x: 0.7, y: 0.3},    // 太阳
+        {x: 0.2, y: 0.52},   // 树
+        {x: 0.4, y: 0.91},   // 贝壳1
+        {x: 0.65, y: 0.72},  // 船
+        {x: 0.5, y: 0.75},   // 海水波浪
+      ]
+    },
+    {
+      draw: function(ctx, w, h) {
+        // 场景3：森林小径
+        // 天空
+        var grad = ctx.createLinearGradient(0, 0, 0, h*0.5);
+        grad.addColorStop(0, '#87CEEB'); grad.addColorStop(1, '#E0F7FA');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h*0.5);
+        // 树木背景
+        for (var i = 0; i < 8; i++) {
+          ctx.fillStyle = 'rgba(34,139,34,' + (0.3 + (i%3)*0.2) + ')';
+          ctx.beginPath(); ctx.ellipse(i*w/7 + w/14, h*0.35, 20, 30, 0, 0, Math.PI*2); ctx.fill();
+        }
+        // 地面
+        ctx.fillStyle = '#8B7355'; ctx.fillRect(0, h*0.5, w, h*0.5);
+        // 小径
+        ctx.fillStyle = '#D2B48C';
+        ctx.beginPath();
+        ctx.moveTo(w*0.3, h*0.5); ctx.quadraticCurveTo(w*0.5, h*0.65, w*0.35, h);
+        ctx.lineTo(w*0.45, h); ctx.quadraticCurveTo(w*0.6, h*0.65, w*0.5, h*0.5); ctx.closePath(); ctx.fill();
+        // 前景树
+        ctx.strokeStyle = '#5D4037'; ctx.lineWidth = 6;
+        ctx.beginPath(); ctx.moveTo(w*0.1, h*0.7); ctx.lineTo(w*0.1, h*0.4); ctx.stroke();
+        ctx.fillStyle = '#228B22';
+        ctx.beginPath(); ctx.ellipse(w*0.1, h*0.35, 22, 18, 0, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(w*0.1, h*0.35, 18, 14, 0.5, 0, Math.PI*2); ctx.fill();
+        // 蘑菇
+        ctx.fillStyle = '#FF6B6B'; ctx.beginPath(); ctx.ellipse(w*0.7, h*0.72, 8, 5, 0, Math.PI, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#fff'; ctx.fillRect(w*0.697, h*0.72, 6, 8);
+        ctx.fillStyle = '#8B4513'; ctx.fillRect(w*0.695, h*0.8, 7, 10);
+        // 花
+        var flowerPos = [[0.3,0.75],[0.55,0.8],[0.8,0.73]];
+        flowerPos.forEach(function(f) {
+          ctx.fillStyle = '#FF69B4'; ctx.beginPath(); ctx.arc(f[0]*w, f[1]*h, 4, 0, Math.PI*2); ctx.fill();
+          ctx.fillStyle = '#FFD700'; ctx.beginPath(); ctx.arc(f[0]*w, f[1]*h, 1.5, 0, Math.PI*2); ctx.fill();
+        });
+        // 蝴蝶
+        ctx.fillStyle = '#FF4500';
+        ctx.beginPath(); ctx.ellipse(w*0.45, h*0.35, 6, 4, 0.3, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(w*0.48, h*0.33, 5, 3, -0.3, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#333'; ctx.fillRect(w*0.465, h*0.33, 1, 6);
+      },
+      diffs: [
+        {x: 0.1, y: 0.35},   // 前景树
+        {x: 0.7, y: 0.72},   // 蘑菇
+        {x: 0.45, y: 0.35},  // 蝴蝶
+        {x: 0.3, y: 0.75},   // 花
+        {x: 0.5, y: 0.5},    // 小径
+      ]
+    },
+    {
+      draw: function(ctx, w, h) {
+        // 场景4：咖啡馆一角
+        // 墙面
+        var grad = ctx.createLinearGradient(0, 0, 0, h);
+        grad.addColorStop(0, '#D4A574'); grad.addColorStop(1, '#C4956A');
+        ctx.fillStyle = grad; ctx.fillRect(0, 0, w, h);
+        // 格子桌布背景
+        ctx.fillStyle = 'rgba(255,255,255,0.1)';
+        for (var gx = 0; gx < w; gx += 20) ctx.fillRect(gx, 0, 10, h);
+        // 桌子
+        ctx.fillStyle = '#8B4513'; ctx.fillRect(w*0.1, h*0.6, w*0.8, h*0.08);
+        ctx.fillRect(w*0.2, h*0.68, 8, h*0.2);
+        ctx.fillRect(w*0.72, h*0.68, 8, h*0.2);
+        // 咖啡杯
+        ctx.fillStyle = '#fff';
+        ctx.beginPath(); ctx.ellipse(w*0.35, h*0.6, 10, 5, 0, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#6F4E37'; ctx.fillRect(w*0.33, h*0.52, 14, 8);
+        ctx.strokeStyle = '#fff'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.arc(w*0.47, h*0.57, 5, -0.5, 0.5); ctx.stroke();
+        // 书
+        ctx.fillStyle = '#2E86AB'; ctx.fillRect(w*0.55, h*0.53, 20, 15);
+        ctx.fillStyle = '#fff'; ctx.fillRect(w*0.57, h*0.55, 16, 2);
+        ctx.fillStyle = '#fff'; ctx.fillRect(w*0.57, h*0.59, 12, 1.5);
+        // 植物
+        ctx.fillStyle = '#8B4513'; ctx.fillRect(w*0.82, h*0.4, 8, h*0.2);
+        ctx.fillStyle = '#228B22';
+        ctx.beginPath(); ctx.ellipse(w*0.86, h*0.36, 12, 10, 0, 0, Math.PI*2); ctx.fill();
+        ctx.beginPath(); ctx.ellipse(w*0.82, h*0.38, 10, 8, 0.4, 0, Math.PI*2); ctx.fill();
+        // 窗户透进的光
+        ctx.fillStyle = 'rgba(255,255,200,0.15)';
+        ctx.beginPath(); ctx.moveTo(w*0.05, 0); ctx.lineTo(w*0.25, 0); ctx.lineTo(w*0.1, h*0.6); ctx.lineTo(w*0.0, h*0.6); ctx.closePath(); ctx.fill();
+        // 挂钟
+        ctx.fillStyle = '#fff'; ctx.beginPath(); ctx.arc(w*0.15, h*0.2, 12, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#333'; ctx.fillRect(w*0.15, h*0.2, 1, 8);
+        ctx.fillRect(w*0.15, h*0.2, 6, 1);
+      },
+      diffs: [
+        {x: 0.35, y: 0.57},  // 咖啡杯
+        {x: 0.15, y: 0.2},   // 挂钟
+        {x: 0.86, y: 0.36},  // 植物
+        {x: 0.55, y: 0.58},  // 书
+        {x: 0.1, y: 0.3},    // 光线
+      ]
+    },
+    {
+      draw: function(ctx, w, h) {
+        // 场景5：游戏机房
+        ctx.fillStyle = '#1a1a2e'; ctx.fillRect(0, 0, w, h);
+        // 霓虹灯条
+        var neons = ['#FF00FF','#00FFFF','#FF6600','#00FF00'];
+        neons.forEach(function(c, i) {
+          ctx.fillStyle = c; ctx.fillRect(0, h*0.2+i*h*0.15, w, 3);
+        });
+        // 游戏机屏幕
+        ctx.fillStyle = '#222'; ctx.fillRect(w*0.1, h*0.25, w*0.35, h*0.45);
+        ctx.fillStyle = '#001133'; ctx.fillRect(w*0.12, h*0.27, w*0.31, h*0.41);
+        // 像素游戏画面
+        var pixColors = ['#FF0000','#00FF00','#0000FF','#FFFF00'];
+        for (var px = 0; px < 8; px++) {
+          for (var py = 0; py < 6; py++) {
+            ctx.fillStyle = pixColors[(px+py)%4];
+            ctx.fillRect(w*0.13+px*w*0.036, h*0.29+py*h*0.064, w*0.032, h*0.058);
+          }
+        }
+        // 按钮
+        ctx.fillStyle = '#FF0000'; ctx.beginPath(); ctx.arc(w*0.38, h*0.55, 5, 0, Math.PI*2); ctx.fill();
+        ctx.fillStyle = '#00FF00'; ctx.beginPath(); ctx.arc(w*0.38, h*0.63, 5, 0, Math.PI*2); ctx.fill();
+        // 操纵杆
+        ctx.fillStyle = '#888'; ctx.fillRect(w*0.22, h*0.6, 3, 15);
+        ctx.fillStyle = '#FF4500'; ctx.beginPath(); ctx.arc(w*0.235, h*0.6, 5, 0, Math.PI*2); ctx.fill();
+        // 地板反光
+        ctx.fillStyle = 'rgba(102,126,234,0.1)'; ctx.fillRect(0, h*0.75, w, h*0.25);
+        // 角落装饰
+        ctx.fillStyle = '#FFD700'; ctx.font = '12px Arial';
+        ctx.fillText('GAME', w*0.7, h*0.3);
+        ctx.fillStyle = '#FF00FF';
+        ctx.fillRect(w*0.7, h*0.33, 30, 2);
+        // 人物像素
+        ctx.fillStyle = '#FFCC99'; ctx.fillRect(w*0.6, h*0.5, 8, 10);
+        ctx.fillStyle = '#FF6600'; ctx.fillRect(w*0.6, h*0.6, 8, 5);
+        ctx.fillStyle = '#333'; ctx.fillRect(w*0.62, h*0.52, 2, 2);
+        ctx.fillRect(w*0.65, h*0.52, 2, 2);
+      },
+      diffs: [
+        {x: 0.38, y: 0.55},   // 红色按钮
+        {x: 0.235, y: 0.6},   // 操纵杆球
+        {x: 0.6, y: 0.52},    // 人物眼睛
+        {x: 0.7, y: 0.3},     // GAME文字
+        {x: 0.5, y: 0.4},     // 游戏机屏幕
+      ]
+    }
+  ];
+
+  function init() {
+    canvasL = document.getElementById('sd-canvas-left');
+    canvasR = document.getElementById('sd-canvas-right');
+    if (!canvasL || !canvasR) return;
+    ctxL = canvasL.getContext('2d');
+    ctxR = canvasR.getContext('2d');
+    startLevel();
+  }
+
+  function startLevel() {
+    running = true;
+    found = [];
+    var scene = scenes[(level - 1) % scenes.length];
+    differences = scene.diffs.map(function(d) {
+      return { x: Math.round(d.x * canvasL.width), y: Math.round(d.y * canvasL.height) };
+    });
+
+    // 画左图（原始）
+    scene.draw(ctxL, canvasL.width, canvasL.height);
+
+    // 画右图（带差异）
+    scene.draw(ctxR, canvasR.width, canvasR.height);
+    // 在差异处做视觉修改
+    differences.forEach(function(d, idx) {
+      var r = 8 + idx * 2;
+      var colors = ['#FF6B6B','#4ECDC4','#FFE66D','#A78BFA','#F472B6'];
+      ctxR.fillStyle = colors[idx % colors.length];
+      ctxR.beginPath();
+      ctxR.arc(d.x, d.y, r, 0, Math.PI * 2);
+      ctxR.fill();
+      // 加个不同的形状元素
+      ctxR.fillStyle = 'rgba(255,255,255,0.6)';
+      if (idx % 3 === 0) ctxR.fillRect(d.x - 3, d.y - 3, 6, 6);
+      else if (idx % 3 === 1) ctxR.beginPath(); ctxR.arc(d.x, d.y, 4, 0, Math.PI * 2); ctxR.fill();
+      else ctxR.fillRect(d.x - 4, d.y - 2, 8, 4);
+    });
+
+    document.getElementById('sd-left').textContent = differences.length;
+    document.getElementById('sd-result').classList.remove('show');
+    document.getElementById('sd-msg').textContent = '';
+
+    // 清除旧的圆圈
+    var oldCircles = document.querySelectorAll('.sd-circle');
+    oldCircles.forEach(function(c) { c.remove(); });
+  }
+
+  function handleClick(e) {
+    if (!running) return;
+    var rect = canvasR.getBoundingClientRect();
+    var scaleX = canvasR.width / rect.width;
+    var scaleY = canvasR.height / rect.height;
+    var x = (e.clientX - rect.left) * scaleX;
+    var y = (e.clientY - rect.top) * scaleY;
+
+    var hit = false;
+    for (var i = 0; i < differences.length; i++) {
+      if (found.includes(i)) continue;
+      var d = differences[i];
+      var dist = Math.sqrt((x - d.x) * (x - d.x) + (y - d.y) * (y - d.y));
+      if (dist < TOLERANCE) {
+        found.push(i);
+        hit = true;
+        showCircle(d.x, d.y, true);
+        document.getElementById('sd-left').textContent = differences.length - found.length;
+        document.getElementById('sd-msg').textContent =
+          (found.length === differences.length
+            ? (document.documentElement.getAttribute('data-lang') === 'en'
+                ? '🎉 All found! Amazing!'
+                : '🎉 太厉害了！全部找到！')
+            : (document.documentElement.getAttribute('data-lang') === 'en'
+                ? '✅ Found one! ' + (differences.length - found.length) + ' left'
+                : '✅ 找到了！还剩 ' + (differences.length - found.length) + ' 处'));
+        if (found.length === differences.length) {
+          running = false;
+          setTimeout(function() {
+            document.getElementById('sd-result').classList.add('show');
+          }, 500);
+        }
+        break;
+      }
+    }
+    if (!hit) {
+      // 错位提示
+      var msgEl = document.getElementById('sd-msg');
+      msgEl.textContent = document.documentElement.getAttribute('data-lang') === 'en'
+        ? '❌ Not here, try again!'
+        : '❌ 这里不对，再试试！';
+      setTimeout(function() {
+        if (found.length < differences.length) {
+          msgEl.textContent = document.documentElement.getAttribute('data-lang') === 'en'
+            ? (differences.length - found.length) + ' differences left'
+            : '还剩 ' + (differences.length - found.length) + ' 处';
+        }
+      }, 800);
+    }
+  }
+
+  function showCircle(x, y, found) {
+    var wrap = document.getElementById('sd-right-wrap');
+    var circle = document.createElement('div');
+    circle.className = 'sd-circle' + (found ? ' found' : '');
+    var scaleX = 150 / canvasR.width;
+    var scaleY = 200 / canvasR.height;
+    circle.style.left = (x * scaleX) + 'px';
+    circle.style.top = (y * scaleY) + 'px';
+    circle.style.width = (found ? 28 : 20) + 'px';
+    circle.style.height = (found ? 28 : 20) + 'px';
+    wrap.appendChild(circle);
+  }
+
+  function nextLevel() {
+    level++;
+    startLevel();
+  }
+
+  canvasR = document.getElementById('sd-canvas-right');
+  if (canvasR) {
+    canvasR.addEventListener('click', handleClick);
+    canvasR.addEventListener('touchend', function(e) {
+      e.preventDefault();
+      var t = e.changedTouches[0];
+      handleClick({ clientX: t.clientX, clientY: t.clientY });
+    }, { passive: false });
+  }
+
+  var startBtn = document.getElementById('btn-start-spotdiff');
+  if (startBtn) startBtn.onclick = function() { level = 1; startLevel(); };
+
+  var nextBtn = document.getElementById('btn-next-sd');
+  if (nextBtn) nextBtn.onclick = nextLevel;
+
+  var restartBtn = document.getElementById('btn-sd-restart');
+  if (restartBtn) restartBtn.onclick = function() {
+    level = 1;
+    document.getElementById('sd-result').classList.remove('show');
+    startLevel();
+  };
+
+  // 语言切换时更新文本
+  document.addEventListener('langchange', function() {
+    if (found.length > 0 && found.length < differences.length) {
+      document.getElementById('sd-msg').textContent =
+        (document.documentElement.getAttribute('data-lang') === 'en'
+          ? (differences.length - found.length) + ' differences left'
+          : '还剩 ' + (differences.length - found.length) + ' 处');
+    }
+  });
+
+  init();
+})();
 
 </script></div><section class="page__comments d-print-none"></section></article>
 <!-- Footer placeholder - no ads at bottom to avoid policy issues -->
