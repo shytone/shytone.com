@@ -1,10 +1,10 @@
 <!DOCTYPE html><html lang="zh-Hans">
   <head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>修仙养成 - SHYTONE.COM</title>
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>修仙养成 · 顾长清的修仙之路 - SHYTONE.COM</title>
 
 <meta name="description" content="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.">
-<link rel="canonical" href="https://shytone.com/xiuxian/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+<link rel="canonical" href="https://shytone.com/xiuxian.html"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
 
 <meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
 
@@ -89,16 +89,16 @@ window.addEventListener('storage', function(e) {
 <meta name="author" content="shytone">
 
 <!-- Open Graph -->
-<meta property="og:title" content="修仙养成 - SHYTONE.COM">
+<meta property="og:title" content="SHYTONE.COM">
 <meta property="og:description" content="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://shytone.com/xiuxian/">
+<meta property="og:url" content="https://shytone.com/xiuxian.html">
 <meta property="og:site_name" content="SHYTONE.COM">
 <meta property="og:locale" content="zh_CN">
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="修仙养成 - SHYTONE.COM">
+<meta name="twitter:title" content="SHYTONE.COM">
 <meta name="twitter:description" content="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog.">
 <meta name="twitter:site" content="@shytone">
 
@@ -378,64 +378,125 @@ window.addEventListener('storage', function(e) {
               <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
 
 <!-- end custom main top snippet -->
-<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>修仙养成</h1></header></div><meta itemprop="headline" content="修仙养成"><meta itemprop="author" content="shytone"/><div class="js-article-content"><div class="ai-badge">🧘 修仙养成 · 每日更新</div>
+<article itemscope itemtype="http://schema.org/WebPage"><div class="article__header"><header><h1>修仙养成 · 顾长清的修仙之路</h1></header></div><meta itemprop="headline" content="修仙养成 · 顾长清的修仙之路"><meta itemprop="author" content="shytone"/><div class="js-article-content"><!-- Language Switcher -->
+<div class="lang-switcher" style="text-align:right; padding: 0.5rem 1rem; margin: 0;">
+  <button class="lang-btn" onclick="toggleLang()" title="Switch Language / 切换语言">
+    🌐 <span class="lang-label">中文</span>
+  </button>
+</div>
 
-# 🧘 修仙养成 · 顾长清的修仙之路
+<script>
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  document.querySelector('.lang-label').textContent = (next === 'zh') ? '中文' : 'EN';
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+</script>
 
-> 「我本凡尘一俗子，奈何仙缘入梦来。」
+<div class="xiuxian-header">
+  <h1 lang="zh">🧘 修仙养成</h1>
+  <h1 lang="en" style="display:none">🧘 Cultivation Journey</h1>
+  <p lang="zh">顾长清的修仙之路 · 每日更新</p>
+  <p lang="en" style="display:none">Gu Changqing's Path to Immortality · Daily Updates</p>
+  <blockquote>
+    <p lang="zh">「我本凡尘一俗子，奈何仙缘入梦来。」</p>
+    <p lang="en" style="display:none">"I was but a mortal among the dust, yet fate brought me a dream of immortality."</p>
+  </blockquote>
+</div>
 
----
+<style>
+.xiuxian-header {
+  text-align: center;
+  padding: 2rem;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  border-radius: 12px;
+  margin-bottom: 2rem;
+  border: 1px solid rgba(138, 43, 226, 0.3);
+}
+.xiuxian-header h1 { color: #b388ff; margin-bottom: 0.5rem; font-size: 2rem; }
+.xiuxian-header p { color: #9d8cff; font-size: 1rem; }
+.xiuxian-header blockquote {
+  margin-top: 1rem;
+  padding: 1rem;
+  background: rgba(138, 43, 226, 0.1);
+  border-left: 3px solid #b388ff;
+  border-radius: 4px;
+}
+.xiuxian-header blockquote p { color: #d4c4ff; font-style: italic; margin: 0; }
+.lang-btn {
+  background: rgba(179, 136, 255, 0.1);
+  border: 1px solid rgba(179, 136, 255, 0.3);
+  color: #b388ff;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.lang-btn:hover { background: rgba(179, 136, 255, 0.2); }
+</style>
 
-## 📖 故事简介
+<div class="xiuxian-intro">
+  <h2 lang="zh">📖 故事简介</h2>
+  <h2 lang="en" style="display:none">📖 Story Introduction</h2>
+  <p lang="zh">主角<strong>顾长清</strong>，玄黄界东域青云镇顾家独子，中品灵根，起点平凡却不甘平凡。十八岁那年，一位化神期前辈在他梦中留下三句话，从此踏入修仙之路。</p>
+  <p lang="en" style="display:none">Gu Changqing, sole heir of the Gu family in Qingyun Town, Eastern Domain of Xuanhuang Realm. With an average spiritual root but extraordinary determination, his path to immortality began when a Transcendent cultivator visited his dream.</p>
+  
+  <h3 lang="zh">🎯 目标</h3>
+  <h3 lang="en" style="display:none">🎯 Goal</h3>
+  <p lang="zh">一年后通过太虚剑宗十年一度的招生大典</p>
+  <p lang="en" style="display:none">Pass the Taixu Sword Sect's once-in-a-decade recruitment examination in one year</p>
 
-主角**顾长清**，玄黄界东域青云镇顾家独子，中品灵根，起点平凡却不甘平凡。
+  <h3 lang="zh">📊 角色初始状态</h3>
+  <h3 lang="en" style="display:none">📊 Initial Character Stats</h3>
+  <table>
+    <tr><th lang="zh">属性</th><th lang="en">Attribute</th><th lang="zh">数值</th><th lang="en">Value</th></tr>
+    <tr><td lang="zh">修为</td><td lang="en">Cultivation</td><td>炼气一重</td><td>Lianqi Stage 1</td></tr>
+    <tr><td lang="zh">寿命</td><td lang="en">Lifespan</td><td>80/80</td><td>80/80</td></tr>
+    <tr><td lang="zh">灵力</td><td lang="en">Spirit</td><td>11/11</td><td>11/11</td></tr>
+    <tr><td lang="zh">剑意</td><td lang="en">Sword Intent</td><td>5</td><td>5</td></tr>
+    <tr><td lang="zh">功德</td><td lang="en">Merit</td><td>0</td><td>0</td></tr>
+  </table>
 
-十八岁那年，一位化神期前辈在他梦中留下三句话，从此踏入修仙之路。
+  <h3 lang="zh">⚔️ 已掌握功法</h3>
+  <h3 lang="en" style="display:none">⚔️ Known Techniques</h3>
+  <ul>
+    <li lang="zh">基础吐纳术</li><li lang="en" style="display:none">Basic Breathing Technique</li>
+    <li lang="zh">清风剑法（残篇）</li><li lang="en" style="display:none">Breeze Sword Art (Incomplete)</li>
+  </ul>
 
-**目标**：一年后通过太虚剑宗十年一度的招生大典
+  <h3 lang="zh">🎒 随身物品</h3>
+  <h3 lang="en" style="display:none">🎒 Items</h3>
+  <ul>
+    <li lang="zh">化神前辈玉佩</li><li lang="en" style="display:none">Jade Pendant from Transcendent Elder</li>
+  </ul>
+</div>
 
----
+<style>
+.xiuxian-intro { padding: 1rem; background: rgba(26, 26, 46, 0.5); border-radius: 8px; margin-bottom: 2rem; }
+.xiuxian-intro h2 { color: #b388ff; margin-bottom: 1rem; }
+.xiuxian-intro h3 { color: #9d8cff; margin: 1rem 0 0.5rem; }
+.xiuxian-intro table { width: 100%; border-collapse: collapse; margin: 1rem 0; }
+.xiuxian-intro td, .xiuxian-intro th { padding: 0.5rem; border: 1px solid rgba(179, 136, 255, 0.3); text-align: center; }
+.xiuxian-intro ul { list-style: none; padding-left: 1rem; }
+.xiuxian-intro li::before { content: "⚔️ "; }
+</style>
 
-## 📚 目录
+<div class="update-info">
+  <p lang="zh">📅 每日 08:00 自动更新 · 包含修炼进度、随机事件、剧情推进</p>
+  <p lang="en" style="display:none">📅 Auto-updates daily at 08:00 · Cultivation progress, random events, story progression</p>
+</div>
 
-<ul>
+<style>
+.update-info { text-align: center; color: #9d8cff; padding: 1rem; font-size: 0.9rem; }
+</style>
 
-</ul>
-
----
-
-## 📊 角色状态
-
-| 属性 | 数值 |
-|------|------|
-| 修为 | 炼气一重 |
-| 寿命 | 80/80 |
-| 灵力 | 11/11 |
-| 剑意 | 5 |
-| 功德 | 0 |
-
----
-
-## ⚔️ 已掌握功法
-
-- 基础吐纳术
-- 清风剑法（残篇）
-
-## 🎒 随身物品
-
-- 化神前辈玉佩
-
----
-
-## 📅 更新说明
-
-- 每日 08:00 自动更新
-- 包含：修炼进度、随机事件、剧情推进
-- 状态持久化，角色成长连贯
-
----
-
-*路漫漫其修远兮，吾将上下而求索。*
 </div><section class="page__comments d-print-none"></section></article>
 <!-- Footer placeholder - no ads at bottom to avoid policy issues -->
 </div>
