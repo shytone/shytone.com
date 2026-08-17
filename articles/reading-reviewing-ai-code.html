@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>意图升值 · 我的博客</title>
+<link rel="stylesheet" href="../style.css">
+<script>(function(){try{var t=localStorage.getItem("blog-theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){})})();</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<button id="theme-toggle" aria-label="切换亮暗">🌓</button>
+<div class="site">意图升值</div>
+<h1 class="title">我的博客</h1>
+<p class="tagline">AI 时代工程师的稀缺资产：定义可验证的意图。</p>
+</header>
+<nav><a class="back" href="../index.html">← 返回</a></nav>
+<section>
+<article><div class="meta">方法 · 2026-08-10</div><h2>怎么读、怎么 Review AI 生成的代码</h2><p class="lede">AI 又快又自信，但「看起来对」不等于对。你的工作从「写代码」变成「核对意图 + 把关风险」。</p><p><strong>读：</strong></p>
+<ul><li>以意图 / 规格为基准，不读「像不像人写的」</li><li>分层读：契约 → 数据流 → 集成 → 健壮性</li><li>专找「貌似正确的错误」：off-by-one、吞异常、幻觉 API、边界输入</li><li>连测试一起读（AI 测试可能自洽但空洞）</li><li>读 diff 与调用方，而非整段重读</li></ul>
+<p><strong>Review：</strong></p>
+<ul><li>从「逐行挑错」到「意图 + 风险」清单：契约 / 边界 / 安全 / 集成 / 性能 / 一致性 / 测试是否有意义</li><li>分级把关：高风险（权限、资金、数据、并发、安全）重点审</li><li>让 AI 自审，但用「真值」验证，不采信其自述</li><li>流程护栏：小 diff、清晰 spec、测试先行、CI / lint / 类型检查</li></ul>
+<p>结论：读 = 核对意图与风险；瓶颈是判断力，不是速度。</p></article>
+</section>
+<footer>© 2026 · 意图升值</footer>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

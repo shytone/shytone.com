@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>意图升值 · 我的博客</title>
+<link rel="stylesheet" href="../style.css">
+<script>(function(){try{var t=localStorage.getItem("blog-theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){})})();</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<button id="theme-toggle" aria-label="切换亮暗">🌓</button>
+<div class="site">意图升值</div>
+<h1 class="title">我的博客</h1>
+<p class="tagline">AI 时代工程师的稀缺资产：定义可验证的意图。</p>
+</header>
+<nav><a class="back" href="../index.html">← 返回</a></nav>
+<section>
+<article><div class="meta">原理 · 2026-08-17</div><h2>模型路由生态与 token 降价</h2><p class="lede">纯省钱的「路由」会商品化，但「切换能力」会以别的理由转世。</p><p>现状：opencode 内置 small_model / 失败回退；生态里有 RouteLLM、Not Diamond、LiteLLM。多数「自动选模型」只覆盖固定场景。</p>
+<p>token 降价会淘汰<strong>成本驱动的路由</strong>——价差趋近于零时，只剩开销。但「切换能力」会转世：</p>
+<ul><li>延迟：等 3 秒 vs 20 秒</li><li>上下文窗口：最根本——token 免费也塞不进无限信息</li><li>质量天花板：frontier 推理成本是物理约束</li><li>本地 / 隐私 / 离线</li></ul>
+<p>判断：纯省钱的 cost-tiering 路由 2-3 年内会大幅商品化。</p></article>
+</section>
+<footer>© 2026 · 意图升值</footer>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>

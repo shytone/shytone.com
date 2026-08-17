@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>意图升值 · 我的博客</title>
+<link rel="stylesheet" href="../style.css">
+<script>(function(){try{var t=localStorage.getItem("blog-theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){})})();</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<button id="theme-toggle" aria-label="切换亮暗">🌓</button>
+<div class="site">意图升值</div>
+<h1 class="title">我的博客</h1>
+<p class="tagline">AI 时代工程师的稀缺资产：定义可验证的意图。</p>
+</header>
+<nav><a class="back" href="../index.html">← 返回</a></nav>
+<section>
+<article><div class="meta">原理 · 2026-08-17</div><h2>Agent 是怎么工作的：架构、上下文与压缩</h2><p class="lede">Agent 是一个循环：LLM（上下文 + 工具）→ 行动 → 环境反馈 → 继续 / 终止。</p><p><strong>Workflow 与 Agent 的区别</strong>：Workflow 是预定义代码路径编排 LLM，步骤固定；Agent 由 LLM 动态决策、自己规划。</p>
+<p>底层构建块是<strong>增强 LLM</strong>：LLM + 检索 + 工具 + 记忆。常见 workflow 模式有五种：提示链、路由、并行化、编排者-工人、评估-优化。</p>
+<p><strong>上下文是有限资源</strong>：context rot（token 越多，准确回忆越低），注意力是 O(n²)。</p>
+<p>长期任务靠三招：compaction（压缩摘要）、结构化笔记 / agentic memory（写到上下文之外）、sub-agent 隔离（只回传浓缩结果）。</p>
+<p>压缩没有根治办法，缓解靠外移持久层、sub-agent、预留缓冲；<strong>正确性的最终来源永远在文件与 git</strong>。</p></article>
+</section>
+<footer>© 2026 · 意图升值</footer>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>
