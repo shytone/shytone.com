@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>意图升值 · 我的博客</title>
 <link rel="stylesheet" href="style.css">
-<script>(function(){try{var t=localStorage.getItem("blog-theme")||(window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light");document.documentElement.setAttribute("data-theme",t);}catch(e){})})();</script>
+<script>(function(){try{var t="light",m=localStorage.getItem("blog-theme");if(m==="light"||m==="dark"){t=m;}else{var s=localStorage.getItem("blog-solar");if(s){s=JSON.parse(s);if((s.day===0||s.day===1)&&(Date.now()-s.at<216e5)){t=s.day?"light":"dark";}}if(t==="light"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){t="dark";}}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
 </head>
 <body>
 <div class="wrap">
@@ -17,6 +17,7 @@
 </header>
 <nav>
 <ol>
+<li><a href="articles/unicode-traps-browser-interop.html"><span class="cat">方法</span><span class="item"><span class="t">Unicode 陷阱：同段代码在不同浏览器「忽对忽错」</span></span><span class="d">2026-08-18</span></a></li>
 <li><a href="articles/chat-is-just-interface.html"><span class="cat">认知</span><span class="item"><span class="t">聊天只是界面</span></span><span class="d">2026-08-17</span></a></li>
 <li><a href="articles/verifiable-specs-for-ai.html"><span class="cat">方法</span><span class="item"><span class="t">给 AI 一份可验收的规格</span></span><span class="d">2026-08-17</span></a></li>
 <li><a href="articles/model-routing-and-token-price.html"><span class="cat">原理</span><span class="item"><span class="t">模型路由生态与 token 降价</span></span><span class="d">2026-08-17</span></a></li>

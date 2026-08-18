@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>意图升值 · 我的博客</title>
+<link rel="stylesheet" href="../style.css">
+<script>(function(){try{var t="light",m=localStorage.getItem("blog-theme");if(m==="light"||m==="dark"){t=m;}else{var s=localStorage.getItem("blog-solar");if(s){s=JSON.parse(s);if((s.day===0||s.day===1)&&(Date.now()-s.at<216e5)){t=s.day?"light":"dark";}}if(t==="light"&&window.matchMedia&&matchMedia("(prefers-color-scheme: dark)").matches){t="dark";}}document.documentElement.setAttribute("data-theme",t);}catch(e){}})();</script>
+</head>
+<body>
+<div class="wrap">
+<header>
+<button id="theme-toggle" aria-label="切换亮暗">🌓</button>
+<div class="site">意图升值</div>
+<h1 class="title">我的博客</h1>
+<p class="tagline">AI 时代工程师的稀缺资产：定义可验证的意图。</p>
+</header>
+<nav><a class="back" href="../index.html">← 返回</a></nav>
+<section>
+<article><div class="meta">方法 · 2026-08-18</div><h2>Unicode 陷阱：同段代码在不同浏览器「忽对忽错」</h2><p class="lede">不要依赖浏览器会不会放行，而是让它根本见不到这种字符。</p><h3>一个真实的坑</h3>
+<p>一段再普通不过的代码，换个浏览器就「忽对忽错」：</p>
+<pre><code>// 注意：这里面的横杠是 U+2011（非断行连字符），不是普通减号
+const badAttr = &quot;destroy‑on-close&quot;;
+const div = document.createElement(&#x27;div&#x27;);
+try {
+  div.setAttribute(badAttr, &quot;&quot;);
+  console.log(&quot;当前浏览器：容错放行&quot;);
+} catch (e) {
+  console.error(&quot;当前浏览器抛出异常：&quot;, e);
+}</code></pre>
+<p>在部分浏览器里它静默放行，在另一部分（或旧版本）里直接抛 <code>InvalidCharacterError</code>。同一段代码，行为完全取决于跑在哪个引擎上。</p>
+<h3>现象本质：规范与实现的分歧</h3>
+<p><code>setAttribute</code> 的规范只拒绝 ASCII 空白、<code>&lt;&gt;&quot;&#x27;/=</code> 等非法字符，<strong>U+2011 按规范应当合法</strong>。但某些引擎的字符校验实现更严格，或存在 bug，把「视觉上像 <code>-</code> 的 Unicode 字符」也判为非法。</p>
+<p>这正是 <strong>interop divergence（实现漂移）</strong>：不能依赖浏览器的宽容行为。宽容是引擎的实现细节，永远不保证一致。</p>
+<h3>这一整类问题的全集</h3>
+<p>这类 bug 不是孤例，而是一个家族。它们的共同点：<strong>视觉 ≈ ASCII 对应字符，字节却完全不同。</strong></p>
+<ul><li><strong>不可见 / 相似字符污染</strong>：U+00A0 不断行空格、U+200B 零宽空格（完全不可见）、U+00AD 软连字符、U+FEFF BOM、U+2013 / U+2014 en/em dash、U+FF0D 全角连字符</li><li><strong>输入链带入</strong>：复制粘贴（网页 / Word / PDF / 微信）、编辑器自动替换（智能引号、自动连字符）、OCR 与翻译输出——不是程序员主动输入，而是从「外部内容」静默带入</li><li><strong>规范执行漂移</strong>：同一 DOM API 在不同引擎 / 版本校验严格度不同；HTML parser（宽容）与 DOM API（严格）可能不一致</li><li><strong>序列化 / 往返不一致</strong>：<code>setAttribute</code> 设置后，经 <code>innerHTML</code> 序列化、<code>getAttribute</code> 读取、<code>querySelector</code> 选择器匹配时表现可能不同</li></ul>
+<h3>三层防线</h3>
+<p><strong>1. 规范定标准（最有效）</strong></p>
+<ul><li>HTML attribute / class / id 名只允许 ASCII 小写字母数字 + <code>-</code>（W3C 本有 <code>data-*</code> 小写 ASCII 约定）</li><li>编码规范写死：「标识符与属性名禁止非 ASCII」，配正则 <code>^[a-zA-Z0-9][a-zA-Z0-9-_.]*$</code></li><li>文本内容遵循 UAX #15 做 NFC 规范化；关键字段做映射表（U+2011→U+002D、U+00A0→U+0020）</li><li>输入统一 UTF-8，杜绝 GBK / UTF-8 混用</li></ul>
+<p><strong>2. 工具拦截（机器兜底）</strong></p>
+<table><thead><tr><th>层</th><th>工具</th><th>作用</th></tr></thead><tbody><tr><td>lint</td><td>ESLint <code>id-match</code> + 禁止非 ASCII 正则</td><td>提交前拦命名</td></tr><tr><td>格式化</td><td>Prettier</td><td>统一空白 / 引号，消除编辑器隐形替换</td></tr><tr><td>编码检测</td><td><code>chardet</code>、Python <code>unicodedata</code>、<code>xxd</code></td><td>定位隐藏字符来源</td></tr><tr><td>sanitize</td><td>DOMPurify</td><td>收口用户输入</td></tr><tr><td>测试</td><td>Playwright 多浏览器矩阵</td><td>专测边界字符 interop</td></tr><tr><td>扫描</td><td>仓库级非 ASCII 可疑字符扫描脚本</td><td>存量体检</td></tr></tbody></table>
+<p><strong>3. AI 前置（让 bug 不诞生）</strong></p>
+<ul><li><strong>规则注入</strong>：在 AGENTS.md / 编码规范写「属性名只允许 ASCII」——agent 生成代码时主动遵守，bug 根本不产生（即「上下文外移」）</li><li><strong>AI review</strong>：让 AI 审查 diff 时专门检查隐藏字符（零宽空格、U+2011、全角标点）</li><li><strong>边界测试</strong>：针对 <code>setAttribute</code>、<code>querySelector</code> 生成 Unicode 边界用例矩阵</li></ul>
+<h3>关键洞察：AI 是这类问题的解药</h3>
+<p>AI 在这类问题上是双重角色：既是潜在来源，也是最好用的预防工具。一个值得注意的细节：<strong>这类 bug 大多由人从网页 / 文档复制粘贴带入，而 agent 是纯文本管道，反而不会自然带入隐形字符</strong>——除非喂给它的内容里本来就有。所以规则注入后，agent 生成的代码在此类问题上天然更干净。</p>
+<h3>一句话</h3>
+<p><strong>不要依赖「浏览器会不会放行」，而是让它根本见不到这种字符。</strong> 用 ASCII 白名单而非黑名单，在源头拒绝非 ASCII，而不是逐个字符堵漏——这样下次换一个字符，也不会再爆。</p></article>
+</section>
+<footer>© 2026 · 意图升值</footer>
+</div>
+<script src="../app.js"></script>
+</body>
+</html>
