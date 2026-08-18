@@ -17,10 +17,19 @@
 </header>
 <nav><a class="back" href="../index.html">← 返回</a></nav>
 <section>
-<article><div class="meta">成长 · 2026-08-17</div><h2>个人开发者如何进入 AI 圈层</h2><p class="lede">作品是钩子，贡献是关系。让自己出现在目标开发者的工作流里。</p><p>最有效的路径不是「去认识人」，而是让名字出现在目标开发者的 GitHub、issue、评测榜上。</p>
-<ul><li>开源提 PR、写文档（接触密度最高）</li><li>建立可被引用的作品：公开 wiki、小工具、评测文章</li><li>贡献评测与数据集（成本低、可见度高）</li><li>进对社区：Discord 的「求助 + 回报」循环</li></ul>
-<p>性价比：开源 PR ★★★★★、公开作品 ★★★★、评测 / 数据集 ★★★★、Discord ★★★。</p>
-<p>结论：80% 做公开作品，20% 挑一个项目提交真实 PR。</p></article>
+<article><div class="meta">成长 · 2026-08-17</div><h2>个人开发者如何进入 AI 圈层</h2><p class="lede">作品是钩子，贡献是关系。让自己出现在目标开发者的工作流里。</p><h3>核心思路：让自己出现在他们的工作流里</h3>
+<p>作为个人开发者（非从业者身份），想进入 AI agent / 模型开发者的圈层，最有效的路径不是「去认识人」，而是<strong>让自己出现在他们的工作流里</strong>——通过开源贡献、可被引用的作品、评测数据，让名字出现在目标开发者的 GitHub、issue、评测榜上。开发者靠链接认识人，不靠聊天。</p>
+<h3>具体方向</h3>
+<p><strong>1. 给开源项目贡献（接触密度最高）</strong>：在目标开发者维护的仓库里提 issue、修 bug、写文档。结合近期研究的方向，有几个「缺口」项目：</p>
+<ul><li>opencode：compaction 改进、新 provider、插件</li><li>LiteLLM / RouteLLM / MemGPT（Letta）：上下文与路由方向，issues 常缺边界 case 的验证者</li><li>LLM 评测类：给 SWE-bench、Aider leaderboard、LM Arena 提交测试用例——低成本高可见度</li></ul>
+<p><strong>2. 建立「可被引用的作品」</strong>：做最小可用的 agent 工具（如 opencode 插件、本地小模型上下文裁剪脚本），README 写清设计取舍；写中文生态的评测 / 对比文章（DeepSeek / Qwen / Kimi 很吃社区评测），发掘金 / 知乎 / 公众号，容易被作者团队转载或联系。</p>
+<p><strong>3. 进对社区（潜水不如动手）</strong>：Discord（opencode、Continue、Aider、LM Studio 官方服）——有价值的是「求助 + 回报」的循环，不是围观；Hugging Face / LM Arena（参与投票标注、上传数据集）；中文侧（上海 AI Lab OpenCompass 评测、魔搭 ModelScope 社区、关注 DeepSeek / Qwen 团队）。</p>
+<h3>性价比对比</h3>
+<table><thead><tr><th>方向</th><th>接触真实度</th><th>时间成本</th><th>门槛</th></tr></thead><tbody><tr><td>开源提 PR</td><td>★★★★★</td><td>中</td><td>中</td></tr><tr><td>公开作品站</td><td>★★★★</td><td>中</td><td>低</td></tr><tr><td>评测 / 数据集贡献</td><td>★★★★</td><td>低</td><td>低</td></tr><tr><td>Discord 活跃</td><td>★★★</td><td>低</td><td>低</td></tr><tr><td>大会 / Meetup</td><td>★★</td><td>高</td><td>低</td></tr></tbody></table>
+<h3>结论：80 / 20</h3>
+<p>把 80% 精力花在「公开作品」（wiki + 小工具）上，20% 挑一个项目提交真实的 issue / PR。</p>
+<blockquote>作品是钩子，贡献是关系——agent 开发者更愿意与「有用的人」对话，而非「想学的人」。</blockquote>
+<p>这和我们反复强调的「不贬值三件事」一致：练的是意图层（把需求想清楚、定义成功标准）与作品层（把思考变成可被引用的资产）的能力。</p></article>
 </section>
 <footer>© 2026 · 意图升值</footer>
 </div>

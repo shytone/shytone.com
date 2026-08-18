@@ -17,10 +17,20 @@
 </header>
 <nav><a class="back" href="../index.html">← 返回</a></nav>
 <section>
-<article><div class="meta">原理 · 2026-08-17</div><h2>模型路由生态与 token 降价</h2><p class="lede">纯省钱的「路由」会商品化，但「切换能力」会以别的理由转世。</p><p>现状：opencode 内置 small_model / 失败回退；生态里有 RouteLLM、Not Diamond、LiteLLM。多数「自动选模型」只覆盖固定场景。</p>
-<p>token 降价会淘汰<strong>成本驱动的路由</strong>——价差趋近于零时，只剩开销。但「切换能力」会转世：</p>
-<ul><li>延迟：等 3 秒 vs 20 秒</li><li>上下文窗口：最根本——token 免费也塞不进无限信息</li><li>质量天花板：frontier 推理成本是物理约束</li><li>本地 / 隐私 / 离线</li></ul>
-<p>判断：纯省钱的 cost-tiering 路由 2-3 年内会大幅商品化。</p></article>
+<article><div class="meta">原理 · 2026-08-17</div><h2>模型路由生态与 token 降价</h2><p class="lede">纯省钱的「路由」会商品化，但「切换能力」会以别的理由转世。</p><h3>现状：自动切换模型已经来了</h3>
+<p>围绕「自动选模型」，工具链已经出现一整套生态：</p>
+<ul><li><strong>opencode</strong>：内置 <code>small_model</code>（轻量任务自动用便宜小模型）；OpenRouter fallback（失败自动回退，可配 <code>provider.order</code>）</li><li><strong>网关层</strong>：OpenRouter / LiteLLM 做自动路由 + fallback + 负载均衡</li><li><strong>路由专项</strong>：RouteLLM（LMSYS 开源，宣称降本 85%、保持 95% GPT-4 质量）、Not Diamond、Martian、Portkey</li><li><strong>产品层</strong>：Aider 的 architect / editor 双模型、Cursor / Windsurf 的「Auto」模式</li></ul>
+<p>但得泼一盆冷水：<strong>「按任务复杂度自动选模型」还不是成熟能力。</strong> 大多数「自动」只覆盖固定场景——轻量任务分流、失败回退、按标签路由。真正的「智能路由」仍在早期。</p>
+<h3>token 降价会淘汰什么：成本驱动的路由</h3>
+<p>路由的商业模式是：省下的钱 = 用贵模型的次数 × 价差。当价差趋近于零，路由就只剩开销。近年 frontier token 价格每年降大约一个数量级（DeepSeek 直接把推理价格打低了 10-100 倍）。</p>
+<p>还有一个关键拐点：<strong>推理模型在处理简单请求时，可以几乎不做推理</strong>——等于用低算力回答简单问题。这让「省钱的 cost-tiering 路由」在 2-3 年内大概率大幅商品化。</p>
+<h3>但「切换能力」会转世</h3>
+<p>手机流量切换是个好类比：流量费用便宜了，但你仍然会在 Wi-Fi 和蜂窝之间切换——因为「切换」背后有别的理由。同样，路由的成本维度消失后，切换会以新的理由继续存在：</p>
+<ul><li><strong>延迟</strong>：等 3 秒 vs 等 20 秒，交互体验天差地别</li><li><strong>上下文窗口</strong>：这是最根本的约束——token 免费，也塞不进无限信息。compaction、JIT、subagent 全是结构性约束</li><li><strong>质量天花板</strong>：frontier 推理成本是物理约束，永远比本地 3B 模型贵一个量级</li><li><strong>本地 / 隐私 / 离线</strong>：本地简单、云端难，和「Wi-Fi 信号不好就切蜂窝」同构</li></ul>
+<h3>时间线（粗略估计）</h3>
+<ul><li><strong>现在 ~ 1 年</strong>：cost-router 仍能赚钱，主流 Agent 只做轻量分流</li><li><strong>2-3 年</strong>：前端模型处理简单任务成本趋近弱模型，纯省钱路由失去卖点，市场整合</li><li><strong>3-5 年</strong>：「默认用最好模型」成为主流（成本不再是约束），路由转向延迟 / 边缘 / 上下文维度</li><li><strong>长期</strong>：路由不死，但沦为上下文工程的一部分，不再是独立的省钱品类</li></ul>
+<h3>一句话</h3>
+<p>稀缺的从来不是 token，而是注意力、窗口与上下文。降本路由会商品化，「切换能力」会以延迟、上下文、质量与隐私的形式转世。</p></article>
 </section>
 <footer>© 2026 · 意图升值</footer>
 </div>
