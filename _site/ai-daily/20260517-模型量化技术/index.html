@@ -1,0 +1,1254 @@
+<!DOCTYPE html><html lang="zh-Hans">
+  <head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>模型量化技术：让大模型更轻更快 - SHYTONE.COM</title>
+
+<meta name="description" content="量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。">
+<link rel="canonical" href="https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+
+<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
+
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" >
+<!-- Bilingual: Global Language Detection & CSS (applies to all pages) -->
+<script>
+(function() {
+  var lang = null;
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) lang = urlParams.get('lang');
+  if (!lang) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) lang = c.substring('preferred_lang='.length);
+    }
+  }
+  if (!lang) {
+    var previewLang = document.documentElement.getAttribute('data-preview-lang');
+    if (previewLang) lang = previewLang;
+  }
+  if (!lang) {
+    var navLang = navigator.language || '';
+    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  document.documentElement.setAttribute('data-lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+window.addEventListener('storage', function(e) {
+  if (e.key === 'preferred_lang') {
+    var lang = e.newValue || 'zh';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+  }
+});
+</script>
+
+<style>
+/* Language toggle button */
+.lang-btn, .bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.lang-btn:hover, .bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+
+/* Bilingual CSS: show/hide based on data-lang attribute */
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+[data-lang="en"] [lang="en"].tag { display: inline !important; }
+[data-lang="en"] [lang="en"].button,
+[data-lang="en"] [lang="en"].promo-section-title,
+[data-lang="en"] [lang="en"].hero__desc { display: block !important; }
+</style>
+
+<!-- DNS Prefetch for faster external resource resolution -->
+<link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+<link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+
+<!-- SEO Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta name="author" content="shytone">
+<link rel="canonical" href="https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="模型量化技术：让大模型更轻更快 - SHYTONE.COM">
+<meta property="og:description" content="量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/">
+<meta property="og:site_name" content="SHYTONE.COM">
+<meta property="og:locale" content="zh_CN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="模型量化技术：让大模型更轻更快 - SHYTONE.COM">
+<meta name="twitter:description" content="量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。">
+<meta name="twitter:site" content="@shytone">
+
+<!-- Article Specific --><meta property="article:published_time" content="2026-05-17T08:00:00+08:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="量化"><meta property="article:tag" content="Quantization"><meta property="article:tag" content="INT8"><meta property="article:tag" content="INT4"><meta property="article:tag" content="FP8"><meta property="article:tag" content="模型压缩"><meta property="article:tag" content="推理优化"><!-- JSON-LD Structured Data --><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "模型量化技术：让大模型更轻更快",
+  "description": "量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。",
+  "datePublished": "2026-05-17T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "shytone",
+    "url": "https://shytone.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SHYTONE.COM",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shytone.com/assets/favicon.ico"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shytone.com/ai-daily/20260517-%E6%A8%A1%E5%9E%8B%E9%87%8F%E5%8C%96%E6%8A%80%E6%9C%AF/"
+  }
+}
+</script><!-- Decrypt JS (for encrypted articles) -->
+<script src="/assets/js/decrypt.js" defer></script>
+<script>(function() {
+  window.isArray = function(val) {
+    return Object.prototype.toString.call(val) === '[object Array]';
+  };
+  window.isString = function(val) {
+    return typeof val === 'string';
+  };
+
+  window.hasEvent = function(event) {
+    return 'on'.concat(event) in window.document;
+  };
+
+  window.isOverallScroller = function(node) {
+    return node === document.documentElement || node === document.body || node === window;
+  };
+
+  window.isFormElement = function(node) {
+    var tagName = node.tagName;
+    return tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA';
+  };
+
+  window.pageLoad = (function () {
+    var loaded = false, cbs = [];
+    window.addEventListener('load', function () {
+      var i;
+      loaded = true;
+      if (cbs.length > 0) {
+        for (i = 0; i < cbs.length; i++) {
+          cbs[i]();
+        }
+      }
+    });
+    return {
+      then: function(cb) {
+        cb && (loaded ? cb() : (cbs.push(cb)));
+      }
+    };
+  })();
+})();
+(function() {
+  window.throttle = function(func, wait) {
+    var args, result, thisArg, timeoutId, lastCalled = 0;
+
+    function trailingCall() {
+      lastCalled = new Date;
+      timeoutId = null;
+      result = func.apply(thisArg, args);
+    }
+    return function() {
+      var now = new Date,
+        remaining = wait - (now - lastCalled);
+
+      args = arguments;
+      thisArg = this;
+
+      if (remaining <= 0) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+        lastCalled = now;
+        result = func.apply(thisArg, args);
+      } else if (!timeoutId) {
+        timeoutId = setTimeout(trailingCall, remaining);
+      }
+      return result;
+    };
+  };
+})();
+(function() {
+  var Set = (function() {
+    var add = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (data[i] === item) {
+          return;
+        }
+      }
+      this.size ++;
+      data.push(item);
+      return data;
+    };
+
+    var Set = function(data) {
+      this.size = 0;
+      this._data = [];
+      var i;
+      if (data.length > 0) {
+        for (i = 0; i < data.length; i++) {
+          add.call(this, data[i]);
+        }
+      }
+    };
+    Set.prototype.add = add;
+    Set.prototype.get = function(index) { return this._data[index]; };
+    Set.prototype.has = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (this.get(i) === item) {
+          return true;
+        }
+      }
+      return false;
+    };
+    Set.prototype.is = function(map) {
+      if (map._data.length !== this._data.length) { return false; }
+      var i, j, flag, tData = this._data, mData = map._data;
+      for (i = 0; i < tData.length; i++) {
+        for (flag = false, j = 0; j < mData.length; j++) {
+          if (tData[i] === mData[j]) {
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) { return false; }
+      }
+      return true;
+    };
+    Set.prototype.values = function() {
+      return this._data;
+    };
+    return Set;
+  })();
+
+  window.Lazyload = (function(doc) {
+    var queue = {js: [], css: []}, sources = {js: {}, css: {}}, context = this;
+    var createNode = function(name, attrs) {
+      var node = doc.createElement(name), attr;
+      for (attr in attrs) {
+        if (attrs.hasOwnProperty(attr)) {
+          node.setAttribute(attr, attrs[attr]);
+        }
+      }
+      return node;
+    };
+    var end = function(type, url) {
+      var s, q, qi, cbs, i, j, cur, val, flag;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        s[url] = true;
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (cur.urls.has(url)) {
+            qi = cur, val = qi.urls.values();
+            qi && (cbs = qi.callbacks);
+            for (flag = true, j = 0; j < val.length; j++) {
+              cur = val[j];
+              if (!s[cur]) {
+                flag = false;
+              }
+            }
+            if (flag && cbs && cbs.length > 0) {
+              for (j = 0; j < cbs.length; j++) {
+                cbs[j].call(context);
+              }
+              qi.load = true;
+            }
+          }
+        }
+      }
+    };
+    var load = function(type, urls, callback) {
+      var s, q, qi, node, i, cur,
+        _urls = typeof urls === 'string' ? new Set([urls]) : new Set(urls), val, url;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (_urls.is(cur.urls)) {
+            qi = cur;
+            break;
+          }
+        }
+        val = _urls.values();
+        if (qi) {
+          callback && (qi.load || qi.callbacks.push(callback));
+          callback && (qi.load && callback());
+        } else {
+          q.push({
+            urls: _urls,
+            callbacks: callback ? [callback] : [],
+            load: false
+          });
+          for (i = 0; i < val.length; i++) {
+            node = null, url = val[i];
+            if (s[url] === undefined) {
+              (type === 'js' ) && (node = createNode('script', { src: url }));
+              (type === 'css') && (node = createNode('link', { rel: 'stylesheet', href: url }));
+              if (node) {
+                node.onload = (function(type, url) {
+                  return function() {
+                    end(type, url);
+                  };
+                })(type, url);
+                (doc.head || doc.body).appendChild(node);
+                s[url] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+    return {
+      js: function(url, callback) {
+        load('js', url, callback);
+      },
+      css: function(url, callback) {
+        load('css', url, callback);
+      }
+    };
+  })(this.document);
+})();
+</script><script>
+  (function() {
+    var TEXT_VARIABLES = {
+      version: '2.2.6',
+      sources: {
+        font_awesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css',
+        jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js',
+        leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js',
+        chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js',
+        gitalk: {
+          js: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.js',
+          css: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.css'
+        },
+        valine: 'https://unpkg.com/valine/dist/Valine.min.js',
+        mathjax: 'https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML',
+        mermaid: 'https://cdn.bootcss.com/mermaid/8.0.0-rc.8/mermaid.min.js'
+      },
+      site: {
+        toc: {
+          selectors: 'h1,h2,h3'
+        }
+      },
+      paths: {
+        search_js: '/assets/search.js'
+      }
+    };
+    window.TEXT_VARIABLES = TEXT_VARIABLES;
+  })();
+</script>
+</head>
+  <body>
+    <div class="root" data-is-touch="false">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+
+      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
+      <div class="header__title">
+        <div class="header__brand"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1d1f21" rx="4"/>
+  <text x="2" y="24" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#fc4d50">S</text>
+  <text x="16" y="30" font-family="monospace" font-size="8" font-weight="bold" fill="#ffffff">&lt;/&gt;</text>
+</svg>
+<a title="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog." href="/">SHYTONE.COM</a></div></div><nav class="navigation">
+        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/gaokao.html">软考高项</a></li><li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/xiuxian.html">修仙养成</a></li><li class="navigation__item"><a href="/tools.html">工具箱</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
+      </nav></div>
+  </header>
+</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+
+              <div class="col-aside d-print-none js-col-aside"></div>
+
+              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+
+<!-- end custom main top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>模型量化技术：让大模型更轻更快</h1></header></div><meta itemprop="headline" content="模型量化技术：让大模型更轻更快"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=AI">AI</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E9%87%8F%E5%8C%96">量化</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Quantization">Quantization</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=INT8">INT8</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=INT4">INT4</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=FP8">FP8</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%A8%A1%E5%9E%8B%E5%8E%8B%E7%BC%A9">模型压缩</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E6%8E%A8%E7%90%86%E4%BC%98%E5%8C%96">推理优化</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 05月17日</span>
+            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-05-17T08:00:00+08:00">
+    <meta itemprop="keywords" content="AI,量化,Quantization,INT8,INT4,FP8,模型压缩,推理优化"><div class="js-article-content"><div class="layout--article" >
+  <div class="article__content" itemprop="articleBody"><blockquote>
+  <p>量化是把大模型”压缩”的关键技术。4bit 量化可以让 70B 模型在 48GB 显存里跑起来。</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="为什么需要量化">为什么需要量化？</h2>
+
+<p>大模型的”重量”问题：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>模型</th>
+      <th>参数量</th>
+      <th>FP16 显存</th>
+      <th>INT8 显存</th>
+      <th>INT4 显存</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>LLaMA 3 8B</td>
+      <td>8B</td>
+      <td>~16GB</td>
+      <td>~8GB</td>
+      <td>~4GB</td>
+    </tr>
+    <tr>
+      <td>LLaMA 3 70B</td>
+      <td>70B</td>
+      <td>~140GB</td>
+      <td>~70GB</td>
+      <td>~35GB</td>
+    </tr>
+    <tr>
+      <td>Qwen 72B</td>
+      <td>72B</td>
+      <td>~144GB</td>
+      <td>~72GB</td>
+      <td>~36GB</td>
+    </tr>
+    <tr>
+      <td>Mistral 7B</td>
+      <td>7B</td>
+      <td>~14GB</td>
+      <td>~7GB</td>
+      <td>~3.5GB</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>一张消费级显卡（RTX 4090 = 24GB）跑不了 FP16 的 70B 模型，但 INT4 量化后可以。</p>
+
+<p><strong>量化的核心思想</strong>：用更少的位数表示权重，从 32位浮点(FP32) 或 16位浮点(FP16/BF16) 降到 INT8、INT4、甚至 INT2。</p>
+
+<hr />
+
+<h2 id="量化基础概念">量化基础概念</h2>
+
+<h3 id="数值格式">数值格式</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>FP32 (32位浮点):  1位符号 + 8位指数 + 23位尾数
+                  [S][EEEEEEEE][MMMMMMMMMMMMMMMMMMMMMMM]
+                  精度高，范围大
+
+FP16 (16位浮点):  1位符号 + 5位指数 + 10位尾数
+                  [S][EEEEE][MMMMMMMMM]
+                  范围和精度都降低
+
+BF16 (16位浮点):  1位符号 + 8位指数 + 7位尾数
+                  [S][EEEEEEEE][MMM]
+                  范围同 FP32，精度降低
+
+INT8 (8位整数):   256 个离散值: -128 ~ 127
+                  体积是 FP16 的 1/2
+
+INT4 (4位整数):   16 个离散值: -8 ~ 7
+                  体积是 FP16 的 1/4
+</code></pre></div></div>
+
+<h3 id="量化误差">量化误差</h3>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>原始值:  0.123456789
+FP16:   0.12346       (损失小)
+INT8:   0.12          (误差约 3%)
+INT4:   0.125         (误差约 1.5%)
+</code></pre></div></div>
+
+<p>INT4 看起来误差更小？别忘了那是”重新映射”后的误差。</p>
+
+<hr />
+
+<h2 id="量化方法分类">量化方法分类</h2>
+
+<h3 id="1-训练后量化ptq">1. 训练后量化（PTQ）</h3>
+
+<p>在模型训练/微调完成后，直接量化。不需要重新训练，速度快。</p>
+
+<p><strong>动态量化（Dynamic Quantization）</strong></p>
+<ul>
+  <li>权重提前量化，激活值推理时动态量化</li>
+  <li>最简单，效果一般</li>
+  <li>适用于推理场景</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">torch</span>
+
+<span class="c1"># 动态量化（权重 INT8，激活保持 FP16）
+</span><span class="n">model_dynamic</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">quantize_dynamic</span><span class="p">(</span>
+    <span class="n">model</span><span class="p">,</span> <span class="p">{</span><span class="n">torch</span><span class="p">.</span><span class="n">nn</span><span class="p">.</span><span class="n">Linear</span><span class="p">},</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="p">.</span><span class="n">qint8</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>静态量化（Static Quantization）</strong></p>
+<ul>
+  <li>需要校准数据集，计算激活分布</li>
+  <li>权重和激活都量化</li>
+  <li>效果更好，需要额外步骤</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># 静态量化流程
+</span><span class="n">model</span><span class="p">.</span><span class="nf">eval</span><span class="p">()</span>
+
+<span class="c1"># Fuse layers (Linear + ReLU -&gt; Linear)
+</span><span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">fuse_modules</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="p">[[</span><span class="sh">'</span><span class="s">fc1</span><span class="sh">'</span><span class="p">,</span> <span class="sh">'</span><span class="s">relu</span><span class="sh">'</span><span class="p">]])</span>
+
+<span class="c1"># Prepare (插入观测节点)
+</span><span class="n">model</span><span class="p">.</span><span class="n">qconfig</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">get_default_qconfig</span><span class="p">(</span><span class="sh">'</span><span class="s">fbgemm</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">prepare</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># Calibrate (用校准数据)
+</span><span class="k">with</span> <span class="n">torch</span><span class="p">.</span><span class="nf">no_grad</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">batch</span> <span class="ow">in</span> <span class="n">calibration_data</span><span class="p">:</span>
+        <span class="nf">model</span><span class="p">(</span><span class="n">batch</span><span class="p">)</span>
+
+<span class="c1"># Convert (真正量化)
+</span><span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="2-量化感知训练qat">2. 量化感知训练（QAT）</h3>
+
+<p>在训练过程中模拟量化，让模型”适应”量化带来的误差。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># QAT 流程
+# 1. 在模型中插入 FakeQuant 节点
+</span><span class="n">model</span><span class="p">.</span><span class="n">qconfig</span> <span class="o">=</span> <span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">get_default_qat_qconfig</span><span class="p">(</span><span class="sh">'</span><span class="s">fbgemm</span><span class="sh">'</span><span class="p">)</span>
+<span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">prepare_qat</span><span class="p">(</span><span class="n">model</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+
+<span class="c1"># 2. Fine-tune on training data
+</span><span class="nf">train</span><span class="p">(</span><span class="n">model</span><span class="p">)</span>
+
+<span class="c1"># 3. 转换
+</span><span class="n">torch</span><span class="p">.</span><span class="n">quantization</span><span class="p">.</span><span class="nf">convert</span><span class="p">(</span><span class="n">model</span><span class="p">.</span><span class="nf">eval</span><span class="p">(),</span> <span class="n">inplace</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>QAT vs PTQ 对比</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>方法</th>
+      <th>精度</th>
+      <th>成本</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>PTQ 动态</td>
+      <td>⭐⭐</td>
+      <td>免费</td>
+      <td>快速部署</td>
+    </tr>
+    <tr>
+      <td>PTQ 静态</td>
+      <td>⭐⭐⭐</td>
+      <td>低</td>
+      <td>生产环境</td>
+    </tr>
+    <tr>
+      <td>QAT</td>
+      <td>⭐⭐⭐⭐</td>
+      <td>高</td>
+      <td>极致精度</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="高级量化技术">高级量化技术</h2>
+
+<h3 id="1-gptq单卡量化-70b-模型">1. GPTQ：单卡量化 70B 模型</h3>
+
+<p>GPTQ（Generative Pre-trained Transformer Quantization）可以在单张 GPU 上用几小时量化 70B 模型。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">auto_gptq</span> <span class="kn">import</span> <span class="n">AutoGPTQForCausalLM</span>
+<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoGPTQForCausalLM</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span>
+    <span class="sh">"</span><span class="s">meta-llama/Llama-3-70B</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">quantization_config</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">bits</span><span class="sh">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span> <span class="sh">"</span><span class="s">desc_act</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">}</span>
+<span class="p">)</span>
+
+<span class="c1"># bits: 4 或 8
+# desc_act: 激活顺序重排，减少精度损失
+</span></code></pre></div></div>
+
+<p><strong>GPTQ 核心原理</strong>：</p>
+<ol>
+  <li>分块量化（Chunk-based）</li>
+  <li>递归最小化量化误差</li>
+  <li>使用 Hickup 优化补偿</li>
+</ol>
+
+<h3 id="2-awqactivation-aware-weight-quantization">2. AWQ：Activation-Aware Weight Quantization</h3>
+
+<p>AWQ 观察到：不是所有权重都一样重要，<strong>激活值大的权重更重要</strong>。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">awq</span> <span class="kn">import</span> <span class="n">AutoAWQForCGMModel</span>
+<span class="kn">from</span> <span class="n">transformers</span> <span class="kn">import</span> <span class="n">AutoTokenizer</span>
+
+<span class="n">model</span> <span class="o">=</span> <span class="n">AutoAWQForCGMModel</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="sh">"</span><span class="s">meta-llama/Llama-3-70B</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">tokenizer</span> <span class="o">=</span> <span class="n">AutoTokenizer</span><span class="p">.</span><span class="nf">from_pretrained</span><span class="p">(</span><span class="sh">"</span><span class="s">meta-llama/Llama-3-70B</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="n">quant_config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="sh">"</span><span class="s">zero_point</span><span class="sh">"</span><span class="p">:</span> <span class="bp">True</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">q_group_size</span><span class="sh">"</span><span class="p">:</span> <span class="mi">128</span><span class="p">,</span>  <span class="c1"># 分组大小
+</span>    <span class="sh">"</span><span class="s">w_bit</span><span class="sh">"</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="sh">"</span><span class="s">version</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">GEMM</span><span class="sh">"</span>     <span class="c1"># GEMM 或 GEMV
+</span><span class="p">}</span>
+
+<span class="n">model</span><span class="p">.</span><span class="nf">quantize</span><span class="p">(</span><span class="n">tokenizer</span><span class="p">,</span> <span class="n">quant_config</span><span class="o">=</span><span class="n">quant_config</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="3-gguf本地部署的量化格式">3. GGUF：本地部署的量化格式</h3>
+
+<p>GGUF（GPT-Generated Unified Format）是 llama.cpp 推出的量化格式，适合 CPU 推理。</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>量子化位数</th>
+      <th>70B 大小</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Q8_0</td>
+      <td>8bit</td>
+      <td>~70GB</td>
+      <td>接近无损</td>
+    </tr>
+    <tr>
+      <td>Q6_K</td>
+      <td>6bit</td>
+      <td>~55GB</td>
+      <td>高质量</td>
+    </tr>
+    <tr>
+      <td>Q5_K_M</td>
+      <td>5bit</td>
+      <td>~48GB</td>
+      <td>均衡</td>
+    </tr>
+    <tr>
+      <td>Q4_K_M</td>
+      <td>4bit</td>
+      <td>~40GB</td>
+      <td>主流选择</td>
+    </tr>
+    <tr>
+      <td>Q3_K_M</td>
+      <td>3bit</td>
+      <td>~35GB</td>
+      <td>低显存</td>
+    </tr>
+    <tr>
+      <td>Q2_K</td>
+      <td>2bit</td>
+      <td>~30GB</td>
+      <td>极致压缩</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 使用 llama.cpp 量化</span>
+./quantize ./models/llama-70b-f16.gguf ./models/llama-70b-q4_k_m.gguf q4_k_m
+</code></pre></div></div>
+
+<h3 id="4-fp8新一代量化格式">4. FP8：新一代量化格式</h3>
+
+<p>NVIDIA H100 支持 FP8（8位浮点），兼顾范围和精度。</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># PyTorch FP8 支持 (需要 H100)
+</span><span class="kn">from</span> <span class="n">torch.cuda.amp</span> <span class="kn">import</span> <span class="n">custom_fwd</span><span class="p">,</span> <span class="n">custom_bwd</span>
+
+<span class="nd">@custom_fwd</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="sh">"</span><span class="s">cuda</span><span class="sh">"</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">forward_fp8</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">x</span><span class="p">.</span><span class="nf">float8_e4m3fn</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="量化实战用-llamacpp-本地跑大模型">量化实战：用 llama.cpp 本地跑大模型</h2>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># 1. 安装 llama.cpp</span>
+git clone https://github.com/ggerganov/llama.cpp
+<span class="nb">cd </span>llama.cpp <span class="o">&amp;&amp;</span> <span class="nb">mkdir </span>build <span class="o">&amp;&amp;</span> <span class="nb">cd </span>build <span class="o">&amp;&amp;</span> cmake .. <span class="o">&amp;&amp;</span> make
+
+<span class="c"># 2. 下载模型 (Qwen 2.5 7B)</span>
+<span class="c"># 3. 量化</span>
+./quantize ./models/qwen-7b-f16.gguf ./models/qwen-7b-q4_k_m.gguf q4_k_m
+
+<span class="c"># 4. 推理</span>
+./main <span class="nt">-m</span> ./models/qwen-7b-q4_k_m.gguf <span class="nt">-n</span> 512 <span class="nt">-p</span> <span class="s2">"你好，介绍一下自己"</span>
+</code></pre></div></div>
+
+<p><strong>内存占用对比（Qwen 2.5 7B）</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>格式</th>
+      <th>内存占用</th>
+      <th>生成速度</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>FP16</td>
+      <td>~14GB</td>
+      <td>30 tok/s</td>
+    </tr>
+    <tr>
+      <td>Q8_0</td>
+      <td>~8GB</td>
+      <td>25 tok/s</td>
+    </tr>
+    <tr>
+      <td>Q4_K_M</td>
+      <td>~4.5GB</td>
+      <td>20 tok/s</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="量化方案的选用指南">量化方案的选用指南</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>场景</th>
+      <th>推荐方案</th>
+      <th>说明</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>生产部署</td>
+      <td>INT8 + AWQ</td>
+      <td>精度损失 &lt; 1%</td>
+    </tr>
+    <tr>
+      <td>个人推理</td>
+      <td>Q4_K_M (GGUF)</td>
+      <td>RTX 3090/4090 可跑 70B</td>
+    </tr>
+    <tr>
+      <td>极致压缩</td>
+      <td>INT2/INT3</td>
+      <td>精度损失较大，仅实验</td>
+    </tr>
+    <tr>
+      <td>最新模型</td>
+      <td>GPTQ / AWQ</td>
+      <td>支持大多数开源模型</td>
+    </tr>
+    <tr>
+      <td>CPU 部署</td>
+      <td>GGUF Q4</td>
+      <td>llama.cpp 生态成熟</td>
+    </tr>
+  </tbody>
+</table>
+
+<hr />
+
+<h2 id="-小结">💡 小结</h2>
+
+<p><strong>量化是让大模型”平民化”的关键技术</strong>：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>量化方法</th>
+      <th>精度损失</th>
+      <th>难度</th>
+      <th>适用</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>动态量化</td>
+      <td>中等</td>
+      <td>低</td>
+      <td>快速部署</td>
+    </tr>
+    <tr>
+      <td>GPTQ</td>
+      <td>较小</td>
+      <td>中</td>
+      <td>70B+ 模型</td>
+    </tr>
+    <tr>
+      <td>AWQ</td>
+      <td>较小</td>
+      <td>中</td>
+      <td>最佳性价比</td>
+    </tr>
+    <tr>
+      <td>QAT</td>
+      <td>最小</td>
+      <td>高</td>
+      <td>极致精度</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>实践建议</strong>：</p>
+<ol>
+  <li>优先尝试 <strong>AWQ</strong> 或 <strong>GPTQ</strong>（4bit）</li>
+  <li>生产环境用 <strong>INT8</strong> 或 <strong>Q5_K_M</strong></li>
+  <li>CPU 推理用 <strong>GGUF Q4_K_M</strong></li>
+  <li>评估时用 <strong>困惑度(Perplexity)</strong> 和 <strong>下游任务准确率</strong></li>
+</ol>
+
+<hr />
+
+<p><em>相关阅读：<a href="/_ai-daily/20260516-AI-Agent记忆机制.md">AI Agent 记忆机制：让AI更懂你</a></em></p>
+</div>
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script>
+<script src="/assets/js/decrypt.js" defer></script></div><section class="page__comments d-print-none"></section></article>
+<!-- Footer placeholder - no ads at bottom to avoid policy issues -->
+</div>
+            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
+  <div class="main"><div itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shytone"><meta itemprop="url" content="https://shytone.com"><meta itemprop="description" content="Developer · Learner · Builder"><div class="footer__author-links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://shytone.com"><li title="在 Github 上关注我。">
+        <a class="button button--circle github-button" itemprop="sameAs" href="https://github.com/shytone" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
+</svg>
+</div>
+        </a>
+      </li></ul>
+</div>
+</div>
+    </div>
+    
+    <!-- 不蒜子统计 -->
+    <div class="busuanzi-stat" style="margin: 1rem 0; text-align: center;">
+      <span id="busuanzi_container_page_pv" style="margin-right: 1rem;">
+        👁️ 本页浏览 <span id="busuanzi_value_page_pv">-</span>
+      </span>
+      <span id="busuanzi_container_site_pv" style="margin-right: 1rem;">
+        🌐 站点总浏览 <span id="busuanzi_value_site_pv">-</span>
+      </span>
+      <span id="busuanzi_container_site_uv">
+        👤 访客数 <span id="busuanzi_value_site_uv">-</span>
+      </span>
+    </div>
+    <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><div class="site-info mt-2">
+      <div>© SHYTONE.COM 2021,
+        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
+        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+        <span style="margin-left:1rem"><a href="/privacy.html">隐私政策</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+</div></div>
+    </div><script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $body = $('body'), $window = $(window);
+    var $pageRoot = $('.js-page-root'), $pageMain = $('.js-page-main');
+    var activeCount = 0;
+    function modal(options) {
+      var $root = this, visible, onChange, hideWhenWindowScroll = false;
+      var scrollTop;
+      function setOptions(options) {
+        var _options = options || {};
+        visible = _options.initialVisible === undefined ? false : show;
+        onChange = _options.onChange;
+        hideWhenWindowScroll = _options.hideWhenWindowScroll;
+      }
+      function init() {
+        setState(visible);
+      }
+      function setState(isShow) {
+        if (isShow === visible) {
+          return;
+        }
+        visible = isShow;
+        if (visible) {
+          activeCount++;
+          scrollTop = $(window).scrollTop() || $pageMain.scrollTop();
+          $root.addClass('modal--show');
+          $pageMain.scrollTop(scrollTop);
+          activeCount === 1 && ($pageRoot.addClass('show-modal'), $body.addClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.on('scroll', hide);
+          $window.on('keyup', handleKeyup);
+        } else {
+          activeCount > 0 && activeCount--;
+          $root.removeClass('modal--show');
+          $window.scrollTop(scrollTop);
+          activeCount === 0 && ($pageRoot.removeClass('show-modal'), $body.removeClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.off('scroll', hide);
+          $window.off('keyup', handleKeyup);
+        }
+        onChange && onChange(visible);
+      }
+      function show() {
+        setState(true);
+      }
+      function hide() {
+        setState(false);
+      }
+      function handleKeyup(e) {
+        // Char Code: 27  ESC
+        if (e.which ===  27) {
+          hide();
+        }
+      }
+      setOptions(options);
+      init();
+      return {
+        show: show,
+        hide: hide,
+        $el: $root
+      };
+    }
+    $.fn.modal = modal;
+  });
+})();
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"></div></div>
+
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function scrollToAnchor(anchor, duration, callback) {
+      var $root = this;
+      $root.animate({ scrollTop: $(anchor).position().top }, duration, function() {
+        window.history.replaceState(null, '', window.location.href.split('#')[0] + anchor);
+        callback && callback();
+      });
+    }
+    $.fn.scrollToAnchor = scrollToAnchor;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function affix(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroll,
+        offsetBottom = 0, scrollTarget = window, scroll = window.document, disabled = false, isOverallScroller = true,
+        rootTop, rootLeft, rootHeight, scrollBottom, rootBottomTop,
+        hasInit = false, curState;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.offsetBottom && (offsetBottom = _options.offsetBottom);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroll && (scroll = _options.scroll);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $scrollTarget = $(scrollTarget);
+        isOverallScroller = window.isOverallScroller($scrollTarget[0]);
+        $scroll = $(scroll);
+      }
+      function preCalc() {
+        top();
+        rootHeight = $root.outerHeight();
+        rootTop = $root.offset().top + (isOverallScroller ? 0 :  $scrollTarget.scrollTop());
+        rootLeft = $root.offset().left;
+      }
+      function calc(needPreCalc) {
+        needPreCalc && preCalc();
+        scrollBottom = $scroll.outerHeight() - offsetBottom - rootHeight;
+        rootBottomTop = scrollBottom - rootTop;
+      }
+      function top() {
+        if (curState !== 'top') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: 0
+          });
+          curState = 'top';
+        }
+      }
+      function fixed() {
+        if (curState !== 'fixed') {
+          $root.addClass('fixed').css({
+            left: rootLeft + 'px',
+            top: 0
+          });
+          curState = 'fixed';
+        }
+      }
+      function bottom() {
+        if (curState !== 'bottom') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: rootBottomTop + 'px'
+          });
+          curState = 'bottom';
+        }
+      }
+      function setState() {
+        var scrollTop = $scrollTarget.scrollTop();
+        if (scrollTop >= rootTop && scrollTop <= scrollBottom) {
+          fixed();
+        } else if (scrollTop < rootTop) {
+          top();
+        } else {
+          bottom();
+        }
+      }
+      function init() {
+        if(!hasInit) {
+          var interval, timeout;
+          calc(true); setState();
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState();
+          });
+          $window.on('resize', function() {
+            disabled || (calc(true), setState());
+          });
+          hasInit = true;
+        }
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions,
+        refresh: function() {
+          calc(true, { animation: false }); setState();
+        }
+      };
+    }
+    $.fn.affix = affix;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function toc(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroller, $tocUl = $('<ul class="toc toc--ellipsis"></ul>'), $tocLi, $headings, $activeLast, $activeCur,
+        selectors = 'h1,h2,h3', container = 'body', scrollTarget = window, scroller = 'html, body', disabled = false,
+        headingsPos, scrolling = false, hasRendered = false, hasInit = false;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.selectors && (selectors = _options.selectors);
+        _options.container && (container = _options.container);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroller && (scroller = _options.scroller);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $headings = $(container).find(selectors).filter('[id]');
+        $scrollTarget = $(scrollTarget);
+        $scroller = $(scroller);
+      }
+      function calc() {
+        headingsPos = [];
+        $headings.each(function() {
+          headingsPos.push(Math.floor($(this).position().top));
+        });
+      }
+      function setState(element, disabled) {
+        var scrollTop = $scrollTarget.scrollTop(), i;
+        if (disabled || !headingsPos || headingsPos.length < 1) { return; }
+        if (element) {
+          $activeCur = element;
+        } else {
+          for (i = 0; i < headingsPos.length; i++) {
+            if (scrollTop >= headingsPos[i]) {
+              $activeCur = $tocLi.eq(i);
+            } else {
+              $activeCur || ($activeCur = $tocLi.eq(i));
+              break;
+            }
+          }
+        }
+        $activeLast && $activeLast.removeClass('active');
+        ($activeLast = $activeCur).addClass('active');
+      }
+      function render() {
+        if(!hasRendered) {
+          $root.append($tocUl);
+          $headings.each(function() {
+            var $this = $(this);
+            $tocUl.append($('<li></li>').addClass('toc-' + $this.prop('tagName').toLowerCase())
+              .append($('<a></a>').text($this.text()).attr('href', '#' + $this.prop('id'))));
+          });
+          $tocLi = $tocUl.children('li');
+          $tocUl.on('click', 'a', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            scrolling = true;
+            setState($this.parent());
+            $scroller.scrollToAnchor($this.attr('href'), 400, function() {
+              scrolling = false;
+            });
+          });
+        }
+        hasRendered = true;
+      }
+      function init() {
+        var interval, timeout;
+        if(!hasInit) {
+          render(); calc(); setState(null, scrolling);
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState(null, scrolling);
+          });
+          $window.on('resize', window.throttle(function() {
+            if (!disabled) {
+              render(); calc(); setState(null, scrolling);
+            }
+          }, 100));
+        }
+        hasInit = true;
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions
+      };
+    }
+    $.fn.toc = toc;
+  });
+})();
+/*(function () {
+
+})();*/
+</script><script type="text/x-mathjax-config">
+	var _config = { tex2jax: {
+		inlineMath: [['$','$'], ['\\(','\\)']]
+	}};_config.TeX = { equationNumbers: { autoNumber: "all" } };MathJax.Hub.Config(_config);
+</script>
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+    </div>
+    <script>(function () {
+  var $root = document.getElementsByClassName('root')[0];
+  if (window.hasEvent('touchstart')) {
+    $root.dataset.isTouch = true;
+    document.addEventListener('touchstart', function(){}, false);
+  }
+})();
+</script>
+  </body>
+</html>
+

@@ -1,0 +1,1102 @@
+<!DOCTYPE html><html lang="zh-Hans">
+  <head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no"><title>RAG 深度解析：如何让大模型拥有最新知识 - SHYTONE.COM</title>
+
+<meta name="description" content="RAG = Retrieval Augmented Generation。不用微调，让大模型随时获取最新知识。">
+<link rel="canonical" href="https://shytone.com/ai-daily/20260514-RAG%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8B%A5%E6%9C%89%E6%9C%80%E6%96%B0%E7%9F%A5%E8%AF%86/"><link rel="alternate" type="application/rss+xml" title="SHYTONE.COM" href="/feed.xml"><!-- start favicons snippet, use https://realfavicongenerator.net/ --><link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png"><link rel="manifest" href="/assets/site.webmanifest"><link rel="mask-icon" href="/assets/safari-pinned-tab.svg" color="#fc4d50"><link rel="shortcut icon" href="/assets/favicon.ico">
+
+<meta name="msapplication-TileColor" content="#ffc40d"><meta name="msapplication-config" content="/assets/browserconfig.xml">
+
+<meta name="theme-color" content="#ffffff">
+<!-- end favicons snippet --><link rel="stylesheet" href="/assets/css/main.css"><link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css" >
+<!-- Bilingual: Global Language Detection & CSS (applies to all pages) -->
+<script>
+(function() {
+  var lang = null;
+  var urlParams = new URLSearchParams(window.location.search);
+  if (urlParams.has('lang')) lang = urlParams.get('lang');
+  if (!lang) {
+    var cookies = document.cookie.split(';');
+    for (var i = 0; i < cookies.length; i++) {
+      var c = cookies[i].trim();
+      if (c.indexOf('preferred_lang=') === 0) lang = c.substring('preferred_lang='.length);
+    }
+  }
+  if (!lang) {
+    var previewLang = document.documentElement.getAttribute('data-preview-lang');
+    if (previewLang) lang = previewLang;
+  }
+  if (!lang) {
+    var navLang = navigator.language || '';
+    lang = (navLang.indexOf('zh') === 0) ? 'zh' : 'en';
+  }
+  document.documentElement.setAttribute('data-lang', lang);
+  document.body.setAttribute('data-lang', lang);
+  document.cookie = 'preferred_lang=' + lang + '; path=/; max-age=' + (30*24*60*60);
+})();
+function toggleLang() {
+  var current = document.documentElement.getAttribute('data-lang') || 'zh';
+  var next = (current === 'zh') ? 'en' : 'zh';
+  document.documentElement.setAttribute('data-lang', next);
+  document.body.setAttribute('data-lang', next);
+  document.cookie = 'preferred_lang=' + next + '; path=/; max-age=' + (30*24*60*60);
+  localStorage.setItem('preferred_lang', next);
+  document.querySelectorAll('.lang-label').forEach(function(el){ el.textContent = (next==='zh')?'中文':'EN'; });
+  var url = new URL(window.location);
+  url.searchParams.set('lang', next);
+  window.history.replaceState({}, '', url);
+}
+window.addEventListener('storage', function(e) {
+  if (e.key === 'preferred_lang') {
+    var lang = e.newValue || 'zh';
+    document.documentElement.setAttribute('data-lang', lang);
+    document.body.setAttribute('data-lang', lang);
+  }
+});
+</script>
+
+<style>
+/* Language toggle button */
+.lang-btn, .bilingual-toggle {
+  background: rgba(102,126,234,0.1);
+  border: 1px solid rgba(102,126,234,0.3);
+  color: #667eea;
+  padding: 4px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: all 0.2s;
+}
+.lang-btn:hover, .bilingual-toggle:hover { background: rgba(102,126,234,0.2); }
+
+/* Bilingual CSS: show/hide based on data-lang attribute */
+[data-lang="en"] [lang="zh"],
+[data-lang="en"] [lang="zh-Hans"] { display: none !important; }
+[data-lang="en"] [lang="en"] { display: initial !important; }
+[data-lang="en"] [lang="en"].tag { display: inline !important; }
+[data-lang="en"] [lang="en"].button,
+[data-lang="en"] [lang="en"].promo-section-title,
+[data-lang="en"] [lang="en"].hero__desc { display: block !important; }
+</style>
+
+<!-- DNS Prefetch for faster external resource resolution -->
+<link rel="dns-prefetch" href="https://cdn.bootcdn.net">
+<link rel="dns-prefetch" href="https://busuanzi.ibruce.info">
+
+<!-- SEO Meta Tags -->
+<meta name="robots" content="index, follow">
+<meta name="author" content="shytone">
+<link rel="canonical" href="https://shytone.com/ai-daily/20260514-RAG%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8B%A5%E6%9C%89%E6%9C%80%E6%96%B0%E7%9F%A5%E8%AF%86/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="RAG 深度解析：如何让大模型拥有最新知识 - SHYTONE.COM">
+<meta property="og:description" content="RAG = Retrieval Augmented Generation。不用微调，让大模型随时获取最新知识。">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://shytone.com/ai-daily/20260514-RAG%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8B%A5%E6%9C%89%E6%9C%80%E6%96%B0%E7%9F%A5%E8%AF%86/">
+<meta property="og:site_name" content="SHYTONE.COM">
+<meta property="og:locale" content="zh_CN">
+
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="RAG 深度解析：如何让大模型拥有最新知识 - SHYTONE.COM">
+<meta name="twitter:description" content="RAG = Retrieval Augmented Generation。不用微调，让大模型随时获取最新知识。">
+<meta name="twitter:site" content="@shytone">
+
+<!-- Article Specific --><meta property="article:published_time" content="2026-05-14T08:00:00+08:00"><meta property="article:tag" content="AI"><meta property="article:tag" content="RAG"><meta property="article:tag" content="Vector DB"><meta property="article:tag" content="大模型"><meta property="article:tag" content="知识库"><meta property="article:tag" content="Embedding"><!-- JSON-LD Structured Data --><script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "RAG 深度解析：如何让大模型拥有最新知识",
+  "description": "RAG = Retrieval Augmented Generation。不用微调，让大模型随时获取最新知识。",
+  "datePublished": "2026-05-14T08:00:00+08:00",
+  "author": {
+    "@type": "Person",
+    "name": "shytone",
+    "url": "https://shytone.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "SHYTONE.COM",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://shytone.com/assets/favicon.ico"
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://shytone.com/ai-daily/20260514-RAG%E6%B7%B1%E5%BA%A6%E8%A7%A3%E6%9E%90%EF%BC%9A%E5%A6%82%E4%BD%95%E8%AE%A9%E5%A4%A7%E6%A8%A1%E5%9E%8B%E6%8B%A5%E6%9C%89%E6%9C%80%E6%96%B0%E7%9F%A5%E8%AF%86/"
+  }
+}
+</script><!-- Decrypt JS (for encrypted articles) -->
+<script src="/assets/js/decrypt.js" defer></script>
+<script>(function() {
+  window.isArray = function(val) {
+    return Object.prototype.toString.call(val) === '[object Array]';
+  };
+  window.isString = function(val) {
+    return typeof val === 'string';
+  };
+
+  window.hasEvent = function(event) {
+    return 'on'.concat(event) in window.document;
+  };
+
+  window.isOverallScroller = function(node) {
+    return node === document.documentElement || node === document.body || node === window;
+  };
+
+  window.isFormElement = function(node) {
+    var tagName = node.tagName;
+    return tagName === 'INPUT' || tagName === 'SELECT' || tagName === 'TEXTAREA';
+  };
+
+  window.pageLoad = (function () {
+    var loaded = false, cbs = [];
+    window.addEventListener('load', function () {
+      var i;
+      loaded = true;
+      if (cbs.length > 0) {
+        for (i = 0; i < cbs.length; i++) {
+          cbs[i]();
+        }
+      }
+    });
+    return {
+      then: function(cb) {
+        cb && (loaded ? cb() : (cbs.push(cb)));
+      }
+    };
+  })();
+})();
+(function() {
+  window.throttle = function(func, wait) {
+    var args, result, thisArg, timeoutId, lastCalled = 0;
+
+    function trailingCall() {
+      lastCalled = new Date;
+      timeoutId = null;
+      result = func.apply(thisArg, args);
+    }
+    return function() {
+      var now = new Date,
+        remaining = wait - (now - lastCalled);
+
+      args = arguments;
+      thisArg = this;
+
+      if (remaining <= 0) {
+        clearTimeout(timeoutId);
+        timeoutId = null;
+        lastCalled = now;
+        result = func.apply(thisArg, args);
+      } else if (!timeoutId) {
+        timeoutId = setTimeout(trailingCall, remaining);
+      }
+      return result;
+    };
+  };
+})();
+(function() {
+  var Set = (function() {
+    var add = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (data[i] === item) {
+          return;
+        }
+      }
+      this.size ++;
+      data.push(item);
+      return data;
+    };
+
+    var Set = function(data) {
+      this.size = 0;
+      this._data = [];
+      var i;
+      if (data.length > 0) {
+        for (i = 0; i < data.length; i++) {
+          add.call(this, data[i]);
+        }
+      }
+    };
+    Set.prototype.add = add;
+    Set.prototype.get = function(index) { return this._data[index]; };
+    Set.prototype.has = function(item) {
+      var i, data = this._data;
+      for (i = 0; i < data.length; i++) {
+        if (this.get(i) === item) {
+          return true;
+        }
+      }
+      return false;
+    };
+    Set.prototype.is = function(map) {
+      if (map._data.length !== this._data.length) { return false; }
+      var i, j, flag, tData = this._data, mData = map._data;
+      for (i = 0; i < tData.length; i++) {
+        for (flag = false, j = 0; j < mData.length; j++) {
+          if (tData[i] === mData[j]) {
+            flag = true;
+            break;
+          }
+        }
+        if (!flag) { return false; }
+      }
+      return true;
+    };
+    Set.prototype.values = function() {
+      return this._data;
+    };
+    return Set;
+  })();
+
+  window.Lazyload = (function(doc) {
+    var queue = {js: [], css: []}, sources = {js: {}, css: {}}, context = this;
+    var createNode = function(name, attrs) {
+      var node = doc.createElement(name), attr;
+      for (attr in attrs) {
+        if (attrs.hasOwnProperty(attr)) {
+          node.setAttribute(attr, attrs[attr]);
+        }
+      }
+      return node;
+    };
+    var end = function(type, url) {
+      var s, q, qi, cbs, i, j, cur, val, flag;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        s[url] = true;
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (cur.urls.has(url)) {
+            qi = cur, val = qi.urls.values();
+            qi && (cbs = qi.callbacks);
+            for (flag = true, j = 0; j < val.length; j++) {
+              cur = val[j];
+              if (!s[cur]) {
+                flag = false;
+              }
+            }
+            if (flag && cbs && cbs.length > 0) {
+              for (j = 0; j < cbs.length; j++) {
+                cbs[j].call(context);
+              }
+              qi.load = true;
+            }
+          }
+        }
+      }
+    };
+    var load = function(type, urls, callback) {
+      var s, q, qi, node, i, cur,
+        _urls = typeof urls === 'string' ? new Set([urls]) : new Set(urls), val, url;
+      if (type === 'js' || type ==='css') {
+        s = sources[type], q = queue[type];
+        for (i = 0; i < q.length; i++) {
+          cur = q[i];
+          if (_urls.is(cur.urls)) {
+            qi = cur;
+            break;
+          }
+        }
+        val = _urls.values();
+        if (qi) {
+          callback && (qi.load || qi.callbacks.push(callback));
+          callback && (qi.load && callback());
+        } else {
+          q.push({
+            urls: _urls,
+            callbacks: callback ? [callback] : [],
+            load: false
+          });
+          for (i = 0; i < val.length; i++) {
+            node = null, url = val[i];
+            if (s[url] === undefined) {
+              (type === 'js' ) && (node = createNode('script', { src: url }));
+              (type === 'css') && (node = createNode('link', { rel: 'stylesheet', href: url }));
+              if (node) {
+                node.onload = (function(type, url) {
+                  return function() {
+                    end(type, url);
+                  };
+                })(type, url);
+                (doc.head || doc.body).appendChild(node);
+                s[url] = false;
+              }
+            }
+          }
+        }
+      }
+    };
+    return {
+      js: function(url, callback) {
+        load('js', url, callback);
+      },
+      css: function(url, callback) {
+        load('css', url, callback);
+      }
+    };
+  })(this.document);
+})();
+</script><script>
+  (function() {
+    var TEXT_VARIABLES = {
+      version: '2.2.6',
+      sources: {
+        font_awesome: 'https://cdn.bootcdn.net/ajax/libs/font-awesome/5.15.1/css/all.css',
+        jquery: 'https://cdn.bootcss.com/jquery/3.1.1/jquery.min.js',
+        leancloud_js_sdk: '//cdn.jsdelivr.net/npm/leancloud-storage@3.13.2/dist/av-min.js',
+        chart: 'https://cdn.bootcss.com/Chart.js/2.7.2/Chart.bundle.min.js',
+        gitalk: {
+          js: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.js',
+          css: 'https://cdn.bootcss.com/gitalk/1.2.2/gitalk.min.css'
+        },
+        valine: 'https://unpkg.com/valine/dist/Valine.min.js',
+        mathjax: 'https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML',
+        mermaid: 'https://cdn.bootcss.com/mermaid/8.0.0-rc.8/mermaid.min.js'
+      },
+      site: {
+        toc: {
+          selectors: 'h1,h2,h3'
+        }
+      },
+      paths: {
+        search_js: '/assets/search.js'
+      }
+    };
+    window.TEXT_VARIABLES = TEXT_VARIABLES;
+  })();
+</script>
+</head>
+  <body>
+    <div class="root" data-is-touch="false">
+      <div class="layout--page js-page-root"><div class="page__main js-page-main page__viewport cell cell--auto">
+
+      <div class="page__main-inner"><div class="page__header d-print-none"><header class="header"><div class="main">
+      <div class="header__title">
+        <div class="header__brand"><svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+  <rect width="32" height="32" fill="#1d1f21" rx="4"/>
+  <text x="2" y="24" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#fc4d50">S</text>
+  <text x="16" y="30" font-family="monospace" font-size="8" font-weight="bold" fill="#ffffff">&lt;/&gt;</text>
+</svg>
+<a title="AI 维护的技术博客，分享开发经验、效率工具、软考高项。Welcome to an AI-maintained dev blog." href="/">SHYTONE.COM</a></div></div><nav class="navigation">
+        <ul><li class="navigation__item"><a href="/discover.html">发现</a></li><li class="navigation__item"><a href="/algorithms.html">算法专栏</a></li><li class="navigation__item"><a href="/gaokao.html">软考高项</a></li><li class="navigation__item"><a href="/ai-daily.html">AI 日刊</a></li><li class="navigation__item"><a href="/xiuxian.html">修仙养成</a></li><li class="navigation__item"><a href="/tools.html">工具箱</a></li><li class="navigation__item"><a href="/relax.html">摸鱼专区</a></li><li class="navigation__item"><a href="/archive.html">归档</a></li><li class="navigation__item"><a href="/about.html">关于</a></li></ul>
+      </nav></div>
+  </header>
+</div><div class="page__content"><div class ="main"><div class="grid grid--reverse">
+
+              <div class="col-aside d-print-none js-col-aside"></div>
+
+              <div class="col-main cell cell--auto"><!-- start custom main top snippet -->
+
+<!-- end custom main top snippet -->
+<article itemscope itemtype="http://schema.org/Article"><div class="article__header"><header><h1>RAG 深度解析：如何让大模型拥有最新知识</h1></header></div><meta itemprop="headline" content="RAG 深度解析：如何让大模型拥有最新知识"><div class="article__info clearfix"><ul class="left-col menu"><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=AI">AI</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=RAG">RAG</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Vector+DB">Vector DB</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E5%A4%A7%E6%A8%A1%E5%9E%8B">大模型</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=%E7%9F%A5%E8%AF%86%E5%BA%93">知识库</a>
+            </li><li>
+              <a class="button button--secondary button--pill button--sm"
+                href="/archive.html?tag=Embedding">Embedding</a>
+            </li></ul><ul class="right-col menu"><li><i class="far fa-calendar-alt"></i> <span>2026年 05月14日</span>
+            </li></ul></div><meta itemprop="author" content="shytone"/><meta itemprop="datePublished" content="2026-05-14T08:00:00+08:00">
+    <meta itemprop="keywords" content="AI,RAG,Vector DB,大模型,知识库,Embedding"><div class="js-article-content"><div class="layout--article" >
+  <div class="article__content" itemprop="articleBody"><blockquote>
+  <p>RAG = Retrieval Augmented Generation。不用微调，让大模型随时获取最新知识。</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="为什么需要-rag">为什么需要 RAG？</h2>
+
+<p>大模型的”知识截止”问题：GPT-4o 的知识库有截止日期，它不知道今天发生了什么。</p>
+
+<p><strong>RAG 的核心思想</strong>：把知识放在外部知识库，检索到相关内容后，连同问题一起喂给 LLM。</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>用户问题 → 检索相似内容 → 与问题拼接 → LLM 生成回答
+</code></pre></div></div>
+
+<p>这样你只需要更新知识库，无需重新训练模型。</p>
+
+<hr />
+
+<h2 id="rag-工作流程">RAG 工作流程</h2>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>┌─────────────┐    ┌──────────────┐    ┌─────────────┐
+│  文档切分    │ -&gt; │  向量嵌入     │ -&gt; │  存入向量库  │
+└─────────────┘    └──────────────┘    └─────────────┘
+                                              │
+┌─────────────┐    ┌──────────────┐          │
+│  LLM 生成   │ &lt;- │  拼接上下文   │ &lt;- 检索相似内容
+└─────────────┘    └──────────────┘
+</code></pre></div></div>
+
+<h3 id="1-文档切分chunking">1. 文档切分（Chunking）</h3>
+
+<p>将长文档切成小块（chunk），每个 chunk 单独做 Embedding。</p>
+
+<p>常见策略：</p>
+<ul>
+  <li><strong>固定长度切分</strong>：如每 500 tokens 重叠 50 tokens</li>
+  <li><strong>语义切分</strong>：按段落、章节自然边界切分</li>
+  <li><strong>递归字符切分</strong>：按层级结构（段落→句子→词）切分</li>
+</ul>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">langchain.text_splitter</span> <span class="kn">import</span> <span class="n">RecursiveCharacterTextSplitter</span>
+
+<span class="n">splitter</span> <span class="o">=</span> <span class="nc">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+    <span class="n">chunk_overlap</span><span class="o">=</span><span class="mi">50</span><span class="p">,</span>
+    <span class="n">separators</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="se">\n\n</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="se">\n</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s">。</span><span class="sh">"</span><span class="p">,</span> <span class="sh">"</span><span class="s"> </span><span class="sh">"</span><span class="p">]</span>
+<span class="p">)</span>
+<span class="n">chunks</span> <span class="o">=</span> <span class="n">splitter</span><span class="p">.</span><span class="nf">split_text</span><span class="p">(</span><span class="n">long_document</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="2-向量嵌入embedding">2. 向量嵌入（Embedding）</h3>
+
+<p>将文本块转换成向量。常用模型：</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>模型</th>
+      <th>维度</th>
+      <th>特点</th>
+      <th>适用场景</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>text-embedding-3-large</strong></td>
+      <td>3072</td>
+      <td>OpenAI 最新，性能最强</td>
+      <td>通用</td>
+    </tr>
+    <tr>
+      <td><strong>text-embedding-3-small</strong></td>
+      <td>1536</td>
+      <td>性价比高</td>
+      <td>快速原型</td>
+    </tr>
+    <tr>
+      <td><strong>bge-large-zh</strong></td>
+      <td>1024</td>
+      <td>中文优化，开源</td>
+      <td>中文生产环境</td>
+    </tr>
+    <tr>
+      <td><strong>m3e</strong></td>
+      <td>768</td>
+      <td>中文开源，轻量</td>
+      <td>私有部署</td>
+    </tr>
+  </tbody>
+</table>
+
+<h3 id="3-向量数据库">3. 向量数据库</h3>
+
+<table>
+  <thead>
+    <tr>
+      <th>数据库</th>
+      <th>特点</th>
+      <th>优势</th>
+      <th>缺点</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Pinecone</strong></td>
+      <td>云原生</td>
+      <td>免运维，全球加速</td>
+      <td>按量付费</td>
+    </tr>
+    <tr>
+      <td><strong>Milvus</strong></td>
+      <td>开源</td>
+      <td>功能全面，支持混合检索</td>
+      <td>部署复杂</td>
+    </tr>
+    <tr>
+      <td><strong>Chroma</strong></td>
+      <td>轻量</td>
+      <td>开发友好，本地运行</td>
+      <td>生产性能一般</td>
+    </tr>
+    <tr>
+      <td><strong>Qdrant</strong></td>
+      <td>Rust 实现</td>
+      <td>高性能，Filtering 强</td>
+      <td>生态较小</td>
+    </tr>
+    <tr>
+      <td><strong>Weaviate</strong></td>
+      <td>混合向量+结构化</td>
+      <td>支持 GraphQL</td>
+      <td>学习成本</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">chromadb</span>
+
+<span class="n">client</span> <span class="o">=</span> <span class="n">chromadb</span><span class="p">.</span><span class="nc">Client</span><span class="p">()</span>
+<span class="n">collection</span> <span class="o">=</span> <span class="n">client</span><span class="p">.</span><span class="nf">create_collection</span><span class="p">(</span><span class="sh">"</span><span class="s">knowledge_base</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="c1"># 添加文档
+</span><span class="n">collection</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span>
+    <span class="n">documents</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">RAG 是检索增强生成的缩写</span><span class="sh">"</span><span class="p">],</span>
+    <span class="n">metadatas</span><span class="o">=</span><span class="p">[{</span><span class="sh">"</span><span class="s">source</span><span class="sh">"</span><span class="p">:</span> <span class="sh">"</span><span class="s">wiki</span><span class="sh">"</span><span class="p">}],</span>
+    <span class="n">ids</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">doc1</span><span class="sh">"</span><span class="p">]</span>
+<span class="p">)</span>
+
+<span class="c1"># 检索
+</span><span class="n">results</span> <span class="o">=</span> <span class="n">collection</span><span class="p">.</span><span class="nf">query</span><span class="p">(</span>
+    <span class="n">query_texts</span><span class="o">=</span><span class="p">[</span><span class="sh">"</span><span class="s">什么是 RAG？</span><span class="sh">"</span><span class="p">],</span>
+    <span class="n">n_results</span><span class="o">=</span><span class="mi">3</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="4-检索优化策略">4. 检索优化策略</h3>
+
+<p><strong>Query 改写</strong>：用户问题往往不够精确，需要改写：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># HyDE: 用 LLM 生成假设性答案，再检索
+</span><span class="n">hypothetical_answer</span> <span class="o">=</span> <span class="n">llm</span><span class="p">.</span><span class="nf">invoke</span><span class="p">(</span>
+    <span class="sh">"</span><span class="s">请为这个问题生成一个简短答案：用户问：</span><span class="sh">"</span> <span class="o">+</span> <span class="n">query</span>
+<span class="p">)</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">vector_db</span><span class="p">.</span><span class="nf">similarity_search</span><span class="p">(</span><span class="n">hypothetical_answer</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>混合检索</strong>：关键词 + 向量双路检索</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Elasticsearch 关键词检索 + 向量检索
+</span><span class="n">keyword_results</span> <span class="o">=</span> <span class="n">bm25</span><span class="p">.</span><span class="nf">search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="n">vector_results</span> <span class="o">=</span> <span class="n">vector_db</span><span class="p">.</span><span class="nf">similarity_search</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+
+<span class="c1"># RRFF 融合排名
+</span><span class="n">final_results</span> <span class="o">=</span> <span class="nf">fuse</span><span class="p">([</span><span class="n">keyword_results</span><span class="p">,</span> <span class="n">vector_results</span><span class="p">],</span> <span class="n">method</span><span class="o">=</span><span class="sh">"</span><span class="s">rrf</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p><strong>重排序（Rerank）</strong>：用 Cross-Encoder 再筛一次最相关结果：</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">sentence_transformers</span> <span class="kn">import</span> <span class="n">CrossEncoder</span>
+
+<span class="n">reranker</span> <span class="o">=</span> <span class="nc">CrossEncoder</span><span class="p">(</span><span class="sh">"</span><span class="s">cross-encoder/ms-marco-MiniLM-L-6</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">reranked</span> <span class="o">=</span> <span class="n">reranker</span><span class="p">.</span><span class="nf">predict</span><span class="p">([</span>
+    <span class="p">(</span><span class="n">query</span><span class="p">,</span> <span class="n">chunk</span><span class="p">)</span> <span class="k">for</span> <span class="n">chunk</span> <span class="ow">in</span> <span class="n">top_k_results</span>
+<span class="p">])</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="常见-rag-架构模式">常见 RAG 架构模式</h2>
+
+<h3 id="基础-ragnaive-rag">基础 RAG（Naive RAG）</h3>
+<p>最简单：切分→嵌入→检索→拼接→生成。</p>
+
+<h3 id="高级-ragadvanced-rag">高级 RAG（Advanced RAG）</h3>
+<p>加入：Query 改写、HyDE、重排序、上下文压缩。</p>
+
+<h3 id="模块化-ragmodular-rag">模块化 RAG（Modular RAG）</h3>
+<p>将检索、生成、记忆等模块解耦，灵活组合。</p>
+
+<h3 id="图谱-raggraph-rag">图谱 RAG（Graph RAG）</h3>
+<p>将文档知识建图，用知识图谱做检索。微软开源了 GraphRAG 工具。</p>
+
+<hr />
+
+<h2 id="实战构建一个本地-rag-知识库">实战：构建一个本地 RAG 知识库</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="n">langchain.document_loaders</span> <span class="kn">import</span> <span class="n">PDFPlumberLoader</span>
+<span class="kn">from</span> <span class="n">langchain.embeddings</span> <span class="kn">import</span> <span class="n">HuggingFaceEmbeddings</span>
+<span class="kn">from</span> <span class="n">langchain.vectorstores</span> <span class="kn">import</span> <span class="n">Chroma</span>
+<span class="kn">from</span> <span class="n">langchain.chains</span> <span class="kn">import</span> <span class="n">RetrievalQA</span>
+<span class="kn">from</span> <span class="n">langchain_openai</span> <span class="kn">import</span> <span class="n">ChatOpenAI</span>
+
+<span class="c1"># 1. 加载文档
+</span><span class="n">loader</span> <span class="o">=</span> <span class="nc">PDFPlumberLoader</span><span class="p">(</span><span class="sh">"</span><span class="s">白皮书.pdf</span><span class="sh">"</span><span class="p">)</span>
+<span class="n">docs</span> <span class="o">=</span> <span class="n">loader</span><span class="p">.</span><span class="nf">load</span><span class="p">()</span>
+
+<span class="c1"># 2. 切分
+</span><span class="n">chunks</span> <span class="o">=</span> <span class="nc">RecursiveCharacterTextSplitter</span><span class="p">(</span>
+    <span class="n">chunk_size</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span> <span class="n">overlap</span><span class="o">=</span><span class="mi">50</span>
+<span class="p">).</span><span class="nf">split_documents</span><span class="p">(</span><span class="n">docs</span><span class="p">)</span>
+
+<span class="c1"># 3. 向量化
+</span><span class="n">vectorstore</span> <span class="o">=</span> <span class="n">Chroma</span><span class="p">.</span><span class="nf">from_documents</span><span class="p">(</span>
+    <span class="n">documents</span><span class="o">=</span><span class="n">chunks</span><span class="p">,</span>
+    <span class="n">embedding</span><span class="o">=</span><span class="nc">HuggingFaceEmbeddings</span><span class="p">(</span><span class="n">model_name</span><span class="o">=</span><span class="sh">"</span><span class="s">bge-large-zh</span><span class="sh">"</span><span class="p">)</span>
+<span class="p">)</span>
+
+<span class="c1"># 4. 构建问答链
+</span><span class="n">qa</span> <span class="o">=</span> <span class="n">RetrievalQA</span><span class="p">.</span><span class="nf">from_chain_type</span><span class="p">(</span>
+    <span class="n">llm</span><span class="o">=</span><span class="nc">ChatOpenAI</span><span class="p">(</span><span class="n">model</span><span class="o">=</span><span class="sh">"</span><span class="s">gpt-4o</span><span class="sh">"</span><span class="p">),</span>
+    <span class="n">chain_type</span><span class="o">=</span><span class="sh">"</span><span class="s">stuff</span><span class="sh">"</span><span class="p">,</span>
+    <span class="n">retriever</span><span class="o">=</span><span class="n">vectorstore</span><span class="p">.</span><span class="nf">as_retriever</span><span class="p">(</span><span class="n">search_kwargs</span><span class="o">=</span><span class="p">{</span><span class="sh">"</span><span class="s">k</span><span class="sh">"</span><span class="p">:</span> <span class="mi">3</span><span class="p">})</span>
+<span class="p">)</span>
+
+<span class="c1"># 5. 问答
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">qa</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="sh">"</span><span class="s">这份白皮书的核心结论是什么？</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<hr />
+
+<h2 id="rag-vs-微调fine-tuning">RAG vs 微调（FINE-TUNING）</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>维度</th>
+      <th>RAG</th>
+      <th>微调</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>知识更新</td>
+      <td>随时，更新知识库即可</td>
+      <td>需要重新训练</td>
+    </tr>
+    <tr>
+      <td>成本</td>
+      <td>低，无需训练</td>
+      <td>高，GPU 训练</td>
+    </tr>
+    <tr>
+      <td>幻觉</td>
+      <td>较少，答案有据可查</td>
+      <td>可能更流畅但更易幻觉</td>
+    </tr>
+    <tr>
+      <td>定制能力</td>
+      <td>中等</td>
+      <td>强，可学特定风格</td>
+    </tr>
+    <tr>
+      <td>实时性</td>
+      <td>高</td>
+      <td>低</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>结论</strong>：大多数场景优先 RAG，特定风格/任务才考虑微调。</p>
+
+<hr />
+
+<h2 id="-小结">💡 小结</h2>
+
+<p>RAG 是当前最实用的 LLM 知识增强方案。它的本质是<strong>让模型在回答时”查资料”</strong>，而不是靠记忆。</p>
+
+<p>关键要点：</p>
+<ol>
+  <li><strong>好的切分策略</strong>往往比算法优化更重要</li>
+  <li><strong>混合检索</strong>比纯向量检索效果更稳定</li>
+  <li><strong>重排序</strong>是提升精度的低成本手段</li>
+  <li><strong>图谱 RAG</strong> 适合处理复杂关系型知识</li>
+</ol>
+
+<hr />
+
+<p><em>相关阅读：<a href="/_ai-daily/20260513-AI-Agent原理与实践.md">AI Agent 原理与实践</a></em></p>
+</div>
+</div>
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    $(function() {
+      var $this ,$scroll;
+      var $articleContent = $('.js-article-content');
+      var hasSidebar = $('.js-page-root').hasClass('layout--page--sidebar');
+      var scroll = hasSidebar ? '.js-page-main' : 'html, body';
+      $scroll = $(scroll);
+
+      $articleContent.find('.highlight').each(function() {
+        $this = $(this);
+        $this.attr('data-lang', $this.find('code').attr('data-lang'));
+      });
+      $articleContent.find('h1[id], h2[id], h3[id], h4[id], h5[id], h6[id]').each(function() {
+        $this = $(this);
+        $this.append($('<a class="anchor d-print-none" aria-hidden="true"></a>').html('<i class="fas fa-anchor"></i>'));
+      });
+      $articleContent.on('click', '.anchor', function() {
+        $scroll.scrollToAnchor('#' + $(this).parent().attr('id'), 400);
+      });
+    });
+  });
+})();
+</script>
+<script src="/assets/js/decrypt.js" defer></script></div><section class="page__comments d-print-none"></section></article>
+<!-- Footer placeholder - no ads at bottom to avoid policy issues -->
+</div>
+            </div></div></div><div class="page__footer d-print-none"><footer class="footer py-4 js-page-footer">
+  <div class="main"><div itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="shytone"><meta itemprop="url" content="https://shytone.com"><meta itemprop="description" content="Developer · Learner · Builder"><div class="footer__author-links"><div class="author-links">
+  <ul class="menu menu--nowrap menu--inline"><link itemprop="url" href="https://shytone.com"><li title="在 Github 上关注我。">
+        <a class="button button--circle github-button" itemprop="sameAs" href="https://github.com/shytone" target="_blank">
+          <div class="icon"><svg fill="#000000" width="24px" height="24px" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg">
+  <path class="svgpath" data-index="path_0" fill="#272636" d="M0 525.2c0 223.6 143.3 413.7 343 483.5 26.9 6.8 22.8-12.4 22.8-25.4l0-88.7c-155.3 18.2-161.5-84.6-172-101.7-21.1-36-70.8-45.2-56-62.3 35.4-18.2 71.4 4.6 113.1 66.3 30.2 44.7 89.1 37.2 119 29.7 6.5-26.9 20.5-50.9 39.7-69.6C248.8 728.2 181.7 630 181.7 513.2c0-56.6 18.7-108.7 55.3-150.7-23.3-69.3 2.2-128.5 5.6-137.3 66.5-6 135.5 47.6 140.9 51.8 37.8-10.2 80.9-15.6 129.1-15.6 48.5 0 91.8 5.6 129.8 15.9 12.9-9.8 77-55.8 138.8-50.2 3.3 8.8 28.2 66.7 6.3 135 37.1 42.1 56 94.6 56 151.4 0 117-67.5 215.3-228.8 243.7 26.9 26.6 43.6 63.4 43.6 104.2l0 128.8c0.9 10.3 0 20.5 17.2 20.5C878.1 942.4 1024 750.9 1024 525.3c0-282.9-229.3-512-512-512C229.1 13.2 0 242.3 0 525.2L0 525.2z" />
+</svg>
+</div>
+        </a>
+      </li></ul>
+</div>
+</div>
+    </div>
+    
+    <!-- 不蒜子统计 -->
+    <div class="busuanzi-stat" style="margin: 1rem 0; text-align: center;">
+      <span id="busuanzi_container_page_pv" style="margin-right: 1rem;">
+        👁️ 本页浏览 <span id="busuanzi_value_page_pv">-</span>
+      </span>
+      <span id="busuanzi_container_site_pv" style="margin-right: 1rem;">
+        🌐 站点总浏览 <span id="busuanzi_value_site_pv">-</span>
+      </span>
+      <span id="busuanzi_container_site_uv">
+        👤 访客数 <span id="busuanzi_value_site_uv">-</span>
+      </span>
+    </div>
+    <script src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" defer></script><div class="site-info mt-2">
+      <div>© SHYTONE.COM 2021,
+        Powered by <a title="Jekyll is a simple, blog-aware, static site generator." href="http://jekyllrb.com/">Jekyll</a> & <a
+        title="TeXt is a super customizable Jekyll theme." href="https://github.com/kitian616/jekyll-TeXt-theme">TeXt Theme</a>.
+        <span style="margin-left:1rem"><a href="/privacy.html">隐私政策</a></span>
+      </div>
+    </div>
+  </div>
+</footer>
+</div></div>
+    </div><script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    var $body = $('body'), $window = $(window);
+    var $pageRoot = $('.js-page-root'), $pageMain = $('.js-page-main');
+    var activeCount = 0;
+    function modal(options) {
+      var $root = this, visible, onChange, hideWhenWindowScroll = false;
+      var scrollTop;
+      function setOptions(options) {
+        var _options = options || {};
+        visible = _options.initialVisible === undefined ? false : show;
+        onChange = _options.onChange;
+        hideWhenWindowScroll = _options.hideWhenWindowScroll;
+      }
+      function init() {
+        setState(visible);
+      }
+      function setState(isShow) {
+        if (isShow === visible) {
+          return;
+        }
+        visible = isShow;
+        if (visible) {
+          activeCount++;
+          scrollTop = $(window).scrollTop() || $pageMain.scrollTop();
+          $root.addClass('modal--show');
+          $pageMain.scrollTop(scrollTop);
+          activeCount === 1 && ($pageRoot.addClass('show-modal'), $body.addClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.on('scroll', hide);
+          $window.on('keyup', handleKeyup);
+        } else {
+          activeCount > 0 && activeCount--;
+          $root.removeClass('modal--show');
+          $window.scrollTop(scrollTop);
+          activeCount === 0 && ($pageRoot.removeClass('show-modal'), $body.removeClass('of-hidden'));
+          hideWhenWindowScroll && window.hasEvent('touchstart') && $window.off('scroll', hide);
+          $window.off('keyup', handleKeyup);
+        }
+        onChange && onChange(visible);
+      }
+      function show() {
+        setState(true);
+      }
+      function hide() {
+        setState(false);
+      }
+      function handleKeyup(e) {
+        // Char Code: 27  ESC
+        if (e.which ===  27) {
+          hide();
+        }
+      }
+      setOptions(options);
+      init();
+      return {
+        show: show,
+        hide: hide,
+        $el: $root
+      };
+    }
+    $.fn.modal = modal;
+  });
+})();
+</script><div class="modal modal--overflow page__search-modal d-print-none js-page-search-modal"></div></div>
+
+
+<script>(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function scrollToAnchor(anchor, duration, callback) {
+      var $root = this;
+      $root.animate({ scrollTop: $(anchor).position().top }, duration, function() {
+        window.history.replaceState(null, '', window.location.href.split('#')[0] + anchor);
+        callback && callback();
+      });
+    }
+    $.fn.scrollToAnchor = scrollToAnchor;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function affix(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroll,
+        offsetBottom = 0, scrollTarget = window, scroll = window.document, disabled = false, isOverallScroller = true,
+        rootTop, rootLeft, rootHeight, scrollBottom, rootBottomTop,
+        hasInit = false, curState;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.offsetBottom && (offsetBottom = _options.offsetBottom);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroll && (scroll = _options.scroll);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $scrollTarget = $(scrollTarget);
+        isOverallScroller = window.isOverallScroller($scrollTarget[0]);
+        $scroll = $(scroll);
+      }
+      function preCalc() {
+        top();
+        rootHeight = $root.outerHeight();
+        rootTop = $root.offset().top + (isOverallScroller ? 0 :  $scrollTarget.scrollTop());
+        rootLeft = $root.offset().left;
+      }
+      function calc(needPreCalc) {
+        needPreCalc && preCalc();
+        scrollBottom = $scroll.outerHeight() - offsetBottom - rootHeight;
+        rootBottomTop = scrollBottom - rootTop;
+      }
+      function top() {
+        if (curState !== 'top') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: 0
+          });
+          curState = 'top';
+        }
+      }
+      function fixed() {
+        if (curState !== 'fixed') {
+          $root.addClass('fixed').css({
+            left: rootLeft + 'px',
+            top: 0
+          });
+          curState = 'fixed';
+        }
+      }
+      function bottom() {
+        if (curState !== 'bottom') {
+          $root.removeClass('fixed').css({
+            left: 0,
+            top: rootBottomTop + 'px'
+          });
+          curState = 'bottom';
+        }
+      }
+      function setState() {
+        var scrollTop = $scrollTarget.scrollTop();
+        if (scrollTop >= rootTop && scrollTop <= scrollBottom) {
+          fixed();
+        } else if (scrollTop < rootTop) {
+          top();
+        } else {
+          bottom();
+        }
+      }
+      function init() {
+        if(!hasInit) {
+          var interval, timeout;
+          calc(true); setState();
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState();
+          });
+          $window.on('resize', function() {
+            disabled || (calc(true), setState());
+          });
+          hasInit = true;
+        }
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions,
+        refresh: function() {
+          calc(true, { animation: false }); setState();
+        }
+      };
+    }
+    $.fn.affix = affix;
+  });
+})();
+(function() {
+  var SOURCES = window.TEXT_VARIABLES.sources;
+  window.Lazyload.js(SOURCES.jquery, function() {
+    function toc(options) {
+      var $root = this, $window = $(window), $scrollTarget, $scroller, $tocUl = $('<ul class="toc toc--ellipsis"></ul>'), $tocLi, $headings, $activeLast, $activeCur,
+        selectors = 'h1,h2,h3', container = 'body', scrollTarget = window, scroller = 'html, body', disabled = false,
+        headingsPos, scrolling = false, hasRendered = false, hasInit = false;
+
+      function setOptions(options) {
+        var _options = options || {};
+        _options.selectors && (selectors = _options.selectors);
+        _options.container && (container = _options.container);
+        _options.scrollTarget && (scrollTarget = _options.scrollTarget);
+        _options.scroller && (scroller = _options.scroller);
+        _options.disabled !== undefined && (disabled = _options.disabled);
+        $headings = $(container).find(selectors).filter('[id]');
+        $scrollTarget = $(scrollTarget);
+        $scroller = $(scroller);
+      }
+      function calc() {
+        headingsPos = [];
+        $headings.each(function() {
+          headingsPos.push(Math.floor($(this).position().top));
+        });
+      }
+      function setState(element, disabled) {
+        var scrollTop = $scrollTarget.scrollTop(), i;
+        if (disabled || !headingsPos || headingsPos.length < 1) { return; }
+        if (element) {
+          $activeCur = element;
+        } else {
+          for (i = 0; i < headingsPos.length; i++) {
+            if (scrollTop >= headingsPos[i]) {
+              $activeCur = $tocLi.eq(i);
+            } else {
+              $activeCur || ($activeCur = $tocLi.eq(i));
+              break;
+            }
+          }
+        }
+        $activeLast && $activeLast.removeClass('active');
+        ($activeLast = $activeCur).addClass('active');
+      }
+      function render() {
+        if(!hasRendered) {
+          $root.append($tocUl);
+          $headings.each(function() {
+            var $this = $(this);
+            $tocUl.append($('<li></li>').addClass('toc-' + $this.prop('tagName').toLowerCase())
+              .append($('<a></a>').text($this.text()).attr('href', '#' + $this.prop('id'))));
+          });
+          $tocLi = $tocUl.children('li');
+          $tocUl.on('click', 'a', function(e) {
+            e.preventDefault();
+            var $this = $(this);
+            scrolling = true;
+            setState($this.parent());
+            $scroller.scrollToAnchor($this.attr('href'), 400, function() {
+              scrolling = false;
+            });
+          });
+        }
+        hasRendered = true;
+      }
+      function init() {
+        var interval, timeout;
+        if(!hasInit) {
+          render(); calc(); setState(null, scrolling);
+          // run calc every 100 millisecond
+          interval = setInterval(function() {
+            calc();
+          }, 100);
+          timeout = setTimeout(function() {
+            clearInterval(interval);
+          }, 45000);
+          window.pageLoad.then(function() {
+            setTimeout(function() {
+              clearInterval(interval);
+              clearTimeout(timeout);
+            }, 3000);
+          });
+          $scrollTarget.on('scroll', function() {
+            disabled || setState(null, scrolling);
+          });
+          $window.on('resize', window.throttle(function() {
+            if (!disabled) {
+              render(); calc(); setState(null, scrolling);
+            }
+          }, 100));
+        }
+        hasInit = true;
+      }
+
+      setOptions(options);
+      if (!disabled) {
+        init();
+      }
+      $window.on('resize', window.throttle(function() {
+        init();
+      }, 200));
+      return {
+        setOptions: setOptions
+      };
+    }
+    $.fn.toc = toc;
+  });
+})();
+/*(function () {
+
+})();*/
+</script><script type="text/x-mathjax-config">
+	var _config = { tex2jax: {
+		inlineMath: [['$','$'], ['\\(','\\)']]
+	}};_config.TeX = { equationNumbers: { autoNumber: "all" } };MathJax.Hub.Config(_config);
+</script>
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.4/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
+
+    </div>
+    <script>(function () {
+  var $root = document.getElementsByClassName('root')[0];
+  if (window.hasEvent('touchstart')) {
+    $root.dataset.isTouch = true;
+    document.addEventListener('touchstart', function(){}, false);
+  }
+})();
+</script>
+  </body>
+</html>
+

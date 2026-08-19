@@ -1,0 +1,38 @@
+<blockquote>
+  <p>🔐 这是一篇加密文章，只有输入正确密钥才能查看完整内容。</p>
+</blockquote>
+
+<!--more-->
+
+<h2 id="加密功能验证">加密功能验证</h2>
+
+<p>如果你能看到这段文字，说明：</p>
+<ol>
+  <li>GitHub Actions 构建成功</li>
+  <li><code class="language-plaintext highlighter-rouge">ENCRYPT_KEY</code> Secret 已正确配置</li>
+  <li><code class="language-plaintext highlighter-rouge">post-build-encrypt.rb</code> 脚本正常执行</li>
+  <li>加密后的内容通过 AES-256-GCM 成功解锁</li>
+</ol>
+
+<hr />
+
+<h3 id="-验证步骤">🎯 验证步骤</h3>
+
+<ol>
+  <li>查看页面是否有解锁框（🔐 图标 + 密码输入框）</li>
+  <li>检查 HTML 源码是否包含 <code class="language-plaintext highlighter-rouge">data-payload</code> 属性</li>
+  <li>输入当日密钥，看正文是否正常显示</li>
+</ol>
+
+<h3 id="-每日密钥">📧 每日密钥</h3>
+
+<p>每日 07:00 会收到一封邮件，包含当日密钥。
+密钥格式：<code class="language-plaintext highlighter-rouge">HMAC-SHA256(master_key, YYYY-MM-DD).hexdigest[:32]</code></p>
+
+<p>今日密钥已通过邮件发送，可直接使用。</p>
+
+<hr />
+
+<blockquote>
+  <p>🚀 加密功能运行正常！欢迎体验完整每日推送流程。</p>
+</blockquote>
